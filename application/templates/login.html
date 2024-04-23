@@ -10,9 +10,10 @@
 <body>
     {% block content %}
     <div class="container">
-        <form action="login" method="POST">
+        <div class="content-section">
+        <form  method="POST">
             {{ form.hidden_tag() }}
-            <fieldset >
+            <fieldset class="form-group">
                <legend class="text-center">Login Now!</legend>
                <dir class="form-group">
                 {{form.username.label(class="form-control-label")}}
@@ -70,6 +71,7 @@
                
             </fieldset>
         </form>
+    </div>
     </div>
 
     {% endblock content %}

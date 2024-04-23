@@ -2,6 +2,7 @@ from flask import render_template , flash , redirect , url_for
 from application.form import RegistrationForm , Loginform
 from application.models import User
 from application import app , db , bcrypt
+from flask_login import login_user
 
 
 @app.route('/')
@@ -16,11 +17,13 @@ def home():
 def login():
     form = Loginform()
     if form.validate_on_submit():
-        if form.username.data == 'admin' and form.password.data == 'password':
             flash(f'Login Successful !')
-            return redirect(url_for('home'))
-        else:
-            flash(f'Login Failed' , 'danger')
+            user = User.query.filter_by(username = form.username.data).first()
+            if user and bcrypt.check_password_hash(user.password , form.password.data):
+                 login_user(user , remember=form.remember.data)
+                 return redirect(url_for('home'))
+            else:
+                 flash(f'Login Failed . Please check username and password' , 'danger')
     return render_template('login.html', form = form)
 
 

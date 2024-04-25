@@ -1,10 +1,61 @@
-#submitButton{
-    position: relative; 
-    margin-top: 25px; 
-    margin-left: 50%;
-}
-
-
-*{
-    background-color: aquamarine;
-}
+#submitButton {
+    position: relative;
+    margin-top: 25px;
+    margin-left: 44%;
+  }
+  
+  .link-register {
+    align-items: center;
+    text-align: center;
+  }
+  
+  .login-link {
+    align-items: center;
+    text-align: center;
+    padding-top: 1px;
+  }
+  
+  .link-register a {
+    text-decoration: none;
+  }
+  
+  .login-link a {
+    text-decoration: none;
+  }
+  
+  #title{
+    font-weight: 700;
+    color: white;
+  }
+  
+  #navbarBackground{
+    background-color: blueviolet;
+    
+  }
+  
+  #Navlink{
+    color: white;
+    transition: 0.7s;
+  }
+  
+  #Navlink:hover {
+    color: yellow;
+  }
+  
+  .ContactPageBody{
+    background-image: url('https://images.sbs.com.au/dims4/default/6fffa06/2147483647/strip/true/crop/6000x3375+0+194/resize/1280x720!/quality/90/?url=http%3A%2F%2Fsbs-au-brightspot.s3.amazonaws.com%2Fe2%2Fde%2Fc8348dd641c3b707a14ea1f7ddba%2Fperson-voting.jpg');
+    background-size: cover; 
+    background-repeat: no-repeat;
+  
+  }
+  
+  .contactBackground{
+    background-color: white;
+    height: 200px;
+    width: 700px;
+    justify-content: center;
+    
+  }
+  
+  
+  

@@ -29,7 +29,7 @@
                     <li><a href=".html">Service</a></li>
                     <li><a href=".html">Candidate</a></li> 
                     <li><a href=".html">Guideline</a></li>
-                    <li><a href=".html">Contact</a></li>
+                    <li><a href="{{url_for('contact')}}">Contact</a></li>
 
                     {% if current_user.is_authenticated %}
                     <a href="{{url_for('logout')}}"><button>Log Out</button></a>

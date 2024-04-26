@@ -1,7 +1,8 @@
 #submitButton {
   position: relative;
   margin-top: 25px;
-  margin-left: 44%;
+  margin-bottom: 25px;
+  margin-left: 50%;
 }
 
 .link-register {
@@ -21,9 +22,6 @@
 
 .login-link a {
   text-decoration: none;
-<<<<<<< HEAD
-}
-=======
 }
 
 #title{
@@ -63,4 +61,3 @@
 
 
 
->>>>>>> main

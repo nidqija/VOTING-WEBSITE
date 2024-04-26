@@ -56,4 +56,18 @@ def logout():
 def contact():
      return render_template('contact.html')
 
+
+
+@app.route('/candidates')
+
+def candidates():
+     return render_template('candidates.html')
+
+
+@app.route('/guidelines')
+def guidelines():
+     return render_template('guidelines.html')
+
+
+
      

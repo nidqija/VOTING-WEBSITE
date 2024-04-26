@@ -56,6 +56,12 @@
     justify-content: center;
     
   }
+
+#CurrentUserProfile{
+  position: relative; 
+  left: 300px;
+   width: 200px;
+}
   
   
   

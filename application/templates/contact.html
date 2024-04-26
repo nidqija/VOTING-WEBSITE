@@ -17,30 +17,61 @@
           <div class="collapse navbar-collapse "  id="navbarSupportedContent">
             <ul  class="navbar-nav me-auto mb-2 mb-lg-0 ">
               <li id="navSections" class="nav-item px-3">
-                <a id="Navlink" class="nav-link active" href="#">Home</a>
+                <a id="Navlink" class="nav-link active" href="{{url_for('home')}}">Home</a>
+              </li>
+              <li id="navSections" class="nav-item px-3">
+                <a  id="Navlink" class="nav-link" href="{{url_for('candidates')}}">Candidate</a>
               </li>
               <li id="navSections" class="nav-item px-3">
                 <a  id="Navlink" class="nav-link" href="#">About</a>
               </li>
               <li id="navSections" class="nav-item px-3 ">
-                <a  id="Navlink" class="nav-link" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                  Dropdown
+                <a  id="Navlink" class="nav-link" href="{{url_for('guidelines')}}" role="button" >
+                  Guideline
                 </a>
               </li>
+               <li id="navSections" class="nav-item px-3">
+                <a id="Navlink" class="nav-link" href="#">Service</a>
+              </li>
               <li id="navSections" class="nav-item px-3">
-                <a style="color: yellow;" id="Navlink" class="nav-link" href="#">Contact</a>
+                <a style="color: yellow;" id="Navlink" class="nav-link" href="{{url_for('contact')}}">Contact</a>
               </li>
 
               {% if current_user.is_authenticated %}
               <li id="navSections" class="nav-item px-3">
-                 <a href="{{url_for('logout')}}"><button class="btn btn-outline-warning">Log Out</button></a>
+              
+                 <button id="CurrentUserProfile" type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                  {{ current_user.username }}
+                 </button>
+
+<!-- Modal -->
+          <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+           <div class="modal-dialog">
+             <div class="modal-content">
+               <div class="modal-header">
+                  <h1 class="modal-title fs-5" id="exampleModalLabel">User Profile</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                       </div>
+                          <div class="modal-body">
+                             <p>Username :   {{ current_user.username }}</p> 
+                             <p>Role : </p>
+                             <p> Email : {{ current_user.email }}</p> 
+                             <p>Description : </p>
+                          </div>
+                          <div class="modal-footer">
+                               <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Back</button>
+                               <button type="button" class="btn btn-primary">View Profile</button>
+                          </div>
+                     </div>
+                  </div>
+              </div>
               </li>
               {% else %}
               <li id="navSections" class="nav-item px-3">
-                  <a href="{{url_for('login')}}"><button class="btn btn-outline-light">Log In</button></a>
+                  <a href="{{url_for('login')}}"><button class="btn btn-outline-light" style="position: relative; left: 500px; ">Log In</button></a>
               </li>
               <li id="navSections" class="nav-item px-3">
-                  <a href="{{url_for('register')}}"><button class="btn btn-outline-light">Sign Up</button></a>
+                  <a href="{{url_for('register')}}"><button class="btn btn-outline-light" style="position: relative; left: 500px; ">Sign Up</button></a>
               </li>
               {% endif %}
             </ul>

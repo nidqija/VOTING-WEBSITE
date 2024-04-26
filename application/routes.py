@@ -51,4 +51,9 @@ def logout():
      logout_user()
      return redirect(url_for('home'))
 
+
+@app.route('/contact')
+def contact():
+     return render_template('contact.html')
+
      

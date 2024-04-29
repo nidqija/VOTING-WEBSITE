@@ -31,7 +31,7 @@
                 </a>
               </li>
                <li id="navSections" class="nav-item px-3">
-                <a id="Navlink" class="nav-link" href="#">Service</a>
+                <a id="Navlink" class="nav-link" href="{{url_for('service')}}">Service</a>
               </li>
               <li id="navSections" class="nav-item px-3">
                 <a style="color: yellow;" id="Navlink" class="nav-link" href="{{url_for('contact')}}">Contact</a>
@@ -54,7 +54,7 @@
                        </div>
                           <div class="modal-body">
                              <p>Username :   {{ current_user.username }}</p> 
-                             <p>Role : </p>
+                             <p>Role : <a class="role text-success">Student</a> </p>
                              <p> Email : {{ current_user.email }}</p> 
                              <p>Description : </p>
                           </div>
@@ -107,8 +107,9 @@
             </div>
             <div class="card-body">
               <h5 class="card-title">Follow our social media's account for more news and updates!</h5>
-              <p class="card-text"><a href="#">Discord</a></p>
-              <p class="card-text"><a href="#">Instagram</a></p>
+              <p class="card-text"><a href="www.com"><ion-icon name="logo-discord"></ion-icon></a><a href="#">Discord</a></p>
+              <p class="card-text"><a href="www.com"><ion-icon name="logo-instagram"></ion-icon><a href="#">Instagram</a></p>
+              <p class="card-text"><a href="www.com"><ion-icon name="logo-facebook"></ion-icon><a href="#">Facebook</a></p>
             </div>
           </div>
 

@@ -31,7 +31,7 @@
                 </a>
               </li>
                <li id="navSections" class="nav-item px-3">
-                <a id="Navlink" class="nav-link" href="#">Service</a>
+                <a id="Navlink" class="nav-link" href="{{url_for('service')}}">Service</a>
               </li>
               <li id="navSections" class="nav-item px-3">
                 <a id="Navlink" class="nav-link" href="{{url_for('contact')}}">Contact</a>
@@ -39,7 +39,32 @@
 
               {% if current_user.is_authenticated %}
               <li id="navSections" class="nav-item px-3">
-                 <a href="{{url_for('logout')}}"><button class="btn btn-outline-warning float-end" style="position: relative; left: 350px; width: 100px;">{{ current_user.username }}</button></a>
+              
+                 <button id="CurrentUserProfile" type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                  {{ current_user.username }}
+                 </button>
+
+<!-- Modal -->
+          <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+           <div class="modal-dialog">
+             <div class="modal-content">
+               <div class="modal-header">
+                  <h1 class="modal-title fs-5" id="exampleModalLabel">User Profile</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                       </div>
+                          <div class="modal-body">
+                             <p>Username :   {{ current_user.username }}</p> 
+                             <p>Role : <a class="role text-success">Student</a> </p>
+                             <p> Email : {{ current_user.email }}</p> 
+                             <p>Description : </p>
+                          </div>
+                          <div class="modal-footer">
+                               <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Back</button>
+                               <button type="button" class="btn btn-primary">View Profile</button>
+                          </div>
+                     </div>
+                  </div>
+              </div>
               </li>
               {% else %}
               <li id="navSections" class="nav-item px-3">
@@ -50,6 +75,7 @@
               </li>
               {% endif %}
             </ul>
+            
             
           </div>
         </div>

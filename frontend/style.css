@@ -45,7 +45,6 @@
 
 #navbarBackground{
   background-color: blueviolet;
-  
 }
 
 #Navlink{
@@ -61,7 +60,6 @@
   background-image: url('https://images.sbs.com.au/dims4/default/6fffa06/2147483647/strip/true/crop/6000x3375+0+194/resize/1280x720!/quality/90/?url=http%3A%2F%2Fsbs-au-brightspot.s3.amazonaws.com%2Fe2%2Fde%2Fc8348dd641c3b707a14ea1f7ddba%2Fperson-voting.jpg');
   background-size: cover; 
   background-repeat: no-repeat;
-
 }
 
 .contactBackground{
@@ -69,27 +67,68 @@
   height: 200px;
   width: 700px;
   justify-content: center;
-  
 }
 
-.homepage_user.body{
+.homepage_user_content{
   width: 100%;
-  height: 100vh;
-  background: linear-gradient(to top, rgba(0,0,0,0.5)50%,rgba(0,0,0,0.5)50%), url(frontend\image\MMU.jpeg);
+  min-height: 100vh;
+  background: linear-gradient(to top, rgba(0,0,0,0.5)50%,rgba(0,0,0,0.5)50%), url(https://www.mmu.edu.my/wp-content/uploads/2022/12/1280_720_2.jpeg);
   background-position: center;
   background-size: cover;
-
+  background-repeat: no-repeat;
 }
 
 .homepage_user_content{
   width: auto;
   height: auto;
   margin: auto;
-  color: #000000;
+  color: #ffffff;
   position: relative;
-
 }
 
 .announcement{
+  padding-top: 2%;
+  height: auto;
+  margin: auto;
   text-align: center;
+}
+
+.announcement_word {
+  padding-top: 2.5%;
+  text-align: center;
+}
+
+.vote {
+  font-size: 50px;
+  padding-left: 2%;
+  margin-top: 10%;
+  letter-spacing: 15px;
+}
+
+.vote span {
+  color: lightgreen;
+}
+
+.vote_button {
+  font-size: 25px;
+  width: 150px;
+  height: 40px;
+  margin: 1% 1% 45% 45%;
+  border: none;
+  border-radius: 50px;
+  background: yellow;
+  color: black;
+  cursor: pointer;
+  transition: .5s ease;
+}
+
+.vote_button a{
+  text-decoration: none;
+  color: #ffffff;
+  transition: .3s ease;
+}
+
+.vote_button:hover{
+  color: yellow;
+  background-color:black;
 }

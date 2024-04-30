@@ -119,16 +119,18 @@
   background: yellow;
   color: black;
   cursor: pointer;
-  transition: .5s ease;
+  transition: 0.5s ease;
 }
 
 .vote_button a{
   text-decoration: none;
   color: #ffffff;
-  transition: .3s ease;
+  transition: 0.3s ease;
 }
 
 .vote_button:hover{
   color: yellow;
   background-color:black;
+  box-shadow: 0 0 10px 10px yellow;
+  transition: 2.5s ease;
 }

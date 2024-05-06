@@ -37,107 +37,128 @@
                   <li id="navSections" class="nav-item px-3">
                     <a id="Navlink" class="nav-link" href="{{url_for('contact')}}">Contact</a>
                   </li>
-    
-                  {% if current_user.is_authenticated %}
-                  <li id="navSections" class="nav-item px-3">
-                     <a href="{{url_for('logout')}}"><button class="btn btn-outline-warning float-end" style="position: relative; left: 350px; width: 100px;">{{ current_user.username }}</button></a>
-                  </li>
-                  {% else %}
-                  <li id="navSections" class="nav-item px-3">
-                      <a href="{{url_for('login')}}"><button class="btn btn-outline-light" style="position: relative; left: 500px; ">Log In</button></a>
-                  </li>
-                  <li id="navSections" class="nav-item px-3">
-                      <a href="{{url_for('register')}}"><button class="btn btn-outline-light" style="position: relative; left: 500px; ">Sign Up</button></a>
-                  </li>
-                  {% endif %}
                 </ul>
-                
               </div>
             </div>
-          </nav>
+            </nav>
 
-          <h1 class="text-center" style="margin-top: 50px;">Vote Form</h1>
+                
+        {% block content %}
+        <div class="container">
+          <div class="content-section">
+          <form  method="POST">
+              {{ form.hidden_tag() }}
+  
+              <fieldset class="form-group">
+                 <legend class="text-center"></legend>
+                 <dir class="form-group">
+                  {{form.studentName.label(class="form-control-label")}}
+  
+                  {% if form.studentName.errors %}       
+                      {{form.studentName(class="form-control form-control-lg is-invalid")}}
+                      <div>
+                          {% for error in form.studentName.errors %}
+                            <span>{{ error }}</span>
+                          {% endfor %}
+                      </div>
+  
+                  {% else %}
+                      {{form.studentName(class="form-control form-control-lg")}}
+                  {% endif %}
+  
+  
+              </dir>
+            
+              <dir class="form-group">
+                  {{form.studentId.label(class="form-control-label")}}
+                      {% if form.studentId.errors %}
+                             {{form.studentId(class="form-control form-control-lg is-invalid")}}
+  
+                           <div>
+                              {% for error in form.studentId.errors %}
+                                    <span>{{ error }}</span>
+                              {% endfor %}
+                           </div>
+  
+                      {% else %}
+                          {{form.studentId(class="form-control form-control-lg")}}
+                      {% endif %}
+  
+  
+  
+  
+  
+  
+  
+              </dir>
 
-          <div class="container">
-              <div class="mb-6" style="margin-top: 25px;">
-                  <label for="Name" class="form-label">Name</label>
-                  <input type="text" class="form-control" id="NameInput" placeholder="Input your name here">
-              </div>
-              <div class="mb-6" style="margin-top: 25px;">
-                  <label for="ID" class="form-label">Student ID</label>
-                  <input type="number" class="form-control" id="IDInput" placeholder="Input your ID here">
-              </div>
-              <div>
-                  <label for="Faculty" class="form-label" style="margin-top: 25px;">Faculty</label>
-              </div>
-              <div class="form-check">
-                  <input class="form-check-input" type="radio" name="FacultyRadios" id="FacultyRadios1" value="option1" checked>
-                  <label class="form-check-label" for="FacultyRadios1">FAC</label>
-              </div>
-              <div class="form-check">
-                  <input class="form-check-input" type="radio" name="FacultyRadios" id="FacultyRadios2" value="option2">
-                  <label class="form-check-label" for="FacultyRadios2">FCA</label>
-              </div>
-              <div class="form-check">
-                  <input class="form-check-input" type="radio" name="FacultyRadios" id="FacultyRadios3" value="option3">
-                  <label class="form-check-label" for="FacultyRadios3">FCI</label>
-              </div>
-              <div class="form-check">
-                  <input class="form-check-input" type="radio" name="FacultyRadios" id="FacultyRadios4" value="option4">
-                  <label class="form-check-label" for="FacultyRadios4">FCM</label>
-              </div>
-              <div class="form-check">
-                  <input class="form-check-input" type="radio" name="FacultyRadios" id="FacultyRadios5" value="option5">
-                  <label class="form-check-label" for="FacultyRadios5">FOE</label>
-              </div>
-              <div class="form-check">
-                  <input class="form-check-input" type="radio" name="FacultyRadios" id="FacultyRadios6" value="option6">
-                  <label class="form-check-label" for="FacultyRadios6">FOM</label>
-              </div>
-              <div class="form-check">
-                  <input class="form-check-input" type="radio" name="FacultyRadios" id="FacultyRadios7" value="option7">
-                  <label class="form-check-label" for="FacultyRadios7">Others:</label>
-                  <input type="text" class="form-control" id="FacultyInput" placeholder="Input your faculty">
-              </div>
+
+              <dir class="form-group">
+                {{form.otherFaculties.label(class="form-control-label")}}
+                    {% if form.otherFaculties.errors %}
+                           {{form.otherFaculties(class="form-control form-control-lg is-invalid")}}
+
+                         <div>
+                            {% for error in form.otherFaculties.errors %}
+                                  <span>{{ error }}</span>
+                            {% endfor %}
+                         </div>
+
+                    {% else %}
+                        {{form.otherFaculties(class="form-control form-control-lg")}}
+                    {% endif %}
+
+
+
+
+
+
+
+            </dir>
+
+            <dir class="form-group">
+              {{form.reasonCandidate.label(class="form-control-label")}}
+                  {% if form.reasonCandidate.errors %}
+                         {{form.reasonCandidate(class="form-control form-control-lg is-invalid")}}
+
+                       <div>
+                          {% for error in form.reasonCandidate.errors %}
+                                <span>{{ error }}</span>
+                          {% endfor %}
+                       </div>
+
+                  {% else %}
+                      {{form.reasonCandidate(class="form-control form-control-lg")}}
+                  {% endif %}
+
+
+
+
+
+
+
+          </dir>
+            
               
-              <div>
-                  <label for="Faculty" class="form-label" style="margin-top: 25px;">Academic Level</label>
-              </div>
-              <div class="form-check">
-                  <input class="form-check-input" type="radio" name="AcademicRadios" id="AcademicRadios1" value="option1">
-                  <label class="form-check-label" for="AcademicRadios2">Diploma</label>
-              </div>
-              <div class="form-check">
-                  <input class="form-check-input" type="radio" name="AcademicRadios" id="AcademicRadios2" value="option2">
-                  <label class="form-check-label" for="AcademicRadios2">Foundation</label>
-              </div>
-              <div class="form-check">
-                  <input class="form-check-input" type="radio" name="AcademicRadios" id="AcademicRadios3" value="option3">
-                  <label class="form-check-label" for="AcademicRadios3">Degree</label>
-              </div>
-              <div>
-                  <label for="VoterChoice" class="form-label" style="margin-top: 25px;">Candidate Name</label>
-              </div>
-              <div class="form-check">
-                  <input class="form-check-input" type="radio" name="VoterChoiceRadios" id="VoterChoiceRadios1" value="option1">
-                  <label class="form-check-label" for="VoterChoiceRadios1">FOE</label>
-              </div>
-              <div class="form-check">
-                  <input class="form-check-input" type="radio" name="VoterChoiceRadios" id="VoterChoiceRadios2" value="option2">
-                  <label class="form-check-label" for="VoterChoiceRadios2">FOE</label>
-              </div>
-              <div class="form-check">
-                  <input class="form-check-input" type="radio" name="VoterChoiceRadios" id="VoterChoiceRadios3" value="option3">
-                  <label class="form-check-label" for="VoterChoiceRadios3">FOE</label>
-              </div>
-              <div class="mb-6" style="margin-top: 25px;">
-                  <label for="ChoiceReason" class="form-label">Why you choose him/her?</label>
-                  <input type="text" class="form-control" id="ChoiceReason" placeholder="Input your reason here">
-              </div>
-      
-              <button class="text-center" id="submitButton">Submit</button>
+                
+                 <dir class="form-group">
+                     {{form.submit(class = "btn btn-outline-info")}}
+                 </dir>
+
+
+          {% endblock %}
+
+                 
+             
+                 
+              </fieldset>
+          </form>
+      </div>
+    
           
-          </div>
+
+<!-- Modal -->
+  
       
           
     

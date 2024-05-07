@@ -139,6 +139,7 @@ x`
 .vote_button:hover{
   color: yellow;
   background-color:black;
+  box-shadow: 0 0 10px 10px yellow;
   transition: 0.3s ease;
 }
 

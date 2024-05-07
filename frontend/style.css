@@ -134,3 +134,97 @@
   box-shadow: 0 0 10px 10px yellow;
   transition: 2.5s ease;
 }
+
+.admin_homepage_sidebar{
+  position: fixed;
+  top: 104px;
+  left: 0;
+  width: 20%;
+  height: 100%;
+  padding-top: 20px;
+  background-color: purple;
+}
+
+.admin_homepage_sidebar header{
+  font-size: 25px;
+  font-weight: bold;
+  text-align: center;
+  color: #ffffff;
+}
+
+.admin_homepage_sidebar ul li{
+  padding-top: 20px;
+  padding-right: 10px;
+  list-style-type: none;
+}
+
+.admin_homepage_sidebar ul li:hover a{
+  color: yellow;
+}
+
+.admin_homepage_sidebar ul a{
+  color: #ffffff;
+  text-decoration: none;
+  transition: .4s;
+}
+
+.admin_homepage_container{
+  width: 80%;
+  min-height: 100vh;
+  background: linear-gradient(to top, rgba(0,0,0,0.5)50%,rgba(0,0,0,0.5)50%), url(https://www.mmu.edu.my/wp-content/uploads/2022/12/1280_720_2.jpeg);
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  float: right;
+  padding-top: 50px;
+  margin-top: 104px;
+}
+
+.WelcomeAdmin{
+  text-align: center;
+  color: white;
+}
+
+.leaderboard-container {
+  max-width: 600px;
+  margin: 0 auto;
+  padding: 40px;
+  border-radius: 8px;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+  margin-top: 25px;
+  background-color: rgba(255, 255, 255, 0.5);
+}
+
+.leaderboard-container h1{
+  text-align: center;
+  margin-bottom: 20px;
+  color: white
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 50px;
+  padding-bottom: 100px;
+}
+
+th, td {
+  padding: 10px;
+  text-align: left;
+  border-bottom: 1px solid #dddddd;
+  font-weight: bold;
+}
+
+th {
+  background-color: rgba(255, 255, 255, 0.6);
+}
+
+tbody tr:nth-child(even) {
+  background-color: rgba(255, 255, 255, 0.6);
+}
+
+#navbarBackground_admin{
+  width: 100%;
+  position: fixed;
+  background-color: blueviolet;
+}

@@ -127,18 +127,200 @@ x`
   background: yellow;
   color: black;
   cursor: pointer;
-  transition: .5s ease;
+  transition: 0.5s ease;
 }
 
 .vote_button a{
   text-decoration: none;
   color: #ffffff;
-  transition: .3s ease;
+  transition: 0.3s ease;
 }
 
 .vote_button:hover{
   color: yellow;
   background-color:black;
+  box-shadow: 0 0 10px 10px yellow;
+  transition: 0.3s ease;
+}
+
+.admin_homepage_sidebar{
+  position: fixed;
+  top: 104px;
+  left: 0;
+  width: 20%;
+  height: 100%;
+  padding-top: 20px;
+  background-color: purple; 
+}
+
+.admin_homepage_sidebar header{
+  font-size: 25px;
+  font-weight: bold;
+  text-align: center;
+  color: #ffffff;
+}
+
+.admin_homepage_sidebar ul li{
+  padding-top: 20px;
+  padding-right: 10px;
+  list-style-type: none;
+}
+
+.admin_homepage_sidebar ul li:hover a{
+  color: yellow;
+}
+
+.admin_homepage_sidebar ul a{
+  color: #ffffff;
+  text-decoration: none;
+  transition: .4s;
+}
+
+.admin_homepage_container{
+  width: 80%;
+  min-height: 100vh;
+  background: linear-gradient(to top, rgba(0,0,0,0.5)50%,rgba(0,0,0,0.5)50%), url(https://www.mmu.edu.my/wp-content/uploads/2022/12/1280_720_2.jpeg);
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  float: right;
+  padding-top: 50px;
+  margin-top: 104px;
+}
+
+.WelcomeAdmin{
+  text-align: center;
+  color: white;
+}
+
+.leaderboard-container {
+  max-width: 600px;
+  margin: 0 auto;
+  padding: 40px;
+  border-radius: 8px;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+  margin-top: 25px;
+  background-color: rgba(255, 255, 255, 0.5);
+}
+
+.leaderboard-container h1{
+  text-align: center;
+  margin-bottom: 20px;
+  color: white
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 50px;
+  padding-bottom: 100px;
+}
+
+th, td {
+  padding: 10px;
+  text-align: left;
+  border-bottom: 1px solid #dddddd;
+  font-weight: bold;
+}
+
+th {
+  background-color: rgba(255, 255, 255, 0.6);
+}
+
+tbody tr:nth-child(even) {
+  background-color: rgba(255, 255, 255, 0.6);
+}
+
+#navbarBackground_admin{
+  width: 100%;
+  position: fixed;
+  background-color: blueviolet;
+}
+
+.admin_candidate_information_container{
+  width: 80%;
+  min-height: 100vh;
+  background: linear-gradient(to top, rgba(0,0,0,0.5)50%,rgba(0,0,0,0.5)50%), url(https://www.mmu.edu.my/wp-content/uploads/2022/12/1280_720_2.jpeg);
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  float: right;
+  padding-top: 50px;
+  margin-top: 104px;
+}
+
+.candidate_image{
+  margin-left: 40%;
+  margin-right: 50%;
+}
+
+.candidate1_information_container{
+  max-width: 600px;
+  margin: 0 auto;
+  padding: 40px;
+  border-radius: 8px;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+  margin-top: 25px;
+  background-color: rgba(255, 255, 255, 0.5);
+  color: white;
+  text-align: center;
+}
+
+.change_information_candidate1_button{
+  margin-left: 42%;
+  margin-right: 50%;
+  width: 200px;
+  border-radius: 10px;
+}
+
+.candidate2_information_container{
+  max-width: 600px;
+  margin: 0 auto;
+  padding: 40px;
+  border-radius: 8px;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+  margin-top: 25px;
+  background-color: rgba(255, 255, 255, 0.5);
+  color: white;
+  text-align: center;
+}
+
+.change_information_candidate2_button{
+  margin-left: 42%;
+  margin-right: 50%;
+  width: 200px;
+  border-radius: 10px;
+}
+
+.candidate3_information_container{
+  max-width: 600px;
+  margin: 0 auto;
+  padding: 40px;
+  border-radius: 8px;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+  margin-top: 25px;
+  background-color: rgba(255, 255, 255, 0.5);
+  color: white;
+  text-align: center;
+}
+
+.change_information_candidate3_button{
+  margin-left: 42%;
+  margin-right: 50%;
+  width: 200px;
+  border-radius: 10px;
+}
+
+.admin_create_a_vote_container{
+  width: 80%;
+  min-height: 100vh;
+  background: linear-gradient(to top, rgba(0,0,0,0.5)50%,rgba(0,0,0,0.5)50%), url(https://www.mmu.edu.my/wp-content/uploads/2022/12/1280_720_2.jpeg);
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  float: right;
+  padding-top: 50px;
+  margin-top: 104px;
 }
 
 .candidate_content{
@@ -157,4 +339,6 @@ x`
   background-color: #ffffff;
   border-radius: 20px;
   box-shadow: 0 35px 80px rgba(0,0,0,0.15);
+  box-shadow: 0 0 10px 10px yellow;
+  transition: 0.3s ease;
 }

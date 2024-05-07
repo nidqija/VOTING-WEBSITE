@@ -53,3 +53,11 @@ class QuestionForm(FlaskForm):
     titles = TextAreaField('Title' , validators=[DataRequired()])
     question = TextAreaField('Question' , validators=[DataRequired()])
     submit = SubmitField('Post')
+
+
+class VotingForm(FlaskForm):
+      studentName= StringField('StudentName' , validators=[DataRequired()])
+      studentId = StringField('StudentID' , validators=[DataRequired()])
+      otherFaculties = StringField('OtherFaculty' , validators=[DataRequired()])
+      reasonCandidate = StringField('ReasonCandidate' , validators=[DataRequired()])
+      submit = SubmitField('Vote')

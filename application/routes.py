@@ -1,6 +1,6 @@
 from flask import render_template , flash , redirect , url_for 
-from application.form import RegistrationForm , Loginform , QuestionForm
-from application.models import User , Post
+from application.form import RegistrationForm , Loginform , QuestionForm , VotingForm
+from application.models import User , Post , Vote
 from application import app , db , bcrypt
 from flask_login import login_user , current_user , logout_user, login_required 
 
@@ -58,10 +58,22 @@ def contact():
 
 
 
-@app.route('/candidates')
+@app.route('/candidates/new' , methods = ['POST' , 'GET'])
+@login_required
 
 def candidates():
-     return render_template('candidates.html')
+     voting = Vote.query.all()
+     form = VotingForm()
+     if form.validate_on_submit():
+          vote = Vote(studentName = form.studentName.data , studentId = form.studentId.data , otherFaculty = form.otherFaculties.data , reasonCandidate = form.reasonCandidate.data ,  author = current_user )
+          db.session.add(vote)
+          db.session.commit()
+          flash('Voting Successful!' , 'success')
+          return redirect(url_for('candidates'))
+     return render_template('candidates.html' , form = form , voting = voting)
+
+
+
 
 
 @app.route('/guidelines')
@@ -82,4 +94,19 @@ def service():
           flash('Your question is created!' , 'success')
           return redirect(url_for('service'))
      return render_template('service.html' ,  form = form , posts = posts)
+
+
+
+@app.route('/profile')
+def profile():
+    return render_template('profile.html')
+
+
+@app.route('/about')
+def about():
+     return render_template('about.html')
+
+
+
+
      

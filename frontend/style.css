@@ -322,3 +322,23 @@ tbody tr:nth-child(even) {
   padding-top: 50px;
   margin-top: 104px;
 }
+
+.candidate_content{
+  width: 100%;
+  min-height: 100vh;
+  background: linear-gradient(to top, rgba(0,0,0,0.5)70%,rgba(0,0,0,0.5)70%), url(https://www.mmu.edu.my/wp-content/uploads/2022/12/1280_720_2.jpeg);
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+
+.card{
+  position: relative;
+  width: 350px;
+  height: 190px;
+  background-color: #ffffff;
+  border-radius: 20px;
+  box-shadow: 0 35px 80px rgba(0,0,0,0.15);
+  box-shadow: 0 0 10px 10px yellow;
+  transition: 0.3s ease;
+}

@@ -337,6 +337,7 @@ tbody tr:nth-child(even) {
 }
 
 .card{
+  margin: auto;
   position: relative;
   width: 350px;
   height: 450px;
@@ -379,7 +380,6 @@ tbody tr:nth-child(even) {
 }
 
 .card_content{
-  position: absolute;
   width: 100%;
   height: 100%;
   display: flex;
@@ -389,7 +389,7 @@ tbody tr:nth-child(even) {
 }
 
 .card_detail{
-  padding: 40px;
+  padding: 60px;
   text-align: center;
   width: 100%;
   transition: 0.5s;

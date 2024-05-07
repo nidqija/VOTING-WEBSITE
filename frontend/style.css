@@ -196,7 +196,7 @@ x`
 
 .leaderboard-container {
   max-width: 800px;
-  margin: auto;
+  margin:0 auto;
   padding: 40px;
   border-radius: 8px;
   box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
@@ -256,7 +256,7 @@ tbody tr:nth-child(even) {
 
 .candidate1_information_container{
   max-width: 800px;
-  margin: auto;
+  margin:0 auto;
   padding: 40px;
   border-radius: 8px;
   box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
@@ -336,7 +336,7 @@ tbody tr:nth-child(even) {
 
 .update_announcement_container{
   max-width: 1000px;
-  margin: auto;
+  margin:0 auto;
   padding: 40px;
   border-radius: 8px;
   box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);

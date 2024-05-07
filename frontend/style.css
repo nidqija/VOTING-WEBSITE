@@ -266,6 +266,13 @@ tbody tr:nth-child(even) {
   text-align: center;
 }
 
+.change_information_candidate1_button{
+  margin-left: 42%;
+  margin-right: 50%;
+  width: 200px;
+  border-radius: 10px;
+}
+
 .candidate2_information_container{
   max-width: 600px;
   margin: 0 auto;
@@ -278,6 +285,13 @@ tbody tr:nth-child(even) {
   text-align: center;
 }
 
+.change_information_candidate2_button{
+  margin-left: 42%;
+  margin-right: 50%;
+  width: 200px;
+  border-radius: 10px;
+}
+
 .candidate3_information_container{
   max-width: 600px;
   margin: 0 auto;
@@ -288,4 +302,11 @@ tbody tr:nth-child(even) {
   background-color: rgba(255, 255, 255, 0.5);
   color: white;
   text-align: center;
+}
+
+.change_information_candidate3_button{
+  margin-left: 42%;
+  margin-right: 50%;
+  width: 200px;
+  border-radius: 10px;
 }

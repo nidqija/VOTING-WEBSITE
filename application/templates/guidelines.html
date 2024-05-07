@@ -23,10 +23,10 @@
                 <a  id="Navlink" class="nav-link" href="{{url_for('candidates')}}">Candidate</a>
               </li>
               <li id="navSections" class="nav-item px-3">
-                <a  id="Navlink" class="nav-link" href="#">About</a>
+                <a  id="Navlink"  class="nav-link" href="{{url_for('about')}}">About</a>
               </li>
               <li id="navSections" class="nav-item px-3 ">
-                <a  id="Navlink" style="color: yellow;"  class="nav-link" href="{{url_for('guidelines')}}" role="button" >
+                <a  id="Navlink" style="color: yellow;"   class="nav-link" href="{{url_for('guidelines')}}" role="button" >
                   Guideline
                 </a>
               </li>
@@ -59,8 +59,8 @@
                              <p>Description : </p>
                           </div>
                           <div class="modal-footer">
-                               <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Back</button>
-                               <button type="button" class="btn btn-primary">View Profile</button>
+                            <a href="{{url_for('profile')}}"><button type="button" class="btn btn-secondary" data-bs-dismiss="modal">View Profile</button></a>
+                            <a href="{{url_for('logout')}}"><button type="button" class="btn btn-primary">Logout</button></a>
                           </div>
                      </div>
                   </div>
@@ -68,10 +68,10 @@
               </li>
               {% else %}
               <li id="navSections" class="nav-item px-3">
-                  <a href="{{url_for('login')}}"><button class="btn btn-outline-light" style="position: relative; left: 500px; ">Log In</button></a>
+                  <a href="{{url_for('login')}}"><button class="btn btn-outline-light" style="position: relative; left: 300px; ">Log In</button></a>
               </li>
               <li id="navSections" class="nav-item px-3">
-                  <a href="{{url_for('register')}}"><button class="btn btn-outline-light" style="position: relative; left: 500px; ">Sign Up</button></a>
+                  <a href="{{url_for('register')}}"><button class="btn btn-outline-light" style="position: relative; left: 300px; ">Sign Up</button></a>
               </li>
               {% endif %}
             </ul>
@@ -80,6 +80,67 @@
           </div>
         </div>
       </nav>
+
+
+      <div class="guidelines_user_content">
+        <div class="container p-5">
+            <h1 class="text-white text-center display-4">Guidelines</h1>
+            <p class="text-white text-center display-6">Check out our guidelines before you start voting!</p>
+        <div class="row p-5">
+            <div class="col-sm-4">
+              <div class="card mb-5">
+                <div class="card-body">
+                  <h5 class="card-title">Registration</h5>
+                  <p class="card-text">Register for an account by putting your username , email and password</p>
+                  <p class="card-text">Choose a strong password to enhance your browsing safety <br> ( example : bdjslaffh )</p>
+                </div>
+              </div>
+            </div>
+            <div class="col-sm-4 mb-5">
+              <div class="card mb-5">
+                <div class="card-body">
+                    <h5 class="card-title">Candidates Survey</h5>
+                    <p class="card-text">Once you are logged in , head to the candidate page , and go through the candidates!</p>
+                    <p class="card-text">Take your time to decide your candidates ya....</p>
+                </div>
+              </div>
+            </div>
+            <div class="col-sm-4">
+                <div class="card">
+                  <div class="card-body">
+                    <h5 class="card-title">Profile</h5>
+                    <p class="card-text">You can see your profile by clicking your username on the top right of your screen!</p>
+                    <p class="card-text">You can change your username and password on the page!</p>
+                  </div>
+                </div>
+              </div>
+              <div class="col-sm-4">
+                <div class="card">
+                  <div class="card-body">
+                    <h5 class="card-title">Questions</h5>
+                    <p class="card-text">If you have any questions about the vote , head to our service page</p>
+                    <P class="card-text">Fill in the service form , and we will reply to your questions ASAP!</P>
+                  </div>
+                </div>
+              </div>
+              <div class="col-sm-4">
+                <div class="card">
+                  <div class="card-body">
+                    <h5 class="card-title">Contact Us</h5>
+                    <p class="card-text">Awww , trust issues? Do not worry , do contact us on the contact page!</p>
+                    <p class="card-text">We might be busy , but we will try our best to answer your calls and emails</p>
+                  </div>
+                </div>
+              </div>
+             
+          </div>
+           
+          
+          </div>
+        </div>
+    </div>
+
+
 
     
 

@@ -127,18 +127,19 @@ x`
   background: yellow;
   color: black;
   cursor: pointer;
-  transition: .5s ease;
+  transition: 0.5s ease;
 }
 
 .vote_button a{
   text-decoration: none;
   color: #ffffff;
-  transition: .3s ease;
+  transition: 0.3s ease;
 }
 
 .vote_button:hover{
   color: yellow;
   background-color:black;
+  transition: 0.3s ease;
 }
 
 .admin_homepage_sidebar{
@@ -218,6 +219,7 @@ th, td {
   padding: 10px;
   text-align: left;
   border-bottom: 1px solid #dddddd;
+  font-weight: bold;
 }
 
 th {

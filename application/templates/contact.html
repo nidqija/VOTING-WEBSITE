@@ -23,7 +23,7 @@
                 <a  id="Navlink" class="nav-link" href="{{url_for('candidates')}}">Candidate</a>
               </li>
               <li id="navSections" class="nav-item px-3">
-                <a  id="Navlink" class="nav-link" href="#">About</a>
+                <a  id="Navlink" class="nav-link" href="{{url_for('about')}}">About</a>
               </li>
               <li id="navSections" class="nav-item px-3 ">
                 <a  id="Navlink" class="nav-link" href="{{url_for('guidelines')}}" role="button" >
@@ -59,8 +59,8 @@
                              <p>Description : </p>
                           </div>
                           <div class="modal-footer">
-                               <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Back</button>
-                               <button type="button" class="btn btn-primary">View Profile</button>
+                            <a href="{{url_for('profile')}}"><button type="button" class="btn btn-secondary" data-bs-dismiss="modal">View Profile</button></a>
+                            <a href="{{url_for('logout')}}"> <button type="button" class="btn btn-primary">Logout</button></a>
                           </div>
                      </div>
                   </div>
@@ -68,10 +68,10 @@
               </li>
               {% else %}
               <li id="navSections" class="nav-item px-3">
-                  <a href="{{url_for('login')}}"><button class="btn btn-outline-light" style="position: relative; left: 500px; ">Log In</button></a>
+                  <a href="{{url_for('login')}}"><button class="btn btn-outline-light" style="position: relative; left: 300px; ">Log In</button></a>
               </li>
               <li id="navSections" class="nav-item px-3">
-                  <a href="{{url_for('register')}}"><button class="btn btn-outline-light" style="position: relative; left: 500px; ">Sign Up</button></a>
+                  <a href="{{url_for('register')}}"><button class="btn btn-outline-light" style="position: relative; left: 300px; ">Sign Up</button></a>
               </li>
               {% endif %}
             </ul>

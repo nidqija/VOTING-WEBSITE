@@ -15,7 +15,8 @@ class User(db.Model , UserMixin ):
         password = db.Column(db.String(120) , nullable = False)
         createdAt = db.Column(db.DateTime(timezone=True) , server_default=func.now())
         wonders = db.relationship('Post' , backref = 'author' , lazy = True)
-   
+        wonders2 = db.relationship('Vote' , backref = 'author' , lazy = True)
+        
         def __repr__(self):
            return f'User("{self.username}" , {self.email})'
         
@@ -28,6 +29,22 @@ class Post(db.Model , UserMixin):
 
        def __repr__(self):
            return f'User("{self.titles}" , {self.question})'
+       
+
+class Vote(db.Model , UserMixin):
+       id = db.Column(db.Integer , primary_key = True)
+       studentName = db.Column(db.String(500) , unique = True , nullable = False)
+       studentId = db.Column(db.String(20) , unique = True , nullable = False)
+       createdAt = db.Column(db.DateTime(timezone=True) , server_default=func.now())
+       otherFaculty = db.Column(db.String(30) , nullable = False)
+       reasonCandidate = db.Column(db.Text ,  nullable = False)
+       user_id = db.Column(db.Integer , db.ForeignKey('user.id') , nullable = False)
+
+
+       def __repr__(self):
+             return f'User("{self.studentName}" , {self.studentId} ,  {self.otherFaculty} ,  {self.reasonCandidate})'
+       
+
 
               
         

@@ -191,15 +191,15 @@ x`
 .WelcomeAdmin{
   text-align: center;
   color: white;
+  margin-bottom: 25px;
 }
 
 .leaderboard-container {
-  max-width: 600px;
-  margin: 0 auto;
+  max-width: 800px;
+  margin:0 auto;
   padding: 40px;
   border-radius: 8px;
   box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-  margin-top: 25px;
   background-color: rgba(255, 255, 255, 0.5);
 }
 
@@ -250,17 +250,16 @@ tbody tr:nth-child(even) {
 }
 
 .candidate_image{
-  margin-left: 40%;
+  margin-left: 43%;
   margin-right: 50%;
 }
 
 .candidate1_information_container{
-  max-width: 600px;
-  margin: 0 auto;
+  max-width: 800px;
+  margin:0 auto;
   padding: 40px;
   border-radius: 8px;
   box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-  margin-top: 25px;
   background-color: rgba(255, 255, 255, 0.5);
   color: white;
   text-align: center;
@@ -274,7 +273,7 @@ tbody tr:nth-child(even) {
 }
 
 .candidate2_information_container{
-  max-width: 600px;
+  max-width: 800px;
   margin: 0 auto;
   padding: 40px;
   border-radius: 8px;
@@ -293,7 +292,7 @@ tbody tr:nth-child(even) {
 }
 
 .candidate3_information_container{
-  max-width: 600px;
+  max-width: 800px;
   margin: 0 auto;
   padding: 40px;
   border-radius: 8px;
@@ -321,6 +320,48 @@ tbody tr:nth-child(even) {
   float: right;
   padding-top: 50px;
   margin-top: 104px;
+}
+
+.admin_update_announcement_container{
+  width: 80%;
+  min-height: 100vh;
+  background: linear-gradient(to top, rgba(0,0,0,0.5)50%,rgba(0,0,0,0.5)50%), url(https://www.mmu.edu.my/wp-content/uploads/2022/12/1280_720_2.jpeg);
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  float: right;
+  padding-top: 50px;
+  margin-top: 104px;
+}
+
+.update_announcement_container{
+  max-width: 1000px;
+  margin:0 auto;
+  padding: 40px;
+  border-radius: 8px;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+  background-color: rgba(255, 255, 255, 0.5);
+  color: white;
+}
+
+.insert_announcement_image{
+  margin-left: 25%;
+  margin-right: 50%;
+}
+
+.insert_announcement_image_button{
+  margin-left: 0;
+  margin-top: 25px;
+  width: 150px;
+  border-radius: 10px;
+}
+
+.update_announcement_button{
+  margin-top: 50px;
+  margin-left: 40%;
+  margin-right: 50%;
+  width: 100px;
+  border-radius: 10px;
 }
 
 .candidate_content{

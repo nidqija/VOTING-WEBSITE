@@ -310,3 +310,15 @@ tbody tr:nth-child(even) {
   width: 200px;
   border-radius: 10px;
 }
+
+.admin_create_a_vote_container{
+  width: 80%;
+  min-height: 100vh;
+  background: linear-gradient(to top, rgba(0,0,0,0.5)50%,rgba(0,0,0,0.5)50%), url(https://www.mmu.edu.my/wp-content/uploads/2022/12/1280_720_2.jpeg);
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  float: right;
+  padding-top: 50px;
+  margin-top: 104px;
+}

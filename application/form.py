@@ -1,8 +1,12 @@
 from flask_wtf import FlaskForm
 from flask_login import current_user
-from wtforms import StringField , PasswordField , SubmitField , BooleanField , TextAreaField
+from application import db
+from wtforms import StringField , PasswordField , SubmitField , BooleanField , TextAreaField 
+from wtforms_sqlalchemy.fields import QuerySelectField
 from wtforms.validators import DataRequired , Length , Email , EqualTo , ValidationError
-from application.models import User
+from application.models import  User
+
+
 
 
 
@@ -61,3 +65,14 @@ class VotingForm(FlaskForm):
       otherFaculties = StringField('OtherFaculty' , validators=[DataRequired()])
       reasonCandidate = StringField('ReasonCandidate' , validators=[DataRequired()])
       submit = SubmitField('Vote')
+
+
+class Candidate(db.Model):
+      id = db.Column(db.Integer , primary_key = True)
+      candidate_name = db.Column(db.String(100))
+      
+def candidate_query():
+      return Candidate.query
+
+class CandidateForm(FlaskForm):
+      candidates = QuerySelectField(query_factory = candidate_query, allow_blank=True)

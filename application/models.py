@@ -39,11 +39,24 @@ class Vote(db.Model , UserMixin):
        otherFaculty = db.Column(db.String(30) , nullable = False)
        reasonCandidate = db.Column(db.Text ,  nullable = False)
        user_id = db.Column(db.Integer , db.ForeignKey('user.id') , nullable = False)
+       candidate_name = db.Column(db.String(100))
 
+       
+       def vote_query():
+             return Vote.query
+       
 
        def __repr__(self):
-             return f'User("{self.studentName}" , {self.studentId} ,  {self.otherFaculty} ,  {self.reasonCandidate})'
+             return f'User("{self.studentName}" , {self.studentId} ,  {self.otherFaculty} ,  {self.reasonCandidate} , {self.candidate_name})'
        
+
+
+      
+
+      
+
+       
+      
 
 
               

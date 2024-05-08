@@ -433,12 +433,12 @@ tbody tr:nth-child(even) {
   padding: 60px;
   text-align: center;
   width: 100%;
-  transition: 0.5s;
   transform: translateY(150px);
 }
 
 .card:hover .card_detail{
   transform:translateY(0px);
+  transition: 0.5s;
 }
 
 .card_detail h2{

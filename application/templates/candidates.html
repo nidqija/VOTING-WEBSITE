@@ -138,6 +138,30 @@
 
 
               <dir class="form-group">
+                {{form.candidate_name.label(class="form-control-label")}}
+                    {% if form.candidate_name.errors %}
+                           {{form.candidate_name(class="form-control form-control-lg is-invalid")}}
+
+                         <div>
+                            {% for error in form.candidate_name.errors %}
+                                  <span>{{ error }}</span>
+                            {% endfor %}
+                         </div>
+
+                    {% else %}
+                        {{form.candidate_name(class="form-control form-control-lg")}}
+                    {% endif %}
+
+
+
+
+
+
+
+            </dir>
+
+
+              <dir class="form-group">
                 {{form.otherFaculties.label(class="form-control-label")}}
                     {% if form.otherFaculties.errors %}
                            {{form.otherFaculties(class="form-control form-control-lg is-invalid")}}

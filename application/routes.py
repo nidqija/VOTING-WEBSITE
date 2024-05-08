@@ -1,5 +1,5 @@
 from flask import render_template , flash , redirect , url_for 
-from application.form import RegistrationForm , Loginform , QuestionForm , VotingForm
+from application.form import RegistrationForm , Loginform , QuestionForm , VotingForm , CandidateForm
 from application.models import User , Post , Vote
 from application import app , db , bcrypt
 from flask_login import login_user , current_user , logout_user, login_required 
@@ -72,6 +72,10 @@ def candidates():
           return redirect(url_for('candidates'))
      return render_template('candidates.html' , form = form , voting = voting)
 
+     
+
+
+
 
 
 
@@ -106,7 +110,24 @@ def profile():
 def about():
      return render_template('about.html')
 
+@app.route('/admin_homepage')
+def adminHomepage():
+     return render_template('admin_homepage.html')
 
+
+@app.route('/update_announcement')
+def updateAnnouncement():
+     return render_template('update_announcement.html')
+
+
+@app.route('/info_candidates')
+def candidatesInfo():
+     return render_template('info_candidates.html')
+
+
+@app.route('/createpoll')
+def createVote():
+     return render_template('create_a_vote.html')
 
 
      

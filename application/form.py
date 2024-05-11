@@ -4,8 +4,7 @@ from application import db
 from wtforms import StringField , PasswordField , SubmitField , BooleanField , TextAreaField 
 from wtforms_sqlalchemy.fields import QuerySelectField
 from wtforms.validators import DataRequired , Length , Email , EqualTo , ValidationError
-from application.models import  User
-
+from application.models import  User, Admin
 
 
 
@@ -76,3 +75,21 @@ def candidate_query():
 
 class CandidateForm(FlaskForm):
       candidates = QuerySelectField(query_factory = candidate_query, allow_blank=True)
+
+
+class RegistrationForm(FlaskForm):
+    username = StringField('Admin name' , validators=[DataRequired() , Length(min=2 , max= 20)])
+    email = StringField('Admin email' , validators=[DataRequired() , Email()])
+    password = PasswordField('password' , validators=[DataRequired()])
+    confirmpassword = PasswordField('Confirm Password' , validators=[DataRequired() , EqualTo('password')])
+    submit = SubmitField('register')
+
+    def validate_adminname(self,username):
+        admin = Admin.query.filter_by(username=username.data).first()
+        if admin:
+            raise ValidationError('That admin name is taken , please choose another username!')
+        
+    def validate_email(self,email):
+        admin = Admin.query.filter_by(email=email.data).first()
+        if admin:
+            raise ValidationError('That admin email is taken , please choose another email!')

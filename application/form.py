@@ -76,3 +76,8 @@ def candidate_query():
 
 class CandidateForm(FlaskForm):
       candidates = QuerySelectField(query_factory = candidate_query, allow_blank=True)
+
+class AnnouncementForm(FlaskForm):
+      titles= StringField('Announcement Title' , validators=[DataRequired()])
+      description = StringField('Announcement Description' , validators=[DataRequired()])
+      submit = SubmitField('Submit')

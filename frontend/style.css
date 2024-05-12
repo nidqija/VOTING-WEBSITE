@@ -377,7 +377,7 @@ tbody tr:nth-child(even) {
   align-items: center;
 }
 
-.card{
+.candidate_card{
   margin: auto;
   position: relative;
   width: 350px;
@@ -388,11 +388,11 @@ tbody tr:nth-child(even) {
   transition: 0.5s;
 }
 
-.card:hover{
+.candidate_card:hover{
   height: 450px;
 }
 
-.card_image_box{
+.candidate_card_image_box{
   position: absolute;
   left:50%;
   top: -50px;
@@ -406,12 +406,12 @@ tbody tr:nth-child(even) {
   transition: 0.5s;
 }
 
-.card:hover .card_image_box{
+.candidate_card:hover .candidate_card_image_box{
   width: 250px;
   height: 250px;
 }
 
-.card_image_box img{
+.candidate_card_image_box img{
   position: absolute;
   top: 0;
   left: 0;
@@ -420,7 +420,7 @@ tbody tr:nth-child(even) {
   object-fit: cover;
 }
 
-.card_content{
+.candidate_card_content{
   width: 100%;
   height: 100%;
   display: flex;
@@ -429,57 +429,57 @@ tbody tr:nth-child(even) {
   overflow: hidden;
 }
 
-.card_detail{
+.candidate_card_detail{
   padding: 60px;
   text-align: center;
   width: 100%;
   transform: translateY(150px);
 }
 
-.card:hover .card_detail{
+.candidate_card:hover .candidate_card_detail{
   transform:translateY(0px);
   transition: 0.5s;
 }
 
-.card_detail h2{
+.candidate_card_detail h2{
   font-size: 1.25em;
   font-weight: 600;
   color: #555;
   line-height: 1.2em;
 }
 
-.card_detail h2 span{
+.candidate_card_detail h2 span{
   font-size: 0.75em;
   font-weight: 600;
   opacity: 0.5;
 }
 
-.card_data{
+.candidate_card_data{
   font-size: 0.85em;
   font-weight: 400;
   opacity: 0.5;
 }
 
-.card_data h3{
+.candidate_card_data h3{
   font-size: 1em;
   color: #555;
   line-height: 1.2em;
   font-weight: 600;
 }
 
-.card_data h3 span{
+.candidate_card_data h3 span{
   font-size: 0.85em;
   font-weight: 400;
   opacity: 0.5;
 }
 
-.card_button{
+.candidate_card_button{
   display: flex;
   justify-content: space-between;
   gap: 20px;
 }
 
-.card_button button{
+.candidate_card_button button{
   margin-left: 63px;
   padding: 10px 30px;
   border-radius: 5px;

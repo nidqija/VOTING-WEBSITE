@@ -1,6 +1,6 @@
 from flask import render_template , flash , redirect , url_for 
-from application.form import RegistrationForm , Loginform , QuestionForm , VotingForm , CandidateForm
-from application.models import User , Post , Vote
+from application.form import RegistrationForm , Loginform , QuestionForm , VotingForm , CandidateForm, AnnouncementForm
+from application.models import User , Post , Vote, Announcement
 from application import app , db , bcrypt
 from flask_login import login_user , current_user , logout_user, login_required 
 
@@ -117,7 +117,16 @@ def adminHomepage():
 
 @app.route('/update_announcement')
 def updateAnnouncement():
-     return render_template('update_announcement.html')
+         
+         
+    form = AnnouncementForm()
+
+    if form.validate_on_submit():
+        announcement = Announcement(titles=form.titles.data , description = form.description.data)
+        db.session.add(announcement)
+        db.session.commit()
+        return redirect(url_for('update_announcement'))
+    return render_template('update_announcement.html', form=form)
 
 
 @app.route('/info_candidates')

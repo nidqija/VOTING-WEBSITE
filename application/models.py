@@ -49,7 +49,15 @@ class Vote(db.Model , UserMixin):
        def __repr__(self):
              return f'User("{self.studentName}" , {self.studentId} ,  {self.otherFaculty} ,  {self.reasonCandidate} , {self.candidate_name})'
        
+class Announcement(db.Model , UserMixin):
+       id = db.Column(db.Integer , primary_key = True)
+       titles = db.Column(db.String(500) , unique = True , nullable = False)
+       createdAt = db.Column(db.DateTime(timezone=True) , server_default=func.now())
+       description = db.Column(db.Text, nullable = False)
+       user_id = db.Column(db.Integer , db.ForeignKey('user.id') , nullable = False)
 
+       def __repr__(self):
+           return f'User("{self.titles}" , {self.description})'
 
       
 

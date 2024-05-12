@@ -97,6 +97,64 @@
             
         </div>
     </div>
+    {% block content %}
+    <div class="container">
+  <div class="content-section">
+        <form method="POST" action="">
+            {{ form.hidden_tag() }}
 
+            <fieldset class="form-group">
+                <legend class="text-center">Register Now!</legend>
+                <dir class="form-group">
+                    {{form.titles.label(class="form-control-label")}}
+
+                    {% if form.titles.errors %}       
+                        {{form.titles(class="form-control form-control-lg is-invalid")}}
+                        <div>
+                            {% for error in form.titles.errors %}
+                              <span>{{ error }}</span>
+                            {% endfor %}
+                        </div>
+
+                    {% else %}
+                        {{form.titles(class="form-control form-control-lg")}}
+                    {% endif %}
+
+
+                </dir>
+                <dir class="form-group">
+                    {{form.description.label(class="form-control-label")}}
+                    
+
+                    {% if form.description.errors %}
+                      {{form.description(class="form-control form-control-lg is-invalid")}}
+
+                       <div>
+                         {% for error in form.description.errors %}
+                              <span>{{ error }}</span>
+                         {% endfor %}
+                      </div>
+
+                    {% else %}
+                         {{form.description(class="form-control form-control-lg")}}
+                    {% endif %}
+
+      
+                </dir>
+
+                <dir class="form-group">
+                    {{form.submit(class = "btn btn-outline-info text-center")}}
+                </dir>
+            </fieldset>
+        </form>
+  </div>
+  <div class="border-top pt-3">
+     <small class="text-muted">
+        Already have an account? <a class="ml-2" href="{{url_for('login')}}">Login</a>
+     </small>
+  </div>
+</div>
+
+{% endblock content %}
 </body>
 </html>

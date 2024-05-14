@@ -2,7 +2,7 @@ from flask import render_template , flash , redirect , url_for
 from application.form import RegistrationForm , Loginform , QuestionForm, AnnouncementForm, AdminRegistrationForm, AdminLoginform
 from application.models import User , Post , Candidate , Vote1 , Vote2 , Candidate2 , Vote3 , Candidate3, Admin, Announcement
 from application import app , db , bcrypt
-from flask_login import login_user , current_user , logout_user, login_required 
+from flask_login import login_user , current_user , logout_user, login_required
 
 
 @app.route('/')
@@ -231,12 +231,13 @@ def adminregister():
 def adminlogin():
     if current_user.is_authenticated:
          return redirect(url_for('adminHomepage'))
+    
     form = AdminLoginform()
     if form.validate_on_submit():
             flash(f'Login Successful !')
             admin = Admin.query.filter_by(username2 = form.username2.data).first()
             if admin and bcrypt.check_password_hash(admin.password2 , form.password2.data):
-                 login_user(admin , remember2=form.remember2.data)
+                 # login_user(admin , remember=form.remember2.data)(got problem)
                  return redirect(url_for('adminHomepage'))
             else:
                  flash(f'Login Failed . Please check admin name and password' , 'danger')

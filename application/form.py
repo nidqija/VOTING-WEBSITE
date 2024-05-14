@@ -51,20 +51,10 @@ class ProfileForm(FlaskForm):
             raise ValidationError('That email is taken , please choose another email!')
         
 
-
 class QuestionForm(FlaskForm):
     titles = TextAreaField('Title' , validators=[DataRequired()])
     question = TextAreaField('Question' , validators=[DataRequired()])
     submit = SubmitField('Post')
-
-
-
-
-
-      
-
-class CandidateForm(FlaskForm):
-      candidates = QuerySelectField(query_factory = candidate_query, allow_blank=True)
 
 
 class RegistrationForm(FlaskForm):

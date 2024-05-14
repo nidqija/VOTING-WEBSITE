@@ -1,11 +1,6 @@
 from flask import render_template , flash , redirect , url_for 
-<<<<<<< HEAD
-from application.form import RegistrationForm , Loginform , QuestionForm , VotingForm , CandidateForm
-from application.models import User , Post , Vote, Admin
-=======
-from application.form import RegistrationForm , Loginform , QuestionForm
-from application.models import User , Post , Candidate , Vote1 , Vote2 , Candidate2 , Vote3 , Candidate3
->>>>>>> main
+from application.form import RegistrationForm , Loginform , QuestionForm, AnnouncementForm
+from application.models import User , Post , Candidate , Vote1 , Vote2 , Candidate2 , Vote3 , Candidate3, Admin, Announcement
 from application import app , db , bcrypt
 from flask_login import login_user , current_user , logout_user, login_required 
 

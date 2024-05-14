@@ -223,21 +223,21 @@ def adminregister():
         db.session.add(admin)
         db.session.commit()
         flash(f'Account created for {form.username2.data} !' , 'success!')
-        return redirect(url_for('admin_login'))
+        return redirect(url_for('adminlogin'))
     return render_template('admin_register.html' , form = form)    
 
 
 @app.route('/admin_login' , methods = ['POST' , 'GET'])
 def adminlogin():
     if current_user.is_authenticated:
-         return redirect(url_for('admin_homepage'))
+         return redirect(url_for('adminHomepage'))
     form = AdminLoginform()
     if form.validate_on_submit():
             flash(f'Login Successful !')
             admin = Admin.query.filter_by(username2 = form.username2.data).first()
-            if admin and bcrypt.check_password_hash(admin.password , form.password2.data):
-                 login_user(admin , remember=form.remember2.data)
-                 return redirect(url_for('admin_homepage'))
+            if admin and bcrypt.check_password_hash(admin.password2 , form.password2.data):
+                 login_user(admin , remember2=form.remember2.data)
+                 return redirect(url_for('adminHomepage'))
             else:
                  flash(f'Login Failed . Please check admin name and password' , 'danger')
     return render_template('admin_login.html', form = form)

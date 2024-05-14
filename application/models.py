@@ -14,12 +14,16 @@ class User(db.Model , UserMixin ):
         email = db.Column(db.String(120) , unique = True , nullable = False)
         password = db.Column(db.String(120) , nullable = False)
         createdAt = db.Column(db.DateTime(timezone=True) , server_default=func.now())
-        wonders = db.relationship('Post' , backref = 'author' , lazy = True)
-        wonders2 = db.relationship('Vote' , backref = 'author' , lazy = True)
+        post = db.relationship('Post' , backref = 'author' , lazy = True)
+        vote1 = db.relationship('Vote1' , backref = 'user' , lazy = True)
+        vote2 = db.relationship('Vote2' , backref = 'user' , lazy = True)
+        vote3 = db.relationship('Vote3' , backref = 'user' , lazy = True)
+
         
         def __repr__(self):
            return f'User("{self.username}" , {self.email})'
         
+
 class Post(db.Model , UserMixin):
        id = db.Column(db.Integer , primary_key = True)
        titles = db.Column(db.String(500) , unique = True , nullable = False)
@@ -31,23 +35,58 @@ class Post(db.Model , UserMixin):
            return f'User("{self.titles}" , {self.question})'
        
 
-class Vote(db.Model , UserMixin):
-       id = db.Column(db.Integer , primary_key = True)
-       studentName = db.Column(db.String(500) , unique = True , nullable = False)
-       studentId = db.Column(db.String(20) , unique = True , nullable = False)
-       createdAt = db.Column(db.DateTime(timezone=True) , server_default=func.now())
-       otherFaculty = db.Column(db.String(30) , nullable = False)
-       reasonCandidate = db.Column(db.Text ,  nullable = False)
-       user_id = db.Column(db.Integer , db.ForeignKey('user.id') , nullable = False)
-       candidate_name = db.Column(db.String(100))
 
-       
-       def vote_query():
-             return Vote.query
-       
+class Vote1(db.Model):
+      id = db.Column(db.Integer , primary_key = True)
+      createdAt = db.Column(db.DateTime(timezone=True) , server_default=func.now())
+      author = db.Column(db.Integer , db.ForeignKey('user.id') , nullable=False)
+      candidate_id = db.Column(db.Integer , db.ForeignKey('candidate.id') , nullable = False)
 
-       def __repr__(self):
-             return f'User("{self.studentName}" , {self.studentId} ,  {self.otherFaculty} ,  {self.reasonCandidate} , {self.candidate_name})'
+
+
+class Candidate(db.Model):
+      id = db.Column(db.Integer , primary_key = True)
+      candidate_name = db.Column(db.String(100))
+      candidate_age = db.Column(db.String(100))
+      candidate_description = db.Column(db.String(500))
+      vote = db.relationship('Vote1' , backref = 'candidate' , lazy = True)
+
+
+
+class Vote2(db.Model):
+      id = db.Column(db.Integer , primary_key = True)
+      createdAt = db.Column(db.DateTime(timezone=True) , server_default=func.now())
+      author = db.Column(db.Integer , db.ForeignKey('user.id') , nullable=False)
+      candidate2_id = db.Column(db.Integer , db.ForeignKey('candidate2.id') , nullable = False)
+
+
+
+
+class Candidate2(db.Model):
+      id = db.Column(db.Integer , primary_key = True)
+      candidate_name = db.Column(db.String(100))
+      candidate_age = db.Column(db.String(100))
+      candidate_description = db.Column(db.String(500))
+      vote2 = db.relationship('Vote2' , backref = 'candidate2' , lazy = True)
+
+
+class Vote3(db.Model):
+      id = db.Column(db.Integer , primary_key = True)
+      createdAt = db.Column(db.DateTime(timezone=True) , server_default=func.now())
+      author = db.Column(db.Integer , db.ForeignKey('user.id') , nullable=False)
+      candidate3_id = db.Column(db.Integer , db.ForeignKey('candidate3.id') , nullable = False)
+
+
+class Candidate3(db.Model):
+      id = db.Column(db.Integer , primary_key = True)
+      candidate_name = db.Column(db.String(100))
+      candidate_age = db.Column(db.String(100))
+      candidate_description = db.Column(db.String(500))
+      vote3 = db.relationship('Vote3' , backref = 'candidate3' , lazy = True)
+
+
+
+
        
 class Announcement(db.Model , UserMixin):
        id = db.Column(db.Integer , primary_key = True)

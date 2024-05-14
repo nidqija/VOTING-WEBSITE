@@ -1,5 +1,5 @@
 from flask import render_template , flash , redirect , url_for 
-from application.form import RegistrationForm , Loginform , QuestionForm, AnnouncementForm
+from application.form import RegistrationForm , Loginform , QuestionForm, AnnouncementForm, AdminRegistrationForm
 from application.models import User , Post , Candidate , Vote1 , Vote2 , Candidate2 , Vote3 , Candidate3, Admin, Announcement
 from application import app , db , bcrypt
 from flask_login import login_user , current_user , logout_user, login_required 
@@ -215,7 +215,7 @@ def createVote():
 def adminregister():
     
          
-    form = RegistrationForm()
+    form = AdminRegistrationForm()
 
     if form.validate_on_submit():
         hashed_password = bcrypt.generate_password_hash(form.password2.data).decode('utf-8')

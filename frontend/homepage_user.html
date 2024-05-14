@@ -65,15 +65,38 @@
         <div>
             <h1 class="announcement"><b>ANNOUNCEMENT</b><br>of the day!</h1>
             <p class="announcement_word">to be announced</p>
-            <div class="container">
-                <div class="card text-dark">
-                <img src="https://t4.ftcdn.net/jpg/04/61/47/03/360_F_461470323_6TMQSkCCs9XQoTtyer8VCsFypxwRiDGU.jpg" class="card-img-top" alt="...">
-                <div class="card-body">
-                    <h5 class="card-title">Card title</h5>
-                    <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-                    <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+            <div class="container" id="announcement_container">
+                <section class="announcement_container">
+                    <div class="announcement_slider_wrapper">
+                        <div class="announcement_slider">
+                            <img id="announcement_slide1" src="https://i.pinimg.com/originals/9c/7b/e4/9c7be43979a736a8695361a544630b97.jpg" alt="mountain with moon at night" />
+                            <img id="announcement_slide2" src="https://wallpapers.com/images/hd/1920-x-1080-hd-1qq8r4pnn8cmcew4.jpg" alt="a guy standing at the edge of purple sky" />
+                            <img id="announcement_slide3" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRdoritJudfj0phCjp0ykhugA9QddcDtNaOKmU-sxksSg&s" alt="beautiful island" />
+                        </div>
+                        <div class="announcement_slider_navigation">
+                            <a href="#announcement_slide1"></a>
+                            <a href="#announcement_slide2"></a>
+                            <a href="#announcement_slide3"></a>
+                        </div>                       
+                    </div>
+                    <div class="card text-dark" id="announcement_card">
+                        <div class="card-body" id="announcement_card_body">
+                            <h5 class="card-title" id="announcement_card_title">Title</h5>
+                            <p class="card-text" id="announcement_card_description">Long ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~Description</p>
+                            <p class="card-text" id="announcement_card_time"><small class="text-muted">Last updated 1 day 2 hours 30 seconds ago</small></p>
+                        </div>
+                        </div>
+                    
+                </section>
+
+                <!-- <div class="card text-dark" id="announcement_card">
+                <img src="https://t4.ftcdn.net/jpg/04/61/47/03/360_F_461470323_6TMQSkCCs9XQoTtyer8VCsFypxwRiDGU.jpg" class="card-img-top" id="announcement_card_image" alt="...">
+                <div class="card-body" id="announcement_card_body">
+                    <h5 class="card-title" id="announcement_card_title">Title</h5>
+                    <p class="card-text" id="announcement_card_description">Long ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~Description</p>
+                    <p class="card-text" id="announcement_card_time"><small class="text-muted">Last updated 1 day 2 hours 30 seconds ago</small></p>
                 </div>
-                </div>
+                </div> -->
             </div>
         </div>
 

@@ -57,7 +57,7 @@ class QuestionForm(FlaskForm):
     submit = SubmitField('Post')
 
 
-class RegistrationForm(FlaskForm):
+class AdminRegistrationForm(FlaskForm):
     username2 = StringField('Admin name' , validators=[DataRequired() , Length(min=2 , max= 20)])
     email2 = StringField('Admin email' , validators=[DataRequired() , Email()])
     password2 = PasswordField('Password' , validators=[DataRequired()])

@@ -78,18 +78,18 @@ class CandidateForm(FlaskForm):
 
 
 class RegistrationForm(FlaskForm):
-    username = StringField('Admin name' , validators=[DataRequired() , Length(min=2 , max= 20)])
-    email = StringField('Admin email' , validators=[DataRequired() , Email()])
-    password = PasswordField('password' , validators=[DataRequired()])
-    confirmpassword = PasswordField('Confirm Password' , validators=[DataRequired() , EqualTo('password')])
-    submit = SubmitField('register')
+    username2 = StringField('Admin name' , validators=[DataRequired() , Length(min=2 , max= 20)])
+    email2 = StringField('Admin email' , validators=[DataRequired() , Email()])
+    password2 = PasswordField('Password' , validators=[DataRequired()])
+    confirmpassword2 = PasswordField('Confirm Password' , validators=[DataRequired() , EqualTo('password2')])
+    submit2 = SubmitField('register')
 
-    def validate_adminname(self,username):
-        admin = Admin.query.filter_by(username=username.data).first()
+    def validate_username2(self,username2):
+        admin = Admin.query.filter_by(username2=username2.data).first()
         if admin:
             raise ValidationError('That admin name is taken , please choose another username!')
         
-    def validate_email(self,email):
-        admin = Admin.query.filter_by(email=email.data).first()
+    def validate_email2(self,email2):
+        admin = Admin.query.filter_by(email2=email2.data).first()
         if admin:
             raise ValidationError('That admin email is taken , please choose another email!')

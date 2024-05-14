@@ -138,10 +138,10 @@ def adminregister():
     form = RegistrationForm()
 
     if form.validate_on_submit():
-        hashed_password = bcrypt.generate_password_hash(form.password.data).decode('utf-8')
-        admin = Admin(username=form.username.data , email = form.email.data , password = hashed_password)
+        hashed_password = bcrypt.generate_password_hash(form.password2.data).decode('utf-8')
+        admin = Admin(username2=form.username2.data , email2 = form.email2.data , password2 = hashed_password)
         db.session.add(admin)
         db.session.commit()
-        flash(f'Account created for {form.username.data} !' , 'success!')
+        flash(f'Account created for {form.username2.data} !' , 'success!')
         return redirect(url_for('login'))
-    return render_template('register.html' , form = form)    
+    return render_template('admin_register.html' , form = form)    

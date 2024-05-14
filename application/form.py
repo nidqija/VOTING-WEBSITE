@@ -58,16 +58,38 @@ class QuestionForm(FlaskForm):
     question = TextAreaField('Question' , validators=[DataRequired()])
     submit = SubmitField('Post')
 
-
-
-
-
-      
-
-
-
-
+    
 class AnnouncementForm(FlaskForm):
       titles= StringField('Announcement Title' , validators=[DataRequired()])
       description = StringField('Announcement Description' , validators=[DataRequired()])
       submit = SubmitField('Submit')
+
+
+
+class AdminLoginForm(FlaskForm):
+    username = StringField('username' , validators=[DataRequired() , Length(min=2 , max= 20)])
+    password = PasswordField('password' , validators=[DataRequired()])
+    remember = BooleanField('Remember me')
+    submit = SubmitField('Login')
+
+
+class AdminRegistrationForm(FlaskForm):
+    mmuid = StringField('MmuID' , validators=[DataRequired() , Length(min=2 , max= 20)])
+    confirmmmuid = StringField('ConfirmMmuID' , validators=[DataRequired() , Length(min=2 , max= 20)])
+    email = StringField('GmailInput' , vawpilidators=[DataRequired() , Email()])
+    password = PasswordField('PasswordInput' , validators=[DataRequired()])
+    confirmpassword = PasswordField('ComfirmPasswordInput' , validators=[DataRequired() , EqualTo('password')])
+    submit = SubmitField('register')
+
+    def validate_username(self,mmuid):
+        user = User.query.filter_by(mmuid=mmuid.data).first()
+        if user:
+            raise ValidationError('That username is taken , please choose another username!')
+        
+    def validate_email(self,email):
+        user = User.query.filter_by(email=email.data).first()
+        if user:
+            raise ValidationError('That email is taken , please choose another email!')
+        
+
+        

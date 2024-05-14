@@ -58,20 +58,10 @@ class QuestionForm(FlaskForm):
     submit = SubmitField('Post')
 
 
-class VotingForm(FlaskForm):
-      studentName= StringField('StudentName' , validators=[DataRequired()])
-      studentId = StringField('StudentID' , validators=[DataRequired()])
-      otherFaculties = StringField('OtherFaculty' , validators=[DataRequired()])
-      reasonCandidate = StringField('ReasonCandidate' , validators=[DataRequired()])
-      submit = SubmitField('Vote')
 
 
-class Candidate(db.Model):
-      id = db.Column(db.Integer , primary_key = True)
-      candidate_name = db.Column(db.String(100))
+
       
-def candidate_query():
-      return Candidate.query
 
 class CandidateForm(FlaskForm):
       candidates = QuerySelectField(query_factory = candidate_query, allow_blank=True)
@@ -93,3 +83,10 @@ class RegistrationForm(FlaskForm):
         admin = Admin.query.filter_by(email2=email2.data).first()
         if admin:
             raise ValidationError('That admin email is taken , please choose another email!')
+
+
+
+class AnnouncementForm(FlaskForm):
+      titles= StringField('Announcement Title' , validators=[DataRequired()])
+      description = StringField('Announcement Description' , validators=[DataRequired()])
+      submit = SubmitField('Submit')

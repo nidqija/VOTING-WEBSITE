@@ -1,6 +1,6 @@
 from flask import render_template , flash , redirect , url_for 
-from application.form import RegistrationForm , Loginform , QuestionForm , VotingForm , CandidateForm
-from application.models import User , Post , Vote
+from application.form import RegistrationForm , Loginform , QuestionForm
+from application.models import User , Post , Candidate , Vote1 , Vote2 , Candidate2 , Vote3 , Candidate3
 from application import app , db , bcrypt
 from flask_login import login_user , current_user , logout_user, login_required 
 
@@ -58,21 +58,89 @@ def contact():
 
 
 
-@app.route('/candidates/new' , methods = ['POST' , 'GET'])
+@app.route('/candidates/first/' , methods = [ 'GET' , 'POST'])
 @login_required
 
 def candidates():
-     voting = Vote.query.all()
-     form = VotingForm()
-     if form.validate_on_submit():
-          vote = Vote(studentName = form.studentName.data , studentId = form.studentId.data , otherFaculty = form.otherFaculties.data , reasonCandidate = form.reasonCandidate.data ,  author = current_user )
-          db.session.add(vote)
-          db.session.commit()
-          flash('Voting Successful!' , 'success')
-          return redirect(url_for('candidates'))
-     return render_template('candidates.html' , form = form , voting = voting)
-
+     candidate1 = Candidate.query.all()
+     return render_template('candidates.html' , candidate1 = candidate1)
      
+    
+
+
+
+@app.route('/vote-candidate/<candidate_id>' , methods = ['GET'])
+@login_required
+
+def vote(candidate_id):
+     candidate1 = Candidate.query.filter_by(id = candidate_id)
+     votes1 = Vote1.query.filter_by( author = current_user.id , candidate_id = candidate_id).first()
+     if not candidate1:
+          flash('Candidate does not exist' , category='error')
+     else:
+          votes1 = Vote1(author = current_user.id , candidate_id = candidate_id)
+          db.session.add(votes1)
+          db.session.commit()
+
+     return redirect(url_for('candidate2'))
+
+
+@app.route('/candidates/second/' , methods = [ 'GET' , 'POST'])
+@login_required
+
+def candidate2():
+     candidate2 = Candidate2.query.all()
+     return render_template('candidates.html' , candidate2 = candidate2)
+
+
+
+@app.route('/vote-candidate2/<candidate2_id>')
+@login_required
+
+def vote2(candidate2_id):
+     candidate2 = Candidate2.query.filter_by(id = candidate2_id)
+     votes2 = Vote2.query.filter_by( author = current_user.id , candidate2_id = candidate2_id).first()
+
+     if not candidate2:
+          flash('Candidate does not exist' , category='error')
+
+     else:
+          votes2 = Vote2(author = current_user.id , candidate2_id = candidate2_id)
+          db.session.add(votes2)
+          db.session.commit()
+
+     return redirect(url_for('candidate3'))
+
+
+
+
+@app.route('/candidates/third/' , methods = [ 'GET' , 'POST'])
+@login_required
+
+def candidate3():
+     candidate3 = Candidate3.query.all()
+     return render_template('candidates.html' , candidate3 = candidate3)
+
+
+
+
+
+@app.route('/vote-candidate3/<candidate3_id>')
+@login_required
+
+def vote3(candidate3_id):
+     candidate2 = Candidate2.query.filter_by(id = candidate3_id)
+     votes3 = Vote3.query.filter_by( author = current_user.id , candidate3_id = candidate3_id).first()
+
+     if not candidate2:
+          flash('Candidate does not exist' , category='error')
+
+     else:
+          votes3 = Vote3(author = current_user.id , candidate3_id = candidate3_id)
+          db.session.add(votes3)
+          db.session.commit()
+
+     return redirect(url_for('home'))
 
 
 
@@ -112,7 +180,10 @@ def about():
 
 @app.route('/admin_homepage')
 def adminHomepage():
-     return render_template('admin_homepage.html')
+     candidate1 = Candidate.query.all()
+     candidate2 = Candidate2.query.all()
+     candidate3 = Candidate3.query.all()
+     return render_template('admin_homepage.html' , candidate1 = candidate1 , candidate2 = candidate2 , candidate3 = candidate3)
 
 
 @app.route('/update_announcement')
@@ -128,6 +199,11 @@ def candidatesInfo():
 @app.route('/createpoll')
 def createVote():
      return render_template('create_a_vote.html')
+
+
+@app.route('/submitvote')
+def submitvote():
+     return render_template('submitvote.html')
 
 
      

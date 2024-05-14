@@ -79,35 +79,104 @@
         <h1 class="WelcomeAdmin">Welcome! Admin Name</h1>
 
         <div class="leaderboard-container">
-            <h1>Leaderboard</h1>
+            <h1>President</h1>
             <table>
                 <thead>
                     <tr>
                         <th>Rank</th>
-                        <th>Candidates</th>
-                        <th>Votes</th>
+                        <th>Candidate</th>
+                        <th>Vote</th>
                     </tr>
                 </thead>
                 <tbody>
+                    {% block content %}
+                    {% for candidate in candidate1 %}
+
                     <tr>
-                        <td>1</td>
-                        <td>Candidate 1</td>
-                        <td>100</td>
+                      
+                        <td>{{ candidate.candidate_id }}</td>
+                        <td>{{ candidate.candidate_name }}</td>
+                        <td> {{ candidate.vote|length }}</td>
+
+                      
                     </tr>
+                    {% endfor %}
+
+
+                  
+                </tbody>
+            </table>
+        </div>
+
+        <div class="leaderboard-container">
+            <h1>Vice President</h1>
+            <table>
+                <thead>
                     <tr>
-                        <td>2</td>
-                        <td>Candidate 2</td>
-                        <td>90</td>
+                        <th>Rank</th>
+                        <th>Candidate</th>
+                        <th>Vote</th>
                     </tr>
+                </thead>
+                <tbody>
+                
+                    {% for candidate in candidate2 %}
+
                     <tr>
-                        <td>3</td>
-                        <td>Candidate 3</td>
-                        <td>80</td>
+                      
+                        <td>{{ candidate.candidate_id }}</td>
+                        <td>{{ candidate.candidate_name }}</td>
+                        <td> {{ candidate.vote2|length }}</td>
+
+                      
                     </tr>
+                    {% endfor %}    
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <div class="leaderboard-container">
+                        <h1>Secretary</h1>
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Rank</th>
+                                    <th>Candidate</th>
+                                    <th>Vote</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                            
+                                {% for candidate in candidate3 %}
+            
+                                <tr>
+                                  
+                                    <td>{{ candidate.candidate_id }}</td>
+                                    <td>{{ candidate.candidate_name }}</td>
+                                    <td> {{ candidate.vote3|length }}</td>
+            
+                                  
+                                </tr>
+                                {% endfor %}
+            
+                                
+            
+                              
+                            </tbody>
+                        </table>
+                    </div>
+
+                    {% endblock %}
+
+                  
                 </tbody>
             </table>
         </div>
     </div>
+</div>
+    </div>
+
+
 </div>
 
 </body>

@@ -1,6 +1,6 @@
 from flask import render_template , flash , redirect , url_for 
-from application.form import RegistrationForm , Loginform , QuestionForm
-from application.models import User , Post , Candidate , Vote1 , Vote2 , Candidate2 , Vote3 , Candidate3
+from application.form import RegistrationForm , Loginform , QuestionForm, AnnouncementForm
+from application.models import User , Post , Candidate , Vote1 , Vote2 , Candidate2 , Vote3 , Candidate3, Admin, Announcement
 from application import app , db , bcrypt
 from flask_login import login_user , current_user , logout_user, login_required 
 
@@ -208,6 +208,23 @@ def candidatesInfo():
 @app.route('/createpoll')
 def createVote():
      return render_template('create_a_vote.html')
+
+
+@app.route('/admin_register' , methods = ['POST' , 'GET'])
+
+def adminregister():
+    
+         
+    form = RegistrationForm()
+
+    if form.validate_on_submit():
+        hashed_password = bcrypt.generate_password_hash(form.password2.data).decode('utf-8')
+        admin = Admin(username2=form.username2.data , email2 = form.email2.data , password2 = hashed_password)
+        db.session.add(admin)
+        db.session.commit()
+        flash(f'Account created for {form.username2.data} !' , 'success!')
+        return redirect(url_for('login'))
+    return render_template('admin_register.html' , form = form)    
 
 
 @app.route('/submitvote')

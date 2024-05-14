@@ -85,8 +85,6 @@ class Candidate3(db.Model):
       vote3 = db.relationship('Vote3' , backref = 'candidate3' , lazy = True)
 
 
-
-
        
 class Announcement(db.Model , UserMixin):
        id = db.Column(db.Integer , primary_key = True)

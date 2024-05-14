@@ -75,6 +75,12 @@ class AdminRegistrationForm(FlaskForm):
             raise ValidationError('That admin email is taken , please choose another email!')
 
 
+class AdminLoginform(FlaskForm):
+    username2 = StringField('username' , validators=[DataRequired() , Length(min=2 , max= 20)])
+    password2 = PasswordField('password' , validators=[DataRequired()])
+    remember2 = BooleanField('Remember me')
+    submit2 = SubmitField('Login')
+
 
 class AnnouncementForm(FlaskForm):
       titles= StringField('Announcement Title' , validators=[DataRequired()])

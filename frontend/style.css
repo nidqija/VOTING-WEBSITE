@@ -492,8 +492,88 @@ tbody tr:nth-child(even) {
   cursor: pointer;
 }
 
-/* .card_button button:nth-child(2){
+/* .candidate_card_button button:nth-child(2){
   border: 1px solid black;
   color: #999;
   background-color: white;
 } */
+
+.announcement_container{
+  padding:2rem;
+}
+
+.announcement_slider_wrapper{
+  position: relative;
+  max-width: 48rem;
+  margin: 0 auto;
+}
+
+@keyframes slide{
+  0%{
+    transform: translateX(0);
+  }
+  25%{
+    transform: translateX(0);
+  }
+  30%{
+    transform: translateX(-100%);
+  }
+  50%{
+    transform: translateX(-100%);
+  }
+  55%{
+    transform: translateX(-200%);
+  }
+  75%{
+    transform: translateX(-200%);
+  }
+  80%{
+    transform: translateX(-300%);
+  }
+  100%{
+    transform: translateX(-300%);
+  }
+}
+
+.announcement_slider{
+  width: 100%;
+  display: flex;
+  aspect-ratio: 16/9;
+  overflow-x: auto;
+  overflow: hidden;
+  scroll-snap-type: x mandatory;
+  scroll-behavior: smooth;
+  box-shadow: 0 1.5rem 3rem -0.75rem hsla(0,0%,0%,0.25);
+  border-radius: 0.5rem;
+}
+
+.announcement_slider img{
+  width: 100%;
+  flex: 1 0 100%;
+  scroll-snap-align: start;
+  object-fit: cover;
+  animation: slide 15s infinite;
+}
+
+.announcement_slider_navigation{
+  display: flex;
+  column-gap: 1rem;
+  position: absolute;
+  bottom: 1.25rem;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 1;
+}
+
+.announcement_slider_navigation a{
+  width: 0.5rem;
+  height: 0.5rem;
+  border-radius: 50%;
+  background-color: #fff;
+  opacity: 0.75;
+  transition: opacity ease 250ms;
+}
+
+.announcement_slider_navigation a:hover{
+  opacity: 1;
+}

@@ -5,9 +5,16 @@ from wtforms import StringField , PasswordField , SubmitField , BooleanField , T
 from wtforms_sqlalchemy.fields import QuerySelectField
 from wtforms.validators import DataRequired , Length , Email , EqualTo , ValidationError
 from application.models import  User
+from flask import render_template
 
 
+# Flask route to render the profile page
 
+@app.route('/profile')
+@login_required
+def profile():
+    user = current_user  # Assuming you have a current_user variable containing the logged-in user
+    return render_template('profile.html', username=user.username)
 
 
 class RegistrationForm(FlaskForm):
@@ -59,15 +66,9 @@ class QuestionForm(FlaskForm):
     submit = SubmitField('Post')
 
 
-
-
-
-      
-
-
-
-
 class AnnouncementForm(FlaskForm):
       titles= StringField('Announcement Title' , validators=[DataRequired()])
       description = StringField('Announcement Description' , validators=[DataRequired()])
       submit = SubmitField('Submit')
+
+

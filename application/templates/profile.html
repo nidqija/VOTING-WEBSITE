@@ -8,77 +8,67 @@
     <title>Voting Profile</title>
 </head>
 
-<body class="profileBody">
+<body>
     <div class="container">
-        <div class="profile.main">
-            <div class="profile.topbar">
-                <a href="" class="logout"></a>
+        <div class="main">
+            <div class="topbar">
+                <a href="" class="logou"></a>
                 <a href="" class="Support"></a>
                 <a href="" class="work"></a>
-                <a href="" class="Homepage"></a>
+                <a href="" class="Hompage"></a>
             </div>
             <div class="row">
                 <div class="col-md-4 mt-1">
                     <div class="card">
-                        <div id="profilesidebar" class="card text-center">
+                        <div class="card text-center sidebar">
                             <div class="card-body">
                                 <img src="blank-profile-picture-973460_960_720.webp" class="rounded-circle" width="150">
                                 <div class="mt-3">
                                     <h3>Joedle Trump</h3>
                                     <a href="{{url_for('home')}}">Home</a>
-                                    <a href="{{url_for('logout')}}">Log Out</a>
+                                    <a href="">Log Out</a>
                                 </div>
                             </div>
                         </div>
                     </div>
-
-
-                    {% if current_user.is_authenticated %}
+                  {% if current_user.is_authenticated %}
                     <div class="col-md-8 mt-1">
                         <div class="card mb-3 content">
                             <h1 class="m-3 pt-3">About</h1>
                             <div class="card-body">
                                 <div class="row">
                                     <div class="col-md-3">
-                                        <h5>Name</h5>
+                                        <h5>Username</h5>
                                     </div>
                                     <div class="col-md-9 text-secondary">
-                                        <p>{{ current_user.username }}</p>
+                                        {{ current_user.username }}
                                     </div>
                                 </div>
                                 <hr>
                                 <div class="row">
                                     <div class="col-md-3">
-                                        <h5>Student ID</h5>
+                                        <h5>Email</h5>
                                     </div>
                                     <div class="col-md-9 text secondary">
-                                        ()
+                                        {{ current_user.email }}
                                     </div>
                                 </div>
                                 <hr>
                                 <div class="row">
                                     <div class="col-md-3">
-                                        <h5>Institute Name</h5>
+                                        <h5>Role</h5>
                                     </div>
-                                    <div class="col-md-9 text secondary">
-                                        ()
-                                    </div>
-                                </div>
-                                <hr>
-                                <div class="row">
-                                    <div class="col-md-3">
-                                        <h5>Birthday</h5>
-                                    </div>
-                                    <div class="col-md-9 text secondary">
-                                        ()
+                                    <div class="col-md-9 text secondary text-success">
+                                        student
                                     </div>
                                 </div>
                                 <hr>
+                        
+                                <hr>
+                                {% endif %}
                             </div>
                         </div>
                     </div>
-
-                    {% endif %}
                 </div>
             </div>
         </div>

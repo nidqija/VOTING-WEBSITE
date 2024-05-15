@@ -10,7 +10,8 @@ from flask_login import login_user , current_user , logout_user, login_required
 
 @app.route('/home')
 def home():
-    return render_template('home.html' )
+    announcements = Announcement.query.all()
+    return render_template('home.html' , announcements = announcements )
 
 
 @app.route('/login' , methods = ['POST' , 'GET'])
@@ -186,17 +187,17 @@ def adminHomepage():
      return render_template('admin_homepage.html' , candidate1 = candidate1 , candidate2 = candidate2 , candidate3 = candidate3)
 
 
-@app.route('/update_announcement')
+@app.route('/update_announcement' , methods = ['POST' , 'GET'])
 def updateAnnouncement():
          
          
     form = AnnouncementForm()
 
     if form.validate_on_submit():
-        announcement = Announcement(titles=form.titles.data , description = form.description.data)
+        announcement = Announcement(titles=form.titles.data , description = form.description.data , author = current_user)
         db.session.add(announcement)
         db.session.commit()
-        return redirect(url_for('update_announcement'))
+        return redirect(url_for('home'))
     return render_template('update_announcement.html', form=form)
 
 

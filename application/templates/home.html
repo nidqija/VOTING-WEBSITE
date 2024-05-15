@@ -99,7 +99,20 @@
         <h1 class="text-white">You're not logged in yet , please log in</h1>
       {% endif %}
         <h1 class="announcement text-white text-center"><b>ANNOUNCEMENT</b><br>of the day!</h1>
-        <p class="announcement_word text-white text-center mb-4">to be announced</p>
+        {% for announcement in announcements %}
+        <div class="container">
+          <div class="row">
+          <div class="card text-dark mb-2 p-2">
+          <div class="card-body">
+              <h5 class="card-title text-center">{{ announcement.titles }}</h5>
+              <p class="card-text text-center">{{ announcement.description }}</p>
+              <p class="card-text text-center"><small class=" text-center text-danger">admin</small></p>
+          </div>
+          </div>
+        </div>
+      </div>
+        </div>
+      {% endfor %}
     </div>
 
     <div>

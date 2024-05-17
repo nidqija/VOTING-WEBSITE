@@ -18,6 +18,8 @@ class User(db.Model , UserMixin ):
         vote1 = db.relationship('Vote1' , backref = 'user' , lazy = True)
         vote2 = db.relationship('Vote2' , backref = 'user' , lazy = True)
         vote3 = db.relationship('Vote3' , backref = 'user' , lazy = True)
+        self_description = db.relationship('SelfDescription' , backref = 'user' , lazy = True)
+        announcement = db.relationship('Announcement' , backref = 'author' , lazy = True)
 
         
         def __repr__(self):
@@ -109,6 +111,12 @@ class Admin(db.Model , UserMixin ):
         def __repr__(self):
            return f'Admin("{self.username2}" , {self.email2})'
 
+
+class SelfDescription(db.Model):
+      id = db.Column(db.Integer , primary_key = True)
+      user_description = db.Column(db.Text , unique = True , nullable = True)
+      user_id = db.Column(db.Integer , db.ForeignKey('user.id') , nullable = False)
+      
       
 
       

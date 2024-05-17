@@ -59,6 +59,15 @@ class QuestionForm(FlaskForm):
     submit = SubmitField('Post')
 
 
+<<<<<<< HEAD
+=======
+class AdminRegistrationForm(FlaskForm):
+    username2 = StringField('Admin name' , validators=[DataRequired() , Length(min=2 , max= 20)])
+    email2 = StringField('Admin email' , validators=[DataRequired() , Email()])
+    password2 = PasswordField('Password' , validators=[DataRequired()])
+    confirmpassword2 = PasswordField('Confirm Password' , validators=[DataRequired() , EqualTo('password2')])
+    submit2 = SubmitField('register')
+>>>>>>> 2aff3af28dfc5404a5c31b92e3eb59ce2b9c8f41
 
 
 class DescriptionForm(FlaskForm):
@@ -66,6 +75,12 @@ class DescriptionForm(FlaskForm):
     submit = SubmitField('Submit')
 
 
+
+class AdminLoginform(FlaskForm):
+    username2 = StringField('username' , validators=[DataRequired() , Length(min=2 , max= 20)])
+    password2 = PasswordField('password' , validators=[DataRequired()])
+    remember2 = BooleanField('Remember me')
+    submit2 = SubmitField('Login')
 
 
 class AnnouncementForm(FlaskForm):

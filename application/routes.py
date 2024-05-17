@@ -1,8 +1,8 @@
 from flask import render_template , flash , redirect , url_for 
-from application.form import RegistrationForm , Loginform , QuestionForm , AnnouncementForm , DescriptionForm
-from application.models import User , Post , Candidate , Vote1 , Vote2 , Candidate2 , Vote3 , Candidate3 ,Announcement , Admin  , SelfDescription
+from application.form import RegistrationForm , Loginform , QuestionForm, AnnouncementForm, AdminRegistrationForm, AdminLoginform
+from application.models import User , Post , Candidate , Vote1 , Vote2 , Candidate2 , Vote3 , Candidate3, Admin, Announcement
 from application import app , db , bcrypt
-from flask_login import login_user , current_user , logout_user, login_required 
+from flask_login import login_user , current_user , logout_user, login_required
 
 
 @app.route('/')
@@ -11,7 +11,7 @@ from flask_login import login_user , current_user , logout_user, login_required
 @app.route('/home')
 def home():
     announcements = Announcement.query.all()
-    return render_template('home.html' ,announcements = announcements )
+    return render_template('home.html' , announcements = announcements )
 
 
 @app.route('/login' , methods = ['POST' , 'GET'])
@@ -197,7 +197,7 @@ def updateAnnouncement():
     form = AnnouncementForm()
 
     if form.validate_on_submit():
-        announcement = Announcement(titles=form.titles.data , description = form.description.data  , author = current_user)
+        announcement = Announcement(titles=form.titles.data , description = form.description.data , author = current_user)
         db.session.add(announcement)
         db.session.commit()
         return redirect(url_for('home'))
@@ -219,7 +219,7 @@ def createVote():
 def adminregister():
     
          
-    form = RegistrationForm()
+    form = AdminRegistrationForm()
 
     if form.validate_on_submit():
         hashed_password = bcrypt.generate_password_hash(form.password2.data).decode('utf-8')
@@ -227,8 +227,26 @@ def adminregister():
         db.session.add(admin)
         db.session.commit()
         flash(f'Account created for {form.username2.data} !' , 'success!')
-        return redirect(url_for('login'))
+        return redirect(url_for('adminlogin'))
     return render_template('admin_register.html' , form = form)    
+
+
+@app.route('/admin_login' , methods = ['POST' , 'GET'])
+def adminlogin():
+    if current_user.is_authenticated:
+         return redirect(url_for('adminHomepage'))
+    
+    form = AdminLoginform()
+    if form.validate_on_submit():
+            flash(f'Login Successful !')
+            admin = Admin.query.filter_by(username2 = form.username2.data).first()
+            if admin and bcrypt.check_password_hash(admin.password2 , form.password2.data):
+                 # login_user(admin , remember=form.remember2.data)(got problem)
+                 return redirect(url_for('adminHomepage'))
+            else:
+                 flash(f'Login Failed . Please check admin name and password' , 'danger')
+    return render_template('admin_login.html', form = form)
+
 
 
 @app.route('/submitvote')

@@ -18,13 +18,7 @@ class User(db.Model , UserMixin ):
         vote1 = db.relationship('Vote1' , backref = 'user' , lazy = True)
         vote2 = db.relationship('Vote2' , backref = 'user' , lazy = True)
         vote3 = db.relationship('Vote3' , backref = 'user' , lazy = True)
-<<<<<<< HEAD
-        self_description = db.relationship('SelfDescription' , backref = 'user' , lazy = True)
         announcement = db.relationship('Announcement' , backref = 'author' , lazy = True)
-
-=======
-        announcement = db.relationship('Announcement' , backref = 'author' , lazy = True)
->>>>>>> 2aff3af28dfc5404a5c31b92e3eb59ce2b9c8f41
         
         def __repr__(self):
            return f'User("{self.username}" , {self.email})'

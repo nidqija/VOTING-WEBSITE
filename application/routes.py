@@ -1,4 +1,5 @@
-from flask import render_template , flash , redirect , url_for 
+
+from flask import render_template , flash , redirect , url_for , abort
 from application.form import RegistrationForm , Loginform , QuestionForm, AnnouncementForm, AdminRegistrationForm, AdminLoginform
 from application.models import User , Post , Candidate , Vote1 , Vote2 , Candidate2 , Vote3 , Candidate3, Admin, Announcement
 from application import app , db , bcrypt
@@ -39,7 +40,7 @@ def register():
 
     if form.validate_on_submit():
         hashed_password = bcrypt.generate_password_hash(form.password.data).decode('utf-8')
-        user = User(username=form.username.data , email = form.email.data , password = hashed_password)
+        user = User(username=form.username.data , email = form.email.data ,  mmu_id = form.mmu_id.data , password = hashed_password)
         db.session.add(user)
         db.session.commit()
         flash(f'Account created for {form.username.data} !' , 'success!')
@@ -169,10 +170,42 @@ def service():
      return render_template('service.html' ,  form = form , posts = posts)
 
 
+@app.route('/service/<int:post_id>')
+
+def question(post_id):
+   post = Post.query.get_or_404(post_id)
+   return render_template('question.html' , titles = post.titles , post = post)
+
+
+
+
+@app.route('/service/<int:post_id>/update' , methods = ['POST' , 'GET'])
+@login_required
+def update_question(post_id):
+   post = Post.query.get_or_404(post_id)
+   if post.author != current_user:
+        return abort(403)
+   
+   form = QuestionForm()
+   if form.validate_on_submit():
+        post.titles = form.titles.data
+        post.question = form.question.data
+        db.session.commit()
+        return redirect(url_for('service'))
+   form.titles.data = post.titles
+   form.question.data = post.question
+   return render_template('service.html' , form = form)
+        
+
+
+
 
 @app.route('/profile')
 def profile():
     return render_template('profile.html')
+
+
+
 
 
 @app.route('/about')
@@ -188,6 +221,7 @@ def adminHomepage():
 
 
 @app.route('/update_announcement' , methods = ['POST' , 'GET'])
+@login_required
 def updateAnnouncement():
          
          
@@ -214,16 +248,15 @@ def createVote():
 @app.route('/admin_register' , methods = ['POST' , 'GET'])
 
 def adminregister():
-    
-         
-    form = AdminRegistrationForm()
+          
+    form = RegistrationForm()
 
     if form.validate_on_submit():
-        hashed_password = bcrypt.generate_password_hash(form.password2.data).decode('utf-8')
-        admin = Admin(username2=form.username2.data , email2 = form.email2.data , password2 = hashed_password)
+        hashed_password = bcrypt.generate_password_hash(form.password.data).decode('utf-8')
+        admin = User(username=form.username.data , email = form.email.data , mmu_id = form.mmu_id.data , password = hashed_password)
         db.session.add(admin)
         db.session.commit()
-        flash(f'Account created for {form.username2.data} !' , 'success!')
+        flash(f'Account created for {form.username.data} !' , 'success!')
         return redirect(url_for('adminlogin'))
     return render_template('admin_register.html' , form = form)    
 
@@ -233,12 +266,12 @@ def adminlogin():
     if current_user.is_authenticated:
          return redirect(url_for('adminHomepage'))
     
-    form = AdminLoginform()
+    form = Loginform()
     if form.validate_on_submit():
             flash(f'Login Successful !')
-            admin = Admin.query.filter_by(username2 = form.username2.data).first()
-            if admin and bcrypt.check_password_hash(admin.password2 , form.password2.data):
-                 # login_user(admin , remember=form.remember2.data)(got problem)
+            admin = User.query.filter_by(username = form.username.data , mmu_id = form.mmu_id.data).first()
+            if admin and bcrypt.check_password_hash(admin.password , form.password.data ):
+                 login_user(admin , remember=form.remember.data)
                  return redirect(url_for('adminHomepage'))
             else:
                  flash(f'Login Failed . Please check admin name and password' , 'danger')

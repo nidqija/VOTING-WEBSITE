@@ -11,6 +11,7 @@ def load_user(user_id):
 class User(db.Model , UserMixin ):
         id = db.Column(db.Integer , primary_key = True)
         username = db.Column(db.String(20) , unique = True , nullable = False)
+        mmu_id = db.Column(db.String(150) , unique = True , nullable = True)
         email = db.Column(db.String(120) , unique = True , nullable = False)
         password = db.Column(db.String(120) , nullable = False)
         createdAt = db.Column(db.DateTime(timezone=True) , server_default=func.now())
@@ -18,10 +19,11 @@ class User(db.Model , UserMixin ):
         vote1 = db.relationship('Vote1' , backref = 'user' , lazy = True)
         vote2 = db.relationship('Vote2' , backref = 'user' , lazy = True)
         vote3 = db.relationship('Vote3' , backref = 'user' , lazy = True)
-        announcement = db.relationship('Announcement' , backref = 'author' , lazy = True)
+        announcement = db.relationship('Announcement' , backref = 'author' , lazy = True)        
+
         
         def __repr__(self):
-           return f'User("{self.username}" , {self.email})'
+           return f'User("{self.username}" , {self.email} , {self.mmu_id})'
         
 
 class Post(db.Model , UserMixin):
@@ -94,19 +96,28 @@ class Announcement(db.Model , UserMixin):
        user_id = db.Column(db.Integer , db.ForeignKey('user.id') , nullable = False)
 
        def __repr__(self):
-             return f'User("{self.titles}" , {self.description})'
+           return f'User("{self.titles}" , {self.description})'
+
+    
        
 
 class Admin(db.Model , UserMixin ):
         id2 = db.Column(db.Integer , primary_key = True)
         username2 = db.Column(db.String(20) , unique = True , nullable = False)
         email2 = db.Column(db.String(120) , unique = True , nullable = False)
+        mmu_id = db.Column(db.String(150) , unique = True , nullable = False)
         password2 = db.Column(db.String(120) , nullable = False)
         createdAt2 = db.Column(db.DateTime(timezone=True) , server_default=func.now())
-        
-        def __repr__(self):
-           return f'Admin("{self.username2}" , {self.email2})'
 
+        def __repr__(self):
+           return f'Admin("{self.username2}" , {self.email2} , {self.mmu_id})'
+
+
+class SelfDescription(db.Model):
+      id = db.Column(db.Integer , primary_key = True)
+      user_description = db.Column(db.Text , unique = True , nullable = True)
+      user_id = db.Column(db.Integer , db.ForeignKey('user.id') , nullable = False)
+      
       
 
       

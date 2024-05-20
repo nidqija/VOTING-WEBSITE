@@ -4,7 +4,8 @@ from application import db
 from wtforms import StringField , PasswordField , SubmitField , BooleanField , TextAreaField 
 from wtforms_sqlalchemy.fields import QuerySelectField
 from wtforms.validators import DataRequired , Length , Email , EqualTo , ValidationError
-from application.models import  User, Admin
+from application.models import  User
+
 
 
 
@@ -12,6 +13,7 @@ from application.models import  User, Admin
 class RegistrationForm(FlaskForm):
     username = StringField('username' , validators=[DataRequired() , Length(min=2 , max= 20)])
     email = StringField('email' , validators=[DataRequired() , Email()])
+    mmu_id = StringField('Admin ID')
     password = PasswordField('password' , validators=[DataRequired()])
     confirmpassword = PasswordField('Confirm Password' , validators=[DataRequired() , EqualTo('password')])
     submit = SubmitField('register')
@@ -30,6 +32,7 @@ class RegistrationForm(FlaskForm):
 
 class Loginform(FlaskForm):
     username = StringField('username' , validators=[DataRequired() , Length(min=2 , max= 20)])
+    mmu_id = StringField('Admin ID')
     password = PasswordField('password' , validators=[DataRequired()])
     remember = BooleanField('Remember me')
     submit = SubmitField('Login')
@@ -51,6 +54,7 @@ class ProfileForm(FlaskForm):
             raise ValidationError('That email is taken , please choose another email!')
         
 
+
 class QuestionForm(FlaskForm):
     titles = TextAreaField('Title' , validators=[DataRequired()])
     question = TextAreaField('Question' , validators=[DataRequired()])
@@ -60,20 +64,24 @@ class QuestionForm(FlaskForm):
 class AdminRegistrationForm(FlaskForm):
     username2 = StringField('Admin name' , validators=[DataRequired() , Length(min=2 , max= 20)])
     email2 = StringField('Admin email' , validators=[DataRequired() , Email()])
+    mmu_id = StringField('Admin ID' , validators=[DataRequired() , Length(min=2 , max=20)])
     password2 = PasswordField('Password' , validators=[DataRequired()])
     confirmpassword2 = PasswordField('Confirm Password' , validators=[DataRequired() , EqualTo('password2')])
     submit2 = SubmitField('register')
 
-    def validate_username2(self,username2):
-        admin = Admin.query.filter_by(username2=username2.data).first()
-        if admin:
-            raise ValidationError('That admin name is taken , please choose another username!')
-        
-    def validate_email2(self,email2):
-        admin = Admin.query.filter_by(email2=email2.data).first()
-        if admin:
-            raise ValidationError('That admin email is taken , please choose another email!')
 
+class DescriptionForm(FlaskForm):
+    self_description = TextAreaField('Description')
+    submit = SubmitField('Submit')
+
+
+
+class AdminLoginform(FlaskForm):
+    username2 = StringField('username' , validators=[DataRequired() , Length(min=2 , max= 20)])
+    password2 = PasswordField('password' , validators=[DataRequired()])
+    mmu_id = StringField('Admin ID' , validators=[DataRequired() , Length(min=2 , max=20)])
+    remember2 = BooleanField('Remember me')
+    submit2 = SubmitField('Login')
 
 class AdminLoginform(FlaskForm):
     username2 = StringField('username' , validators=[DataRequired() , Length(min=2 , max= 20)])

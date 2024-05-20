@@ -102,11 +102,11 @@
       
         <h1 class="announcement text-white text-center"><b>ANNOUNCEMENT</b><br>of the day!</h1>
         {% for announcement in announcements %}
-        <div class="container">
+        <div class="container  p-5">
           <div class="row">
           <div class="card text-dark mb-2 p-2">
           <div class="card-body">
-              <h5 class="card-title text-center">{{ announcement.titles }}</h5>
+             <a style="text-decoration: none;" href=""><h5 class="card-title text-center">{{ announcement.titles }}</h5></a> 
               <p class="card-text text-center">{{ announcement.description }}</p>
               <p class="card-text text-center"><small class=" text-center text-danger">admin</small></p>
           </div>

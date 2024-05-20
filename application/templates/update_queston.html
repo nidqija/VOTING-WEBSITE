@@ -5,10 +5,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../static/styles.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
-    <title>Profile Page</title>
+    <title>Service Page</title>
 </head>
-<body>
-     <nav id="navbarBackground" class="navbar navbar-expand-lg ">
+<body class="serviceWallpaper">
+
+    <nav id="navbarBackground" class="navbar navbar-expand-lg ">
         <div class="container-fluid p-4">
           <a id="title" class="navbar-brand px-3" href="#">VOTE-IT!</a>
           <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -17,13 +18,13 @@
             <div class="collapse navbar-collapse "  id="navbarSupportedContent">
                 <ul  class="navbar-nav me-auto mb-2 mb-lg-0 ">
                     <li id="navSections" class="nav-item px-3">
-                        <a  id="Navlink" class="nav-link active" href="{{url_for('home')}}">Home</a>
+                        <a id="Navlink" class="nav-link active" href="{{url_for('home')}}">Home</a>
                       </li>
                       <li id="navSections" class="nav-item px-3">
                         <a  id="Navlink" class="nav-link" href="{{url_for('candidates')}}">Candidate</a>
                       </li>
                       <li id="navSections" class="nav-item px-3">
-                        <a style="color: yellow;"  id="Navlink" class="nav-link" href="{{url_for('about')}}">About</a>
+                        <a  id="Navlink" class="nav-link" href="{{url_for('about')}}">About</a>
                       </li>
                       <li id="navSections" class="nav-item px-3 ">
                         <a  id="Navlink" class="nav-link" href="{{url_for('guidelines')}}" role="button" >
@@ -31,7 +32,7 @@
                         </a>
                       </li>
                        <li id="navSections" class="nav-item px-3">
-                        <a id="Navlink" class="nav-link" href="{{url_for('service')}}">Service</a>
+                        <a  style="color: yellow;" id="Navlink" class="nav-link" href="{{url_for('service')}}">Service</a>
                       </li>
                       <li id="navSections" class="nav-item px-3">
                         <a  id="Navlink" class="nav-link" href="{{url_for('contact')}}">Contact</a>
@@ -43,6 +44,9 @@
                          <button id="CurrentUserProfile" type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
                           {{ current_user.username }}
                          </button>
+
+
+
         
         <!-- Modal -->
                   <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -54,13 +58,13 @@
                                </div>
                                   <div class="modal-body">
                                      <p>Username :   {{ current_user.username }}</p> 
-                                     <p>Role : </p>
                                      <p> Email : {{ current_user.email }}</p> 
-                                     <p>Description : </p>
+                                     <p>Role : <a class="role text-success">Student</a> </p>
+
                                   </div>
                                   <div class="modal-footer">
-                                       <a href="{{url_for('profile')}}"><button type="button" class="btn btn-secondary" data-bs-dismiss="modal">View Profile</button></a>
-                                      <a href="{{url_for('logout')}}"> <button type="button" class="btn btn-primary">Logout</button></a>
+                                       <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Back</button>
+                                       <button type="button" class="btn btn-primary">View Profile</button>
                                   </div>
                              </div>
                           </div>
@@ -68,15 +72,14 @@
                       </li>
                       {% else %}
                       <li id="navSections" class="nav-item px-3">
-                          <a href="{{url_for('login')}}"><button class="btn btn-outline-light" style="position: relative; left: 300px; ">Log In</button></a>
+                          <a href="{{url_for('login')}}"><button class="btn btn-outline-light" style="position: relative; left: 500px; ">Log In</button></a>
                       </li>
                       <li id="navSections" class="nav-item px-3">
-                          <a href="{{url_for('register')}}"><button class="btn btn-outline-light" style="position: relative; left: 300px; ">Sign Up</button></a>
+                          <a href="{{url_for('register')}}"><button class="btn btn-outline-light" style="position: relative; left: 500px; ">Sign Up</button></a>
                       </li>
+                      {% endif %}
                     </ul>
                 </ul>
-                {% endif %}
-
                 <!-- <div>
                     <input class="search_in" type="search" name="" placeholder="Type your keyword">
                     <a href=".html"> <button class="search_button">Search</button></a>
@@ -87,38 +90,97 @@
     </nav>
 
 
-    <div class="profile_content">
-        <div class="container">
-          <a style="text-decoration: none;" href="{{url_for('home')}}"><h5 class="text-white p-4" style="font-size: 30px ; ">Back</h5></a>
-         <h1 class="text-white p-5">Profile Page</h1>
-        <div class="profile-card">
-            <div class="container">
-           <img class="p-5" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR6H-wpoicibd_-GAWDXZUQGzX2kF3YeCwbJwikwdaq2Q&s" alt="">
-           </div>
-           <div class="container">
-           <div class="profile-name float-end p-5" style="position: relative ; bottom: 250px; right: 270px;">
-            <h5>Username : <a href="" style="text-decoration: none;">{{ current_user.username }}</a></h5>
-           </div>
 
-           <div class="profile-email float-end" style="position: relative ; bottom: 155px;">
-            <h5>Email : <a href="" style="text-decoration: none;">{{ current_user.email }}</a></h5>
-           </div>
+    {% if current_user.is_authenticated %}
+    {% block content %}
 
-           <div class="profile-email float-end" style="position: relative ; bottom: 110px; left: 130px;">
-            <h5>Role : <a href="" style="text-decoration: none; color: green;">Student</a></h5>
-           </div>
+
+    {% for post in posts %}
+
+    <div class="container">
+      <div class="card mb-4 mt-5">
+        <div class="card-body">
+          <p class="card-subtitle">{{ post.author.username }}</p><p class="card-subtitle mb-3">{{ post.author.createdAt }}</p>
+         <a href="{{url_for('question' , post_id = post.id)}}"><h5 class="card-title" >{{ post.titles }}</h5></a> 
+          <h6 class="card-subtitle mb-2 text-muted">{{ post.question }}</h6>
           
-          
-          
-
-
         </div>
-
-        </div>
-        </div>
-       
+      </div>
     </div>
 
+   {% endfor %}
+   <div class="update_question_container">
+
+
+    <div class="container">
+        <div class="content-section">
+            <h1 class="text-white">Update Question </h1>
+        <form  method="POST">
+            {{ form.hidden_tag() }}
+
+            <fieldset class="form-group">
+               <legend class="text-center"></legend>
+               <dir class="form-group">
+                {{form.titles.label(class="form-control-label text-white")}}
+
+                {% if form.titles.errors %}       
+                    {{form.titles(class="form-control form-control-lg is-invalid")}}
+                    <div>
+                        {% for error in form.titles.errors %}
+                          <span>{{ error }}</span>
+                        {% endfor %}
+                    </div>
+
+                {% else %}
+                    {{form.titles(class="form-control form-control-lg")}}
+                {% endif %}
+
+
+            </dir>
+          
+            <dir class="form-group">
+                {{form.question .label(class="form-control-label text-white")}}
+                    {% if form.question.errors %}
+                         {{form.question(class="form-control form-control-lg is-invalid")}}
+
+                         <div>
+                            {% for error in form.question.errors %}
+                                  <span>{{ error }}</span>
+                            {% endfor %}
+                         </div>
+
+                    {% else %}
+                        {{form.question(class="form-control form-control-lg")}}
+                    {% endif %}
+
+
+
+
+
+
+
+            </dir>
+            
+              
+               <dir class="form-group">
+                   {{form.submit(class = "btn btn-outline-info")}}
+               </dir>
+               
+           
+               
+            </fieldset>
+        </form>
+    </div>
+    </div>
+  </div>
+  
+    {% endblock %}
+
+   
+
+  
+
+    {% endif %}
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" crossorigin="anonymous"></script>
 </body>

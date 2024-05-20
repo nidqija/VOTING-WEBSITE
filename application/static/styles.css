@@ -72,6 +72,7 @@
   background: linear-gradient(to top, rgba(0,0,0,0.5)50%,rgba(0,0,0,0.5)50%) , url('https://www.mmu.edu.my/wp-content/themes/mmu2018/assets/images/facilities/main.png');
   background-repeat: no-repeat;
   background-size: cover;
+  height: 1000px;
 }
   
 
@@ -706,6 +707,15 @@ tbody tr:nth-child(even) {
   background-color: white;
   border-radius: 20px;
 
+}
+
+
+.update_question_container{
+  width: 100%;
+  background: linear-gradient(to top, rgba(0,0,0,0.5)70%,rgba(0,0,0,0.5)70%), url(https://www.mmu.edu.my/wp-content/uploads/2022/12/1280_720_2.jpeg);
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
 }
 
 

@@ -43,6 +43,16 @@
                           {{ current_user.username }}
                         </li>
                   
+                    <li id="navSections" class="nav-item px-3">
+                      logout
+                    </li>
+                    {% else %}
+                    <li id="navSections" class="nav-item px-3">
+                        <a href="{{url_for('login')}}"><button class="btn btn-outline-light">Log In</button></a>
+                    </li>
+                    <li id="navSections" class="nav-item px-3">
+                        <a href="{{url_for('register')}}"><button class="btn btn-outline-light">Sign Up</button></a>
+                    </li>
                     {% endif %}
                 </ul>
                 <!-- <div>

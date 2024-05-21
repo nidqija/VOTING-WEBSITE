@@ -56,9 +56,9 @@
                                </div>
                                   <div class="modal-body">
                                      <p>Username :   {{ current_user.username }}</p> 
-                                     <p>Role : </p>
                                      <p> Email : {{ current_user.email }}</p> 
-                                     <p>Description : </p>
+                                     <p>Role : <a class="text-success" style="text-decoration: none;">Student</a> </p>
+
                                   </div>
                                   <div class="modal-footer">
                                        <a href="{{url_for('profile')}}"><button type="button" class="btn btn-secondary" data-bs-dismiss="modal">View Profile</button></a>
@@ -98,13 +98,15 @@
       {% else %}
         <h1 class="text-white">You're not logged in yet , please log in</h1>
       {% endif %}
+
+      
         <h1 class="announcement text-white text-center"><b>ANNOUNCEMENT</b><br>of the day!</h1>
         {% for announcement in announcements %}
-        <div class="container">
+        <div class="container  p-5">
           <div class="row">
           <div class="card text-dark mb-2 p-2">
           <div class="card-body">
-              <h5 class="card-title text-center">{{ announcement.titles }}</h5>
+             <a style="text-decoration: none;" href=""><h5 class="card-title text-center">{{ announcement.titles }}</h5></a> 
               <p class="card-text text-center">{{ announcement.description }}</p>
               <p class="card-text text-center"><small class=" text-center text-danger">admin</small></p>
           </div>
@@ -118,7 +120,7 @@
     <div>
         <h1 class="vote text-white text-center mb-5"><b>SUPPORT</b><br>your favourite canditate right now</h1>
         <div class="text-center">
-        <a href='{{url_for('candidates')}}' ><button >Vote Now!</button></a>
+        <a href="{{url_for('candidates')}}"><button >Vote Now!</button></a>
       </div>
     </div>
 </div>

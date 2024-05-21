@@ -39,6 +39,10 @@
                     </li>
 
                     {% if current_user.is_authenticated %}
+                       <li id="navSections" class="nav-item px-3">
+                          {{ current_user.username }}
+                        </li>
+                  
                     <li id="navSections" class="nav-item px-3">
                       logout
                     </li>
@@ -75,8 +79,11 @@
     </div>
 
     <div class="admin_homepage_container">
-        
-        <h1 class="WelcomeAdmin">Welcome! Admin Name</h1>
+       
+
+        <h1 class="WelcomeAdmin">Hello Admin!</h1>
+
+      
 
         <div class="leaderboard-container">
             <h1>President</h1>

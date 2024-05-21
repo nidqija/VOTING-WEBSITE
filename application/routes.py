@@ -67,8 +67,6 @@ def candidates():
      candidate1 = Candidate.query.all()
      image_file = url_for('static', filename='profile_pics/' + current_user.image_file)
      return render_template('candidates.html' , candidate1 = candidate1, image_file=image_file)
-     
-    
 
 
 
@@ -93,7 +91,8 @@ def vote(candidate_id):
 
 def candidate2():
      candidate2 = Candidate2.query.all()
-     return render_template('candidates.html' , candidate2 = candidate2)
+     image_file = url_for('static', filename='profile_pics/' + current_user.image_file)
+     return render_template('candidates.html' , candidate2 = candidate2 , image_file=image_file)
 
 
 
@@ -122,7 +121,8 @@ def vote2(candidate2_id):
 
 def candidate3():
      candidate3 = Candidate3.query.all()
-     return render_template('candidates.html' , candidate3 = candidate3)
+     image_file = url_for('static', filename='profile_pics/' + current_user.image_file)
+     return render_template('candidates.html' , candidate3 = candidate3, image_file=image_file)
 
 
 

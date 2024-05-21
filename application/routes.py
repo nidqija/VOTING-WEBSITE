@@ -195,7 +195,39 @@ def update_question(post_id):
    form.titles.data = post.titles
    form.question.data = post.question
    return render_template('service.html' , form = form)
-        
+
+
+
+
+
+@app.route('/service/<int:post_id>/delete' , methods = ['POST' , 'GET'])
+@login_required
+def delete_question(post_id):
+     post = Post.query.get_or_404(post_id)
+     if post.author != current_user:
+        return abort(403)
+
+     db.session.delete(post)
+     db.session.commit()
+     flash('Your post has been deleted!' , 'success')
+     return redirect(url_for('service'))
+
+
+
+
+
+@app.route('/update_announcement/<int:announcement_id>/delete' , methods = ['POST' , 'GET'])
+@login_required
+def delete_announcement(announcement_id):
+     announcement = Announcement.query.get_or_404(announcement_id)
+     if announcement.author != current_user:
+        return abort(403)
+
+     db.session.delete(announcement)
+     db.session.commit()
+     flash('Your post has been deleted!' , 'success')
+     return redirect(url_for('updateAnnouncement'))
+
 
 
 
@@ -224,16 +256,34 @@ def adminHomepage():
 @login_required
 def updateAnnouncement():
          
-         
+    announcements = Announcement.query.all()
     form = AnnouncementForm()
 
     if form.validate_on_submit():
         announcement = Announcement(titles=form.titles.data , description = form.description.data , author = current_user)
         db.session.add(announcement)
         db.session.commit()
-        return redirect(url_for('home'))
-    return render_template('update_announcement.html', form=form)
+        return redirect(url_for('updateAnnouncement'))
+    return render_template('update_announcement.html', form=form , announcements = announcements)
 
+
+@app.route('/update_announcement/<int:announcement_id>/edit' , methods = ['POST' , 'GET'])
+@login_required
+def edit_announcement(announcement_id):
+   announcement = Announcement.query.get_or_404(announcement_id)
+   if announcement.author != current_user:
+        return abort(403)
+   
+   form = AnnouncementForm()
+   if form.validate_on_submit():
+        announcement.titles = form.titles.data
+        announcement.description = form.description.data
+        db.session.commit()
+        return redirect(url_for('updateAnnouncement'))
+   form.titles.data = announcement.titles
+   form.description.data = announcement.description
+   return render_template('update_announcement2.html' , form = form)
+        
 
 @app.route('/info_candidates')
 def candidatesInfo():

@@ -15,6 +15,7 @@
 <!--<h1>Welcome user! You have login!</h1>-->
 
 <body>
+
     <nav id="navbarBackground_admin" class="navbar navbar-expand-lg ">
         <div class="container-fluid p-4">
           <a id="title" class="navbar-brand px-3" href="#">VOTE-IT!</a>
@@ -24,41 +25,55 @@
             <div class="collapse navbar-collapse "  id="navbarSupportedContent">
                 <ul  class="navbar-nav me-auto mb-2 mb-lg-0 ">
                     <li id="navSections" class="nav-item px-3">
-                        <a style="color:yellow" id="Navlink" class="nav-link active" href="#">Home</a>
-                    </li>
-                    <li id="navSections" class="nav-item px-3">
-                        <a  id="Navlink" class="nav-link" href="#">About</a>
-                    </li>
-                    <li id="navSections" class="nav-item px-3 ">
-                        <a  id="Navlink" class="nav-link" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                            Dropdown
+                        <a style="color: yellow;" id="Navlink" class="nav-link active" href="{{url_for('home')}}">Home</a>
+                      </li>
+                      <li id="navSections" class="nav-item px-3">
+                        <a  id="Navlink" class="nav-link" href="{{url_for('candidates')}}">Candidate</a>
+                      </li>
+                      <li id="navSections" class="nav-item px-3">
+                        <a  id="Navlink" class="nav-link" href="{{url_for('about')}}">About</a>
+                      </li>
+                      <li id="navSections" class="nav-item px-3 ">
+                        <a  id="Navlink" class="nav-link" href="{{url_for('guidelines')}}" role="button" >
+                          Guideline
                         </a>
-                    </li>
-                    <li id="navSections" class="nav-item px-3">
-                        <a  id="Navlink" class="nav-link" href="#">Contact</a>
-                    </li>
+                      </li>
+                       <li id="navSections" class="nav-item px-3">
+                        <a id="Navlink" class="nav-link" href="{{url_for('service')}}">Service</a>
+                      </li>
+                      <li id="navSections" class="nav-item px-3">
+                        <a  id="Navlink" class="nav-link" href="{{url_for('contact')}}">Contact</a>
+                      </li>
 
-                    {% if current_user.is_authenticated %}
-                    <li id="navSections" class="nav-item px-3">
-                        <a href="{{url_for('logout')}}"><button class="btn btn-outline-warning">Log Out</button></a>
-                    </li>
-                    {% else %}
-                    <li id="navSections" class="nav-item px-3">
-                        <a href="{{url_for('login')}}"><button class="btn btn-outline-light">Log In</button></a>
-                    </li>
-                    <li id="navSections" class="nav-item px-3">
-                        <a href="{{url_for('register')}}"><button class="btn btn-outline-light">Sign Up</button></a>
-                    </li>
-                    {% endif %}
-                </ul>
-                <!-- <div>
-                    <input class="search_in" type="search" name="" placeholder="Type your keyword">
-                    <a href=".html"> <button class="search_button">Search</button></a>
-                </div> -->
-            
+                      {% if current_user.is_authenticated %}
+                      <li id="navSections" class="nav-item px-3">
+                      
+                         <button id="CurrentUserProfile" type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal2">
+                          {{ current_user.username }}
+                         </button>
+        
+        <!-- Modal -->
+        <div class="modal" tabindex="-1">
+            <div class="modal-dialog">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h5 class="modal-title">Modal title</h5>
+                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                  <p>Modal body text goes here.</p>
+                </div>
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                  <button type="button" class="btn btn-primary">Save changes</button>
+                </div>
+              </div>
             </div>
-        </div>
+          </div>
+
+          {% endif %}
     </nav>
+   
 
     <div class="admin_homepage_sidebar">
         <header>Admin Features</header>
@@ -72,13 +87,44 @@
         </nav>
     </div>
 
+    
+
+
+
+
+
+
+</div>
+
     <div class="admin_update_announcement_container">
         {% block content %}
+
         <div class="container">
+
+
+
+            
       <div class="content-section">
             <form method="POST" action="">
                 {{ form.hidden_tag() }}
                <div class="container">
+
+                {% for announcement in announcements %}
+                <div class="container">
+                  <div class="row">
+                  <div class="card text-dark mb-5 p-2" style="width: 30rem;">
+                  <div class="card-body">
+                     <a style="text-decoration: none;" href="{{url_for('edit_announcement' , announcement_id = announcement.id )}}"><h5 class="card-title text-center">{{ announcement.titles }}</h5></a> 
+                      <p class="card-text text-center">{{ announcement.description }}</p>
+                      <p class="card-text text-center"><small class=" text-center text-danger">admin</small></p>
+                      <a href="{{url_for('delete_announcement' , announcement_id = announcement.id )}}"><button type="button" class="text-white bg bg-danger border-0">Delete</button></a>
+                      
+                  </div>
+                  </div>
+                </div>
+              </div>
+                </div>
+              {% endfor %}
     
               
                 <fieldset class="form-group">

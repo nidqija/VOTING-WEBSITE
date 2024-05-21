@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Admin Homepage</title>
+    <title>Update Announcement</title>
     <link rel="stylesheet" href="../static/styles.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -15,6 +15,7 @@
 <!--<h1>Welcome user! You have login!</h1>-->
 
 <body>
+
     <nav id="navbarBackground_admin" class="navbar navbar-expand-lg ">
         <div class="container-fluid p-4">
           <a id="title" class="navbar-brand px-3" href="#">VOTE-IT!</a>
@@ -47,12 +48,12 @@
                       {% if current_user.is_authenticated %}
                       <li id="navSections" class="nav-item px-3">
                       
-                         <button id="CurrentUserProfile" type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                         <button id="CurrentUserProfile" type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal2">
                           {{ current_user.username }}
                          </button>
         
         <!-- Modal -->
-                  <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                  <div class="modal fade" id="exampleModal2" tabindex="-1" aria-labelledby="exampleModal2Label" aria-hidden="true">
                    <div class="modal-dialog">
                      <div class="modal-content">
                        <div class="modal-header">
@@ -91,128 +92,111 @@
             </div>
         </div>
     </nav>
-
-
+   
 
     <div class="admin_homepage_sidebar">
         <header>Admin Features</header>
         <nav>
             <ul>
-                <li><a style="color: yellow;" href="{{url_for('adminHomepage')}}">Leaderboard</a></li>
-                <li><a href="{{url_for('candidatesInfo')}}">Candidate Information</a></li>
-                <li><a href="{{url_for('createVote')}}">Create a Vote</a></li>
-                <li><a href="{{url_for('updateAnnouncement')}}">Update Announcement</a></li>
+                <li><a  href="{{url_for('adminHomepage')}}">Leaderboard</a></li>
+                <li><a  href="{{url_for('candidatesInfo')}}">Candidate Information</a></li>
+                <li><a  href="{{url_for('createVote')}}">Create a Vote</a></li>
+                <li><a style="color: yellow;" href="{{url_for('updateAnnouncement')}}">Update Announcement</a></li>
             </ul>
         </nav>
     </div>
 
-    <div class="admin_homepage_container">
-       
-
-        <h1 class="WelcomeAdmin">Hello {{ current_user.username }}!</h1>
-
-      
-
-        <div class="leaderboard-container">
-            <h1>President</h1>
-            <table>
-                <thead>
-                    <tr>
-                        <th>Rank</th>
-                        <th>Candidate</th>
-                        <th>Vote</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    {% block content %}
-                    {% for candidate in candidate1 %}
-
-                    <tr>
-                      
-                        <td>{{ candidate.candidate_id }}</td>
-                        <td>{{ candidate.candidate_name }}</td>
-                        <td> {{ candidate.vote|length }}</td>
-
-                      
-                    </tr>
-                    {% endfor %}
+    
 
 
-                  
-                </tbody>
-            </table>
-        </div>
 
-        <div class="leaderboard-container">
-            <h1>Vice President</h1>
-            <table>
-                <thead>
-                    <tr>
-                        <th>Rank</th>
-                        <th>Candidate</th>
-                        <th>Vote</th>
-                    </tr>
-                </thead>
-                <tbody>
-                
-                    {% for candidate in candidate2 %}
 
-                    <tr>
-                      
-                        <td>{{ candidate.candidate_id }}</td>
-                        <td>{{ candidate.candidate_name }}</td>
-                        <td> {{ candidate.vote2|length }}</td>
 
-                      
-                    </tr>
-                    {% endfor %}    
-                            </tbody>
-                        </table>
-                    </div>
 
-                    <div class="leaderboard-container">
-                        <h1>Secretary</h1>
-                        <table>
-                            <thead>
-                                <tr>
-                                    <th>Rank</th>
-                                    <th>Candidate</th>
-                                    <th>Vote</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                            
-                                {% for candidate in candidate3 %}
+</div>
+
+    <div class="admin_update_announcement_container">
+        {% block content %}
+
+        <div class="container">
+
+
+
             
-                                <tr>
-                                  
-                                    <td>{{ candidate.candidate_id }}</td>
-                                    <td>{{ candidate.candidate_name }}</td>
-                                    <td> {{ candidate.vote3|length }}</td>
-            
-                                  
-                                </tr>
+      <div class="content-section">
+            <form method="POST" action="">
+                {{ form.hidden_tag() }}
+               <div class="container">
+
+                {% for announcement in announcements %}
+                <div class="container">
+                  <div class="row">
+                  <div class="card text-dark mb-5 p-2" style="width: 30rem;">
+                  <div class="card-body">
+                     <a style="text-decoration: none;" href="{{url_for('edit_announcement' , announcement_id = announcement.id )}}"><h5 class="card-title text-center">{{ announcement.titles }}</h5></a> 
+                      <p class="card-text text-center">{{ announcement.description }}</p>
+                      <p class="card-text text-center"><small class=" text-center text-danger">admin</small></p>
+                      <a href="{{url_for('delete_announcement' , announcement_id = announcement.id )}}"><button type="button" class="text-white bg bg-danger border-0">Delete</button></a>
+                      
+                  </div>
+                  </div>
+                </div>
+              </div>
+                </div>
+              {% endfor %}
+    
+              
+                <fieldset class="form-group">
+                    <legend class="text-center text-white">Update Announcement</legend>
+                    <dir class="form-group">
+                        {{form.titles.label(class="form-control-label text-white")}}
+    
+                        {% if form.titles.errors %}       
+                            {{form.titles(class="form-control form-control-lg is-invalid")}}
+                            <div>
+                                {% for error in form.titles.errors %}
+                                  <span>{{ error }}</span>
                                 {% endfor %}
-            
-                                
-            
-                              
-                            </tbody>
-                        </table>
-                    </div>
-
-                    {% endblock %}
-
-                  
-                </tbody>
-            </table>
-        </div>
+                            </div>
+    
+                        {% else %}
+                            {{form.titles(class="form-control form-control-lg")}}
+                        {% endif %}
+    
+    
+                    </dir>
+                    <dir class="form-group">
+                        {{form.description.label(class="form-control-label text-white")}}
+                        
+    
+                        {% if form.description.errors %}
+                          {{form.description(class="form-control form-control-lg is-invalid")}}
+    
+                           <div>
+                             {% for error in form.description.errors %}
+                                  <span>{{ error }}</span>
+                             {% endfor %}
+                          </div>
+    
+                        {% else %}
+                             {{form.description(class="form-control form-control-lg")}}
+                        {% endif %}
+    
+          
+                    </dir>
+    
+                    <dir class="form-group">
+                        {{form.submit(class = "btn btn-outline-info text-center")}}
+                    </dir>
+                </fieldset>
+            </div>
+            </form>
     </div>
+  
+  </div>
+ text-white
 </div>
-    </div>
 
-
-</div>
-
+{% endblock content %}
 </body>
 </html>

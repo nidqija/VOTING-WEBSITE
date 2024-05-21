@@ -286,9 +286,13 @@ def edit_announcement(announcement_id):
    return render_template('update_announcement2.html' , form = form)
         
 
-@app.route('/info_candidates')
+@app.route('/info_candidates' , methods = ['POST' , 'GET']) 
 def candidatesInfo():
-     return render_template('info_candidates.html')
+     candidate1 = Candidate.query.all()
+     candidate2 = Candidate2.query.all()
+     candidate3 = Candidate3.query.all()
+     image_file = url_for('static', filename='profile_pics/' + current_user.image_file)
+     return render_template('info_candidates.html', candidate1=candidate1, candidate2=candidate2, candidate3=candidate3, image_file=image_file)
 
 
 @app.route('/createpoll')

@@ -104,9 +104,9 @@
       <div class="card mb-4 mt-5">
         <div class="card-body">
           <p class="card-subtitle">{{ post.author.username }}</p><p class="card-subtitle mb-3">{{ post.author.createdAt }}</p>
-         <a href="{{url_for('question' , post_id = post.id)}}"><h5 class="card-title" >{{ post.titles }}</h5></a> 
+          <a href="{{url_for('question' , post_id = post.id)}}"><h5 class="card-title" >{{ post.titles }}</h5></a> 
           <h6 class="card-subtitle mb-2 text-muted">{{ post.question }}</h6>
-          
+          <a href="{{url_for('delete_question' , post_id = post.id)}}"><button type="button" class="text-white bg bg-danger border-0">Delete</button></a>
         </div>
       </div>
     </div>

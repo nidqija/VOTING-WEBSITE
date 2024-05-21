@@ -50,7 +50,7 @@ class Candidate(db.Model):
       candidate_age = db.Column(db.String(100))
       candidate_description = db.Column(db.String(500))
       vote = db.relationship('Vote1' , backref = 'candidate' , lazy = True)
-
+      image_file = db.Column((db.String(20)), nullable=False, default='candidate_image.png')
 
 
 class Vote2(db.Model):

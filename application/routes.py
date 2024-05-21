@@ -64,7 +64,8 @@ def contact():
 
 def candidates():
      candidate1 = Candidate.query.all()
-     return render_template('candidates.html' , candidate1 = candidate1)
+     image_file = url_for('static', filename='profile_pics/' + current_user.image_file)
+     return render_template('candidates.html' , candidate1 = candidate1, image_file=image_file)
      
     
 

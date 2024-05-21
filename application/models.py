@@ -15,11 +15,12 @@ class User(db.Model , UserMixin ):
         email = db.Column(db.String(120) , unique = True , nullable = False)
         password = db.Column(db.String(120) , nullable = False)
         createdAt = db.Column(db.DateTime(timezone=True) , server_default=func.now())
+        image_file = db.Column((db.String(20)), nullable=False, default='candidate_image.jpg')
         post = db.relationship('Post' , backref = 'author' , lazy = True)
         vote1 = db.relationship('Vote1' , backref = 'user' , lazy = True)
         vote2 = db.relationship('Vote2' , backref = 'user' , lazy = True)
         vote3 = db.relationship('Vote3' , backref = 'user' , lazy = True)
-        announcement = db.relationship('Announcement' , backref = 'author' , lazy = True)        
+        announcement = db.relationship('Announcement' , backref = 'author' , lazy = True)       
 
         
         def __repr__(self):
@@ -52,7 +53,7 @@ class Candidate(db.Model):
       candidate_age = db.Column(db.String(100))
       candidate_description = db.Column(db.String(500))
       vote = db.relationship('Vote1' , backref = 'candidate' , lazy = True)
-
+      image_file = db.Column((db.String(20)), nullable=False, default='candidate_image.jpg')
 
 
 class Vote2(db.Model):
@@ -70,6 +71,7 @@ class Candidate2(db.Model):
       candidate_age = db.Column(db.String(100))
       candidate_description = db.Column(db.String(500))
       vote2 = db.relationship('Vote2' , backref = 'candidate2' , lazy = True)
+      image_file = db.Column((db.String(20)), nullable=False, default='candidate_image.jpg')
 
 
 class Vote3(db.Model):
@@ -85,6 +87,7 @@ class Candidate3(db.Model):
       candidate_age = db.Column(db.String(100))
       candidate_description = db.Column(db.String(500))
       vote3 = db.relationship('Vote3' , backref = 'candidate3' , lazy = True)
+      image_file = db.Column((db.String(20)), nullable=False, default='candidate_image.jpg')
 
 
        

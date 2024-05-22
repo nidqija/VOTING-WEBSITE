@@ -96,7 +96,29 @@
         <button class="change_information_candidate1_button">Change Information</button><br><br>
 
         <div class="candidate2_information_container">
-            <img src="image\candidate_image.png" alt="candidate image" class="candidate_image" width="100px" height="100px">
+            <form method="post" enctype="multipart/form-data">
+                {{ form.hidden_tag }}
+
+                {% for error in form.photo.errors %}
+                    <span style="color: red;">{{error}}</span>
+                {% endfor %}
+
+                <div class="row justify-content-center">
+                    <div class="col-auto">
+                        {{ form.photo(class="form-control")}}
+                    </div>
+                    <div class="col-auto">
+                        {{ form.submit(class="btn btn-success") }}
+                    </div>
+                </div>
+            </form>
+
+            {% if file_url %}
+                <div class="mt-5">
+                    <img src="{{ file_url }}" style="width:400px">
+                </div>
+            {% endif %}
+            <!-- <img src="image\candidate_image.png" alt="candidate image" class="candidate_image" width="100px" height="100px"> -->
             <br><br>
             <div class="candidate_name">
                 <p>Name: Candidate name</p>

@@ -1,7 +1,8 @@
 from flask_wtf import FlaskForm
+from flask_wtf.file import FileField, FileAllowed , FileRequired
 from flask_login import current_user
-from application import db
-from wtforms import StringField , PasswordField , SubmitField , BooleanField , TextAreaField 
+from application import db , app , photos
+from wtforms import StringField , PasswordField , SubmitField , BooleanField , TextAreaField
 from wtforms_sqlalchemy.fields import QuerySelectField
 from wtforms.validators import DataRequired , Length , Email , EqualTo , ValidationError
 from application.models import  User
@@ -91,6 +92,10 @@ class AdminLoginform(FlaskForm):
 
 
 class AnnouncementForm(FlaskForm):
-      titles= StringField('Announcement Title' , validators=[DataRequired()])
-      description = StringField('Announcement Description' , validators=[DataRequired()])
-      submit = SubmitField('Submit')
+    titles = StringField('Announcement Title' , validators=[DataRequired()])
+    description = StringField('Announcement Description' , validators=[DataRequired()])
+    submit = SubmitField('Submit')
+
+class CandidateInformationForm(FlaskForm):
+    photo = FileField(validators=[FileAllowed(photos, 'Only images are allowed'), FileRequired('File field should not be empty')])
+    submit = SubmitField('Upload')

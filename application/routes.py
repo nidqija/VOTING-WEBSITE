@@ -199,7 +199,7 @@ def updateAnnouncement():
         return redirect(url_for('home'))
     return render_template('update_announcement.html', form=form)
 
-@app.route('/info_candidates')
+@app.route('/info_candidates' , methods = ['POST' , 'GET']) 
 def candidatesInfo():
 
      form = CandidateInformationForm
@@ -210,6 +210,11 @@ def candidatesInfo():
      else:
           file_url = None
      return render_template('info_candidates.html', form=form)
+     candidate1 = Candidate.query.all()
+     candidate2 = Candidate2.query.all()
+     candidate3 = Candidate3.query.all()
+     image_file = url_for('static', filename='profile_pics/' + current_user.image_file)
+     return render_template('info_candidates.html', candidate1=candidate1, candidate2=candidate2, candidate3=candidate3, image_file=image_file)
 
 
 @app.route('/createpoll')
@@ -255,6 +260,15 @@ def adminlogin():
 @app.route('/submitvote')
 def submitvote():
      return render_template('submitvote.html')
+
+
+@app.route('/viewusers')
+@login_required
+
+def viewUsers():
+     users = User.query.all()
+     return render_template('view_users.html' , users = users)
+    
 
 
      

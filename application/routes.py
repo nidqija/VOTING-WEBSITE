@@ -339,4 +339,13 @@ def submitvote():
      return render_template('submitvote.html')
 
 
+@app.route('/viewusers')
+@login_required
+
+def viewUsers():
+     users = User.query.all()
+     return render_template('view_users.html' , users = users)
+    
+
+
      

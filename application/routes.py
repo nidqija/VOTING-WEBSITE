@@ -1,8 +1,10 @@
-from flask import render_template , flash , redirect , url_for 
-from application.form import RegistrationForm , Loginform , QuestionForm, AnnouncementForm, AdminRegistrationForm, AdminLoginform , CandidateInformationForm
+from flask import render_template , flash , redirect , url_for , request
+from application.form import RegistrationForm , Loginform , QuestionForm, AnnouncementForm, AdminRegistrationForm, AdminLoginform , CandidateForm
 from application.models import User , Post , Candidate , Vote1 , Vote2 , Candidate2 , Vote3 , Candidate3, Admin, Announcement
-from application import app , db , bcrypt , photos
+from application import app , db , bcrypt
 from flask_login import login_user , current_user , logout_user, login_required
+import os
+from werkzeug.utils import secure_filename
 
 @app.route('/')
 
@@ -193,23 +195,15 @@ def updateAnnouncement():
     form = AnnouncementForm()
 
     if form.validate_on_submit():
-        announcement = Announcement(titles=form.titles.data , description = form.description.data , author = current_user)
+        announcement = Announcement(titles = form.titles.data , description = form.description.data , author = current_user)
         db.session.add(announcement)
         db.session.commit()
         return redirect(url_for('home'))
     return render_template('update_announcement.html', form=form)
 
+
 @app.route('/info_candidates' , methods = ['POST' , 'GET']) 
 def candidatesInfo():
-
-     form = CandidateInformationForm
-
-     if form.validate_on_submit():
-          filename = photos.save(form.photo.data)
-          file_url = url_for('get_file', filename=filename)
-     else:
-          file_url = None
-     return render_template('info_candidates.html', form=form)
      candidate1 = Candidate.query.all()
      candidate2 = Candidate2.query.all()
      candidate3 = Candidate3.query.all()
@@ -231,7 +225,7 @@ def adminregister():
 
     if form.validate_on_submit():
         hashed_password = bcrypt.generate_password_hash(form.password2.data).decode('utf-8')
-        admin = Admin(username2=form.username2.data , email2 = form.email2.data , password2 = hashed_password)
+        admin = Admin(username2=form.username2.data , email2 = form.email2.data , mmu_id = form.mmu_id.data , password2 = hashed_password)
         db.session.add(admin)
         db.session.commit()
         flash(f'Account created for {form.username2.data} !' , 'success!')
@@ -269,6 +263,26 @@ def viewUsers():
      users = User.query.all()
      return render_template('view_users.html' , users = users)
     
+
+@app.route('/candidate_form' , methods = ['POST' , 'GET']) 
+def candidatesform():
+
+     form = CandidateForm()
+
+     if form.validate_on_submit():
+          photo_filename = None
+          if form.candidate_photo.data:
+               photo = form.candidate_photo.data
+               photo_filename = secure_filename(photo.filename)
+               photo.save(os.path.join(app.config['UPLOAD_FOLDER'], photo_filename))
+
+          candidate = Candidate(candidate_name = form.candidate_name.data, candidate_age = form.candidate_age.data, candidate_id = form.candidate_id.data, candidate_faculty = form.candidate_faculty.data, candidate_level = form.candidate_level.data, candidate_quote = form.candidate_quote.data, image_file = photo_filename)
+          db.session.add(candidate)
+          db.session.commit()
+          flash('Candidate information has been filled up successfully!', 'success')
+          return redirect(url_for('admin_homepage'))
+
+     return render_template('candidate_form.html', form=form)
 
 
      

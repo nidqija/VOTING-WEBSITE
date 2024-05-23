@@ -49,11 +49,19 @@ class Vote1(db.Model):
 
 class Candidate(db.Model):
       id = db.Column(db.Integer , primary_key = True)
-      candidate_name = db.Column(db.String(100))
-      candidate_age = db.Column(db.String(100))
-      candidate_description = db.Column(db.String(500))
+      candidate_name = db.Column(db.String(100) , nullable=False)
+      candidate_age = db.Column(db.String(100) , nullable=False)
+      candidate_id = db.Column(db.Integer , nullable=False)
+      candidate_faculty = db.Column(db.String(100) , nullable=False)
+      candidate_level = db.Column(db.String(100) , nullable=False)
+      candidate_quote = db.Column(db.String(500) , nullable=False)
+      candidate_photo_filename = db.Column(db.String(100))
       vote = db.relationship('Vote1' , backref = 'candidate' , lazy = True)
       image_file = db.Column((db.String(20)), nullable=False, default='candidate_image.jpg')
+
+      def __repr__(self):
+           return f'Candidate("{self.candidate_name}" , {self.candidate_id})'
+
 
 
 class Vote2(db.Model):

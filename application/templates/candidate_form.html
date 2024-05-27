@@ -128,7 +128,7 @@
             </div>
             <div class="mb-6" style="margin-top: 25px;">
                 {{ form.candidate_photo.label(class="form-label") }}
-                {{ form.candidate_photo(class="form-control mb-5") }}
+                {{ form.candidate_photo(class="form-control") }}
                 {% for error in form.candidate_photo.errors %}
                     <span style="color: red;">{{ error }}</span>
                 {% endfor %}

@@ -1,10 +1,13 @@
-from flask import render_template , flash , redirect , url_for , request
+
+from flask import render_template , flash , redirect , url_for , abort , request
 from application.form import RegistrationForm , Loginform , QuestionForm, AnnouncementForm, AdminRegistrationForm, AdminLoginform , CandidateForm
 from application.models import User , Post , Candidate , Vote1 , Vote2 , Candidate2 , Vote3 , Candidate3, Admin, Announcement
 from application import app , db , bcrypt
-from flask_login import login_user , current_user , logout_user, login_required
 import os
+from flask_login import login_user , current_user , logout_user, login_required
 from werkzeug.utils import secure_filename
+
+
 
 @app.route('/')
 
@@ -230,7 +233,8 @@ def adminregister():
         db.session.commit()
         flash(f'Account created for {form.username2.data} !' , 'success!')
         return redirect(url_for('adminlogin'))
-    return render_template('admin_register.html' , form = form)    
+    return render_template('admin_register.html' , form = form)
+    
 
 
 @app.route('/admin_login' , methods = ['POST' , 'GET'])
@@ -262,6 +266,42 @@ def submitvote():
 def viewUsers():
      users = User.query.all()
      return render_template('view_users.html' , users = users)
+
+
+@app.route('/candidate_form' , methods = ['POST' , 'GET']) 
+def candidatesform():
+
+     form = CandidateForm()
+
+     if form.validate_on_submit():
+          photo_filename = None
+          if form.candidate_photo.data:
+               photo = form.candidate_photo.data
+               photo_filename = secure_filename(photo.filename)
+               photo.save(os.path.join(app.config['UPLOAD_FOLDER'], photo_filename))
+
+          candidate = Candidate(candidate_name = form.candidate_name.data, candidate_age = form.candidate_age.data, candidate_id = form.candidate_id.data, candidate_faculty = form.candidate_faculty.data, candidate_level = form.candidate_level.data, candidate_quote = form.candidate_quote.data, image_file = photo_filename)
+          db.session.add(candidate)
+          db.session.commit()
+          flash('Candidate information has been filled up successfully!', 'success')
+          return redirect(url_for('adminHomepage'))
+
+     return render_template('candidate_form.html', form=form)
+
+
+
+
+
+
+
+
+@app.route('/candidate_biodata/<int:candidate_id>')
+@login_required
+def candidate_biodata(candidate_id):
+   candidate = Candidate.query.get_or_404(candidate_id)
+   return render_template('candidate_biodata.html' , candidate_name = candidate.candidate_name, candidate = candidate)
+
+
     
 
 @app.route('/candidate_form' , methods = ['POST' , 'GET']) 

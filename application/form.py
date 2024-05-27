@@ -107,6 +107,7 @@ class AnnouncementForm(FlaskForm):
     description = StringField('Announcement Description' , validators=[DataRequired()])
     submit = SubmitField('Submit')
 
+
 class CandidateForm(FlaskForm):
     candidate_name = StringField('Candidate Name', validators=[DataRequired(), Length(min=2, max=100)])
     candidate_age = StringField('Candidate Age', validators=[DataRequired()])

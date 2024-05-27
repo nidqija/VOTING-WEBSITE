@@ -90,7 +90,7 @@
         </div>
         <div class="card_content">
           <div class="card_detail" style="text-align: center;">
-            <h2><b>{{ candidate.candidate_name }}</b><br><span>Foundation in IT student in MMU</span></h2>
+            <h2><a style="text-decoration: none; color: blue;" href="{{url_for('candidate_biodata' , candidate_id = candidate.id)}}"><b>{{ candidate.candidate_name }}</b></a><br><span>Foundation in IT student in MMU</span></h2>
             <div class="card_data" style="text-align: center;">
               <h3>{{ candidate.candidate_age }}<br><span>{{ candidate.candidate_description }}</span></h3>
             </div>
@@ -142,7 +142,7 @@
         </div>
         <div class="card_content">
           <div class="card_detail" style="text-align: center;">
-            <h2><b>{{ candidate.candidate_name }}</b><br><span>Foundation in IT student in MMU</span></h2>
+            <h2><b>{{ candidate.candidate_name }}</a><br><span>Foundation in IT student in MMU</span></h2>
             <div class="card_data" style="text-align: center;">
               <h3>{{ candidate.candidate_age }}<br><span>{{ candidate.candidate_description }}</span></h3>
             </div>

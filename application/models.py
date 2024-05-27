@@ -56,6 +56,7 @@ class Candidate(db.Model):
       candidate_level = db.Column(db.String(100) , nullable=False)
       candidate_quote = db.Column(db.String(500) , nullable=False)
       candidate_photo_filename = db.Column(db.String(100))
+      candidate_id = db.Column(db.Integer , db.ForeignKey('candidate.id') , nullable = False)
       vote = db.relationship('Vote1' , backref = 'candidate' , lazy = True)
       image_file = db.Column((db.String(20)), nullable=False, default='candidate_image.jpg')
 
@@ -128,17 +129,3 @@ class SelfDescription(db.Model):
       id = db.Column(db.Integer , primary_key = True)
       user_description = db.Column(db.Text , unique = True , nullable = True)
       user_id = db.Column(db.Integer , db.ForeignKey('user.id') , nullable = False)
-      
-      
-
-      
-
-       
-      
-
-
-              
-        
-       
-
-

@@ -74,84 +74,40 @@
         </nav>
     </div>
 
+
     <div class="admin_candidate_information_container">
+        {% for candidate in candidate1 %}
 
         <div class="candidate1_information_container">
             <div class="rounded-circle">
                 <img src="{{ image_file }}" alt="candidate image" class="candidate_image" width="100px" height="100px">
             </div>
             <br><br>
+
             <div class="candidate1_detail">
                 <div class="candidate_name">
-                    <p>Name: Candidate name</p>
+                  <p>Name: <a style="text-decoration: none; color: white;" href="{{url_for('candidate_biodata' , candidate_id = candidate.id )}}">{{ candidate.candidate_name }}</a></p><a href="{{url_for('candidatesform')}}"><button>Edit</button></a>
                 </div>
                 <div class="candidate_ID">
-                    <p>Student ID: Candidate id</p>
+                    <p>Student ID: {{ candidate.candidate_id }}</p>
                 </div>
                 <div class="candidate_faculty">
-                    <p>Faculty: Candidate faculty</p>
+                    <p>Faculty: {{ candidate.candidate_faculty }}</p>
                 </div>
                 <div class="candidate_academic_level">
-                    <p>Academic Level: Candidate academic level</p>
+                    <p>Academic Level: {{ candidate.candidate_level }}</p>
                 </div>
                 <div class="candidate_quote">
-                    <p>Quote: Candidate quote</p>
+                    <p>Quote: {{ candidate.candidate_quote }}</p>
                 </div>
             </div>
         </div><br>
-        <button class="change_information_candidate1_button">Change Information</button><br><br>
 
-        <div class="candidate2_information_container">
-            <div class="rounded-circle">
-                <img src="{{ image_file }}" alt="candidate image" class="candidate_image" width="100px" height="100px">
-            </div>
-            <br><br>
-            <div class="candidate2_detail">
-                <div class="candidate_name">
-                    <p>Name: Candidate name</p>
-                </div>
-                <div class="candidate_ID">
-                    <p>Student ID: Candidate id</p>
-                </div>
-                <div class="candidate_faculty">
-                    <p>Faculty: Candidate faculty</p>
-                </div>
-                <div class="candidate_academic_level">
-                    <p>Academic Level: Candidate academic level</p>
-                </div>
-                <div class="candidate_quote">
-                    <p>Quote: Candidate quote</p>
-                </div>
-            </div>
-        </div><br>
-        <button class="change_information_candidate2_button">Change Information</button><br><br>
+        {% endfor %}
 
-        <div class="candidate3_information_container">
-            <div class="rounded-circle">
-                <img src="{{ image_file }}" alt="candidate image" class="candidate_image" width="100px" height="100px">
-            </div>
-            <br><br>
-            <div class="candidate3_detail">
-                <div class="candidate_name">
-                    <p>Name: Candidate name</p>
-                </div>
-                <div class="candidate_ID">
-                    <p>Student ID: Candidate id</p>
-                </div>
-                <div class="candidate_faculty">
-                    <p>Faculty: Candidate faculty</p>
-                </div>
-                <div class="candidate_academic_level">
-                    <p>Academic Level: Candidate academic level</p>
-                </div>
-                <div class="candidate_quote">
-                    <p>Quote: Candidate quote</p>
-                </div>
-            </div>
-        </div><br>
-        <button class="change_information_candidate3_button">Change Information</button><br><br>
+        <a  class="text-center p-3" href="{{url_for('candidatesform')}}"><button class="float-end">Add new</button></a>
 
-    </div>
+
 
 </body>
 </html>

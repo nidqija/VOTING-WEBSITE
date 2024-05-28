@@ -1,7 +1,6 @@
-
 from flask import render_template , flash , redirect , url_for , abort , request
 from application.form import RegistrationForm , Loginform , QuestionForm, AnnouncementForm, AdminRegistrationForm, AdminLoginform , CandidateForm
-from application.models import User , Post , Candidate , Vote1 , Vote2 , Candidate2 , Vote3 , Candidate3, Admin, Announcement
+from application.models import User , Post , Candidate , Vote1 , Admin, Announcement
 from application import app , db , bcrypt
 import os
 from flask_login import login_user , current_user , logout_user, login_required
@@ -94,23 +93,23 @@ def vote(candidate_id):
 @login_required
 
 def candidate2():
-     candidate2 = Candidate2.query.all()
+     candidate2 = Candidate.query.all()
      return render_template('candidates.html' , candidate2 = candidate2)
 
 
 
-@app.route('/vote-candidate2/<candidate2_id>')
+@app.route('/vote-candidate2/<candidate_id>')
 @login_required
 
-def vote2(candidate2_id):
-     candidate2 = Candidate2.query.filter_by(id = candidate2_id)
-     votes2 = Vote2.query.filter_by( author = current_user.id , candidate2_id = candidate2_id).first()
+def vote2(candidate_id):
+     candidate2 = Candidate.query.filter_by(id = candidate_id)
+     votes2 = Vote1.query.filter_by( author = current_user.id , candidate_id = candidate_id).first()
 
      if not candidate2:
           flash('Candidate does not exist' , category='error')
 
      else:
-          votes2 = Vote2(author = current_user.id , candidate2_id = candidate2_id)
+          votes2 = Vote1(author = current_user.id , candidate_id = candidate_id)
           db.session.add(votes2)
           db.session.commit()
 
@@ -123,25 +122,25 @@ def vote2(candidate2_id):
 @login_required
 
 def candidate3():
-     candidate3 = Candidate3.query.all()
+     candidate3 = Candidate.query.all()
      return render_template('candidates.html' , candidate3 = candidate3)
 
 
 
 
 
-@app.route('/vote-candidate3/<candidate3_id>')
+@app.route('/vote-candidate3/<candidate_id>')
 @login_required
 
-def vote3(candidate3_id):
-     candidate2 = Candidate2.query.filter_by(id = candidate3_id)
-     votes3 = Vote3.query.filter_by( author = current_user.id , candidate3_id = candidate3_id).first()
+def vote3(candidate_id):
+     candidate2 = Candidate.query.filter_by(id = candidate_id)
+     votes3 = Vote1.query.filter_by( author = current_user.id , candidate_id = candidate_id).first()
 
      if not candidate2:
           flash('Candidate does not exist' , category='error')
 
      else:
-          votes3 = Vote3(author = current_user.id , candidate3_id = candidate3_id)
+          votes3 = Vote1(author = current_user.id , candidate_id = candidate_id)
           db.session.add(votes3)
           db.session.commit()
 
@@ -186,9 +185,9 @@ def about():
 @app.route('/admin_homepage')
 def adminHomepage():
      candidate1 = Candidate.query.all()
-     candidate2 = Candidate2.query.all()
-     candidate3 = Candidate3.query.all()
-     return render_template('admin_homepage.html' , candidate1 = candidate1 , candidate2 = candidate2 , candidate3 = candidate3)
+     #candidate2 = Candidate2.query.all()
+     #candidate3 = Candidate3.query.all()
+     return render_template('admin_homepage.html' , candidate1 = candidate1)
 
 
 @app.route('/update_announcement' , methods = ['POST' , 'GET'])
@@ -208,10 +207,10 @@ def updateAnnouncement():
 @app.route('/info_candidates' , methods = ['POST' , 'GET']) 
 def candidatesInfo():
      candidate1 = Candidate.query.all()
-     candidate2 = Candidate2.query.all()
-     candidate3 = Candidate3.query.all()
+     #candidate2 = Candidate2.query.all()
+     #candidate3 = Candidate3.query.all()
      image_file = url_for('static', filename='profile_pics/' + current_user.image_file)
-     return render_template('info_candidates.html', candidate1=candidate1, candidate2=candidate2, candidate3=candidate3, image_file=image_file)
+     return render_template('info_candidates.html', candidate1=candidate1, image_file=image_file)
 
 
 @app.route('/createpoll')
@@ -280,7 +279,7 @@ def candidatesform():
                photo_filename = secure_filename(photo.filename)
                photo.save(os.path.join(app.config['UPLOAD_FOLDER'], photo_filename))
 
-          candidate = Candidate(candidate_name = form.candidate_name.data, candidate_age = form.candidate_age.data, candidate_id = form.candidate_id.data, candidate_faculty = form.candidate_faculty.data, candidate_level = form.candidate_level.data, candidate_quote = form.candidate_quote.data, image_file = photo_filename)
+          candidate = Candidate(candidate_name = form.candidate_name.data, candidate_age = form.candidate_age.data, candidate_id = form.candidate_id.data, candidate_faculty = form.candidate_faculty.data, candidate_level = form.candidate_level.data, candidate_quote = form.candidate_quote.data, candidate_position = form.candidate_position.data, image_file = photo_filename)
           db.session.add(candidate)
           db.session.commit()
           flash('Candidate information has been filled up successfully!', 'success')
@@ -295,6 +294,3 @@ def candidatesform():
 def candidate_biodata(candidate_id):
    candidate = Candidate.query.get_or_404(candidate_id)
    return render_template('candidate_biodata.html' , candidate_name = candidate.candidate_name, candidate = candidate)
-
-
-     

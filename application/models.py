@@ -16,6 +16,7 @@ class User(db.Model , UserMixin ):
         password = db.Column(db.String(120) , nullable = False)
         createdAt = db.Column(db.DateTime(timezone=True) , server_default=func.now())
         image_file = db.Column((db.String(20)), nullable=False, default='candidate_image.jpg')
+        faculty = db.Column(db.String(5) , nullable = False)
         post = db.relationship('Post' , backref = 'author' , lazy = True)
         vote1 = db.relationship('Vote1' , backref = 'user' , lazy = True)
         vote2 = db.relationship('Vote2' , backref = 'user' , lazy = True)
@@ -73,7 +74,6 @@ class Vote2(db.Model):
 
 
 
-
 class Candidate2(db.Model):
       id = db.Column(db.Integer , primary_key = True)
       candidate_name = db.Column(db.String(100))
@@ -98,7 +98,6 @@ class Candidate3(db.Model):
       vote3 = db.relationship('Vote3' , backref = 'candidate3' , lazy = True)
       image_file = db.Column((db.String(20)), nullable=False, default='candidate_image.jpg')
 
-
        
 class Announcement(db.Model , UserMixin):
        id = db.Column(db.Integer , primary_key = True)
@@ -111,7 +110,6 @@ class Announcement(db.Model , UserMixin):
            return f'User("{self.titles}" , {self.description})'
 
     
-       
 
 class Admin(db.Model , UserMixin ):
         id2 = db.Column(db.Integer , primary_key = True)
@@ -129,3 +127,5 @@ class SelfDescription(db.Model):
       id = db.Column(db.Integer , primary_key = True)
       user_description = db.Column(db.Text , unique = True , nullable = True)
       user_id = db.Column(db.Integer , db.ForeignKey('user.id') , nullable = False)
+
+

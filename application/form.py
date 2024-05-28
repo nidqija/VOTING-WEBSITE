@@ -15,6 +15,7 @@ class RegistrationForm(FlaskForm):
     username = StringField('username' , validators=[DataRequired() , Length(min=2 , max= 20)])
     email = StringField('email' , validators=[DataRequired() , Email()])
     mmu_id = StringField('Admin ID')
+    faculty = StringField('faculty (example:FCI)' , validators=[DataRequired() , Length(min=3 , max= 5)])
     password = PasswordField('password' , validators=[DataRequired()])
     confirmpassword = PasswordField('Confirm Password' , validators=[DataRequired() , EqualTo('password')])
     submit = SubmitField('register')

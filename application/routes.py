@@ -43,7 +43,7 @@ def register():
 
     if form.validate_on_submit():
         hashed_password = bcrypt.generate_password_hash(form.password.data).decode('utf-8')
-        user = User(username=form.username.data , email = form.email.data , password = hashed_password)
+        user = User(username=form.username.data , email = form.email.data , faculty = form.faculty.data , password = hashed_password)
         db.session.add(user)
         db.session.commit()
         flash(f'Account created for {form.username.data} !' , 'success!')
@@ -290,39 +290,11 @@ def candidatesform():
 
 
 
-
-
-
-
-
 @app.route('/candidate_biodata/<int:candidate_id>')
 @login_required
 def candidate_biodata(candidate_id):
    candidate = Candidate.query.get_or_404(candidate_id)
    return render_template('candidate_biodata.html' , candidate_name = candidate.candidate_name, candidate = candidate)
-
-
-    
-
-@app.route('/candidate_form' , methods = ['POST' , 'GET']) 
-def candidatesform():
-
-     form = CandidateForm()
-
-     if form.validate_on_submit():
-          photo_filename = None
-          if form.candidate_photo.data:
-               photo = form.candidate_photo.data
-               photo_filename = secure_filename(photo.filename)
-               photo.save(os.path.join(app.config['UPLOAD_FOLDER'], photo_filename))
-
-          candidate = Candidate(candidate_name = form.candidate_name.data, candidate_age = form.candidate_age.data, candidate_id = form.candidate_id.data, candidate_faculty = form.candidate_faculty.data, candidate_level = form.candidate_level.data, candidate_quote = form.candidate_quote.data, image_file = photo_filename)
-          db.session.add(candidate)
-          db.session.commit()
-          flash('Candidate information has been filled up successfully!', 'success')
-          return redirect(url_for('admin_homepage'))
-
-     return render_template('candidate_form.html', form=form)
 
 
      

@@ -95,12 +95,6 @@ class AdminLoginform(FlaskForm):
     remember2 = BooleanField('Remember me')
     submit2 = SubmitField('Login')
 
-class AdminLoginform(FlaskForm):
-    username2 = StringField('username' , validators=[DataRequired() , Length(min=2 , max= 20)])
-    password2 = PasswordField('password' , validators=[DataRequired()])
-    mmu_id = StringField('Admin ID', validators=[DataRequired(), Length(min=2, max=20)])
-    remember2 = BooleanField('Remember me')
-    submit2 = SubmitField('Login')
 
 
 class AnnouncementForm(FlaskForm):

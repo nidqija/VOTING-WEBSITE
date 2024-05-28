@@ -189,6 +189,13 @@ def adminHomepage():
      #candidate3 = Candidate3.query.all()
      return render_template('admin_homepage.html' , candidate1 = candidate1)
 
+@app.route('/leaderboard_FOE')
+def leaderboard_FOE():
+     candidate1 = Candidate.query.all()
+     #candidate2 = Candidate2.query.all()
+     #candidate3 = Candidate3.query.all()
+     return render_template('leaderboard_candidate_FOE.html' , candidate1 = candidate1)
+
 
 @app.route('/update_announcement' , methods = ['POST' , 'GET'])
 def updateAnnouncement():

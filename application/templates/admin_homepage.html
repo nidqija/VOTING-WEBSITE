@@ -99,6 +99,7 @@
         <nav>
             <ul>
                 <li><a style="color: yellow;" href="{{url_for('adminHomepage')}}">Leaderboard</a></li>
+                <li><a href="{{url_for('leaderboard_FOE')}}">Leaderboard(FOE)</a></li>
                 <li><a href="{{url_for('candidatesInfo')}}">Candidate Information</a></li>
                 <li><a href="{{url_for('createVote')}}">Create a Vote</a></li>
                 <li><a href="{{url_for('updateAnnouncement')}}">Update Announcement</a></li>
@@ -127,7 +128,7 @@
                 <tbody>
                     {% block content %}
                     {% for candidate in candidate1 %}
-                    {% if candidate.candidate_position == 'President' %}
+                    {% if candidate.candidate_position == 'President' and candidate.candidate_faculty == 'FCI' %}
 
                     <tr>
                       
@@ -159,7 +160,7 @@
                 <tbody>
                 
                     {% for candidate in candidate1 %}
-                    {% if candidate.candidate_position == 'Vice President' %}
+                    {% if candidate.candidate_position == 'Vice President' and candidate.candidate_faculty == 'FCI' %}
 
                     <tr>
                       
@@ -188,7 +189,7 @@
                             <tbody>
                             
                                 {% for candidate in candidate1 %}
-                                {% if candidate.candidate_position == 'Secretary' %}
+                                {% if candidate.candidate_position == 'Secretary' and candidate.candidate_faculty == 'FCI' %}
             
                                 <tr>
                                   

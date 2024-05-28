@@ -16,6 +16,7 @@ class User(db.Model , UserMixin ):
         password = db.Column(db.String(120) , nullable = False)
         createdAt = db.Column(db.DateTime(timezone=True) , server_default=func.now())
         image_file = db.Column((db.String(20)), nullable=False, default='candidate_image.jpg')
+        faculty = db.Column(db.String(5) , nullable = False)
         post = db.relationship('Post' , backref = 'author' , lazy = True)
         vote1 = db.relationship('Vote1' , backref = 'user' , lazy = True)
         vote2 = db.relationship('Vote2' , backref = 'user' , lazy = True)
@@ -129,3 +130,8 @@ class SelfDescription(db.Model):
       id = db.Column(db.Integer , primary_key = True)
       user_description = db.Column(db.Text , unique = True , nullable = True)
       user_id = db.Column(db.Integer , db.ForeignKey('user.id') , nullable = False)
+
+
+class Faculty(db.Model):
+      id = db.Column(db.Integer , primary_key = True)
+      faculty = db.Column(db.String(5))

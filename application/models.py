@@ -56,7 +56,7 @@ class Candidate(db.Model):
       candidate_faculty = db.Column(db.String(100) , nullable=False)
       candidate_level = db.Column(db.String(100) , nullable=False)
       candidate_quote = db.Column(db.String(500) , nullable=False)
-      candidate_photo_filename = db.Column(db.String(100))
+      candidate_photo_filename = db.Column(db.String(100), default='candidate_image.jpg')
       candidate_id = db.Column(db.Integer , db.ForeignKey('candidate.id') , nullable = False)
       candidate_position = db.Column(db.String(500) , nullable=False)
       vote = db.relationship('Vote1' , backref = 'candidate' , lazy = True)

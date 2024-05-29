@@ -80,8 +80,8 @@
         {% for candidate in candidate1 %}
 
         <div class="candidate1_information_container">
-            <div class="rounded-circle">
-                <img src="{{ image_file }}" alt="candidate image" class="candidate_image" width="100px" height="100px">
+            <div class="rounded-circle col-11">
+                <img src="{{ url_for('static', filename='profile_pics/candidate_image.jpg') }}" alt="candidate image" class="candidate_image" style="width: 150px; height: 150px;">
             </div>
             <br><br>
 

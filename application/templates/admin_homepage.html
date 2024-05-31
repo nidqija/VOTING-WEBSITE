@@ -128,7 +128,7 @@
                 <tbody>
                     {% block content %}
                     {% for candidate in candidate1 %}
-                    {% if candidate.candidate_position == 'President' and candidate.candidate_faculty == 'FCI' %}
+                    {% if candidate.candidate_position.capitalize() == 'President' and candidate.candidate_faculty.upper() == 'FCI' %}
 
                     <tr>
                       
@@ -160,7 +160,7 @@
                 <tbody>
                 
                     {% for candidate in candidate1 %}
-                    {% if candidate.candidate_position == 'Vice President' and candidate.candidate_faculty == 'FCI' %}
+                    {% if candidate.candidate_position == 'Vice President' and candidate.candidate_faculty.upper() == 'FCI' %}
 
                     <tr>
                       
@@ -189,7 +189,7 @@
                             <tbody>
                             
                                 {% for candidate in candidate1 %}
-                                {% if candidate.candidate_position == 'Secretary' and candidate.candidate_faculty == 'FCI' %}
+                                {% if candidate.candidate_position.capitalize() == 'Secretary' and candidate.candidate_faculty.upper() == 'FCI' %}
             
                                 <tr>
                                   

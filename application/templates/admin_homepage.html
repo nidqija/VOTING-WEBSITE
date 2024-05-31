@@ -99,7 +99,7 @@
         <nav>
             <ul>
                 <li><a style="color: yellow;" href="{{url_for('adminHomepage')}}">Leaderboard</a></li>
-                <li><a href="{{url_for('leaderboard_FOE')}}">Leaderboard(FOE)</a></li>
+                <li><a href="{{url_for('candidatesform')}}">Candidates Form</a></li>
                 <li><a href="{{url_for('candidatesInfo')}}">Candidate Information</a></li>
                 <li><a href="{{url_for('createVote')}}">Create a Vote</a></li>
                 <li><a href="{{url_for('updateAnnouncement')}}">Update Announcement</a></li>
@@ -109,12 +109,21 @@
         </nav>
     </div>
 
-    <div class="admin_homepage_container">
+    <div class="admin_homepage_container px-4">
        
 
         <h1 class="WelcomeAdmin">Hello {{ current_user.username }}!</h1>
 
-      
+        <div class="row row-cols-auto">
+            <div class="col p-2"><a href="{{url_for('adminHomepage')}}" style="color: yellow;"><button type = button style="border-radius: 10px;">Leaderboard (GENERAL)</button></a></div>
+            <div class="col p-2"><a href="{{url_for('leaderboard_FAC')}}"><button type = button style="border-radius: 10px;">Leaderboard (FAC)</button></a></div>
+            <div class="col p-2"><a href="{{url_for('leaderboard_FCA')}}"><button type = button style="border-radius: 10px;">Leaderboard (FCA)</button></a></div>
+            <div class="col p-2"><a href="{{url_for('leaderboard_FCI')}}"><button type = button style="border-radius: 10px;">Leaderboard (FCI)</button></a></div>
+            <div class="col p-2"><a href="{{url_for('leaderboard_FCM')}}"><button type = button style="border-radius: 10px;">Leaderboard (FCM)</button></a></div>
+            <div class="col p-2"><a href="{{url_for('leaderboard_FOE')}}"><button type = button style="border-radius: 10px;">Leaderboard (FOE)</button></a></div>
+            <div class="col p-2"><a href="{{url_for('leaderboard_FOM')}}"><button type = button style="border-radius: 10px;">Leaderboard (FOM)</button></a></div>
+        </div><br>
+
         <div class="leaderboard-container">
             <h1>President(FCI)</h1>
             <table>

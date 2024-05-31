@@ -77,7 +77,187 @@
   </nav>
   
   <div class="candidate_container" style="background-repeat: no-repeat; background-size: cover; background-position: center; min-height: 100vh; width: 100%; background-image: url('https://www.mmu.edu.my/wp-content/uploads/2022/12/1280_720_2.jpeg');">
+    
+    {% if current_user.faculty.upper() == "FAC" %}
+    
+      {% if candidate1 %}
+      <h1 style="text-align: center; padding-top: 25px; font-weight: bold;">Choices of Presidents(FAC)</h1>
+      {% else %}
+      <h1 hidden>Choices of Presidents</h1>
+      {% endif %}
+      {% for candidate in candidate1 %}
+        {% if candidate.candidate_faculty.upper() == 'FAC' and candidate.candidate_position.capitalize() == 'President' %}
+        <div class="candidate_content" style="padding-left: 50px; padding-right: 50px;">
+          <div class="card" style="background-color: rgba(255, 255, 255, 0.5);">
+            <div class="card_image_box">
+              <img class="rounded-circle" src="{{ url_for('static', filename='profile_pics/candidate_image.jpg') }}" alt="candidate image" style="height: 200px; width: 200px; margin-top: 20px; margin-bottom: 10px; margin-left: 43%;">
+            </div>
+            <div class="card_content">
+              <div class="card_detail" style="text-align: center;">
+                <h2><a style="text-decoration: none; color: blue;" href="{{url_for('candidate_biodata' , candidate_id = candidate.id)}}"><b>{{ candidate.candidate_name }}</b></a><br><span>Foundation in IT student in MMU</span></h2>
+                <div class="card_data" style="text-align: center;">
+                  <h3>{{ candidate.candidate_age }}<br><span>{{ candidate.candidate_description }}</span></h3>
+                </div>
+              </div>
+            </div>
+          </div><br>
+          <div class="card_button" style="text-align: center;">
+            <a href="/vote-candidate/{{candidate.id}}"><button>VOTE</button></a>
+          </div>
+        </div><br>
+        {% endif %}
+      {% endfor %}
+      
+      {% if candidate2 %}
+      <h1 style="text-align: center; padding-top: 25px; font-weight: bold;">Choices for Vice President(FAC)</h1>
+      {% else %}
+      <h1 hidden>Choices for Vice President</h1>
+      {% endif %}
+      {% for candidate in candidate2 %}
+        {% if candidate.candidate_faculty.upper() == 'FAC' and candidate.candidate_position == 'Vice President' %}
+        <div class="candidate_content" style="padding-left: 50px; padding-right: 50px;">
+          <div class="card" style="background-color: rgba(255, 255, 255, 0.5);">
+            <div class="card_image_box">
+              <img class="rounded-circle" src="{{ url_for('static', filename='profile_pics/candidate_image.jpg') }}" alt="candidate image" style="height: 200px; width: 200px; margin-left: 43%; margin-top: 20px; margin-bottom: 10px;">
+            </div>
+            <div class="card_content">
+              <div class="card_detail" style="text-align: center;">
+                <h2><b>{{ candidate.candidate_name }}</b><br><span>Foundation in IT student in MMU</span></h2>
+                <div class="card_data" style="text-align: center;">
+                  <h3>{{ candidate.candidate_age }}<br><span>{{ candidate.candidate_description }}</span></h3>
+                </div>
+              </div>
+            </div>
+          </div><br>
+          <div class="card_button" style="text-align: center;">
+            <a href="/vote-candidate2/{{candidate.id}}"><button>VOTE</button></a>
+          </div>
+        </div><br>
+        {% endif %}
+      {% endfor %}
+
+      {% if candidate3 %}
+      <h1 style="text-align: center; padding-top: 25px; font-weight: bold;">Choices for Secretary(FAC)</h1>
+      {% else %}
+      <h1 hidden>Choices for Secretary</h1>
+      {% endif %}
+      {% for candidate in candidate3 %}
+        {% if candidate.candidate_faculty.upper() == 'FAC' and candidate.candidate_position.capitalize() == 'Secretary' %}
+        <div class="candidate_content" style="padding-left: 50px; padding-right: 50px;">
+          <div class="card" style="background-color: rgba(255, 255, 255, 0.5);">
+            <div class="card_image_box">
+              <img class="rounded-circle" src="{{ url_for('static', filename='profile_pics/candidate_image.jpg') }}" alt="candidate image" style="height: 200px; width: 200px; margin-left: 43%; margin-top: 20px; margin-bottom: 10px;">
+            </div>
+            <div class="card_content">
+              <div class="card_detail" style="text-align: center;">
+                <h2><b>{{ candidate.candidate_name }}</a><br><span>Foundation in IT student in MMU</span></h2>
+                <div class="card_data" style="text-align: center;">
+                  <h3>{{ candidate.candidate_age }}<br><span>{{ candidate.candidate_description }}</span></h3>
+                </div>
+              </div>
+            </div>
+          </div><br>
+          <div class="card_button" style="text-align: center;">
+            <a href="/vote-candidate3/{{candidate.id}}"><button>VOTE</button></a>
+          </div>
+        </div><br>
+        {% endif %}
+      {% endfor %}
+
+    {% endif %}
+    
+    
+    {% if current_user.faculty.upper() == "FCA" %}
+    
+      {% if candidate1 %}
+      <h1 style="text-align: center; padding-top: 25px; font-weight: bold;">Choices of Presidents(FCA)</h1>
+      {% else %}
+      <h1 hidden>Choices of Presidents</h1>
+      {% endif %}
+      {% for candidate in candidate1 %}
+        {% if candidate.candidate_faculty.upper() == 'FCA' and candidate.candidate_position.capitalize() == 'President' %}
+        <div class="candidate_content" style="padding-left: 50px; padding-right: 50px;">
+          <div class="card" style="background-color: rgba(255, 255, 255, 0.5);">
+            <div class="card_image_box">
+              <img class="rounded-circle" src="{{ url_for('static', filename='profile_pics/candidate_image.jpg') }}" alt="candidate image" style="height: 200px; width: 200px; margin-top: 20px; margin-bottom: 10px; margin-left: 43%;">
+            </div>
+            <div class="card_content">
+              <div class="card_detail" style="text-align: center;">
+                <h2><a style="text-decoration: none; color: blue;" href="{{url_for('candidate_biodata' , candidate_id = candidate.id)}}"><b>{{ candidate.candidate_name }}</b></a><br><span>Foundation in IT student in MMU</span></h2>
+                <div class="card_data" style="text-align: center;">
+                  <h3>{{ candidate.candidate_age }}<br><span>{{ candidate.candidate_description }}</span></h3>
+                </div>
+              </div>
+            </div>
+          </div><br>
+          <div class="card_button" style="text-align: center;">
+            <a href="/vote-candidate/{{candidate.id}}"><button>VOTE</button></a>
+          </div>
+        </div><br>
+        {% endif %}
+      {% endfor %}
+      
+      {% if candidate2 %}
+      <h1 style="text-align: center; padding-top: 25px; font-weight: bold;">Choices for Vice President(FCA)</h1>
+      {% else %}
+      <h1 hidden>Choices for Vice President</h1>
+      {% endif %}
+      {% for candidate in candidate2 %}
+        {% if candidate.candidate_faculty.upper() == 'FCA' and candidate.candidate_position == 'Vice President' %}
+        <div class="candidate_content" style="padding-left: 50px; padding-right: 50px;">
+          <div class="card" style="background-color: rgba(255, 255, 255, 0.5);">
+            <div class="card_image_box">
+              <img class="rounded-circle" src="{{ url_for('static', filename='profile_pics/candidate_image.jpg') }}" alt="candidate image" style="height: 200px; width: 200px; margin-left: 43%; margin-top: 20px; margin-bottom: 10px;">
+            </div>
+            <div class="card_content">
+              <div class="card_detail" style="text-align: center;">
+                <h2><b>{{ candidate.candidate_name }}</b><br><span>Foundation in IT student in MMU</span></h2>
+                <div class="card_data" style="text-align: center;">
+                  <h3>{{ candidate.candidate_age }}<br><span>{{ candidate.candidate_description }}</span></h3>
+                </div>
+              </div>
+            </div>
+          </div><br>
+          <div class="card_button" style="text-align: center;">
+            <a href="/vote-candidate2/{{candidate.id}}"><button>VOTE</button></a>
+          </div>
+        </div><br>
+        {% endif %}
+      {% endfor %}
+
+      {% if candidate3 %}
+      <h1 style="text-align: center; padding-top: 25px; font-weight: bold;">Choices for Secretary(FCA)</h1>
+      {% else %}
+      <h1 hidden>Choices for Secretary</h1>
+      {% endif %}
+      {% for candidate in candidate3 %}
+        {% if candidate.candidate_faculty.upper() == 'FCA' and candidate.candidate_position.capitalize() == 'Secretary' %}
+        <div class="candidate_content" style="padding-left: 50px; padding-right: 50px;">
+          <div class="card" style="background-color: rgba(255, 255, 255, 0.5);">
+            <div class="card_image_box">
+              <img class="rounded-circle" src="{{ url_for('static', filename='profile_pics/candidate_image.jpg') }}" alt="candidate image" style="height: 200px; width: 200px; margin-left: 43%; margin-top: 20px; margin-bottom: 10px;">
+            </div>
+            <div class="card_content">
+              <div class="card_detail" style="text-align: center;">
+                <h2><b>{{ candidate.candidate_name }}</a><br><span>Foundation in IT student in MMU</span></h2>
+                <div class="card_data" style="text-align: center;">
+                  <h3>{{ candidate.candidate_age }}<br><span>{{ candidate.candidate_description }}</span></h3>
+                </div>
+              </div>
+            </div>
+          </div><br>
+          <div class="card_button" style="text-align: center;">
+            <a href="/vote-candidate3/{{candidate.id}}"><button>VOTE</button></a>
+          </div>
+        </div><br>
+        {% endif %}
+      {% endfor %}
+
+    {% endif %}
+
+    
     {% if current_user.faculty.upper() == "FCI" %}
+
       {% if candidate1 %}
       <h1 style="text-align: center; padding-top: 25px; font-weight: bold;">Choices of Presidents(FCI)</h1>
       {% else %}
@@ -161,7 +341,98 @@
         </div><br>
         {% endif %}
       {% endfor %}
+
     {% endif %}
+
+
+    {% if current_user.faculty.upper() == "FCM" %}
+
+      {% if candidate1 %}
+      <h1 style="text-align: center; padding-top: 25px; font-weight: bold;">Choices of Presidents(FCM)</h1>
+      {% else %}
+      <h1 hidden>Choices of Presidents</h1>
+      {% endif %}
+      {% for candidate in candidate1 %}
+        {% if candidate.candidate_faculty.upper() == 'FCM' and candidate.candidate_position.capitalize() == 'President' %}
+        <div class="candidate_content" style="padding-left: 50px; padding-right: 50px;">
+          <div class="card" style="background-color: rgba(255, 255, 255, 0.5);">
+            <div class="card_image_box">
+              <img class="rounded-circle" src="{{ url_for('static', filename='profile_pics/candidate_image.jpg') }}" alt="candidate image" style="height: 200px; width: 200px; margin-top: 20px; margin-bottom: 10px; margin-left: 43%;">
+            </div>
+            <div class="card_content">
+              <div class="card_detail" style="text-align: center;">
+                <h2><a style="text-decoration: none; color: blue;" href="{{url_for('candidate_biodata' , candidate_id = candidate.id)}}"><b>{{ candidate.candidate_name }}</b></a><br><span>Foundation in IT student in MMU</span></h2>
+                <div class="card_data" style="text-align: center;">
+                  <h3>{{ candidate.candidate_age }}<br><span>{{ candidate.candidate_description }}</span></h3>
+                </div>
+              </div>
+            </div>
+          </div><br>
+          <div class="card_button" style="text-align: center;">
+            <a href="/vote-candidate/{{candidate.id}}"><button>VOTE</button></a>
+          </div>
+        </div><br>
+        {% endif %}
+      {% endfor %}
+      
+      {% if candidate2 %}
+      <h1 style="text-align: center; padding-top: 25px; font-weight: bold;">Choices for Vice President(FCM)</h1>
+      {% else %}
+      <h1 hidden>Choices for Vice President</h1>
+      {% endif %}
+      {% for candidate in candidate2 %}
+        {% if candidate.candidate_faculty.upper() == 'FCM' and candidate.candidate_position == 'Vice President' %}
+        <div class="candidate_content" style="padding-left: 50px; padding-right: 50px;">
+          <div class="card" style="background-color: rgba(255, 255, 255, 0.5);">
+            <div class="card_image_box">
+              <img class="rounded-circle" src="{{ url_for('static', filename='profile_pics/candidate_image.jpg') }}" alt="candidate image" style="height: 200px; width: 200px; margin-left: 43%; margin-top: 20px; margin-bottom: 10px;">
+            </div>
+            <div class="card_content">
+              <div class="card_detail" style="text-align: center;">
+                <h2><b>{{ candidate.candidate_name }}</b><br><span>Foundation in IT student in MMU</span></h2>
+                <div class="card_data" style="text-align: center;">
+                  <h3>{{ candidate.candidate_age }}<br><span>{{ candidate.candidate_description }}</span></h3>
+                </div>
+              </div>
+            </div>
+          </div><br>
+          <div class="card_button" style="text-align: center;">
+            <a href="/vote-candidate2/{{candidate.id}}"><button>VOTE</button></a>
+          </div>
+        </div><br>
+        {% endif %}
+      {% endfor %}
+
+      {% if candidate3 %}
+      <h1 style="text-align: center; padding-top: 25px; font-weight: bold;">Choices for Secretary(FCM)</h1>
+      {% else %}
+      <h1 hidden>Choices for Secretary</h1>
+      {% endif %}
+      {% for candidate in candidate3 %}
+        {% if candidate.candidate_faculty.upper() == 'FCM' and candidate.candidate_position.capitalize() == 'Secretary' %}
+        <div class="candidate_content" style="padding-left: 50px; padding-right: 50px;">
+          <div class="card" style="background-color: rgba(255, 255, 255, 0.5);">
+            <div class="card_image_box">
+              <img class="rounded-circle" src="{{ url_for('static', filename='profile_pics/candidate_image.jpg') }}" alt="candidate image" style="height: 200px; width: 200px; margin-left: 43%; margin-top: 20px; margin-bottom: 10px;">
+            </div>
+            <div class="card_content">
+              <div class="card_detail" style="text-align: center;">
+                <h2><b>{{ candidate.candidate_name }}</a><br><span>Foundation in IT student in MMU</span></h2>
+                <div class="card_data" style="text-align: center;">
+                  <h3>{{ candidate.candidate_age }}<br><span>{{ candidate.candidate_description }}</span></h3>
+                </div>
+              </div>
+            </div>
+          </div><br>
+          <div class="card_button" style="text-align: center;">
+            <a href="/vote-candidate3/{{candidate.id}}"><button>VOTE</button></a>
+          </div>
+        </div><br>
+        {% endif %}
+      {% endfor %}
+
+    {% endif %}
+
       
     {% if current_user.faculty.upper() == "FOE" %}
     
@@ -248,6 +519,96 @@
         </div><br>
         {% endif %}
       {% endfor %}
+
+    {% endif %}
+
+
+    {% if current_user.faculty.upper() == "FOM" %}
+    
+      {% if candidate1 %}
+      <h1 style="text-align: center; padding-top: 25px; font-weight: bold;">Choices of Presidents(FOM)</h1>
+      {% else %}
+      <h1 hidden>Choices of Presidents</h1>
+      {% endif %}
+      {% for candidate in candidate1 %}
+        {% if candidate.candidate_faculty.upper() == 'FOM' and candidate.candidate_position.capitalize() == 'President' %}
+        <div class="candidate_content" style="padding-left: 50px; padding-right: 50px;">
+          <div class="card" style="background-color: rgba(255, 255, 255, 0.5);">
+            <div class="card_image_box">
+              <img class="rounded-circle" src="{{ url_for('static', filename='profile_pics/candidate_image.jpg') }}" alt="candidate image" style="height: 200px; width: 200px; margin-left: 43%; margin-top: 20px;margin-bottom: 10px;">
+            </div>
+            <div class="card_content">
+              <div class="card_detail" style="text-align: center;">
+                <h2><a style="text-decoration: none; color: blue;" href="{{url_for('candidate_biodata' , candidate_id = candidate.id)}}"><b>{{ candidate.candidate_name }}</b></a><br><span>Foundation in IT student in MMU</span></h2>
+                <div class="card_data" style="text-align: center;">
+                  <h3>{{ candidate.candidate_age }}<br><span>{{ candidate.candidate_description }}</span></h3>
+                </div>
+              </div>
+            </div>
+          </div><br>
+          <div class="card_button" style="text-align: center;">
+            <a href="/vote-candidate/{{candidate.id}}"><button>VOTE</button></a>
+          </div>
+        </div><br>
+        {% endif %}
+      {% endfor %}
+      
+      {% if candidate2 %}
+      <h1 style="text-align: center; padding-top: 25px; font-weight: bold;">Choices for Vice President(FOM)</h1>
+      {% else %}
+      <h1 hidden>Choices for Vice President</h1>
+      {% endif %}
+      {% for candidate in candidate2 %}
+        {% if candidate.candidate_faculty.upper() == 'FOM' and candidate.candidate_position == 'Vice President' %}
+        <div class="candidate_content" style="padding-left: 50px; padding-right: 50px;">
+          <div class="card" style="background-color: rgba(255, 255, 255, 0.5);">
+            <div class="card_image_box">
+              <img class="rounded-circle" src="{{ url_for('static', filename='profile_pics/candidate_image.jpg') }}" alt="candidate image" style="height: 200px; width: 200px; margin-left: 43%; margin-top: 20px; margin-bottom: 10px;">
+            </div>
+            <div class="card_content">
+              <div class="card_detail" style="text-align: center;">
+                <h2><b>{{ candidate.candidate_name }}</b><br><span>Foundation in IT student in MMU</span></h2>
+                <div class="card_data" style="text-align: center;">
+                  <h3>{{ candidate.candidate_age }}<br><span>{{ candidate.candidate_description }}</span></h3>
+                </div>
+              </div>
+            </div>
+          </div><br>
+          <div class="card_button" style="text-align: center;">
+            <a href="/vote-candidate2/{{candidate.id}}"><button>VOTE</button></a>
+          </div>
+        </div><br>
+        {% endif %}
+      {% endfor %}
+
+      {% if candidate3 %}
+      <h1 style="text-align: center; padding-top: 25px; font-weight: bold;">Choices for Secretary(FOM)</h1>
+      {% else %}
+      <h1 hidden>Choices for Secretary</h1>
+      {% endif %}
+      {% for candidate in candidate3 %}
+        {% if candidate.candidate_faculty.upper() == 'FOM' and candidate.candidate_position.capitalize() == 'Secretary' %}
+        <div class="candidate_content" style="padding-left: 50px; padding-right: 50px;">
+          <div class="card" style="background-color: rgba(255, 255, 255, 0.5);">
+            <div class="card_image_box">
+              <img class="rounded-circle" src="{{ url_for('static', filename='profile_pics/candidate_image.jpg') }}" alt="candidate image" style="height: 200px; width: 200px; margin-left: 43%; margin-top: 20px; margin-bottom: 10px;">
+            </div>
+            <div class="card_content">
+              <div class="card_detail" style="text-align: center;">
+                <h2><b>{{ candidate.candidate_name }}</a><br><span>Foundation in IT student in MMU</span></h2>
+                <div class="card_data" style="text-align: center;">
+                  <h3>{{ candidate.candidate_age }}<br><span>{{ candidate.candidate_description }}</span></h3>
+                </div>
+              </div>
+            </div>
+          </div><br>
+          <div class="card_button" style="text-align: center;">
+            <a href="/vote-candidate3/{{candidate.id}}"><button>VOTE</button></a>
+          </div>
+        </div><br>
+        {% endif %}
+      {% endfor %}
+
     {% endif %}
   
   {% endblock %}

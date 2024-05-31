@@ -189,12 +189,47 @@ def adminHomepage():
      #candidate3 = Candidate3.query.all()
      return render_template('admin_homepage.html' , candidate1 = candidate1)
 
+@app.route('/leaderboard_FAC')
+def leaderboard_FAC():
+     candidate1 = Candidate.query.all()
+     #candidate2 = Candidate2.query.all()
+     #candidate3 = Candidate3.query.all()
+     return render_template('leaderboard_FAC.html' , candidate1 = candidate1)
+
+@app.route('/leaderboard_FCA')
+def leaderboard_FCA():
+     candidate1 = Candidate.query.all()
+     #candidate2 = Candidate2.query.all()
+     #candidate3 = Candidate3.query.all()
+     return render_template('leaderboard_FCA.html' , candidate1 = candidate1)
+
+@app.route('/leaderboard_FCI')
+def leaderboard_FCI():
+     candidate1 = Candidate.query.all()
+     #candidate2 = Candidate2.query.all()
+     #candidate3 = Candidate3.query.all()
+     return render_template('leaderboard_FCI.html' , candidate1 = candidate1)
+
+@app.route('/leaderboard_FCM')
+def leaderboard_FCM():
+     candidate1 = Candidate.query.all()
+     #candidate2 = Candidate2.query.all()
+     #candidate3 = Candidate3.query.all()
+     return render_template('leaderboard_FCM.html' , candidate1 = candidate1)
+
 @app.route('/leaderboard_FOE')
 def leaderboard_FOE():
      candidate1 = Candidate.query.all()
      #candidate2 = Candidate2.query.all()
      #candidate3 = Candidate3.query.all()
-     return render_template('leaderboard_candidate_FOE.html' , candidate1 = candidate1)
+     return render_template('leaderboard_FOE.html' , candidate1 = candidate1)
+
+@app.route('/leaderboard_FOM')
+def leaderboard_FOM():
+     candidate1 = Candidate.query.all()
+     #candidate2 = Candidate2.query.all()
+     #candidate3 = Candidate3.query.all()
+     return render_template('leaderboard_FOM.html' , candidate1 = candidate1)
 
 
 @app.route('/update_announcement' , methods = ['POST' , 'GET'])
@@ -216,8 +251,8 @@ def candidatesInfo():
      candidate1 = Candidate.query.all()
      #candidate2 = Candidate2.query.all()
      #candidate3 = Candidate3.query.all()
-     image_file = url_for('static', filename='profile_pics/' + current_user.image_file)
-     return render_template('info_candidates.html', candidate1=candidate1, image_file=image_file)
+     #image_file = url_for('static', filename='profile_pics/' + current_user.image_file)
+     return render_template('info_candidates.html', candidate1=candidate1)
 
 
 @app.route('/createpoll')

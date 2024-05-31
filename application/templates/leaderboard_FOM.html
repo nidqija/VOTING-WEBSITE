@@ -98,60 +98,134 @@
         <header>Admin Features</header>
         <nav>
             <ul>
-                <li><a href="{{url_for('adminHomepage')}}">Leaderboard</a></li>
-                <li><a href="{{url_for('candidatesform')}}">Candidates Form</a></li>
+                <li><a style="color: yellow;" href="{{url_for('adminHomepage')}}">Leaderboard</a></li>
                 <li><a href="{{url_for('candidatesInfo')}}">Candidate Information</a></li>
                 <li><a href="{{url_for('createVote')}}">Create a Vote</a></li>
                 <li><a href="{{url_for('updateAnnouncement')}}">Update Announcement</a></li>
-                <li><a  style="color: yellow;" href="{{url_for('viewUsers')}}">View Users</a></li>
+                <li><a href="{{url_for('viewUsers')}}">View Users</a></li>
                
             </ul>
         </nav>
     </div>
 
+    <div class="admin_homepage_container px-4">
+       
 
-    <div class="admin_homepage_container">
+        <h1 class="WelcomeAdmin">Hello {{ current_user.username }}!</h1>
 
+        <div class="row row-cols-auto">
+            <div class="col p-2"><a href="{{url_for('adminHomepage')}}"><button type = button style="border-radius: 10px;">Leaderboard (GENERAL)</button></a></div>
+            <div class="col p-2"><a href="{{url_for('leaderboard_FAC')}}"><button type = button style="border-radius: 10px;">Leaderboard (FAC)</button></a></div>
+            <div class="col p-2"><a href="{{url_for('leaderboard_FCA')}}"><button type = button style="border-radius: 10px;">Leaderboard (FCA)</button></a></div>
+            <div class="col p-2"><a href="{{url_for('leaderboard_FCI')}}"><button type = button style="border-radius: 10px;">Leaderboard (FCI)</button></a></div>
+            <div class="col p-2"><a href="{{url_for('leaderboard_FCM')}}"><button type = button style="border-radius: 10px;">Leaderboard (FCM)</button></a></div>
+            <div class="col p-2"><a href="{{url_for('leaderboard_FOE')}}"><button type = button style="border-radius: 10px;">Leaderboard (FOE)</button></a></div>
+            <div class="col p-2"><a href="{{url_for('leaderboard_FOM')}}" style="color: yellow;"><button type = button style="border-radius: 10px;">Leaderboard (FOM)</button></a></div>
+        </div><br>
 
-        <div class="container">
-            <table class="table">
-                <thead class="table-light">
-                  <tr>
-                    <th scope="col">No.</th>
-                    <th scope="col">Username</th>
-                    <th scope="col">Email</th>
-                    <th scope="col">Role</th>
-                  </tr>
+        <div class="leaderboard-container">
+            <h1>President(FOM)</h1>
+            <table>
+                <thead>
+                    <tr>
+                        <!--<th>Rank</th>-->
+                        <th>Candidate</th>
+                        <th>Vote</th>
+                    </tr>
                 </thead>
+                <tbody>
+                    {% block content %}
+                    {% for candidate in candidate1 %}
+                    {% if candidate.candidate_position.capitalize() == 'President' and candidate.candidate_faculty.upper() == 'FOM' %}
 
-                <h1 class="text-center text-white p-3">Lists of Users</h1>
+                    <tr>
+                      
+                        <!--<td>{{ candidate.id }}</td>-->
+                        <td>{{ candidate.candidate_name }}</td>
+                        <td> {{ candidate.vote|length }}</td>
 
-                {% for user in users %}
-
-                <tbody class="table text-white">
-                  <tr>
-                    <th scope="row">{{ user.id }}</th>
-                    <td>{{ user.username }}</td>
-                    <td >{{ user.email }}</td>
-
-                    {% if user.mmu_id %}
-                    <td>Admin</td>
-                    {% else %}
-                    <td>Student</td>
+                      
+                    </tr>
                     {% endif %}
-                  </tr>
-              
+                    {% endfor %}
+
+
+                  
                 </tbody>
-                {% endfor %}
+            </table>
+        </div><br>
 
-              </table>
+        <div class="leaderboard-container">
+            <h1>Vice President(FOM)</h1>
+            <table>
+                <thead>
+                    <tr>
+                        <!--<th>Rank</th>-->
+                        <th>Candidate</th>
+                        <th>Vote</th>
+                    </tr>
+                </thead>
+                <tbody>
+                
+                    {% for candidate in candidate1 %}
+                    {% if candidate.candidate_position == 'Vice President' and candidate.candidate_faculty.upper() == 'FOM' %}
+
+                    <tr>
+                      
+                        <!--<td>{{ candidate_id }}</td>-->
+                        <td>{{ candidate.candidate_name }}</td>
+                        <td> {{ candidate.vote|length }}</td>
+
+                      
+                    </tr>
+                    {% endif %}
+                    {% endfor %}    
+                            </tbody>
+                        </table>
+                    </div><br>
+
+                    <div class="leaderboard-container">
+                        <h1>Secretary(FOM)</h1>
+                        <table>
+                            <thead>
+                                <tr>
+                                    <!--<th>Rank</th>-->
+                                    <th>Candidate</th>
+                                    <th>Vote</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                            
+                                {% for candidate in candidate1 %}
+                                {% if candidate.candidate_position.capitalize() == 'Secretary' and candidate.candidate_faculty.upper() == 'FOM' %}
+            
+                                <tr>
+                                  
+                                    <!--<td>{{ candidate_id }}</td>-->
+                                    <td>{{ candidate.candidate_name }}</td>
+                                    <td> {{ candidate.vote|length }}</td>
+            
+                                  
+                                </tr>
+                                {% endif %}
+                                {% endfor %}
+            
+                                
+            
+                              
+                            </tbody>
+                        </table>
+                    </div>
+
+                    {% endblock %}
+
+                  
+                </tbody>
+            </table>
         </div>
-
-
-
     </div>
-
-   
+</div>
+    </div>
 
 
 </div>

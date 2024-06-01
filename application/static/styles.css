@@ -132,7 +132,8 @@
   background-color: whitesmoke;
 }
 
-img {
+
+.about_photo{
   border-radius: 50%;
   margin-top: 15px;
 }
@@ -718,6 +719,10 @@ tbody tr:nth-child(even) {
   background-repeat: no-repeat;
 }
 
-
+.candidate_resume_image{
+  width: 200px;
+  height: 300px;
+  margin-top: 10px;
+}
 
   

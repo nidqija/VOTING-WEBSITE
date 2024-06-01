@@ -102,6 +102,7 @@ class AnnouncementForm(FlaskForm):
     description = StringField('Announcement Description' , validators=[DataRequired()])
     submit = SubmitField('Submit')
 
+import re
 
 class CandidateForm(FlaskForm):
     candidate_name = StringField('Candidate Name', validators=[DataRequired(), Length(min=2, max=100)])
@@ -112,6 +113,7 @@ class CandidateForm(FlaskForm):
     candidate_quote = TextAreaField('Candidate Quote', validators=[DataRequired(), Length(max=500)])
     candidate_photo = FileField('Candidate Photo', validators=[FileAllowed(['jpg', 'png', 'jpeg'], 'Only images are allowed!')])
     candidate_position = StringField('Position (President / Vice President /Secretary)' , validators=[DataRequired() , Length(min=5 , max= 20)])
+    candidate_resume =FileField('Candidate Resume' , validators=[FileAllowed(['jpg', 'png', 'jpeg'], 'Only images are allowed!')])
     submit = SubmitField('Submit')
 
     def validate_candidate_name(self, candidate_name):

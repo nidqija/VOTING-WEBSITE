@@ -61,6 +61,7 @@ class Candidate(db.Model):
       candidate_position = db.Column(db.String(500) , nullable=False)
       vote = db.relationship('Vote1' , backref = 'candidate' , lazy = True)
       image_file = db.Column((db.String(20)), nullable=False, default='candidate_image.jpg')
+      candidate_resume = db.Column(db.String(), default = 'None')
 
       def _repr_(self):
            return f'Candidate("{self.candidate_name}" , {self.candidate_id})'

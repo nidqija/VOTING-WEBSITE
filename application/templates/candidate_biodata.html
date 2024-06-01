@@ -32,7 +32,14 @@
       <div class="candidate_quote">
           <p class="text-white display-6">Quote: {{ candidate.candidate_quote }}</p>
       </div>
-
+      <div class="candidate_resume">
+        <p class="text-white display-6">Resume: </p>
+        {% if candidate.candidate_resume == 'None' %}
+            <p class="text-white display-7">No resume available</p>
+        {% else %}
+            <img class = 'candidate_resume_image' src="{{ url_for('static' , filename='candidate_resume/' + candidate_resume) }}" alt="candidate resume">
+        {% endif %}
+      </div>
       <h3 class="text-white p-5">comment section</h3>
       //this is the nishant's part//
     </div>

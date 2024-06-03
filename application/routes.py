@@ -393,9 +393,17 @@ def candidatesform():
           if form.candidate_photo.data:
                photo = form.candidate_photo.data
                photo_filename = secure_filename(photo.filename)
-               photo.save(os.path.join(app.config['UPLOAD_FOLDER'], photo_filename))
+               photo.save(os.path.join(app.config['UPLOADED_FOLDER'], photo_filename))
 
-          candidate = Candidate(candidate_name = form.candidate_name.data, candidate_age = form.candidate_age.data, candidate_id = form.candidate_id.data, candidate_faculty = form.candidate_faculty.data, candidate_level = form.candidate_level.data, candidate_quote = form.candidate_quote.data, candidate_position = form.candidate_position.data, image_file = photo_filename)
+          
+          if form.candidate_resume.data:
+               candidate_resume = form.candidate_resume.data
+               resume_filename = secure_filename(candidate_resume.filename)
+               candidate_resume.save(os.path.join(app.config['UPLOAD_FOLDER'], resume_filename))
+          else:
+               resume_filename = None
+
+          candidate = Candidate(candidate_name = form.candidate_name.data, candidate_age = form.candidate_age.data, candidate_id = form.candidate_id.data, candidate_faculty = form.candidate_faculty.data, candidate_level = form.candidate_level.data, candidate_quote = form.candidate_quote.data, candidate_position = form.candidate_position.data , candidate_resume = resume_filename)
           db.session.add(candidate)
           db.session.commit()
           flash('Candidate information has been filled up successfully!', 'success')
@@ -409,4 +417,4 @@ def candidatesform():
 @login_required
 def candidate_biodata(candidate_id):
    candidate = Candidate.query.get_or_404(candidate_id)
-   return render_template('candidate_biodata.html' , candidate_name = candidate.candidate_name, candidate = candidate)
+   return render_template('candidate_biodata.html' , candidate_name = candidate.candidate_name, candidate = candidate , candidate_resume = candidate.candidate_resume)

@@ -12,6 +12,7 @@ app.config['SECRET_KEY'] = 'my secret key'
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///site.db'
 app.config['UPLOADED_FOLDER'] = 'uploads'
 app.config['ALLOWED_EXTENSIONS'] = {'jpg', 'png', 'jpeg'}
+app.config['UPLOAD_FOLDER'] = 'application\static\candidate_resume'
 db = SQLAlchemy(app)
 bcrypt = Bcrypt(app)
 migrate = Migrate(app , db)

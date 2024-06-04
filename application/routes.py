@@ -219,12 +219,22 @@ def profile():
 def about():
      return render_template('about.html')
 
+
 @app.route('/admin_homepage')
 def adminHomepage():
      candidate1 = Candidate.query.all()
      #candidate2 = Candidate2.query.all()
      #candidate3 = Candidate3.query.all()
      return render_template('admin_homepage.html' , candidate1 = candidate1)
+
+
+@app.route('/leaderboard_general')
+def leaderboard_general():
+     candidate1 = Candidate.query.all()
+     #candidate2 = Candidate2.query.all()
+     #candidate3 = Candidate3.query.all()
+     return render_template('leaderboard_general.html' , candidate1 = candidate1)
+
 
 @app.route('/leaderboard_FAC')
 def leaderboard_FAC():
@@ -233,12 +243,14 @@ def leaderboard_FAC():
      #candidate3 = Candidate3.query.all()
      return render_template('leaderboard_FAC.html' , candidate1 = candidate1)
 
+
 @app.route('/leaderboard_FCA')
 def leaderboard_FCA():
      candidate1 = Candidate.query.all()
      #candidate2 = Candidate2.query.all()
      #candidate3 = Candidate3.query.all()
      return render_template('leaderboard_FCA.html' , candidate1 = candidate1)
+
 
 @app.route('/leaderboard_FCI')
 def leaderboard_FCI():
@@ -247,6 +259,7 @@ def leaderboard_FCI():
      #candidate3 = Candidate3.query.all()
      return render_template('leaderboard_FCI.html' , candidate1 = candidate1)
 
+
 @app.route('/leaderboard_FCM')
 def leaderboard_FCM():
      candidate1 = Candidate.query.all()
@@ -254,12 +267,14 @@ def leaderboard_FCM():
      #candidate3 = Candidate3.query.all()
      return render_template('leaderboard_FCM.html' , candidate1 = candidate1)
 
+
 @app.route('/leaderboard_FOE')
 def leaderboard_FOE():
      candidate1 = Candidate.query.all()
      #candidate2 = Candidate2.query.all()
      #candidate3 = Candidate3.query.all()
      return render_template('leaderboard_FOE.html' , candidate1 = candidate1)
+
 
 @app.route('/leaderboard_FOM')
 def leaderboard_FOM():
@@ -411,6 +426,34 @@ def candidatesform():
 
      return render_template('candidate_form.html', form=form)
 
+
+@app.route('/general_candidate_form' , methods = ['POST' , 'GET']) 
+def generalcandidatesform():
+
+     form = CandidateForm()
+
+     if form.validate_on_submit():
+          photo_filename = None
+          if form.candidate_photo.data:
+               photo = form.candidate_photo.data
+               photo_filename = secure_filename(photo.filename)
+               photo.save(os.path.join(app.config['UPLOADED_FOLDER'], photo_filename))
+
+          
+          if form.candidate_resume.data:
+               candidate_resume = form.candidate_resume.data
+               resume_filename = secure_filename(candidate_resume.filename)
+               candidate_resume.save(os.path.join(app.config['UPLOAD_FOLDER'], resume_filename))
+          else:
+               resume_filename = None
+
+          candidate = Candidate(candidate_name = form.candidate_name.data, candidate_age = form.candidate_age.data, candidate_id = form.candidate_id.data, candidate_faculty = form.candidate_faculty.data, candidate_level = form.candidate_level.data, candidate_quote = form.candidate_quote.data, candidate_position = form.candidate_position.data , candidate_resume = resume_filename)
+          db.session.add(candidate)
+          db.session.commit()
+          flash('Candidate information has been filled up successfully!', 'success')
+          return redirect(url_for('adminHomepage'))
+
+     return render_template('general_candidate_form.html', form=form)
 
 
 @app.route('/candidate_biodata/<int:candidate_id>')

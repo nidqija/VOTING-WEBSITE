@@ -54,6 +54,7 @@ class Candidate(db.Model):
       candidate_age = db.Column(db.String(100) , nullable=False)
       candidate_id = db.Column(db.Integer , nullable=False)
       candidate_faculty = db.Column(db.String(100) , nullable=False)
+      # candidate_type = db.Column(db.String(100) , nullable=False)
       candidate_level = db.Column(db.String(100) , nullable=False)
       candidate_quote = db.Column(db.String(500) , nullable=False)
       candidate_photo_filename = db.Column(db.String(100), default='candidate_image.jpg')

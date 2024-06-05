@@ -45,12 +45,7 @@
                       <a  id="Navlink" class="nav-link" href="{{url_for('contact')}}">Contact</a>
                     </li>
 
-                    {% if current_user.is_authenticated %}
-                    <li id="navSections" class="nav-item px-3">
                     
-                       <button id="CurrentUserProfile" type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal2">
-                        {{ current_user.username }}
-                       </button>
       
       <!-- Modal -->
       <div class="modal" tabindex="-1">
@@ -71,7 +66,6 @@
           </div>
         </div>
 
-        {% endif %}
   </nav>
  
 

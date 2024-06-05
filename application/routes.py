@@ -172,6 +172,43 @@ def service():
      return render_template('service.html' ,  form = form , posts = posts)
 
 
+@app.route('/service/<int:post_id>')
+
+def question(post_id):
+   post = Post.query.get_or_404(post_id)
+   return render_template('question.html' , titles = post.titles , post = post)
+
+
+@app.route('/service/<int:post_id>/update' , methods = ['POST' , 'GET'])
+@login_required
+def update_question(post_id):
+   post = Post.query.get_or_404(post_id)
+   if post.author != current_user:
+        return abort(403)
+   
+   form = QuestionForm()
+   if form.validate_on_submit():
+        post.titles = form.titles.data
+        post.question = form.question.data
+        db.session.commit()
+        return redirect(url_for('service'))
+   form.titles.data = post.titles
+   form.question.data = post.question
+   return render_template('service.html' , form = form)
+
+
+@app.route('/service/<int:post_id>/delete' , methods = ['POST' , 'GET'])
+@login_required
+def delete_question(post_id):
+     post = Post.query.get_or_404(post_id)
+     if post.author != current_user:
+        return abort(403)
+
+     db.session.delete(post)
+     db.session.commit()
+     flash('Your post has been deleted!' , 'success')
+     return redirect(url_for('service'))
+
 
 @app.route('/profile')
 def profile():
@@ -235,16 +272,48 @@ def leaderboard_FOM():
 @app.route('/update_announcement' , methods = ['POST' , 'GET'])
 def updateAnnouncement():
          
-         
+    announcements = Announcement.query.all()     
     form = AnnouncementForm()
 
     if form.validate_on_submit():
-        announcement = Announcement(titles = form.titles.data , description = form.description.data , author = current_user)
+        announcement = Announcement(titles = form.titles.data , description = form.description.data )
         db.session.add(announcement)
         db.session.commit()
         return redirect(url_for('home'))
-    return render_template('update_announcement.html', form=form)
+    return render_template('update_announcement.html', form=form, announcements=announcements)
 
+
+@app.route('/service/<int:announcement_id>')
+
+def update_announcement(announcement_id):
+   announcement = Announcement.query.get_or_404(announcement_id)
+   return render_template('update_announcement.html' , titles = announcement.titles , announcement=announcement)
+
+
+@app.route('/update_announcement/<int:announcement_id>/edit' , methods = ['POST' , 'GET'])
+def edit_announcement(announcement_id):
+   announcement = Announcement.query.get_or_404(announcement_id)
+   
+   form = AnnouncementForm()
+   if form.validate_on_submit():
+        announcement.titles = form.titles.data
+        announcement.description = form.description.data
+        db.session.commit()
+        return redirect(url_for('updateAnnouncement'))
+   form.titles.data = announcement.titles
+   form.description.data = announcement.description
+   return render_template('update_announcement2.html' , form = form)
+
+
+@app.route('/update_announcement/<int:announcement_id>/delete' , methods = ['POST' , 'GET'])
+
+def delete_announcement(announcement_id):
+     announcement = Announcement.query.get_or_404(announcement_id)
+
+     db.session.delete(announcement)
+     db.session.commit()
+     flash('Your post has been deleted!' , 'success')
+     return redirect(url_for('updateAnnouncement'))
 
 @app.route('/info_candidates' , methods = ['POST' , 'GET']) 
 def candidatesInfo():
@@ -302,11 +371,12 @@ def submitvote():
 
 
 @app.route('/viewusers')
-@login_required
+
 
 def viewUsers():
      users = User.query.all()
-     return render_template('view_users.html' , users = users)
+     admins = Admin.query.all()
+     return render_template('view_users.html' , users = users , admins = admins)
 
 
 @app.route('/candidate_form' , methods = ['POST' , 'GET']) 
@@ -338,9 +408,51 @@ def candidatesform():
      return render_template('candidate_form.html', form=form)
 
 
+@app.route('/info_candidates/<int:candidate_id>/edit' , methods = ['POST' , 'GET'])
+def edit_candidates(candidate_id):
+   candidate = Candidate.query.get_or_404(candidate_id)
+   
+   form = CandidateForm()
+   if form.validate_on_submit():
+        candidate.candidate_name = form.candidate_name.data
+        candidate.candidate_age = form.candidate_age.data
+        candidate.candidate_id = form.candidate_id.data
+        candidate.candidate_faculty = form.candidate_faculty.data
+        candidate.candidate_level = form.candidate_level.data
+        candidate.candidate_quote = form.candidate_quote.data
+        candidate.candidate_position = form.candidate_position.data
+        candidate.candidate_photo_filename = form.candidate_photo.data
+        db.session.commit()
+        return redirect(url_for('candidatesInfo'))
+   form.candidate_name.data = candidate.candidate_name
+   form.candidate_age.data = candidate.candidate_age 
+   form.candidate_id.data = candidate.candidate_id
+   form.candidate_faculty.data = candidate.candidate_faculty 
+   form.candidate_level.data = candidate.candidate_level 
+   form.candidate_quote.data = candidate.candidate_quote 
+   form.candidate_position.data = candidate.candidate_position 
+   form.candidate_photo.data = candidate.candidate_photo_filename
+
+
+   return render_template('update_candidates2.html' , form = form)
+
+
+
+
+@app.route('/update_candidates/<int:candidate_id>/delete' , methods = ['POST' , 'GET'])
+
+def delete_candidates(candidate_id):
+     candidate = Candidate.query.get_or_404(candidate_id)
+
+     db.session.delete(candidate)
+     db.session.commit()
+     flash('Your post has been deleted!' , 'success')
+     return redirect(url_for('candidatesInfo'))
+
+
 
 @app.route('/candidate_biodata/<int:candidate_id>')
-@login_required
+
 def candidate_biodata(candidate_id):
    candidate = Candidate.query.get_or_404(candidate_id)
    return render_template('candidate_biodata.html' , candidate_name = candidate.candidate_name, candidate = candidate , candidate_resume = candidate.candidate_resume)

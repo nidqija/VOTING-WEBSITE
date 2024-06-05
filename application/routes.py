@@ -428,6 +428,35 @@ def candidatesform():
      return render_template('candidate_form.html', form=form)
 
 
+@app.route('/general_candidate_form' , methods = ['POST' , 'GET']) 
+def generalcandidatesform():
+
+     form = CandidateForm()
+
+     if form.validate_on_submit():
+          photo_filename = None
+          if form.candidate_photo.data:
+               photo = form.candidate_photo.data
+               photo_filename = secure_filename(photo.filename)
+               photo.save(os.path.join(app.config['UPLOADED_FOLDER'], photo_filename))
+
+          
+          if form.candidate_resume.data:
+               candidate_resume = form.candidate_resume.data
+               resume_filename = secure_filename(candidate_resume.filename)
+               candidate_resume.save(os.path.join(app.config['UPLOAD_FOLDER'], resume_filename))
+          else:
+               resume_filename = None
+
+          candidate = Candidate(candidate_name = form.candidate_name.data, candidate_age = form.candidate_age.data, candidate_id = form.candidate_id.data, candidate_faculty = form.candidate_faculty.data, candidate_level = form.candidate_level.data, candidate_quote = form.candidate_quote.data, candidate_position = form.candidate_position.data , candidate_resume = resume_filename)
+          db.session.add(candidate)
+          db.session.commit()
+          flash('Candidate information has been filled up successfully!', 'success')
+          return redirect(url_for('adminHomepage'))
+
+     return render_template('general_candidate_form.html', form=form)
+
+
 @app.route('/info_candidates/<int:candidate_id>/edit' , methods = ['POST' , 'GET'])
 def edit_candidates(candidate_id):
    candidate = Candidate.query.get_or_404(candidate_id)

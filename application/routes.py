@@ -210,6 +210,11 @@ def delete_question(post_id):
      return redirect(url_for('service'))
 
 
+
+
+
+
+
 @app.route('/profile')
 def profile():
     return render_template('profile.html')
@@ -219,12 +224,22 @@ def profile():
 def about():
      return render_template('about.html')
 
+
 @app.route('/admin_homepage')
 def adminHomepage():
      candidate1 = Candidate.query.all()
      #candidate2 = Candidate2.query.all()
      #candidate3 = Candidate3.query.all()
      return render_template('admin_homepage.html' , candidate1 = candidate1)
+
+
+@app.route('/leaderboard_general')
+def leaderboard_general():
+     candidate1 = Candidate.query.all()
+     #candidate2 = Candidate2.query.all()
+     #candidate3 = Candidate3.query.all()
+     return render_template('leaderboard_general.html' , candidate1 = candidate1)
+
 
 @app.route('/leaderboard_FAC')
 def leaderboard_FAC():
@@ -233,12 +248,14 @@ def leaderboard_FAC():
      #candidate3 = Candidate3.query.all()
      return render_template('leaderboard_FAC.html' , candidate1 = candidate1)
 
+
 @app.route('/leaderboard_FCA')
 def leaderboard_FCA():
      candidate1 = Candidate.query.all()
      #candidate2 = Candidate2.query.all()
      #candidate3 = Candidate3.query.all()
      return render_template('leaderboard_FCA.html' , candidate1 = candidate1)
+
 
 @app.route('/leaderboard_FCI')
 def leaderboard_FCI():
@@ -247,6 +264,7 @@ def leaderboard_FCI():
      #candidate3 = Candidate3.query.all()
      return render_template('leaderboard_FCI.html' , candidate1 = candidate1)
 
+
 @app.route('/leaderboard_FCM')
 def leaderboard_FCM():
      candidate1 = Candidate.query.all()
@@ -254,12 +272,14 @@ def leaderboard_FCM():
      #candidate3 = Candidate3.query.all()
      return render_template('leaderboard_FCM.html' , candidate1 = candidate1)
 
+
 @app.route('/leaderboard_FOE')
 def leaderboard_FOE():
      candidate1 = Candidate.query.all()
      #candidate2 = Candidate2.query.all()
      #candidate3 = Candidate3.query.all()
      return render_template('leaderboard_FOE.html' , candidate1 = candidate1)
+
 
 @app.route('/leaderboard_FOM')
 def leaderboard_FOM():

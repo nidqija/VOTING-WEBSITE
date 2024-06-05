@@ -103,12 +103,12 @@ class AnnouncementForm(FlaskForm):
     submit = SubmitField('Submit')
 
 
-
 class CandidateForm(FlaskForm):
     candidate_name = StringField('Candidate Name', validators=[DataRequired(), Length(min=2, max=100)])
     candidate_age = StringField('Candidate Age', validators=[DataRequired()])
     candidate_id = StringField('Candidate ID', validators=[DataRequired()])
-    candidate_faculty = StringField('Candidate Faculty', validators=[DataRequired()])
+    candidate_faculty = StringField('Candidate Faculty (General / FAC / FCA / FCI / FCM / FOE / FOM)', validators=[DataRequired()])
+    # candidate_type = StringField('Candidate Type', validators=[DataRequired()])
     candidate_level = StringField('Candidate Academic Level', validators=[DataRequired()])
     candidate_quote = TextAreaField('Candidate Quote', validators=[DataRequired(), Length(max=500)])
     candidate_photo = FileField('Candidate Photo', validators=[FileAllowed(['jpg', 'png', 'jpeg'], 'Only images are allowed!')])

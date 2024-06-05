@@ -116,12 +116,4 @@ class CandidateForm(FlaskForm):
     candidate_resume =FileField('Candidate Resume' , validators=[FileAllowed(['jpg', 'png', 'jpeg'], 'Only images are allowed!')])
     submit = SubmitField('Submit')
 
-    def validate_candidate_name(self, candidate_name):
-        candidate = Candidate.query.filter_by(candidate_name=candidate_name.data).first()
-        if candidate:
-            raise ValidationError('This candidate is already registered!')
-
-    def validate_candidate_id(self, candidate_id):
-        candidate = Candidate.query.filter_by(candidate_id=candidate_id.data).first()
-        if candidate:
-            raise ValidationError('This candidate ID is already registered!')
+   

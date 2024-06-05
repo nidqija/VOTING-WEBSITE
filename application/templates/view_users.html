@@ -44,43 +44,11 @@
                         <a  id="Navlink" class="nav-link" href="{{url_for('contact')}}">Contact</a>
                       </li>
 
-                      {% if current_user.is_authenticated %}
                       <li id="navSections" class="nav-item px-3">
                       
-                         <button id="CurrentUserProfile" type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
-                          {{ current_user.username }}
-                         </button>
-        
-        <!-- Modal -->
-                  <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                   <div class="modal-dialog">
-                     <div class="modal-content">
-                       <div class="modal-header">
-                          <h1 class="modal-title fs-5" id="exampleModalLabel">User Profile</h1>
-                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                               </div>
-                                  <div class="modal-body">
-                                     <p>Username :   {{ current_user.username }}</p> 
-                                     <p> Email : {{ current_user.email }}</p> 
-                                     <p>Role : <a class="text-success" style="text-decoration: none;">Student</a> </p>
-
-                                  </div>
-                                  <div class="modal-footer">
-                                       <a href="{{url_for('profile')}}"><button type="button" class="btn btn-secondary" data-bs-dismiss="modal">View Profile</button></a>
-                                      <a href="{{url_for('logout')}}"> <button type="button" class="btn btn-primary">Logout</button></a>
-                                  </div>
-                             </div>
-                          </div>
-                      </div>
+                        
                       </li>
-                      {% else %}
-                      <li id="navSections" class="nav-item px-3">
-                          <a href="{{url_for('login')}}"><button class="btn btn-outline-light" style="position: relative; left: 300px; ">Log In</button></a>
-                      </li>
-                      <li id="navSections" class="nav-item px-3">
-                          <a href="{{url_for('register')}}"><button class="btn btn-outline-light" style="position: relative; left: 300px; ">Sign Up</button></a>
-                      </li>
-                      {% endif %}
+                  
                     </ul>
                 </ul>
                 <!-- <div>
@@ -91,7 +59,6 @@
             </div>
         </div>
     </nav>
-
 
 
     <div class="admin_homepage_sidebar">
@@ -120,6 +87,7 @@
                     <th scope="col">No.</th>
                     <th scope="col">Username</th>
                     <th scope="col">Email</th>
+                    <th scope="col">Faculty</th>
                     <th scope="col">Role</th>
                   </tr>
                 </thead>
@@ -133,6 +101,10 @@
                     <th scope="row">{{ user.id }}</th>
                     <td>{{ user.username }}</td>
                     <td >{{ user.email }}</td>
+                    <td >{{ user.faculty }}</td>
+        
+
+
 
                     {% if user.mmu_id %}
                     <td>Admin</td>
@@ -145,13 +117,48 @@
                 {% endfor %}
 
               </table>
+
+              <table class="table">
+                <thead class="table-light">
+                  <tr>
+                    <th scope="col">No.</th>
+                    <th scope="col">Username</th>
+                    <th scope="col">Email</th>
+                    <th scope="col">Faculty</th>
+                    <th scope="col">Role</th>
+                  </tr>
+                </thead>
+
+                <h1 class="text-center text-white p-3">Lists of Admins</h1>
+
+                {% for admin in admins %}
+
+                <tbody class="table text-white">
+                  <tr>
+                    <th scope="row">{{ admin.id2 }}</th>
+                    <td>{{ admin.username2 }}</td>
+                    <td >{{ admin.email2 }}</td>
+                    <td >{{ admin.mmu_id }}</td>
+
+                    <td>Admin</td>
+        
+
+
+
+                  
+                  </tr>
+              
+                </tbody>
+                {% endfor %}
+
+              </table>
+
         </div>
 
 
 
     </div>
 
-   
 
 
 </div>

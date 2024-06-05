@@ -21,7 +21,6 @@ class User(db.Model , UserMixin ):
         vote1 = db.relationship('Vote1' , backref = 'user' , lazy = True)
         #vote2 = db.relationship('Vote2' , backref = 'user' , lazy = True)
         #vote3 = db.relationship('Vote3' , backref = 'user' , lazy = True)
-        announcement = db.relationship('Announcement' , backref = 'author' , lazy = True)       
 
         
         def _repr_(self):
@@ -65,7 +64,7 @@ class Candidate(db.Model):
       candidate_resume = db.Column(db.String(), default = 'None')
 
       def _repr_(self):
-           return f'Candidate("{self.candidate_name}" , {self.candidate_id})'
+           return f'Candidate("{self.candidate_name}" ," {self.candidate_id}" ," {self.candidate_age}" , {self.candidate_faculty} ,  {self.candidate_level} , {self.candidate_quote} , {self.candidate_photo_filename} , {self.candidate_position} , {self.candidate_resume})'
 
 
 
@@ -107,7 +106,6 @@ class Announcement(db.Model , UserMixin):
        titles = db.Column(db.String(500) , unique = True , nullable = False)
        createdAt = db.Column(db.DateTime(timezone=True) , server_default=func.now())
        description = db.Column(db.Text, nullable = False)
-       user_id = db.Column(db.Integer , db.ForeignKey('user.id') , nullable = False)
 
        def _repr_(self):
            return f'User("{self.titles}" , {self.description})'

@@ -38,18 +38,7 @@
                         <a  id="Navlink" class="nav-link" href="#">Contact</a>
                     </li>
 
-                    {% if current_user.is_authenticated %}
-                    <li id="navSections" class="nav-item px-3">
-                        <a href="{{url_for('logout')}}"><button class="btn btn-outline-warning">Log Out</button></a>
-                    </li>
-                    {% else %}
-                    <li id="navSections" class="nav-item px-3">
-                        <a href="{{url_for('login')}}"><button class="btn btn-outline-light">Log In</button></a>
-                    </li>
-                    <li id="navSections" class="nav-item px-3">
-                        <a href="{{url_for('register')}}"><button class="btn btn-outline-light">Sign Up</button></a>
-                    </li>
-                    {% endif %}
+                 
                 </ul>
                 <!-- <div>
                     <input class="search_in" type="search" name="" placeholder="Type your keyword">
@@ -87,7 +76,7 @@
 
             <div class="candidate1_detail">
                 <div class="candidate_name">
-                  <p>Name: <a style="text-decoration: none; color: white;" href="{{url_for('candidate_biodata' , candidate_id = candidate.id )}}">{{ candidate.candidate_name }}</a></p><a href="{{url_for('candidatesform')}}"><button>Edit</button></a>
+                  <p>Name: <a style="text-decoration: none; color: white;" href="{{url_for('candidate_biodata' , candidate_id = candidate.id )}}">{{ candidate.candidate_name }}</a></p><a href="{{url_for('edit_candidates' , candidate_id = candidate.id)}}"><button>Edit</button></a>
                 </div>
                 <div class="candidate_ID">
                     <p>Student ID: {{ candidate.candidate_id }}</p>
@@ -101,6 +90,7 @@
                 <div class="candidate_quote">
                     <p>Quote: {{ candidate.candidate_quote }}</p>
                 </div>
+                <a href="{{url_for('delete_candidates' , candidate_id = candidate.id)}}" class="float-end"><button>delete</button></a>
             </div>
         </div><br>
 

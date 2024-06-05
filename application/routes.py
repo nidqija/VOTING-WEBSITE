@@ -210,6 +210,11 @@ def delete_question(post_id):
      return redirect(url_for('service'))
 
 
+
+
+
+
+
 @app.route('/profile')
 def profile():
     return render_template('profile.html')
@@ -291,7 +296,7 @@ def updateAnnouncement():
     form = AnnouncementForm()
 
     if form.validate_on_submit():
-        announcement = Announcement(titles = form.titles.data , description = form.description.data , author = current_user)
+        announcement = Announcement(titles = form.titles.data , description = form.description.data )
         db.session.add(announcement)
         db.session.commit()
         return redirect(url_for('home'))
@@ -306,11 +311,8 @@ def update_announcement(announcement_id):
 
 
 @app.route('/update_announcement/<int:announcement_id>/edit' , methods = ['POST' , 'GET'])
-@login_required
 def edit_announcement(announcement_id):
    announcement = Announcement.query.get_or_404(announcement_id)
-   if announcement.author != current_user:
-        return abort(403)
    
    form = AnnouncementForm()
    if form.validate_on_submit():
@@ -324,11 +326,9 @@ def edit_announcement(announcement_id):
 
 
 @app.route('/update_announcement/<int:announcement_id>/delete' , methods = ['POST' , 'GET'])
-@login_required
+
 def delete_announcement(announcement_id):
      announcement = Announcement.query.get_or_404(announcement_id)
-     if announcement.author != current_user:
-        return abort(403)
 
      db.session.delete(announcement)
      db.session.commit()
@@ -391,11 +391,12 @@ def submitvote():
 
 
 @app.route('/viewusers')
-@login_required
+
 
 def viewUsers():
      users = User.query.all()
-     return render_template('view_users.html' , users = users)
+     admins = Admin.query.all()
+     return render_template('view_users.html' , users = users , admins = admins)
 
 
 @app.route('/candidate_form' , methods = ['POST' , 'GET']) 
@@ -427,37 +428,51 @@ def candidatesform():
      return render_template('candidate_form.html', form=form)
 
 
-@app.route('/general_candidate_form' , methods = ['POST' , 'GET']) 
-def generalcandidatesform():
+@app.route('/info_candidates/<int:candidate_id>/edit' , methods = ['POST' , 'GET'])
+def edit_candidates(candidate_id):
+   candidate = Candidate.query.get_or_404(candidate_id)
+   
+   form = CandidateForm()
+   if form.validate_on_submit():
+        candidate.candidate_name = form.candidate_name.data
+        candidate.candidate_age = form.candidate_age.data
+        candidate.candidate_id = form.candidate_id.data
+        candidate.candidate_faculty = form.candidate_faculty.data
+        candidate.candidate_level = form.candidate_level.data
+        candidate.candidate_quote = form.candidate_quote.data
+        candidate.candidate_position = form.candidate_position.data
+        candidate.candidate_photo_filename = form.candidate_photo.data
+        db.session.commit()
+        return redirect(url_for('candidatesInfo'))
+   form.candidate_name.data = candidate.candidate_name
+   form.candidate_age.data = candidate.candidate_age 
+   form.candidate_id.data = candidate.candidate_id
+   form.candidate_faculty.data = candidate.candidate_faculty 
+   form.candidate_level.data = candidate.candidate_level 
+   form.candidate_quote.data = candidate.candidate_quote 
+   form.candidate_position.data = candidate.candidate_position 
+   form.candidate_photo.data = candidate.candidate_photo_filename
 
-     form = CandidateForm()
 
-     if form.validate_on_submit():
-          photo_filename = None
-          if form.candidate_photo.data:
-               photo = form.candidate_photo.data
-               photo_filename = secure_filename(photo.filename)
-               photo.save(os.path.join(app.config['UPLOADED_FOLDER'], photo_filename))
+   return render_template('update_candidates2.html' , form = form)
 
-          
-          if form.candidate_resume.data:
-               candidate_resume = form.candidate_resume.data
-               resume_filename = secure_filename(candidate_resume.filename)
-               candidate_resume.save(os.path.join(app.config['UPLOAD_FOLDER'], resume_filename))
-          else:
-               resume_filename = None
 
-          candidate = Candidate(candidate_name = form.candidate_name.data, candidate_age = form.candidate_age.data, candidate_id = form.candidate_id.data, candidate_faculty = form.candidate_faculty.data, candidate_level = form.candidate_level.data, candidate_quote = form.candidate_quote.data, candidate_position = form.candidate_position.data , candidate_resume = resume_filename)
-          db.session.add(candidate)
-          db.session.commit()
-          flash('Candidate information has been filled up successfully!', 'success')
-          return redirect(url_for('adminHomepage'))
 
-     return render_template('general_candidate_form.html', form=form)
+
+@app.route('/update_candidates/<int:candidate_id>/delete' , methods = ['POST' , 'GET'])
+
+def delete_candidates(candidate_id):
+     candidate = Candidate.query.get_or_404(candidate_id)
+
+     db.session.delete(candidate)
+     db.session.commit()
+     flash('Your post has been deleted!' , 'success')
+     return redirect(url_for('candidatesInfo'))
+
 
 
 @app.route('/candidate_biodata/<int:candidate_id>')
-@login_required
+
 def candidate_biodata(candidate_id):
    candidate = Candidate.query.get_or_404(candidate_id)
    return render_template('candidate_biodata.html' , candidate_name = candidate.candidate_name, candidate = candidate , candidate_resume = candidate.candidate_resume)

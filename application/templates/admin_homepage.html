@@ -115,7 +115,7 @@
         <h1 class="WelcomeAdmin">Hello {{ current_user.username }}!</h1>
 
         <div class="row row-cols-auto">
-            <div class="col p-2"><a href="{{url_for('adminHomepage')}}" style="color: yellow;"><button type = button style="border-radius: 10px;">Leaderboard (GENERAL)</button></a></div>
+            <div class="col p-2"><a href="{{url_for('leaderboard_general')}}" style="color: yellow;"><button type = button style="border-radius: 10px;">Leaderboard (GENERAL)</button></a></div>
             <div class="col p-2"><a href="{{url_for('leaderboard_FAC')}}"><button type = button style="border-radius: 10px;">Leaderboard (FAC)</button></a></div>
             <div class="col p-2"><a href="{{url_for('leaderboard_FCA')}}"><button type = button style="border-radius: 10px;">Leaderboard (FCA)</button></a></div>
             <div class="col p-2"><a href="{{url_for('leaderboard_FCI')}}"><button type = button style="border-radius: 10px;">Leaderboard (FCI)</button></a></div>
@@ -125,7 +125,7 @@
         </div><br>
 
         <div class="leaderboard-container">
-            <h1>President(FCI)</h1>
+            <h1>President(General)</h1>
             <table>
                 <thead>
                     <tr>
@@ -137,7 +137,7 @@
                 <tbody>
                     {% block content %}
                     {% for candidate in candidate1 %}
-                    {% if candidate.candidate_position.capitalize() == 'President' and candidate.candidate_faculty.upper() == 'FCI' %}
+                    {% if candidate.candidate_position.capitalize() == 'President' and candidate.candidate_faculty.capitalize() == 'General' %}
 
                     <tr>
                       
@@ -157,7 +157,7 @@
         </div><br>
 
         <div class="leaderboard-container">
-            <h1>Vice President(FCI)</h1>
+            <h1>Vice President(General)</h1>
             <table>
                 <thead>
                     <tr>
@@ -169,7 +169,7 @@
                 <tbody>
                 
                     {% for candidate in candidate1 %}
-                    {% if candidate.candidate_position == 'Vice President' and candidate.candidate_faculty.upper() == 'FCI' %}
+                    {% if candidate.candidate_position == 'Vice President' and candidate.candidate_faculty.capitalize() == 'General' %}
 
                     <tr>
                       
@@ -186,7 +186,7 @@
                     </div><br>
 
                     <div class="leaderboard-container">
-                        <h1>Secretary(FCI)</h1>
+                        <h1>Secretary(General)</h1>
                         <table>
                             <thead>
                                 <tr>
@@ -198,7 +198,7 @@
                             <tbody>
                             
                                 {% for candidate in candidate1 %}
-                                {% if candidate.candidate_position.capitalize() == 'Secretary' and candidate.candidate_faculty.upper() == 'FCI' %}
+                                {% if candidate.candidate_position.capitalize() == 'Secretary' and candidate.candidate_faculty.capitalize() == 'General' %}
             
                                 <tr>
                                   

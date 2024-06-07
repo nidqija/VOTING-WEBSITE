@@ -419,11 +419,14 @@ def candidatesform():
      form = CandidateForm()
 
      if form.validate_on_submit():
-          photo_filename = None
+     
           if form.candidate_photo.data:
                photo = form.candidate_photo.data
                photo_filename = secure_filename(photo.filename)
-               photo.save(os.path.join(app.config['UPLOADED_FOLDER'], photo_filename))
+               photo_name = str(uuid.uuid1()) + '_' + photo_filename
+               photo.save(os.path.join(app.config['UPLOADED_FOLDER'], photo_name))
+          else:
+               photo_name = None
 
           
           if form.candidate_resume.data:
@@ -434,7 +437,7 @@ def candidatesform():
           else:
                resume_name = None
 
-          candidate = Candidate(candidate_name = form.candidate_name.data, candidate_age = form.candidate_age.data, candidate_id = form.candidate_id.data, candidate_faculty = form.candidate_faculty.data, candidate_level = form.candidate_level.data, candidate_quote = form.candidate_quote.data, candidate_position = form.candidate_position.data , candidate_resume = resume_name)
+          candidate = Candidate(candidate_name = form.candidate_name.data, candidate_age = form.candidate_age.data, candidate_id = form.candidate_id.data, candidate_faculty = form.candidate_faculty.data, candidate_level = form.candidate_level.data, candidate_quote = form.candidate_quote.data, candidate_position = form.candidate_position.data , candidate_resume = resume_name , candidate_photo_filename = photo_name)
           db.session.add(candidate)
           db.session.commit()
           flash('Candidate information has been filled up successfully!', 'success')

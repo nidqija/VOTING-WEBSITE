@@ -125,7 +125,7 @@
         </div><br>
 
         <div class="leaderboard-container">
-            <h1>President(FCI)</h1>
+            <h1>President(General)</h1>
             <table>
                 <thead>
                     <tr>
@@ -137,7 +137,7 @@
                 <tbody>
                     {% block content %}
                     {% for candidate in candidate1 %}
-                    {% if candidate.candidate_position.capitalize() == 'President' and candidate.candidate_faculty.upper() == 'FCI' %}
+                    {% if candidate.candidate_position.capitalize() == 'President' and candidate.candidate_faculty.capitalize() == 'General' %}
 
                     <tr>
                       
@@ -157,7 +157,7 @@
         </div><br>
 
         <div class="leaderboard-container">
-            <h1>Vice President(FCI)</h1>
+            <h1>Vice President(General)</h1>
             <table>
                 <thead>
                     <tr>
@@ -169,7 +169,7 @@
                 <tbody>
                 
                     {% for candidate in candidate1 %}
-                    {% if candidate.candidate_position == 'Vice President' and candidate.candidate_faculty.upper() == 'FCI' %}
+                    {% if candidate.candidate_position == 'Vice President' and candidate.candidate_faculty.capitalize() == 'General' %}
 
                     <tr>
                       
@@ -186,7 +186,7 @@
                     </div><br>
 
                     <div class="leaderboard-container">
-                        <h1>Secretary(FCI)</h1>
+                        <h1>Secretary(General)</h1>
                         <table>
                             <thead>
                                 <tr>
@@ -198,7 +198,7 @@
                             <tbody>
                             
                                 {% for candidate in candidate1 %}
-                                {% if candidate.candidate_position.capitalize() == 'Secretary' and candidate.candidate_faculty.upper() == 'FCI' %}
+                                {% if candidate.candidate_position.capitalize() == 'Secretary' and candidate.candidate_faculty.capitalize() == 'General' %}
             
                                 <tr>
                                   

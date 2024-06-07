@@ -15,7 +15,7 @@ class User(db.Model , UserMixin ):
         email = db.Column(db.String(120) , unique = True , nullable = False)
         password = db.Column(db.String(120) , nullable = False)
         createdAt = db.Column(db.DateTime(timezone=True) , server_default=func.now())
-        image_file = db.Column((db.String(20)), nullable=False, default='candidate_image.jpg')
+        #image_file = db.Column((db.String(20)), nullable=False, default='candidate_image.jpg')
         faculty = db.Column(db.String(5) , nullable = False)
         user_profile_photo = db.Column(db.String() , default = 'user_image.jpg')
         post = db.relationship('Post' , backref = 'author' , lazy = True)
@@ -57,11 +57,11 @@ class Candidate(db.Model):
       # candidate_type = db.Column(db.String(100) , nullable=False)
       candidate_level = db.Column(db.String(100) , nullable=False)
       candidate_quote = db.Column(db.String(500) , nullable=False)
-      candidate_photo_filename = db.Column(db.String(100), default='candidate_image.jpg')
+      candidate_photo_filename = db.Column(db.String(), default='candidate_image.jpg')
       candidate_id = db.Column(db.Integer , db.ForeignKey('candidate.id') , nullable = False)
       candidate_position = db.Column(db.String(500) , nullable=False)
       vote = db.relationship('Vote1' , backref = 'candidate' , lazy = True)
-      image_file = db.Column((db.String(20)), nullable=False, default='candidate_image.jpg')
+      #image_file = db.Column((db.String(20)), nullable=False, default='candidate_image.jpg')
       candidate_resume = db.Column(db.String(), default = 'None')
 
       def _repr_(self):

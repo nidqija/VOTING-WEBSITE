@@ -90,7 +90,11 @@
         <div class="candidate_content" style="padding-left: 50px; padding-right: 50px;">
           <div class="card" style="background-color: rgba(255, 255, 255, 0.5);">
             <div class="card_image_box">
-              <img class="rounded-circle" src="{{ url_for('static', filename='profile_pics/candidate_image.jpg') }}" alt="candidate image" style="height: 200px; width: 200px; margin-top: 20px; margin-bottom: 10px; margin-left: 43%;">
+              {% if candidate.candidate_photo_filename == 'candidate_image.jpg' %}
+              <img class="rounded-circle" src="{{ url_for('static', filename='candidate_profile_pics/candidate_image.jpg') }}" alt="candidate image" style="height: 200px; width: 200px; margin-top: 20px; margin-bottom: 10px; margin-left: 43%;">
+              {% else %}
+              <img class="rounded-circle" src="{{ url_for('static', filename='candidate_profile_pics/' + candidate.candidate_photo_filename) }}" alt="candidate image" style="height: 200px; width: 200px; margin-top: 20px; margin-bottom: 10px; margin-left: 43%;">
+              {% endif %}
             </div>
             <div class="card_content">
               <div class="card_detail" style="text-align: center;">
@@ -118,7 +122,11 @@
         <div class="candidate_content" style="padding-left: 50px; padding-right: 50px;">
           <div class="card" style="background-color: rgba(255, 255, 255, 0.5);">
             <div class="card_image_box">
-              <img class="rounded-circle" src="{{ url_for('static', filename='profile_pics/candidate_image.jpg') }}" alt="candidate image" style="height: 200px; width: 200px; margin-left: 43%; margin-top: 20px; margin-bottom: 10px;">
+              {% if candidate.candidate_photo_filename == 'candidate_image.jpg' %}
+              <img class="rounded-circle" src="{{ url_for('static', filename='candidate_profile_pics/candidate_image.jpg') }}" alt="candidate image" style="height: 200px; width: 200px; margin-top: 20px; margin-bottom: 10px; margin-left: 43%;">
+              {% else %}
+              <img class="rounded-circle" src="{{ url_for('static', filename='candidate_profile_pics/' + candidate.candidate_photo_filename) }}" alt="candidate image" style="height: 200px; width: 200px; margin-top: 20px; margin-bottom: 10px; margin-left: 43%;">
+              {% endif %}
             </div>
             <div class="card_content">
               <div class="card_detail" style="text-align: center;">
@@ -146,7 +154,11 @@
         <div class="candidate_content" style="padding-left: 50px; padding-right: 50px;">
           <div class="card" style="background-color: rgba(255, 255, 255, 0.5);">
             <div class="card_image_box">
-              <img class="rounded-circle" src="{{ url_for('static', filename='profile_pics/candidate_image.jpg') }}" alt="candidate image" style="height: 200px; width: 200px; margin-left: 43%; margin-top: 20px; margin-bottom: 10px;">
+              {% if candidate.candidate_photo_filename == 'candidate_image.jpg' %}
+              <img class="rounded-circle" src="{{ url_for('static', filename='candidate_profile_pics/candidate_image.jpg') }}" alt="candidate image" style="height: 200px; width: 200px; margin-top: 20px; margin-bottom: 10px; margin-left: 43%;">
+              {% else %}
+              <img class="rounded-circle" src="{{ url_for('static', filename='candidate_profile_pics/' + candidate.candidate_photo_filename) }}" alt="candidate image" style="height: 200px; width: 200px; margin-top: 20px; margin-bottom: 10px; margin-left: 43%;">
+              {% endif %}
             </div>
             <div class="card_content">
               <div class="card_detail" style="text-align: center;">
@@ -179,7 +191,11 @@
         <div class="candidate_content" style="padding-left: 50px; padding-right: 50px;">
           <div class="card" style="background-color: rgba(255, 255, 255, 0.5);">
             <div class="card_image_box">
-              <img class="rounded-circle" src="{{ url_for('static', filename='profile_pics/candidate_image.jpg') }}" alt="candidate image" style="height: 200px; width: 200px; margin-top: 20px; margin-bottom: 10px; margin-left: 43%;">
+              {% if candidate.candidate_photo_filename == 'candidate_image.jpg' %}
+              <img class="rounded-circle" src="{{ url_for('static', filename='candidate_profile_pics/candidate_image.jpg') }}" alt="candidate image" style="height: 200px; width: 200px; margin-top: 20px; margin-bottom: 10px; margin-left: 43%;">
+              {% else %}
+              <img class="rounded-circle" src="{{ url_for('static', filename='candidate_profile_pics/' + candidate.candidate_photo_filename) }}" alt="candidate image" style="height: 200px; width: 200px; margin-top: 20px; margin-bottom: 10px; margin-left: 43%;">
+              {% endif %}
             </div>
             <div class="card_content">
               <div class="card_detail" style="text-align: center;">
@@ -207,7 +223,11 @@
         <div class="candidate_content" style="padding-left: 50px; padding-right: 50px;">
           <div class="card" style="background-color: rgba(255, 255, 255, 0.5);">
             <div class="card_image_box">
-              <img class="rounded-circle" src="{{ url_for('static', filename='profile_pics/candidate_image.jpg') }}" alt="candidate image" style="height: 200px; width: 200px; margin-left: 43%; margin-top: 20px; margin-bottom: 10px;">
+              {% if candidate.candidate_photo_filename == 'candidate_image.jpg' %}
+              <img class="rounded-circle" src="{{ url_for('static', filename='candidate_profile_pics/candidate_image.jpg') }}" alt="candidate image" style="height: 200px; width: 200px; margin-top: 20px; margin-bottom: 10px; margin-left: 43%;">
+              {% else %}
+              <img class="rounded-circle" src="{{ url_for('static', filename='candidate_profile_pics/' + candidate.candidate_photo_filename) }}" alt="candidate image" style="height: 200px; width: 200px; margin-top: 20px; margin-bottom: 10px; margin-left: 43%;">
+              {% endif %}
             </div>
             <div class="card_content">
               <div class="card_detail" style="text-align: center;">
@@ -235,7 +255,11 @@
         <div class="candidate_content" style="padding-left: 50px; padding-right: 50px;">
           <div class="card" style="background-color: rgba(255, 255, 255, 0.5);">
             <div class="card_image_box">
-              <img class="rounded-circle" src="{{ url_for('static', filename='profile_pics/candidate_image.jpg') }}" alt="candidate image" style="height: 200px; width: 200px; margin-left: 43%; margin-top: 20px; margin-bottom: 10px;">
+              {% if candidate.candidate_photo_filename == 'candidate_image.jpg' %}
+              <img class="rounded-circle" src="{{ url_for('static', filename='candidate_profile_pics/candidate_image.jpg') }}" alt="candidate image" style="height: 200px; width: 200px; margin-top: 20px; margin-bottom: 10px; margin-left: 43%;">
+              {% else %}
+              <img class="rounded-circle" src="{{ url_for('static', filename='candidate_profile_pics/' + candidate.candidate_photo_filename) }}" alt="candidate image" style="height: 200px; width: 200px; margin-top: 20px; margin-bottom: 10px; margin-left: 43%;">
+              {% endif %}
             </div>
             <div class="card_content">
               <div class="card_detail" style="text-align: center;">
@@ -268,7 +292,11 @@
         <div class="candidate_content" style="padding-left: 50px; padding-right: 50px;">
           <div class="card" style="background-color: rgba(255, 255, 255, 0.5);">
             <div class="card_image_box">
-              <img class="rounded-circle" src="{{ url_for('static', filename='profile_pics/candidate_image.jpg') }}" alt="candidate image" style="height: 200px; width: 200px; margin-top: 20px; margin-bottom: 10px; margin-left: 43%;">
+              {% if candidate.candidate_photo_filename == 'candidate_image.jpg' %}
+              <img class="rounded-circle" src="{{ url_for('static', filename='candidate_profile_pics/candidate_image.jpg') }}" alt="candidate image" style="height: 200px; width: 200px; margin-top: 20px; margin-bottom: 10px; margin-left: 43%;">
+              {% else %}
+              <img class="rounded-circle" src="{{ url_for('static', filename='candidate_profile_pics/' + candidate.candidate_photo_filename) }}" alt="candidate image" style="height: 200px; width: 200px; margin-top: 20px; margin-bottom: 10px; margin-left: 43%;">
+              {% endif %}
             </div>
             <div class="card_content">
               <div class="card_detail" style="text-align: center;">
@@ -296,7 +324,11 @@
         <div class="candidate_content" style="padding-left: 50px; padding-right: 50px;">
           <div class="card" style="background-color: rgba(255, 255, 255, 0.5);">
             <div class="card_image_box">
-              <img class="rounded-circle" src="{{ url_for('static', filename='profile_pics/candidate_image.jpg') }}" alt="candidate image" style="height: 200px; width: 200px; margin-left: 43%; margin-top: 20px; margin-bottom: 10px;">
+              {% if candidate.candidate_photo_filename == 'candidate_image.jpg' %}
+              <img class="rounded-circle" src="{{ url_for('static', filename='candidate_profile_pics/candidate_image.jpg') }}" alt="candidate image" style="height: 200px; width: 200px; margin-top: 20px; margin-bottom: 10px; margin-left: 43%;">
+              {% else %}
+              <img class="rounded-circle" src="{{ url_for('static', filename='candidate_profile_pics/' + candidate.candidate_photo_filename) }}" alt="candidate image" style="height: 200px; width: 200px; margin-top: 20px; margin-bottom: 10px; margin-left: 43%;">
+              {% endif %}
             </div>
             <div class="card_content">
               <div class="card_detail" style="text-align: center;">
@@ -324,7 +356,11 @@
         <div class="candidate_content" style="padding-left: 50px; padding-right: 50px;">
           <div class="card" style="background-color: rgba(255, 255, 255, 0.5);">
             <div class="card_image_box">
-              <img class="rounded-circle" src="{{ url_for('static', filename='profile_pics/candidate_image.jpg') }}" alt="candidate image" style="height: 200px; width: 200px; margin-left: 43%; margin-top: 20px; margin-bottom: 10px;">
+              {% if candidate.candidate_photo_filename == 'candidate_image.jpg' %}
+              <img class="rounded-circle" src="{{ url_for('static', filename='candidate_profile_pics/candidate_image.jpg') }}" alt="candidate image" style="height: 200px; width: 200px; margin-top: 20px; margin-bottom: 10px; margin-left: 43%;">
+              {% else %}
+              <img class="rounded-circle" src="{{ url_for('static', filename='candidate_profile_pics/' + candidate.candidate_photo_filename) }}" alt="candidate image" style="height: 200px; width: 200px; margin-top: 20px; margin-bottom: 10px; margin-left: 43%;">
+              {% endif %}
             </div>
             <div class="card_content">
               <div class="card_detail" style="text-align: center;">
@@ -357,7 +393,11 @@
         <div class="candidate_content" style="padding-left: 50px; padding-right: 50px;">
           <div class="card" style="background-color: rgba(255, 255, 255, 0.5);">
             <div class="card_image_box">
-              <img class="rounded-circle" src="{{ url_for('static', filename='profile_pics/candidate_image.jpg') }}" alt="candidate image" style="height: 200px; width: 200px; margin-top: 20px; margin-bottom: 10px; margin-left: 43%;">
+              {% if candidate.candidate_photo_filename == 'candidate_image.jpg' %}
+              <img class="rounded-circle" src="{{ url_for('static', filename='candidate_profile_pics/candidate_image.jpg') }}" alt="candidate image" style="height: 200px; width: 200px; margin-top: 20px; margin-bottom: 10px; margin-left: 43%;">
+              {% else %}
+              <img class="rounded-circle" src="{{ url_for('static', filename='candidate_profile_pics/' + candidate.candidate_photo_filename) }}" alt="candidate image" style="height: 200px; width: 200px; margin-top: 20px; margin-bottom: 10px; margin-left: 43%;">
+              {% endif %}
             </div>
             <div class="card_content">
               <div class="card_detail" style="text-align: center;">
@@ -385,7 +425,11 @@
         <div class="candidate_content" style="padding-left: 50px; padding-right: 50px;">
           <div class="card" style="background-color: rgba(255, 255, 255, 0.5);">
             <div class="card_image_box">
-              <img class="rounded-circle" src="{{ url_for('static', filename='profile_pics/candidate_image.jpg') }}" alt="candidate image" style="height: 200px; width: 200px; margin-left: 43%; margin-top: 20px; margin-bottom: 10px;">
+              {% if candidate.candidate_photo_filename == 'candidate_image.jpg' %}
+              <img class="rounded-circle" src="{{ url_for('static', filename='candidate_profile_pics/candidate_image.jpg') }}" alt="candidate image" style="height: 200px; width: 200px; margin-top: 20px; margin-bottom: 10px; margin-left: 43%;">
+              {% else %}
+              <img class="rounded-circle" src="{{ url_for('static', filename='candidate_profile_pics/' + candidate.candidate_photo_filename) }}" alt="candidate image" style="height: 200px; width: 200px; margin-top: 20px; margin-bottom: 10px; margin-left: 43%;">
+              {% endif %}
             </div>
             <div class="card_content">
               <div class="card_detail" style="text-align: center;">
@@ -413,7 +457,11 @@
         <div class="candidate_content" style="padding-left: 50px; padding-right: 50px;">
           <div class="card" style="background-color: rgba(255, 255, 255, 0.5);">
             <div class="card_image_box">
-              <img class="rounded-circle" src="{{ url_for('static', filename='profile_pics/candidate_image.jpg') }}" alt="candidate image" style="height: 200px; width: 200px; margin-left: 43%; margin-top: 20px; margin-bottom: 10px;">
+              {% if candidate.candidate_photo_filename == 'candidate_image.jpg' %}
+              <img class="rounded-circle" src="{{ url_for('static', filename='candidate_profile_pics/candidate_image.jpg') }}" alt="candidate image" style="height: 200px; width: 200px; margin-top: 20px; margin-bottom: 10px; margin-left: 43%;">
+              {% else %}
+              <img class="rounded-circle" src="{{ url_for('static', filename='candidate_profile_pics/' + candidate.candidate_photo_filename) }}" alt="candidate image" style="height: 200px; width: 200px; margin-top: 20px; margin-bottom: 10px; margin-left: 43%;">
+              {% endif %}
             </div>
             <div class="card_content">
               <div class="card_detail" style="text-align: center;">
@@ -446,7 +494,11 @@
         <div class="candidate_content" style="padding-left: 50px; padding-right: 50px;">
           <div class="card" style="background-color: rgba(255, 255, 255, 0.5);">
             <div class="card_image_box">
-              <img class="rounded-circle" src="{{ url_for('static', filename='profile_pics/candidate_image.jpg') }}" alt="candidate image" style="height: 200px; width: 200px; margin-top: 20px; margin-bottom: 10px; margin-left: 43%;">
+              {% if candidate.candidate_photo_filename == 'candidate_image.jpg' %}
+              <img class="rounded-circle" src="{{ url_for('static', filename='candidate_profile_pics/candidate_image.jpg') }}" alt="candidate image" style="height: 200px; width: 200px; margin-top: 20px; margin-bottom: 10px; margin-left: 43%;">
+              {% else %}
+              <img class="rounded-circle" src="{{ url_for('static', filename='candidate_profile_pics/' + candidate.candidate_photo_filename) }}" alt="candidate image" style="height: 200px; width: 200px; margin-top: 20px; margin-bottom: 10px; margin-left: 43%;">
+              {% endif %}
             </div>
             <div class="card_content">
               <div class="card_detail" style="text-align: center;">
@@ -474,7 +526,11 @@
         <div class="candidate_content" style="padding-left: 50px; padding-right: 50px;">
           <div class="card" style="background-color: rgba(255, 255, 255, 0.5);">
             <div class="card_image_box">
-              <img class="rounded-circle" src="{{ url_for('static', filename='profile_pics/candidate_image.jpg') }}" alt="candidate image" style="height: 200px; width: 200px; margin-left: 43%; margin-top: 20px; margin-bottom: 10px;">
+              {% if candidate.candidate_photo_filename == 'candidate_image.jpg' %}
+              <img class="rounded-circle" src="{{ url_for('static', filename='candidate_profile_pics/candidate_image.jpg') }}" alt="candidate image" style="height: 200px; width: 200px; margin-top: 20px; margin-bottom: 10px; margin-left: 43%;">
+              {% else %}
+              <img class="rounded-circle" src="{{ url_for('static', filename='candidate_profile_pics/' + candidate.candidate_photo_filename) }}" alt="candidate image" style="height: 200px; width: 200px; margin-top: 20px; margin-bottom: 10px; margin-left: 43%;">
+              {% endif %}
             </div>
             <div class="card_content">
               <div class="card_detail" style="text-align: center;">
@@ -502,7 +558,11 @@
         <div class="candidate_content" style="padding-left: 50px; padding-right: 50px;">
           <div class="card" style="background-color: rgba(255, 255, 255, 0.5);">
             <div class="card_image_box">
-              <img class="rounded-circle" src="{{ url_for('static', filename='profile_pics/candidate_image.jpg') }}" alt="candidate image" style="height: 200px; width: 200px; margin-left: 43%; margin-top: 20px; margin-bottom: 10px;">
+              {% if candidate.candidate_photo_filename == 'candidate_image.jpg' %}
+              <img class="rounded-circle" src="{{ url_for('static', filename='candidate_profile_pics/candidate_image.jpg') }}" alt="candidate image" style="height: 200px; width: 200px; margin-top: 20px; margin-bottom: 10px; margin-left: 43%;">
+              {% else %}
+              <img class="rounded-circle" src="{{ url_for('static', filename='candidate_profile_pics/' + candidate.candidate_photo_filename) }}" alt="candidate image" style="height: 200px; width: 200px; margin-top: 20px; margin-bottom: 10px; margin-left: 43%;">
+              {% endif %}
             </div>
             <div class="card_content">
               <div class="card_detail" style="text-align: center;">
@@ -535,7 +595,11 @@
         <div class="candidate_content" style="padding-left: 50px; padding-right: 50px;">
           <div class="card" style="background-color: rgba(255, 255, 255, 0.5);">
             <div class="card_image_box">
-              <img class="rounded-circle" src="{{ url_for('static', filename='profile_pics/candidate_image.jpg') }}" alt="candidate image" style="height: 200px; width: 200px; margin-left: 43%; margin-top: 20px;margin-bottom: 10px;">
+              {% if candidate.candidate_photo_filename == 'candidate_image.jpg' %}
+              <img class="rounded-circle" src="{{ url_for('static', filename='candidate_profile_pics/candidate_image.jpg') }}" alt="candidate image" style="height: 200px; width: 200px; margin-top: 20px; margin-bottom: 10px; margin-left: 43%;">
+              {% else %}
+              <img class="rounded-circle" src="{{ url_for('static', filename='candidate_profile_pics/' + candidate.candidate_photo_filename) }}" alt="candidate image" style="height: 200px; width: 200px; margin-top: 20px; margin-bottom: 10px; margin-left: 43%;">
+              {% endif %}
             </div>
             <div class="card_content">
               <div class="card_detail" style="text-align: center;">
@@ -563,7 +627,11 @@
         <div class="candidate_content" style="padding-left: 50px; padding-right: 50px;">
           <div class="card" style="background-color: rgba(255, 255, 255, 0.5);">
             <div class="card_image_box">
-              <img class="rounded-circle" src="{{ url_for('static', filename='profile_pics/candidate_image.jpg') }}" alt="candidate image" style="height: 200px; width: 200px; margin-left: 43%; margin-top: 20px; margin-bottom: 10px;">
+              {% if candidate.candidate_photo_filename == 'candidate_image.jpg' %}
+              <img class="rounded-circle" src="{{ url_for('static', filename='candidate_profile_pics/candidate_image.jpg') }}" alt="candidate image" style="height: 200px; width: 200px; margin-top: 20px; margin-bottom: 10px; margin-left: 43%;">
+              {% else %}
+              <img class="rounded-circle" src="{{ url_for('static', filename='candidate_profile_pics/' + candidate.candidate_photo_filename) }}" alt="candidate image" style="height: 200px; width: 200px; margin-top: 20px; margin-bottom: 10px; margin-left: 43%;">
+              {% endif %}
             </div>
             <div class="card_content">
               <div class="card_detail" style="text-align: center;">
@@ -591,7 +659,11 @@
         <div class="candidate_content" style="padding-left: 50px; padding-right: 50px;">
           <div class="card" style="background-color: rgba(255, 255, 255, 0.5);">
             <div class="card_image_box">
-              <img class="rounded-circle" src="{{ url_for('static', filename='profile_pics/candidate_image.jpg') }}" alt="candidate image" style="height: 200px; width: 200px; margin-left: 43%; margin-top: 20px; margin-bottom: 10px;">
+              {% if candidate.candidate_photo_filename == 'candidate_image.jpg' %}
+              <img class="rounded-circle" src="{{ url_for('static', filename='candidate_profile_pics/candidate_image.jpg') }}" alt="candidate image" style="height: 200px; width: 200px; margin-top: 20px; margin-bottom: 10px; margin-left: 43%;">
+              {% else %}
+              <img class="rounded-circle" src="{{ url_for('static', filename='candidate_profile_pics/' + candidate.candidate_photo_filename) }}" alt="candidate image" style="height: 200px; width: 200px; margin-top: 20px; margin-bottom: 10px; margin-left: 43%;">
+              {% endif %}
             </div>
             <div class="card_content">
               <div class="card_detail" style="text-align: center;">
@@ -624,7 +696,11 @@
         <div class="candidate_content" style="padding-left: 50px; padding-right: 50px;">
           <div class="card" style="background-color: rgba(255, 255, 255, 0.5);">
             <div class="card_image_box">
-              <img class="rounded-circle" src="{{ url_for('static', filename='profile_pics/candidate_image.jpg') }}" alt="candidate image" style="height: 200px; width: 200px; margin-left: 43%; margin-top: 20px;margin-bottom: 10px;">
+              {% if candidate.candidate_photo_filename == 'candidate_image.jpg' %}
+              <img class="rounded-circle" src="{{ url_for('static', filename='candidate_profile_pics/candidate_image.jpg') }}" alt="candidate image" style="height: 200px; width: 200px; margin-top: 20px; margin-bottom: 10px; margin-left: 43%;">
+              {% else %}
+              <img class="rounded-circle" src="{{ url_for('static', filename='candidate_profile_pics/' + candidate.candidate_photo_filename) }}" alt="candidate image" style="height: 200px; width: 200px; margin-top: 20px; margin-bottom: 10px; margin-left: 43%;">
+              {% endif %}
             </div>
             <div class="card_content">
               <div class="card_detail" style="text-align: center;">
@@ -652,7 +728,11 @@
         <div class="candidate_content" style="padding-left: 50px; padding-right: 50px;">
           <div class="card" style="background-color: rgba(255, 255, 255, 0.5);">
             <div class="card_image_box">
-              <img class="rounded-circle" src="{{ url_for('static', filename='profile_pics/candidate_image.jpg') }}" alt="candidate image" style="height: 200px; width: 200px; margin-left: 43%; margin-top: 20px; margin-bottom: 10px;">
+              {% if candidate.candidate_photo_filename == 'candidate_image.jpg' %}
+              <img class="rounded-circle" src="{{ url_for('static', filename='candidate_profile_pics/candidate_image.jpg') }}" alt="candidate image" style="height: 200px; width: 200px; margin-top: 20px; margin-bottom: 10px; margin-left: 43%;">
+              {% else %}
+              <img class="rounded-circle" src="{{ url_for('static', filename='candidate_profile_pics/' + candidate.candidate_photo_filename) }}" alt="candidate image" style="height: 200px; width: 200px; margin-top: 20px; margin-bottom: 10px; margin-left: 43%;">
+              {% endif %}
             </div>
             <div class="card_content">
               <div class="card_detail" style="text-align: center;">
@@ -680,7 +760,11 @@
         <div class="candidate_content" style="padding-left: 50px; padding-right: 50px;">
           <div class="card" style="background-color: rgba(255, 255, 255, 0.5);">
             <div class="card_image_box">
-              <img class="rounded-circle" src="{{ url_for('static', filename='profile_pics/candidate_image.jpg') }}" alt="candidate image" style="height: 200px; width: 200px; margin-left: 43%; margin-top: 20px; margin-bottom: 10px;">
+              {% if candidate.candidate_photo_filename == 'candidate_image.jpg' %}
+              <img class="rounded-circle" src="{{ url_for('static', filename='candidate_profile_pics/candidate_image.jpg') }}" alt="candidate image" style="height: 200px; width: 200px; margin-top: 20px; margin-bottom: 10px; margin-left: 43%;">
+              {% else %}
+              <img class="rounded-circle" src="{{ url_for('static', filename='candidate_profile_pics/' + candidate.candidate_photo_filename) }}" alt="candidate image" style="height: 200px; width: 200px; margin-top: 20px; margin-bottom: 10px; margin-left: 43%;">
+              {% endif %}
             </div>
             <div class="card_content">
               <div class="card_detail" style="text-align: center;">

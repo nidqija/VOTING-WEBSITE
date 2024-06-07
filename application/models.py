@@ -17,6 +17,7 @@ class User(db.Model , UserMixin ):
         createdAt = db.Column(db.DateTime(timezone=True) , server_default=func.now())
         image_file = db.Column((db.String(20)), nullable=False, default='candidate_image.jpg')
         faculty = db.Column(db.String(5) , nullable = False)
+        user_profile_photo = db.Column(db.String() , default = 'user_image.jpg')
         post = db.relationship('Post' , backref = 'author' , lazy = True)
         vote1 = db.relationship('Vote1' , backref = 'user' , lazy = True)
         #vote2 = db.relationship('Vote2' , backref = 'user' , lazy = True)

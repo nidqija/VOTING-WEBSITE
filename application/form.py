@@ -18,6 +18,7 @@ class RegistrationForm(FlaskForm):
     faculty = StringField('faculty (example:FCI)' , validators=[DataRequired() , Length(min=3 , max= 5)])
     password = PasswordField('password' , validators=[DataRequired()])
     confirmpassword = PasswordField('Confirm Password' , validators=[DataRequired() , EqualTo('password')])
+    user_profile_photo =FileField('Profile Photo' , validators=[FileAllowed(['jpg', 'png', 'jpeg'], 'Only images are allowed!')])
     submit = SubmitField('register')
 
     def validate_username(self,username):

@@ -88,33 +88,38 @@
 
 
     <div class="profile_content">
-        <div class="container">
-          <a style="text-decoration: none;" href="{{url_for('home')}}"><h5 class="text-white p-4" style="font-size: 30px ; ">Back</h5></a>
-         <h1 class="text-white p-5">Profile Page</h1>
-        <div class="profile-card">
-            <div class="container">
-           <img class="p-5" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR6H-wpoicibd_-GAWDXZUQGzX2kF3YeCwbJwikwdaq2Q&s" alt="">
-           </div>
-           <div class="container">
-           <div class="profile-name float-end p-5" style="position: relative ; bottom: 250px; right: 270px;">
-            <h5>Username : <a href="" style="text-decoration: none;">{{ current_user.username }}</a></h5>
-           </div>
+      <div class="container">
+          <a style="text-decoration: none;" href="{{url_for('home')}}">
+              <h5 class="text-white p-4" style="font-size: 30px;">Back</h5>
+          </a>
+          <h1 class="text-white p-5">Profile Page</h1>
+          <div class="container" style="background-color: white; border-radius: 10px; height: 300px;">     
+            <div class="row">
+              <div class="col-sm-6">
+                {% if current_user.user_profile_photo == 'user_image.jpg' %}
+                <img class="user_profile_pics" src="{{ url_for('static', filename='user_profile_photo/' + current_user.user_profile_photo) }}" alt="user profile photo">
+                {% else %}
+                <img class="user_profile_pics" src="{{ url_for('static', filename='user_profile_photo/' + current_user.user_profile_photo) }}" alt="user profile photo">
+                {% endif %}
+              </div>
+              <div class="col-sm-6" style="margin-top: 90px;">
+                  <div class="col-sm-4">
+                    <h5>Username : <a href="" style="text-decoration: none;">{{ current_user.username }}</a></h5>
+                  </div>
+                  <div class="col-sm-4">
+                    <h5>Email : <a href="" style="text-decoration: none;">{{ current_user.email }}</a></h5>
+                  </div>
+                  <div class="col-sm-4">
+                    <h5>Role : <a href="" style="text-decoration: none; color: green;">Student</a></h5>
+                  </div>
+              </div>
+            </div>
+          </div>
+      </div>
+    </div>
 
-           <div class="profile-email float-end" style="position: relative ; bottom: 155px;">
-            <h5>Email : <a href="" style="text-decoration: none;">{{ current_user.email }}</a></h5>
-           </div>
-
-           <div class="profile-email float-end" style="position: relative ; bottom: 110px; left: 130px;">
-            <h5>Role : <a href="" style="text-decoration: none; color: green;">Student</a></h5>
-           </div>
-          
-          
-          
-
-
-        </div>
-
-        </div>
+ 
+  
 
 
 

@@ -5,6 +5,7 @@ from application import app , db , bcrypt
 import os
 from flask_login import login_user , current_user , logout_user, login_required
 from werkzeug.utils import secure_filename
+import uuid as uuid
 
 
 
@@ -41,13 +42,26 @@ def register():
     form = RegistrationForm()
 
     if form.validate_on_submit():
+        
+        
+        if form.user_profile_photo.data:
+               user_profile_photo = form.user_profile_photo.data
+               user_profile_filename = secure_filename(user_profile_photo.filename)
+               user_profile_name = str(uuid.uuid1()) + '_' + user_profile_filename
+               user_profile_photo.save(os.path.join(app.config['UPLOAD_USER_PROFILE'], user_profile_name))
+        else:
+               user_profile_name = None
+        
+        
         hashed_password = bcrypt.generate_password_hash(form.password.data).decode('utf-8')
-        user = User(username=form.username.data , email = form.email.data , faculty = form.faculty.data , password = hashed_password)
+        user = User(username=form.username.data , email = form.email.data , faculty = form.faculty.data , password = hashed_password , user_profile_photo = user_profile_name)
         db.session.add(user)
         db.session.commit()
         flash(f'Account created for {form.username.data} !' , 'success!')
         return redirect(url_for('login'))
+    
     return render_template('register.html' , form = form)
+
 
 
 @app.route('/logout')
@@ -415,11 +429,12 @@ def candidatesform():
           if form.candidate_resume.data:
                candidate_resume = form.candidate_resume.data
                resume_filename = secure_filename(candidate_resume.filename)
-               candidate_resume.save(os.path.join(app.config['UPLOAD_FOLDER'], resume_filename))
+               resume_name = str(uuid.uuid1()) + '_' + resume_filename
+               candidate_resume.save(os.path.join(app.config['UPLOAD_FOLDER'], resume_name))
           else:
-               resume_filename = None
+               resume_name = None
 
-          candidate = Candidate(candidate_name = form.candidate_name.data, candidate_age = form.candidate_age.data, candidate_id = form.candidate_id.data, candidate_faculty = form.candidate_faculty.data, candidate_level = form.candidate_level.data, candidate_quote = form.candidate_quote.data, candidate_position = form.candidate_position.data , candidate_resume = resume_filename)
+          candidate = Candidate(candidate_name = form.candidate_name.data, candidate_age = form.candidate_age.data, candidate_id = form.candidate_id.data, candidate_faculty = form.candidate_faculty.data, candidate_level = form.candidate_level.data, candidate_quote = form.candidate_quote.data, candidate_position = form.candidate_position.data , candidate_resume = resume_name)
           db.session.add(candidate)
           db.session.commit()
           flash('Candidate information has been filled up successfully!', 'success')
@@ -440,15 +455,15 @@ def generalcandidatesform():
                photo_filename = secure_filename(photo.filename)
                photo.save(os.path.join(app.config['UPLOADED_FOLDER'], photo_filename))
 
-          
           if form.candidate_resume.data:
                candidate_resume = form.candidate_resume.data
                resume_filename = secure_filename(candidate_resume.filename)
-               candidate_resume.save(os.path.join(app.config['UPLOAD_FOLDER'], resume_filename))
+               resume_name = str(uuid.uuid1()) + '_' + resume_filename
+               candidate_resume.save(os.path.join(app.config['UPLOAD_FOLDER'], resume_name))
           else:
-               resume_filename = None
+               resume_name = None
 
-          candidate = Candidate(candidate_name = form.candidate_name.data, candidate_age = form.candidate_age.data, candidate_id = form.candidate_id.data, candidate_faculty = form.candidate_faculty.data, candidate_level = form.candidate_level.data, candidate_quote = form.candidate_quote.data, candidate_position = form.candidate_position.data , candidate_resume = resume_filename)
+          candidate = Candidate(candidate_name = form.candidate_name.data, candidate_age = form.candidate_age.data, candidate_id = form.candidate_id.data, candidate_faculty = form.candidate_faculty.data, candidate_level = form.candidate_level.data, candidate_quote = form.candidate_quote.data, candidate_position = form.candidate_position.data , candidate_resume = resume_name)
           db.session.add(candidate)
           db.session.commit()
           flash('Candidate information has been filled up successfully!', 'success')
@@ -471,6 +486,12 @@ def edit_candidates(candidate_id):
         candidate.candidate_quote = form.candidate_quote.data
         candidate.candidate_position = form.candidate_position.data
         candidate.candidate_photo_filename = form.candidate_photo.data
+        if form.candidate_resume.data:
+            candidate_resume = form.candidate_resume.data
+            resume_filename = secure_filename(candidate_resume.filename)
+            resume_name = str(uuid.uuid1()) + '_' + resume_filename
+            candidate_resume.save(os.path.join(app.config['UPLOAD_FOLDER'], resume_name))
+            candidate.candidate_resume = resume_name
         db.session.commit()
         return redirect(url_for('candidatesInfo'))
    form.candidate_name.data = candidate.candidate_name

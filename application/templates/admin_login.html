@@ -19,17 +19,17 @@
                     <legend class="text-center">Login Now!</legend>
 
                     <div class="form-group">
-                        {{ form.username2.label(class="form-control-label") }}
+                        {{ form.username.label(class="form-control-label") }}
 
-                        {% if form.username2.errors %}       
-                            {{ form.username2(class="form-control form-control-lg is-invalid") }}
+                        {% if form.username.errors %}       
+                            {{ form.username(class="form-control form-control-lg is-invalid") }}
                             <div>
-                                {% for error in form.username2.errors %}
+                                {% for error in form.username.errors %}
                                     <span>{{ error }}</span>
                                 {% endfor %}
                             </div>
                         {% else %}
-                            {{ form.username2(class="form-control form-control-lg") }}
+                            {{ form.username(class="form-control form-control-lg") }}
                         {% endif %}
                     </div>
 
@@ -49,27 +49,27 @@
                     </div>
 
                     <div class="form-group">
-                        {{ form.password2.label(class="form-control-label") }}
+                        {{ form.password.label(class="form-control-label") }}
 
-                        {% if form.password2.errors %}
-                            {{ form.password2(class="form-control form-control-lg is-invalid") }}
+                        {% if form.password.errors %}
+                            {{ form.password(class="form-control form-control-lg is-invalid") }}
                             <div>
-                                {% for error in form.password2.errors %}
+                                {% for error in form.password.errors %}
                                     <span>{{ error }}</span>
                                 {% endfor %}
                             </div>
                         {% else %}
-                            {{ form.password2(class="form-control form-control-lg") }}
+                            {{ form.password(class="form-control form-control-lg") }}
                         {% endif %}
                     </div>
 
                     <div class="form-check">
-                        {{ form.remember2(class='form-check-input') }}
-                        {{ form.remember2.label(class='form-check-label') }}
+                        {{ form.remember(class='form-check-input') }}
+                        {{ form.remember.label(class='form-check-label') }}
                     </div>
 
                     <div class="form-group" id="LoginSubmitButton">
-                        {{ form.submit2(class = "btn btn-outline-info") }}
+                        {{ form.submit(class = "btn btn-outline-info") }}
                     </div>
 
                     <small class="text-muted ml-5">

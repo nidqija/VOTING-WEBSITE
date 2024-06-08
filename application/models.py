@@ -15,8 +15,9 @@ class User(db.Model , UserMixin ):
         email = db.Column(db.String(120) , unique = True , nullable = False)
         password = db.Column(db.String(120) , nullable = False)
         createdAt = db.Column(db.DateTime(timezone=True) , server_default=func.now())
-        image_file = db.Column((db.String(20)), nullable=False, default='candidate_image.jpg')
+        #image_file = db.Column((db.String(20)), nullable=False, default='candidate_image.jpg')
         faculty = db.Column(db.String(5) , nullable = False)
+        user_profile_photo = db.Column(db.String() , default = 'user_image.jpg')
         post = db.relationship('Post' , backref = 'author' , lazy = True)
         vote1 = db.relationship('Vote1' , backref = 'user' , lazy = True)
         #vote2 = db.relationship('Vote2' , backref = 'user' , lazy = True)
@@ -56,11 +57,13 @@ class Candidate(db.Model):
       # candidate_type = db.Column(db.String(100) , nullable=False)
       candidate_level = db.Column(db.String(100) , nullable=False)
       candidate_quote = db.Column(db.String(500) , nullable=False)
-      candidate_photo_filename = db.Column(db.String(100), default='candidate_image.jpg')
+      candidate_qualifications = db.Column(db.String(1000000) , nullable=False)
+      candidate_achievements = db.Column (db.String(1000000) , nullable = False)
+      candidate_photo_filename = db.Column(db.String(), default='candidate_image.jpg')
       candidate_id = db.Column(db.Integer , db.ForeignKey('candidate.id') , nullable = False)
       candidate_position = db.Column(db.String(500) , nullable=False)
       vote = db.relationship('Vote1' , backref = 'candidate' , lazy = True)
-      image_file = db.Column((db.String(20)), nullable=False, default='candidate_image.jpg')
+      #image_file = db.Column((db.String(20)), nullable=False, default='candidate_image.jpg')
       candidate_resume = db.Column(db.String(), default = 'None')
 
       def _repr_(self):
@@ -119,6 +122,8 @@ class Admin(db.Model , UserMixin ):
         mmu_id = db.Column(db.String(150) , unique = True , nullable = False)
         password2 = db.Column(db.String(120) , nullable = False)
         createdAt2 = db.Column(db.DateTime(timezone=True) , server_default=func.now())
+        convo = db.relationship('PrivateConvo' , backref = 'admin' , lazy = True)
+
 
         def _repr_(self):
            return f'Admin("{self.username2}" , {self.email2} , {self.mmu_id})'
@@ -128,3 +133,26 @@ class SelfDescription(db.Model):
       id = db.Column(db.Integer , primary_key = True)
       user_description = db.Column(db.Text , unique = True , nullable = True)
       user_id = db.Column(db.Integer , db.ForeignKey('user.id') , nullable = False)
+
+
+class PrivateConvo(db.Model):
+       id = db.Column(db.Integer , primary_key = True)
+       message = db.Column(db.String(500) , unique = True , nullable = False)
+       createdAt = db.Column(db.DateTime(timezone=True) , server_default=func.now())
+       admin_id2 = db.Column(db.Integer , db.ForeignKey('admin.id2') , nullable = False)
+
+
+       def _repr_(self):
+           return f'User("{self.message}")'
+       
+
+class PrivateConvo2(db.Model):
+       id = db.Column(db.Integer , primary_key = True)
+       message2= db.Column(db.String(500) , unique = True , nullable = False)
+       createdAt = db.Column(db.DateTime(timezone=True) , server_default=func.now())
+       user_id = db.Column(db.Integer , db.ForeignKey('user.id') , nullable = False)
+
+
+       def _repr_(self):
+           return f'User("{self.message2}")'
+       

@@ -145,10 +145,35 @@
                     <span style="color: red;">{{ error }}</span>
                 {% endfor %}
             </div>-->
+
             <div class="mb-6" style="margin-top: 25px;">
                 {{ form.candidate_resume.label(class="form-label") }}
                 {{ form.candidate_resume(class="form-control") }}
                 {% for error in form.candidate_resume.errors %}
+                    <span style="color: red;">{{ error }}</span>
+                {% endfor %}
+            </div>
+
+            <div class="mb-6" style="margin-top: 25px;">
+                {{ form.candidate_resume.label(class="form-label") }}
+                {{ form.candidate_resume(class="form-control") }}
+                {% for error in form.candidate_resume.errors %}
+                    <span style="color: red;">{{ error }}</span>
+                {% endfor %}
+            </div>
+
+            <div class="mb-6" style="margin-top: 25px;">
+                {{ form.candidate_achievements.label(class="form-label") }}
+                {{ form.candidate_achievements(class="form-control") }}
+                {% for error in form.candidate_achievements.errors %}
+                    <span style="color: red;">{{ error }}</span>
+                {% endfor %}
+            </div>
+
+            <div class="mb-6" style="margin-top: 25px;">
+                {{ form.candidate_qualifications.label(class="form-label") }}
+                {{ form.candidate_qualifications(class="form-control") }}
+                {% for error in form.candidate_qualifications.errors %}
                     <span style="color: red;">{{ error }}</span>
                 {% endfor %}
             </div>

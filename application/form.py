@@ -18,6 +18,7 @@ class RegistrationForm(FlaskForm):
     faculty = StringField('faculty (example:FCI)' , validators=[DataRequired() , Length(min=3 , max= 5)])
     password = PasswordField('password' , validators=[DataRequired()])
     confirmpassword = PasswordField('Confirm Password' , validators=[DataRequired() , EqualTo('password')])
+    user_profile_photo =FileField('Profile Photo' , validators=[FileAllowed(['jpg', 'png', 'jpeg'], 'Only images are allowed!')])
     submit = SubmitField('register')
 
     def validate_username(self,username):
@@ -112,8 +113,12 @@ class CandidateForm(FlaskForm):
     candidate_level = StringField('Candidate Academic Level', validators=[DataRequired()])
     candidate_quote = TextAreaField('Candidate Quote', validators=[DataRequired(), Length(max=500)])
     candidate_photo = FileField('Candidate Photo', validators=[FileAllowed(['jpg', 'png', 'jpeg'], 'Only images are allowed!')])
-    candidate_position = StringField('Position (President / Vice President /Secretary)' , validators=[DataRequired() , Length(min=5 , max= 20)])
+    candidate_position = StringField('Position (President / Vice President / Secretary)' , validators=[DataRequired() , Length(min=5 , max= 20)])
     candidate_resume =FileField('Candidate Resume' , validators=[FileAllowed(['jpg', 'png', 'jpeg'], 'Only images are allowed!')])
+    candidate_achievements = TextAreaField('Achievements')
+    candidate_qualifications = TextAreaField('Qualifications')
     submit = SubmitField('Submit')
 
-   
+class PrivateConvoForm(FlaskForm):
+    message = TextAreaField('Message' , validators=[DataRequired()])
+    submit = SubmitField('Post')

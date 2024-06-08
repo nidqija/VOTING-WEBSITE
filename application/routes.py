@@ -437,7 +437,7 @@ def candidatesform():
           else:
                resume_name = None
 
-          candidate = Candidate(candidate_name = form.candidate_name.data, candidate_age = form.candidate_age.data, candidate_id = form.candidate_id.data, candidate_faculty = form.candidate_faculty.data, candidate_level = form.candidate_level.data, candidate_quote = form.candidate_quote.data, candidate_position = form.candidate_position.data , candidate_resume = resume_name , candidate_photo_filename = photo_name)
+          candidate = Candidate(candidate_name = form.candidate_name.data, candidate_age = form.candidate_age.data, candidate_id = form.candidate_id.data, candidate_faculty = form.candidate_faculty.data, candidate_level = form.candidate_level.data, candidate_quote = form.candidate_quote.data, candidate_position = form.candidate_position.data , candidate_resume = resume_name , candidate_photo_filename = photo_name, candidate_manifesto = form.candidate_manifesto.data)
           db.session.add(candidate)
           db.session.commit()
           flash('Candidate information has been filled up successfully!', 'success')
@@ -528,4 +528,4 @@ def delete_candidates(candidate_id):
 
 def candidate_biodata(candidate_id):
    candidate = Candidate.query.get_or_404(candidate_id)
-   return render_template('candidate_biodata.html' , candidate_name = candidate.candidate_name, candidate = candidate , candidate_resume = candidate.candidate_resume)
+   return render_template('candidate_biodata.html' , candidate_name = candidate.candidate_name, candidate = candidate , candidate_resume = candidate.candidate_resume , candidate_manifesto = candidate.candidate_manifesto)

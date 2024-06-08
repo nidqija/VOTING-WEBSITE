@@ -17,6 +17,13 @@
     <h1 class="text-center text-white p-5">Candidate Bio</h1>
     
     <div class="container">
+        <div class="candidate_photo">
+            {% if candidate.candidate_photo_filename == 'candidate_image.jpg' %}
+            <img class="rounded-circle" src="{{ url_for('static', filename='candidate_profile_pics/candidate_image.jpg') }}" alt="candidate image" style="height: 200px; width: 200px; margin-top: 20px; margin-bottom: 10px; margin-left: 43%;">
+            {% else %}
+            <img class="rounded-circle" src="{{ url_for('static', filename='candidate_profile_pics/' + candidate.candidate_photo_filename) }}" alt="candidate image" style="height: 200px; width: 200px; margin-top: 20px; margin-bottom: 10px; margin-left: 43%;">
+            {% endif %}
+        </div>
     <div class="candidate_name">
         <p class="text-white display-6">Name: <a style="text-decoration: none; color: white;" href="{{url_for('candidate_biodata' , candidate_id = candidate.id )}}">{{ candidate.candidate_name }}</a></p>
       </div>
@@ -44,6 +51,9 @@
             <img class="candidate_resume_image" src="{{ url_for('static', filename='candidate_resume/' + candidate.candidate_resume) }}" alt="candidate resume">
         </a>
         {% endif %}
+      </div>
+      <div class="embed-responsive embed-responsive-16by9">
+        <iframe class="embed-responsive-item" src="{{ candidate.candidate_manifesto }}" allowfullscreen></iframe>
       </div>
      
     </div>

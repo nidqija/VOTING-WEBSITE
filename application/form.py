@@ -2,7 +2,7 @@ from flask_wtf import FlaskForm
 from flask_wtf.file import FileField, FileAllowed , FileRequired
 from flask_login import current_user
 from application import db , app
-from wtforms import StringField , PasswordField , SubmitField , BooleanField , TextAreaField
+from wtforms import StringField , PasswordField , SubmitField , BooleanField , TextAreaField , URLField
 from wtforms_sqlalchemy.fields import QuerySelectField
 from wtforms.validators import DataRequired , Length , Email , EqualTo , ValidationError
 from application.models import  User , Candidate
@@ -12,14 +12,14 @@ from application.models import  User , Candidate
 
 
 class RegistrationForm(FlaskForm):
-    username = StringField('username' , validators=[DataRequired() , Length(min=2 , max= 20)])
-    email = StringField('email' , validators=[DataRequired() , Email()])
+    username = StringField('Username' , validators=[DataRequired() , Length(min=2 , max= 20)])
+    email = StringField('Email' , validators=[DataRequired() , Email()])
     mmu_id = StringField('Admin ID')
-    faculty = StringField('faculty (example:FCI)' , validators=[DataRequired() , Length(min=3 , max= 5)])
-    password = PasswordField('password' , validators=[DataRequired()])
+    faculty = StringField('Faculty (FAC / FCA / FCI / FCM / FOE / FOM)' , validators=[DataRequired() , Length(min=3 , max= 5)])
+    password = PasswordField('Password' , validators=[DataRequired()])
     confirmpassword = PasswordField('Confirm Password' , validators=[DataRequired() , EqualTo('password')])
     user_profile_photo =FileField('Profile Photo' , validators=[FileAllowed(['jpg', 'png', 'jpeg'], 'Only images are allowed!')])
-    submit = SubmitField('register')
+    submit = SubmitField('Register')
 
     def validate_username(self,username):
         user = User.query.filter_by(username=username.data).first()
@@ -34,16 +34,16 @@ class RegistrationForm(FlaskForm):
 
 
 class Loginform(FlaskForm):
-    username = StringField('username' , validators=[DataRequired() , Length(min=2 , max= 20)])
+    username = StringField('Username' , validators=[DataRequired() , Length(min=2 , max= 20)])
     mmu_id = StringField('Admin ID')
-    password = PasswordField('password' , validators=[DataRequired()])
+    password = PasswordField('Password' , validators=[DataRequired()])
     remember = BooleanField('Remember me')
     submit = SubmitField('Login')
 
 
 class ProfileForm(FlaskForm):
-    username = StringField('username' , validators=[DataRequired() , Length(min=2 , max= 20)])
-    email = StringField('email' , validators=[DataRequired() , Email()])
+    username = StringField('Username' , validators=[DataRequired() , Length(min=2 , max= 20)])
+    email = StringField('Email' , validators=[DataRequired() , Email()])
     submit = SubmitField('Enter')
 
     def validate_username(self,username):
@@ -114,7 +114,8 @@ class CandidateForm(FlaskForm):
     candidate_quote = TextAreaField('Candidate Quote', validators=[DataRequired(), Length(max=500)])
     candidate_photo = FileField('Candidate Photo', validators=[FileAllowed(['jpg', 'png', 'jpeg'], 'Only images are allowed!')])
     candidate_position = StringField('Position (President / Vice President / Secretary)' , validators=[DataRequired() , Length(min=5 , max= 20)])
-    candidate_resume =FileField('Candidate Resume' , validators=[FileAllowed(['jpg', 'png', 'jpeg'], 'Only images are allowed!')])
+    candidate_resume = FileField('Candidate Resume' , validators=[FileAllowed(['jpg', 'png', 'jpeg'], 'Only images are allowed!')])
+    candidate_manifesto = URLField('Candidate Manifesto (Embed Video URL)', validators=[DataRequired()])
     submit = SubmitField('Submit')
 
    

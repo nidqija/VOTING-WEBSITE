@@ -391,7 +391,7 @@ def adminlogin():
             flash(f'Login Successful !')
             admin = User.query.filter_by(username = form.username.data).first()
             if admin and bcrypt.check_password_hash(admin.password , form.password.data):
-                 # login_user(admin , remember=form.remember2.data)(got problem)
+                 login_user(admin , remember=form.remember.data)
                  return redirect(url_for('adminHomepage'))
             else:
                  flash(f'Login Failed . Please check admin name and password' , 'danger')

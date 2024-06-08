@@ -1,6 +1,6 @@
 from flask import render_template , flash , redirect , url_for , abort , request
-from application.form import RegistrationForm , Loginform , QuestionForm, AnnouncementForm, AdminRegistrationForm, AdminLoginform , CandidateForm
-from application.models import User , Post , Candidate , Vote1 , Admin, Announcement
+from application.form import RegistrationForm , Loginform , QuestionForm, AnnouncementForm , CandidateForm
+from application.models import User , Post , Candidate , Vote1 , Announcement
 from application import app , db , bcrypt
 import os
 from flask_login import login_user , current_user , logout_user, login_required
@@ -368,14 +368,14 @@ def createVote():
 def adminregister():
     
          
-    form = AdminRegistrationForm()
+    form = RegistrationForm()
 
     if form.validate_on_submit():
-        hashed_password = bcrypt.generate_password_hash(form.password2.data).decode('utf-8')
-        admin = Admin(username2=form.username2.data , email2 = form.email2.data , mmu_id = form.mmu_id.data , password2 = hashed_password)
+        hashed_password = bcrypt.generate_password_hash(form.password.data).decode('utf-8')
+        admin = User(username=form.username.data , email = form.email.data , mmu_id = form.mmu_id.data , password = hashed_password , faculty = form.faculty.data)
         db.session.add(admin)
         db.session.commit()
-        flash(f'Account created for {form.username2.data} !' , 'success!')
+        flash(f'Account created for {form.username.data} !' , 'success!')
         return redirect(url_for('adminlogin'))
     return render_template('admin_register.html' , form = form)
     
@@ -386,11 +386,11 @@ def adminlogin():
     if current_user.is_authenticated:
          return redirect(url_for('adminHomepage'))
     
-    form = AdminLoginform()
+    form = Loginform()
     if form.validate_on_submit():
             flash(f'Login Successful !')
-            admin = Admin.query.filter_by(username2 = form.username2.data).first()
-            if admin and bcrypt.check_password_hash(admin.password2 , form.password2.data):
+            admin = User.query.filter_by(username = form.username.data).first()
+            if admin and bcrypt.check_password_hash(admin.password , form.password.data):
                  # login_user(admin , remember=form.remember2.data)(got problem)
                  return redirect(url_for('adminHomepage'))
             else:
@@ -409,8 +409,8 @@ def submitvote():
 
 def viewUsers():
      users = User.query.all()
-     admins = Admin.query.all()
-     return render_template('view_users.html' , users = users , admins = admins)
+     #admins = Admin.query.all()
+     return render_template('view_users.html' , users = users)
 
 
 @app.route('/candidate_form' , methods = ['POST' , 'GET']) 

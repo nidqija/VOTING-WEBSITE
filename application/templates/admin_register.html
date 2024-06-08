@@ -19,30 +19,30 @@
                     <legend class="text-center">Register Now!</legend>
                     
                     <div class="form-group">
-                        {{ form.username2.label(class="form-control-label") }}
-                        {% if form.username2.errors %}
-                            {{ form.username2(class="form-control form-control-lg is-invalid") }}
+                        {{ form.username.label(class="form-control-label") }}
+                        {% if form.username.errors %}
+                            {{ form.username(class="form-control form-control-lg is-invalid") }}
                             <div>
-                                {% for error in form.username2.errors %}
+                                {% for error in form.username.errors %}
                                     <span>{{ error }}</span>
                                 {% endfor %}
                             </div>
                         {% else %}
-                            {{ form.username2(class="form-control form-control-lg") }}
+                            {{ form.username(class="form-control form-control-lg") }}
                         {% endif %}
                     </div>
                     
                     <div class="form-group">
-                        {{ form.email2.label(class="form-control-label") }}
-                        {% if form.email2.errors %}
-                            {{ form.email2(class="form-control form-control-lg is-invalid") }}
+                        {{ form.email.label(class="form-control-label") }}
+                        {% if form.email.errors %}
+                            {{ form.email(class="form-control form-control-lg is-invalid") }}
                             <div>
-                                {% for error in form.email2.errors %}
+                                {% for error in form.email.errors %}
                                     <span>{{ error }}</span>
                                 {% endfor %}
                             </div>
                         {% else %}
-                            {{ form.email2(class="form-control form-control-lg") }}
+                            {{ form.email(class="form-control form-control-lg") }}
                         {% endif %}
                     </div>
 
@@ -61,35 +61,49 @@
                     </div>
 
                     <div class="form-group">
-                        {{ form.password2.label(class="form-control-label") }}
-                        {% if form.password2.errors %}
-                            {{ form.password2(class="form-control form-control-lg is-invalid") }}
+                        {{ form.faculty.label(class="form-control-label") }}
+                        {% if form.faculty.errors %}
+                            {{ form.faculty(class="form-control form-control-lg is-invalid") }}
                             <div>
-                                {% for error in form.password2.errors %}
+                                {% for error in form.faculty.errors %}
                                     <span>{{ error }}</span>
                                 {% endfor %}
                             </div>
                         {% else %}
-                            {{ form.password2(class="form-control form-control-lg") }}
+                            {{ form.faculty(class="form-control form-control-lg") }}
                         {% endif %}
                     </div>
 
                     <div class="form-group">
-                        {{ form.confirmpassword2.label(class="form-control-label") }}
-                        {% if form.confirmpassword2.errors %}
-                            {{ form.confirmpassword2(class="form-control form-control-lg is-invalid") }}
+                        {{ form.password.label(class="form-control-label") }}
+                        {% if form.password.errors %}
+                            {{ form.password(class="form-control form-control-lg is-invalid") }}
                             <div>
-                                {% for error in form.confirmpassword2.errors %}
+                                {% for error in form.password.errors %}
                                     <span>{{ error }}</span>
                                 {% endfor %}
                             </div>
                         {% else %}
-                            {{ form.confirmpassword2(class="form-control form-control-lg") }}
+                            {{ form.password(class="form-control form-control-lg") }}
                         {% endif %}
                     </div>
 
                     <div class="form-group">
-                        {{ form.submit2(class="btn btn-outline-info text-center") }}
+                        {{ form.confirmpassword.label(class="form-control-label") }}
+                        {% if form.confirmpassword.errors %}
+                            {{ form.confirmpassword(class="form-control form-control-lg is-invalid") }}
+                            <div>
+                                {% for error in form.confirmpassword.errors %}
+                                    <span>{{ error }}</span>
+                                {% endfor %}
+                            </div>
+                        {% else %}
+                            {{ form.confirmpassword(class="form-control form-control-lg") }}
+                        {% endif %}
+                    </div>
+
+                    <div class="form-group">
+                        {{ form.submit(class="btn btn-outline-info text-center") }}
                     </div>
                 </fieldset>
             </form>

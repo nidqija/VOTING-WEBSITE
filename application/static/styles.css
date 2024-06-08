@@ -1,3 +1,7 @@
+.adminbody{
+  overflow: hidden;
+}
+
 #submitButton {
     position: relative;
     margin-top: 25px;
@@ -30,7 +34,7 @@
   
   #navbarBackground{
     background-color: blueviolet;
-    
+   
   }
   
   #Navlink{
@@ -59,8 +63,10 @@
 
 #CurrentUserProfile{
   position: relative; 
-  left: 300px;
+  left: 450px;
    width: 200px;
+   font-size: large;
+   border-radius: 20px;
 }
 
 
@@ -260,7 +266,6 @@ ch .card {
   background-repeat: no-repeat;
   float: right;
   padding-top: 50px;
-  margin-top: 104px;
 }
 
 .WelcomeAdmin{
@@ -308,7 +313,6 @@ tbody tr:nth-child(even) {
 
 #navbarBackground_admin{
   width: 100%;
-  position: fixed;
   background-color: blueviolet;
 }
 
@@ -321,7 +325,6 @@ tbody tr:nth-child(even) {
   background-repeat: no-repeat;
   float: right;
   padding-top: 50px;
-  margin-top: 104px;
 }
 
 .candidate_image{
@@ -394,7 +397,6 @@ tbody tr:nth-child(even) {
   background-repeat: no-repeat;
   float: right;
   padding-top: 50px;
-  margin-top: 104px;
 }
 
 .admin_update_announcement_container{
@@ -406,7 +408,6 @@ tbody tr:nth-child(even) {
   background-repeat: no-repeat;
   float: right;
   padding-top: 50px;
-  margin-top: 104px;
 }
 
 .update_announcement_container{

@@ -113,16 +113,16 @@ class Announcement(db.Model , UserMixin):
 
     
 
-class Admin(db.Model , UserMixin ):
-        id2 = db.Column(db.Integer , primary_key = True)
-        username2 = db.Column(db.String(20) , unique = True , nullable = False)
-        email2 = db.Column(db.String(120) , unique = True , nullable = False)
-        mmu_id = db.Column(db.String(150) , unique = True , nullable = False)
-        password2 = db.Column(db.String(120) , nullable = False)
-        createdAt2 = db.Column(db.DateTime(timezone=True) , server_default=func.now())
-
-        def _repr_(self):
-           return f'Admin("{self.username2}" , {self.email2} , {self.mmu_id})'
+#class Admin(db.Model , UserMixin ):
+#        id2 = db.Column(db.Integer , primary_key = True)
+#        username2 = db.Column(db.String(20) , unique = True , nullable = False)
+#        email2 = db.Column(db.String(120) , unique = True , nullable = False)
+#        mmu_id = db.Column(db.String(150) , unique = True , nullable = False)
+#        password2 = db.Column(db.String(120) , nullable = False)
+#        createdAt2 = db.Column(db.DateTime(timezone=True) , server_default=func.now())
+#
+#        def _repr_(self):
+#           return f'Admin("{self.username2}" , {self.email2} , {self.mmu_id})'
 
 
 class SelfDescription(db.Model):

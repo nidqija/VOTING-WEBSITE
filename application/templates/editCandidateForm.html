@@ -10,98 +10,71 @@
 </head>
 <body>
     {% block content %}
+
+    {% if user_id == author %}
+    {% for candidate in candidate1 %}
+    
+    <div class="container">
+    <div class="admin_candidate_information_container2" style="background-color: purple;">
+
+        <div class="candidate1_information_container">
+            <div class="rounded-circle col-8">
+              {% if candidate.candidate_photo_filename == 'candidate_image.jpg' %}
+              <img class="rounded-circle" src="{{ url_for('static', filename='candidate_profile_pics/candidate_image.jpg') }}" alt="candidate image" style="height: 200px; width: 200px; margin-top: 20px; margin-bottom: 10px; margin-left: 43%;">
+              {% else %}
+              <img class="rounded-circle" src="{{ url_for('static', filename='candidate_profile_pics/' + candidate.candidate_photo_filename) }}" alt="candidate image" style="height: 200px; width: 200px; margin-top: 20px; margin-bottom: 10px; margin-left: 43%;">
+              {% endif %}
+            </div>
+            <br><br>
+
+            <div class="candidate1_detail">
+                <div class="candidate_name">
+                  <p>Name: <a style="text-decoration: none; color: white;" href="{{url_for('candidate_biodata' , candidate_id = candidate.id )}}">{{ candidate.candidate_name }}</a></p><a href="{{url_for('edit_candidates' , candidate_id = candidate.id)}}"><button>Edit</button></a>
+                </div>
+                <div class="candidate_ID">
+                    <p>Student ID: {{ candidate.candidate_id }}</p>
+                </div>
+                <div class="candidate_faculty">
+                    <p>Faculty: {{ candidate.candidate_faculty }}</p>
+                </div>
+                <div class="candidate_academic_level">
+                    <p>Academic Level: {{ candidate.candidate_level }}</p>
+                </div>
+                <div class="candidate_quote">
+                    <p>Quote: {{ candidate.candidate_quote }}</p>
+                </div>
+                <a href="{{url_for('delete_candidates' , candidate_id = candidate.id)}}" class="float-end"><button>delete</button></a>
+            </div>
+        </div><br>
+    </div>
+</div>
+
+        {% endfor %}
+    </div>
+    {% else %}
     <div class="container">
         <div class="content-section">
             <form method="POST" action="">
                 {{ form.hidden_tag() }}
 
                 <fieldset class="form-group">
-                    <legend class="text-center">Register Now!</legend>
+                    <legend class="text-center">Please enter your Candidate ID</legend>
                     
                     <div class="form-group">
-                        {{ form.username.label(class="form-control-label") }}
-                        {% if form.username.errors %}
-                            {{ form.username(class="form-control form-control-lg is-invalid") }}
+                        {{ form.candidate_entrance_form.label(class="form-control-label") }}
+                        {% if form.candidate_entrance_form.errors %}
+                            {{ form.candidate_entrance_form(class="form-control form-control-lg is-invalid") }}
                             <div>
-                                {% for error in form.username.errors %}
+                                {% for error in form.candidate_entrance_form.errors %}
                                     <span>{{ error }}</span>
                                 {% endfor %}
                             </div>
                         {% else %}
-                            {{ form.username(class="form-control form-control-lg") }}
+                            {{ form.candidate_entrance_form(class="form-control form-control-lg") }}
                         {% endif %}
                     </div>
                     
-                    <div class="form-group">
-                        {{ form.email.label(class="form-control-label") }}
-                        {% if form.email.errors %}
-                            {{ form.email(class="form-control form-control-lg is-invalid") }}
-                            <div>
-                                {% for error in form.email.errors %}
-                                    <span>{{ error }}</span>
-                                {% endfor %}
-                            </div>
-                        {% else %}
-                            {{ form.email(class="form-control form-control-lg") }}
-                        {% endif %}
-                    </div>
-
-                    <div class="form-group">
-                        {{ form.mmu_id.label(class="form-control-label") }}
-                        {% if form.mmu_id.errors %}
-                            {{ form.mmu_id(class="form-control form-control-lg is-invalid") }}
-                            <div>
-                                {% for error in form.mmu_id.errors %}
-                                    <span>{{ error }}</span>
-                                {% endfor %}
-                            </div>
-                        {% else %}
-                            {{ form.mmu_id(class="form-control form-control-lg") }}
-                        {% endif %}
-                    </div>
-
-                    <div class="form-group">
-                        {{ form.faculty.label(class="form-control-label") }}
-                        {% if form.faculty.errors %}
-                            {{ form.faculty(class="form-control form-control-lg is-invalid") }}
-                            <div>
-                                {% for error in form.faculty.errors %}
-                                    <span>{{ error }}</span>
-                                {% endfor %}
-                            </div>
-                        {% else %}
-                            {{ form.faculty(class="form-control form-control-lg") }}
-                        {% endif %}
-                    </div>
-
-                    <div class="form-group">
-                        {{ form.password.label(class="form-control-label") }}
-                        {% if form.password.errors %}
-                            {{ form.password(class="form-control form-control-lg is-invalid") }}
-                            <div>
-                                {% for error in form.password.errors %}
-                                    <span>{{ error }}</span>
-                                {% endfor %}
-                            </div>
-                        {% else %}
-                            {{ form.password(class="form-control form-control-lg") }}
-                        {% endif %}
-                    </div>
-
-                    <div class="form-group">
-                        {{ form.confirmpassword.label(class="form-control-label") }}
-                        {% if form.confirmpassword.errors %}
-                            {{ form.confirmpassword(class="form-control form-control-lg is-invalid") }}
-                            <div>
-                                {% for error in form.confirmpassword.errors %}
-                                    <span>{{ error }}</span>
-                                {% endfor %}
-                            </div>
-                        {% else %}
-                            {{ form.confirmpassword(class="form-control form-control-lg") }}
-                        {% endif %}
-                    </div>
-
+        
                     <div class="form-group">
                         {{ form.submit(class="btn btn-outline-info text-center") }}
                     </div>
@@ -109,17 +82,8 @@
             </form>
         </div>
     </div>
-    <div class="border-top pt-3">
-        <small class="text-muted">
-            Already have an account? <a class="ml-2" href="{{ url_for('adminlogin') }}">Login</a>
-        </small>
-    </div>
-
-    <div class="border-top pt-3">
-        <small class="text-muted">
-            Register as <a class="ml-2" href="{{ url_for('adminregister') }}">Admin</a>
-        </small>
-    </div>
+    
+    {% endif %}
 
     {% endblock content %}
 

@@ -20,6 +20,7 @@ class User(db.Model , UserMixin ):
         user_profile_photo = db.Column(db.String() , default = 'user_image.jpg')
         post = db.relationship('Post' , backref = 'author' , lazy = True)
         vote1 = db.relationship('Vote1' , backref = 'user' , lazy = True)
+        candidate_entrance = db.relationship('CandidateID' , backref = 'author' , lazy = True)
         #vote2 = db.relationship('Vote2' , backref = 'user' , lazy = True)
         #vote3 = db.relationship('Vote3' , backref = 'user' , lazy = True)
 
@@ -130,3 +131,11 @@ class SelfDescription(db.Model):
       id = db.Column(db.Integer , primary_key = True)
       user_description = db.Column(db.Text , unique = True , nullable = True)
       user_id = db.Column(db.Integer , db.ForeignKey('user.id') , nullable = False)
+
+
+class CandidateID(db.Model):
+      id = db.Column(db.Integer , primary_key = True)
+      user_id = db.Column(db.Integer , db.ForeignKey('user.id') , nullable = False)
+      candidate_entrance = db.Column(db.Text , unique = True , nullable = False)
+      user_id = db.Column(db.Integer , db.ForeignKey('user.id') , nullable = False)
+

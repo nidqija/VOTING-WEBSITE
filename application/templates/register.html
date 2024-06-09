@@ -12,7 +12,7 @@
     {% block content %}
     <div class="container">
         <div class="content-section">
-            <form method="POST" action="">
+            <form method="POST" action="" enctype="multipart/form-data">
                 {{ form.hidden_tag() }}
 
                 <fieldset class="form-group">
@@ -54,6 +54,25 @@
         
                     </dir>
                     <dir class="form-group">
+                        {{form.faculty.label(class="form-control-label")}}
+                        
+
+                        {% if form.faculty.errors %}
+                        {{form.faculty(class="form-control form-control-lg is-invalid")}}
+
+                        <div>
+                            {% for error in form.faculty.errors %}
+                                <span>{{ error }}</span>
+                            {% endfor %}
+                        </div>
+
+                        {% else %}
+                            {{form.faculty(class="form-control form-control-lg")}}
+                        {% endif %}
+
+        
+                    </dir>
+                    <dir class="form-group">
                         {{form.password.label(class="form-control-label")}}
                             {% if form.password.errors %}
                                 {{form.password(class="form-control form-control-lg is-invalid")}}
@@ -88,11 +107,28 @@
                         {% endfor %}
                         </div>
 
-                {% else %}
+                        {% else %}
                         {{form.confirmpassword(class="form-control form-control-lg")}}
-                {% endif %}
+                        {% endif %}
 
 
+                    </dir>
+                    <dir class="form-group">
+
+                        {{ form.user_profile_photo.label(class="form-label") }}
+
+                        {% if form.user_profile_photo.errors %}
+                        {{form.user_profile_photo(class="form-control form-control-lg is-invalid")}}
+
+                        <div>
+                            {% for error in form.user_profile_photo.errors %}
+                                <span>{{ error }}</span>
+                            {% endfor %}
+                        </div>
+
+                        {% else %}
+                            {{form.user_profile_photo(class="form-control form-control-lg")}}
+                        {% endif %}
                     </dir>
                     <dir class="form-group">
                         {{form.submit(class = "btn btn-outline-info text-center")}}
@@ -104,6 +140,12 @@
     <div class="border-top pt-3">
         <small class="text-muted">
             Already have an account? <a class="ml-2" href="{{url_for('login')}}">Login</a>
+        </small>
+    </div>
+
+    <div class="border-top pt-3">
+        <small class="text-muted">
+            Register as <a class="ml-2" href="{{url_for('adminregister')}}">Admin</a>
         </small>
     </div>
 

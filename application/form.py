@@ -1,21 +1,25 @@
 from flask_wtf import FlaskForm
+from flask_wtf.file import FileField, FileAllowed , FileRequired
 from flask_login import current_user
-from application import db
-from wtforms import StringField , PasswordField , SubmitField , BooleanField , TextAreaField 
+from application import db , app
+from wtforms import StringField , PasswordField , SubmitField , BooleanField , TextAreaField , URLField
 from wtforms_sqlalchemy.fields import QuerySelectField
 from wtforms.validators import DataRequired , Length , Email , EqualTo , ValidationError
-from application.models import  User  ,Admin
+from application.models import  User , Candidate
 
 
 
 
 
 class RegistrationForm(FlaskForm):
-    username = StringField('username' , validators=[DataRequired() , Length(min=2 , max= 20)])
-    email = StringField('email' , validators=[DataRequired() , Email()])
-    password = PasswordField('password' , validators=[DataRequired()])
+    username = StringField('Username' , validators=[DataRequired() , Length(min=2 , max= 20)])
+    email = StringField('Email' , validators=[DataRequired() , Email()])
+    mmu_id = StringField('Admin ID')
+    faculty = StringField('Faculty (FAC / FCA / FCI / FCM / FOE / FOM)' , validators=[DataRequired() , Length(min=3 , max= 5)])
+    password = PasswordField('Password' , validators=[DataRequired()])
     confirmpassword = PasswordField('Confirm Password' , validators=[DataRequired() , EqualTo('password')])
-    submit = SubmitField('register')
+    user_profile_photo =FileField('Profile Photo' , validators=[FileAllowed(['jpg', 'png', 'jpeg'], 'Only images are allowed!')])
+    submit = SubmitField('Register')
 
     def validate_username(self,username):
         user = User.query.filter_by(username=username.data).first()
@@ -30,15 +34,16 @@ class RegistrationForm(FlaskForm):
 
 
 class Loginform(FlaskForm):
-    username = StringField('username' , validators=[DataRequired() , Length(min=2 , max= 20)])
-    password = PasswordField('password' , validators=[DataRequired()])
+    username = StringField('Username' , validators=[DataRequired() , Length(min=2 , max= 20)])
+    mmu_id = StringField('Admin ID')
+    password = PasswordField('Password' , validators=[DataRequired()])
     remember = BooleanField('Remember me')
     submit = SubmitField('Login')
 
 
 class ProfileForm(FlaskForm):
-    username = StringField('username' , validators=[DataRequired() , Length(min=2 , max= 20)])
-    email = StringField('email' , validators=[DataRequired() , Email()])
+    username = StringField('Username' , validators=[DataRequired() , Length(min=2 , max= 20)])
+    email = StringField('Email' , validators=[DataRequired() , Email()])
     submit = SubmitField('Enter')
 
     def validate_username(self,username):
@@ -59,32 +64,56 @@ class QuestionForm(FlaskForm):
     submit = SubmitField('Post')
 
 
+#class AdminRegistrationForm(FlaskForm):
+#    username2 = StringField('Admin name' , validators=[DataRequired() , Length(min=2 , max= 20)])
+#    email2 = StringField('Admin email' , validators=[DataRequired() , Email()])
+#    mmu_id = StringField('Admin ID' , validators=[DataRequired() , Length(min=2 , max=20)])
+#    password2 = PasswordField('Password' , validators=[DataRequired()])
+#    confirmpassword2 = PasswordField('Confirm Password' , validators=[DataRequired() , EqualTo('password2')])
+#    submit2 = SubmitField('register')
+#
+#    def validate_username2(self, username2):
+#        admin = Admin.query.filter_by(username2=username2.data).first()
+#        if admin:
+#            raise ValidationError('That username is taken , please choose another username!')
+#
+#    def validate_email2(self, email2):
+#        admin = Admin.query.filter_by(email2=email2.data).first()
+#        if admin:
+#            raise ValidationError('That email is taken , please choose another email!')
 
 
 class DescriptionForm(FlaskForm):
     self_description = TextAreaField('Description')
     submit = SubmitField('Submit')
 
-class AdminRegistrationForm(FlaskForm):
-    username2 = StringField('Admin name' , validators=[DataRequired() , Length(min=2 , max= 20)])
-    email2 = StringField('Admin email' , validators=[DataRequired() , Email()])
-    password2 = PasswordField('Password' , validators=[DataRequired()])
-    confirmpassword2 = PasswordField('Confirm Password' , validators=[DataRequired() , EqualTo('password2')])
-    submit2 = SubmitField('register')
 
-    def validate_username2(self,username2):
-        admin = Admin.query.filter_by(username2=username2.data).first()
-        if admin:
-            raise ValidationError('That admin name is taken , please choose another username!')
-        
-    def validate_email2(self,email2):
-        admin = Admin.query.filter_by(email2=email2.data).first()
-        if admin:
-            raise ValidationError('That admin email is taken , please choose another email!')
+
+#class AdminLoginform(FlaskForm):
+#    username2 = StringField('username' , validators=[DataRequired() , Length(min=2 , max= 20)])
+#    password2 = PasswordField('password' , validators=[DataRequired()])
+#    mmu_id = StringField('Admin ID' , validators=[DataRequired() , Length(min=2 , max=20)])
+#    remember2 = BooleanField('Remember me')
+#    submit2 = SubmitField('Login')
 
 
 
 class AnnouncementForm(FlaskForm):
-      titles= StringField('Announcement Title' , validators=[DataRequired()])
-      description = StringField('Announcement Description' , validators=[DataRequired()])
-      submit = SubmitField('Submit')
+    titles = StringField('Announcement Title' , validators=[DataRequired()])
+    description = StringField('Announcement Description' , validators=[DataRequired()])
+    submit = SubmitField('Submit')
+
+
+class CandidateForm(FlaskForm):
+    candidate_name = StringField('Candidate Name', validators=[DataRequired(), Length(min=2, max=100)])
+    candidate_age = StringField('Candidate Age', validators=[DataRequired()])
+    candidate_id = StringField('Candidate ID', validators=[DataRequired()])
+    candidate_faculty = StringField('Candidate Faculty (General / FAC / FCA / FCI / FCM / FOE / FOM)', validators=[DataRequired()])
+    # candidate_type = StringField('Candidate Type', validators=[DataRequired()])
+    candidate_level = StringField('Candidate Academic Level', validators=[DataRequired()])
+    candidate_quote = TextAreaField('Candidate Quote', validators=[DataRequired(), Length(max=500)])
+    candidate_photo = FileField('Candidate Photo', validators=[FileAllowed(['jpg', 'png', 'jpeg'], 'Only images are allowed!')])
+    candidate_position = StringField('Position (President / Vice President / Secretary)' , validators=[DataRequired() , Length(min=5 , max= 20)])
+    candidate_resume = FileField('Candidate Resume' , validators=[FileAllowed(['jpg', 'png', 'jpeg'], 'Only images are allowed!')])
+    candidate_manifesto = URLField('Candidate Manifesto (Embed Video URL)', validators=[DataRequired()])
+    submit = SubmitField('Submit')

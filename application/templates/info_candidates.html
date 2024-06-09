@@ -38,18 +38,7 @@
                         <a  id="Navlink" class="nav-link" href="#">Contact</a>
                     </li>
 
-                    {% if current_user.is_authenticated %}
-                    <li id="navSections" class="nav-item px-3">
-                        <a href="{{url_for('logout')}}"><button class="btn btn-outline-warning">Log Out</button></a>
-                    </li>
-                    {% else %}
-                    <li id="navSections" class="nav-item px-3">
-                        <a href="{{url_for('login')}}"><button class="btn btn-outline-light">Log In</button></a>
-                    </li>
-                    <li id="navSections" class="nav-item px-3">
-                        <a href="{{url_for('register')}}"><button class="btn btn-outline-light">Sign Up</button></a>
-                    </li>
-                    {% endif %}
+                 
                 </ul>
                 <!-- <div>
                     <input class="search_in" type="search" name="" placeholder="Type your keyword">
@@ -64,80 +53,56 @@
         <header>Admin Features</header>
         <nav>
             <ul>
-                <li><a  href="{{url_for('adminHomepage')}}">Leaderboard</a></li>
-                <li><a style="color: yellow;" href="{{url_for('candidatesInfo')}}">Candidate Information</a></li>
+                <li><a href="{{url_for('adminHomepage')}}">Leaderboard</a></li>
+                <li><a href="{{url_for('candidatesform')}}">Candidates Form</a></li>
+                <li><a  style="color: yellow;"  href="{{url_for('candidatesInfo')}}">Candidate Information</a></li>
                 <li><a  href="{{url_for('createVote')}}">Create a Vote</a></li>
                 <li><a href="{{url_for('updateAnnouncement')}}">Update Announcement</a></li>
+                <li><a  href="{{url_for('viewUsers')}}">View Users</a></li>
+               
             </ul>
         </nav>
     </div>
 
+
     <div class="admin_candidate_information_container">
+        {% for candidate in candidate1 %}
 
         <div class="candidate1_information_container">
-            <img src="image\candidate_image.png" alt="candidate image" class="candidate_image" width="100px" height="100px">
+            <div class="rounded-circle col-8">
+              {% if candidate.candidate_photo_filename == 'candidate_image.jpg' %}
+              <img class="rounded-circle" src="{{ url_for('static', filename='candidate_profile_pics/candidate_image.jpg') }}" alt="candidate image" style="height: 200px; width: 200px; margin-top: 20px; margin-bottom: 10px; margin-left: 43%;">
+              {% else %}
+              <img class="rounded-circle" src="{{ url_for('static', filename='candidate_profile_pics/' + candidate.candidate_photo_filename) }}" alt="candidate image" style="height: 200px; width: 200px; margin-top: 20px; margin-bottom: 10px; margin-left: 43%;">
+              {% endif %}
+            </div>
             <br><br>
-            <div class="candidate_name">
-                <p>Name: Candidate name</p>
-            </div>
-            <div class="candidate_ID">
-                <p>Student ID: Candidate id</p>
-            </div>
-            <div class="candidate_faculty">
-                <p>Faculty: Candidate faculty</p>
-            </div>
-            <div class="candidate_academic_level">
-                <p>Academic Level: Candidate academic level</p>
-            </div>
-            <div class="candidate_quote">
-                <p>Quote: Candidate quote</p>
+
+            <div class="candidate1_detail">
+                <div class="candidate_name">
+                  <p>Name: <a style="text-decoration: none; color: white;" href="{{url_for('candidate_biodata' , candidate_id = candidate.id )}}">{{ candidate.candidate_name }}</a></p><a href="{{url_for('edit_candidates' , candidate_id = candidate.id)}}"><button>Edit</button></a>
+                </div>
+                <div class="candidate_ID">
+                    <p>Student ID: {{ candidate.candidate_id }}</p>
+                </div>
+                <div class="candidate_faculty">
+                    <p>Faculty: {{ candidate.candidate_faculty }}</p>
+                </div>
+                <div class="candidate_academic_level">
+                    <p>Academic Level: {{ candidate.candidate_level }}</p>
+                </div>
+                <div class="candidate_quote">
+                    <p>Quote: {{ candidate.candidate_quote }}</p>
+                </div>
+                <a href="{{url_for('delete_candidates' , candidate_id = candidate.id)}}" class="float-end"><button>delete</button></a>
             </div>
         </div><br>
-        <button class="change_information_candidate1_button">Change Information</button><br><br>
 
-        <div class="candidate2_information_container">
-            <img src="image\candidate_image.png" alt="candidate image" class="candidate_image" width="100px" height="100px">
-            <br><br>
-            <div class="candidate_name">
-                <p>Name: Candidate name</p>
-            </div>
-            <div class="candidate_ID">
-                <p>Student ID: Candidate id</p>
-            </div>
-            <div class="candidate_faculty">
-                <p>Faculty: Candidate faculty</p>
-            </div>
-            <div class="candidate_academic_level">
-                <p>Academic Level: Candidate academic level</p>
-            </div>
-            <div class="candidate_quote">
-                <p>Quote: Candidate quote</p>
-            </div>
-        </div><br>
-        <button class="change_information_candidate2_button">Change Information</button><br><br>
+        {% endfor %}
 
-        <div class="candidate3_information_container">
-            <img src="image\candidate_image.png" alt="candidate image" class="candidate_image" width="100px" height="100px">
-            <br><br>
-            <div class="candidate_name">
-                <p>Name: Candidate name</p>
-            </div>
-            <div class="candidate_ID">
-                <p>Student ID: Candidate id</p>
-            </div>
-            <div class="candidate_faculty">
-                <p>Faculty: Candidate faculty</p>
-            </div>
-            <div class="candidate_academic_level">
-                <p>Academic Level: Candidate academic level</p>
-            </div>
-            <div class="candidate_quote">
-                <p>Quote: Candidate quote</p>
-            </div>
-        </div><br>
-        <button class="change_information_candidate3_button">Change Information</button><br><br>
+        <a  class="text-center p-3" href="{{url_for('candidatesform')}}"><button class="float-end">Add new</button></a>
 
-    </div>
+
 
 </body>
 </html>

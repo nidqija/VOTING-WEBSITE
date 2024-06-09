@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Homepage</title>
+    <link rel="stylesheet" href="../static/styles.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Raleway:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+</head>
+
+<!--<h1>Welcome user! You have login!</h1>-->
+
+<body>
+    <nav id="navbarBackground_admin" class="navbar navbar-expand-lg ">
+        <div class="container-fluid p-4">
+          <a id="title" class="navbar-brand px-3" href="#">VOTE-IT!</a>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+            <div class="collapse navbar-collapse "  id="navbarSupportedContent">
+                <ul  class="navbar-nav me-auto mb-2 mb-lg-0 ">
+                    <li id="navSections" class="nav-item px-3">
+                        <a style="color: yellow;" id="Navlink" class="nav-link active" href="{{url_for('home')}}">Home</a>
+                      </li>
+                      <li id="navSections" class="nav-item px-3">
+                        <a  id="Navlink" class="nav-link" href="{{url_for('candidates')}}">Candidate</a>
+                      </li>
+                      <li id="navSections" class="nav-item px-3">
+                        <a  id="Navlink" class="nav-link" href="{{url_for('about')}}">About</a>
+                      </li>
+                      <li id="navSections" class="nav-item px-3 ">
+                        <a  id="Navlink" class="nav-link" href="{{url_for('guidelines')}}" role="button" >
+                          Guideline
+                        </a>
+                      </li>
+                       <li id="navSections" class="nav-item px-3">
+                        <a id="Navlink" class="nav-link" href="{{url_for('service')}}">Service</a>
+                      </li>
+                      <li id="navSections" class="nav-item px-3">
+                        <a  id="Navlink" class="nav-link" href="{{url_for('contact')}}">Contact</a>
+                      </li>
+
+                      {% if current_user.is_authenticated %}
+                      <li id="navSections" class="nav-item px-3">
+                      
+                         <button id="CurrentUserProfile" type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                          {{ current_user.username }}
+                         </button>
+        
+        <!-- Modal -->
+                  <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                   <div class="modal-dialog">
+                     <div class="modal-content">
+                       <div class="modal-header">
+                          <h1 class="modal-title fs-5" id="exampleModalLabel">User Profile</h1>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                               </div>
+                                  <div class="modal-body">
+                                     <p>Username :   {{ current_user.username }}</p> 
+                                     <p> Email : {{ current_user.email }}</p> 
+                                     <p>Role : <a class="text-success" style="text-decoration: none;">Student</a> </p>
+
+                                  </div>
+                                  <div class="modal-footer">
+                                       <a href="{{url_for('profile')}}"><button type="button" class="btn btn-secondary" data-bs-dismiss="modal">View Profile</button></a>
+                                      <a href="{{url_for('logout')}}"> <button type="button" class="btn btn-primary">Logout</button></a>
+                                  </div>
+                             </div>
+                          </div>
+                      </div>
+                      </li>
+                      {% else %}
+                      <li id="navSections" class="nav-item px-3">
+                          <a href="{{url_for('login')}}"><button class="btn btn-outline-light" style="position: relative; left: 300px; ">Log In</button></a>
+                      </li>
+                      <li id="navSections" class="nav-item px-3">
+                          <a href="{{url_for('register')}}"><button class="btn btn-outline-light" style="position: relative; left: 300px; ">Sign Up</button></a>
+                      </li>
+                      {% endif %}
+                    </ul>
+                </ul>
+                <!-- <div>
+                    <input class="search_in" type="search" name="" placeholder="Type your keyword">
+                    <a href=".html"> <button class="search_button">Search</button></a>
+                </div> -->
+            
+            </div>
+        </div>
+    </nav>
+
+
+
+    <div class="admin_homepage_sidebar">
+        <header>Admin Features</header>
+        <nav>
+            <ul>
+                <li><a style="color: yellow;" href="{{url_for('adminHomepage')}}">Leaderboard</a></li>
+                <li><a href="{{url_for('candidatesform')}}">Candidates Form</a></li>
+                <li><a href="{{url_for('candidatesInfo')}}">Candidate Information</a></li>
+                <li><a href="{{url_for('createVote')}}">Create a Vote</a></li>
+                <li><a href="{{url_for('updateAnnouncement')}}">Update Announcement</a></li>
+                <li><a href="{{url_for('viewUsers')}}">View Users</a></li>
+               
+            </ul>
+        </nav>
+    </div>
+
+    <div class="admin_homepage_container px-4">
+       
+
+        <h1 class="WelcomeAdmin">Hello {{ current_user.username }}!</h1>
+
+        <div class="row row-cols-auto">
+            <div class="col p-2"><a href="{{url_for('leaderboard_general')}}"><button type = button style="border-radius: 10px;">Leaderboard (General)</button></a></div>
+            <div class="col p-2"><a href="{{url_for('leaderboard_FAC')}}" style="color: yellow;"><button type = button style="border-radius: 10px;">Leaderboard (FAC)</button></a></div>
+            <div class="col p-2"><a href="{{url_for('leaderboard_FCA')}}"><button type = button style="border-radius: 10px;">Leaderboard (FCA)</button></a></div>
+            <div class="col p-2"><a href="{{url_for('leaderboard_FCI')}}"><button type = button style="border-radius: 10px;">Leaderboard (FCI)</button></a></div>
+            <div class="col p-2"><a href="{{url_for('leaderboard_FCM')}}"><button type = button style="border-radius: 10px;">Leaderboard (FCM)</button></a></div>
+            <div class="col p-2"><a href="{{url_for('leaderboard_FOE')}}"><button type = button style="border-radius: 10px;">Leaderboard (FOE)</button></a></div>
+            <div class="col p-2"><a href="{{url_for('leaderboard_FOM')}}"><button type = button style="border-radius: 10px;">Leaderboard (FOM)</button></a></div>
+        </div><br>
+
+        <div class="leaderboard-container">
+            <h1>President(FAC)</h1>
+            <table>
+                <thead>
+                    <tr>
+                        <!--<th>Rank</th>-->
+                        <th>Candidate</th>
+                        <th>Vote</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% block content %}
+                    {% for candidate in candidate1 %}
+                    {% if candidate.candidate_position.capitalize() == 'President' and candidate.candidate_faculty.upper() == 'FAC' %}
+
+                    <tr>
+                      
+                        <!--<td>{{ candidate.id }}</td>-->
+                        <td>{{ candidate.candidate_name }}</td>
+                        <td> {{ candidate.vote|length }}</td>
+
+                      
+                    </tr>
+                    {% endif %}
+                    {% endfor %}
+
+
+                  
+                </tbody>
+            </table>
+        </div><br>
+
+        <div class="leaderboard-container">
+            <h1>Vice President(FAC)</h1>
+            <table>
+                <thead>
+                    <tr>
+                        <!--<th>Rank</th>-->
+                        <th>Candidate</th>
+                        <th>Vote</th>
+                    </tr>
+                </thead>
+                <tbody>
+                
+                    {% for candidate in candidate1 %}
+                    {% if candidate.candidate_position == 'Vice President' and candidate.candidate_faculty.upper() == 'FAC' %}
+
+                    <tr>
+                      
+                        <!--<td>{{ candidate_id }}</td>-->
+                        <td>{{ candidate.candidate_name }}</td>
+                        <td> {{ candidate.vote|length }}</td>
+
+                      
+                    </tr>
+                    {% endif %}
+                    {% endfor %}    
+                            </tbody>
+                        </table>
+                    </div><br>
+
+                    <div class="leaderboard-container">
+                        <h1>Secretary(FAC)</h1>
+                        <table>
+                            <thead>
+                                <tr>
+                                    <!--<th>Rank</th>-->
+                                    <th>Candidate</th>
+                                    <th>Vote</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                            
+                                {% for candidate in candidate1 %}
+                                {% if candidate.candidate_position.capitalize() == 'Secretary' and candidate.candidate_faculty.upper() == 'FAC' %}
+            
+                                <tr>
+                                  
+                                    <!--<td>{{ candidate_id }}</td>-->
+                                    <td>{{ candidate.candidate_name }}</td>
+                                    <td> {{ candidate.vote|length }}</td>
+            
+                                  
+                                </tr>
+                                {% endif %}
+                                {% endfor %}
+            
+                                
+            
+                              
+                            </tbody>
+                        </table>
+                    </div>
+
+                    {% endblock %}
+
+                  
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+    </div>
+
+
+</div>
+
+</body>
+</html>

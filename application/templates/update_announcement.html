@@ -14,65 +14,86 @@
 
 <!--<h1>Welcome user! You have login!</h1>-->
 
-<body>
+<body class="adminbody">
 
     <nav id="navbarBackground_admin" class="navbar navbar-expand-lg ">
-        <div class="container-fluid p-4">
-          <a id="title" class="navbar-brand px-3" href="#">VOTE-IT!</a>
-          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="container-fluid p-4">
+        <a id="title" class="navbar-brand px-3" href="#">VOTE-IT!</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
-          </button>
-            <div class="collapse navbar-collapse "  id="navbarSupportedContent">
-                <ul  class="navbar-nav me-auto mb-2 mb-lg-0 ">
-                    <li id="navSections" class="nav-item px-3">
-                        <a style="color: yellow;" id="Navlink" class="nav-link active" href="{{url_for('home')}}">Home</a>
-                      </li>
-                      <li id="navSections" class="nav-item px-3">
-                        <a  id="Navlink" class="nav-link" href="{{url_for('candidates')}}">Candidate</a>
-                      </li>
-                      <li id="navSections" class="nav-item px-3">
-                        <a  id="Navlink" class="nav-link" href="{{url_for('about')}}">About</a>
-                      </li>
-                      <li id="navSections" class="nav-item px-3 ">
-                        <a  id="Navlink" class="nav-link" href="{{url_for('guidelines')}}" role="button" >
-                          Guideline
-                        </a>
-                      </li>
-                       <li id="navSections" class="nav-item px-3">
-                        <a id="Navlink" class="nav-link" href="{{url_for('service')}}">Service</a>
-                      </li>
-                      <li id="navSections" class="nav-item px-3">
-                        <a  id="Navlink" class="nav-link" href="{{url_for('contact')}}">Contact</a>
-                      </li>
-
-                      {% if current_user.is_authenticated %}
-                      <li id="navSections" class="nav-item px-3">
-                      
-                         <button id="CurrentUserProfile" type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal2">
-                          {{ current_user.username }}
-                         </button>
-        
-        <!-- Modal -->
-        <div class="modal" tabindex="-1">
-            <div class="modal-dialog">
-              <div class="modal-content">
-                <div class="modal-header">
-                  <h5 class="modal-title">Modal title</h5>
-                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body">
-                  <p>Modal body text goes here.</p>
-                </div>
-                <div class="modal-footer">
-                  <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                  <button type="button" class="btn btn-primary">Save changes</button>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          {% endif %}
-    </nav>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                <li id="navSections" class="nav-item px-3">
+                    <a style="color: yellow;" id="Navlink" class="nav-link active" href="{{ url_for('home') }}">Home</a>
+                </li>
+                <li id="navSections" class="nav-item px-3">
+                    <a id="Navlink" class="nav-link" href="{{ url_for('candidates') }}">Candidate</a>
+                </li>
+                <li id="navSections" class="nav-item px-3">
+                    <a id="Navlink" class="nav-link" href="{{ url_for('about') }}">About</a>
+                </li>
+                <li id="navSections" class="nav-item px-3">
+                    <a id="Navlink" class="nav-link" href="{{ url_for('guidelines') }}" role="button">Guideline</a>
+                </li>
+                <li id="navSections" class="nav-item px-3">
+                    <a id="Navlink" class="nav-link" href="{{ url_for('service') }}">Service</a>
+                </li>
+                <li id="navSections" class="nav-item px-3">
+                    <a id="Navlink" class="nav-link" href="{{ url_for('contact') }}">Contact</a>
+                </li>
+                {% if current_user.is_authenticated %}
+                <li id="navSections" class="nav-item px-3">
+                    <button id="CurrentUserProfile" type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                        {{ current_user.username }}
+                    </button>
+                    <!-- Modal -->
+                    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h1 class="modal-title fs-5" id="exampleModalLabel">User Profile</h1>
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                </div>
+                                <div class="modal-body">
+                                    <p>Username: {{ current_user.username }}</p>
+                                    <p>Email: {{ current_user.email }}</p>
+                                    <p>Role: <span class="text-success" style="text-decoration: none;">Student</span></p>
+                                </div>
+                                <div class="modal-footer">
+                                    <a href="{{ url_for('profile') }}">
+                                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">View Profile</button>
+                                    </a>
+                                    <a href="{{ url_for('logout') }}">
+                                        <button type="button" class="btn btn-primary">Logout</button>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </li>
+                {% else %}
+                <li id="navSections" class="nav-item px-3">
+                    <a href="{{ url_for('login') }}">
+                        <button class="btn btn-outline-light" style="position: relative; left: 300px;">Log In</button>
+                    </a>
+                </li>
+                <li id="navSections" class="nav-item px-3">
+                    <a href="{{ url_for('register') }}">
+                        <button class="btn btn-outline-light" style="position: relative; left: 300px;">Sign Up</button>
+                    </a>
+                </li>
+                {% endif %}
+            </ul>
+            <!-- 
+            <div>
+                <input class="search_in" type="search" name="" placeholder="Type your keyword">
+                <a href=".html"><button class="search_button">Search</button></a>
+            </div> 
+            -->
+        </div>
+    </div>
+</nav>
    
 
     <div class="admin_homepage_sidebar">
@@ -98,7 +119,7 @@
 
 </div>
 
-    <div class="admin_update_announcement_container">
+    <div class="admin_update_announcement_container overflow-scroll">
         {% block content %}
 
         <div class="container">
@@ -184,5 +205,8 @@
 </div>
 
 {% endblock content %}
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" crossorigin="anonymous"></script>
+
 </body>
 </html>

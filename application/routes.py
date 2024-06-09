@@ -87,18 +87,20 @@ def candidates():
 
 
 
-@app.route('/vote-candidate/<candidate_id>' , methods = ['GET'])
+@app.route('/vote-candidate/<candidate_id>' , methods = ['GET', 'POST'])
 @login_required
 
 def vote(candidate_id):
-     candidate1 = Candidate.query.filter_by(id = candidate_id)
-     votes1 = Vote1.query.filter_by( author = current_user.id , candidate_id = candidate_id).first()
-     if not candidate1:
-          flash('Candidate does not exist' , category='error')
-     else:
-          votes1 = Vote1(author = current_user.id , candidate_id = candidate_id)
-          db.session.add(votes1)
-          db.session.commit()
+     candidate = Candidate.query.get(candidate_id)
+     voted = Vote1.query.filter_by( author = current_user.id , candidate_id = candidate_id).first()
+
+     if voted:
+          flash('You have already voted for this candidate.' , 'warning')
+          return redirect(url_for('home'))
+     
+     votes1 = Vote1(author = current_user.id , candidate_id = candidate_id)
+     db.session.add(votes1)
+     db.session.commit()
 
      return redirect(url_for('candidate2'))
 

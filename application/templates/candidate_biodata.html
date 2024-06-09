@@ -42,6 +42,15 @@
       <div class="candidate_position">
         <p class="text-white display-6">Competing for: {{ candidate.candidate_position }}</p>
     </div>
+
+    <div class="candidate_position mb-3">
+        <p class="text-white display-6">Qualifications: <br>{{ candidate.candidate_qualifications }}</p>
+    </div>
+
+    <div class="candidate_position mb-3">
+        <p class="text-white display-6">Achievements: <br>{{ candidate.candidate_achievements }}</p>
+    </div>
+
       <div class="candidate_resume">
         <p class="text-white display-6">Resume: </p>
         {% if candidate.candidate_resume == 'None' %}

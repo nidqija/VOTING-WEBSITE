@@ -141,6 +141,7 @@
                     <span style="color: red;">{{ error }}</span>
                 {% endfor %}
             </div>
+
             <div class="mb-6" style="margin-top: 25px;">
                 {{ form.candidate_resume.label(class="form-label") }}
                 {{ form.candidate_resume(class="form-control") }}
@@ -148,10 +149,11 @@
                     <span style="color: red;">{{ error }}</span>
                 {% endfor %}
             </div>
+
             <div class="mb-6" style="margin-top: 25px;">
-                {{ form.candidate_manifesto.label(class="form-label") }}
-                {{ form.candidate_manifesto(class="form-control", placeholder="Input your manifesto video embed URL here") }}
-                {% for error in form.candidate_manifesto.errors %}
+                {{ form.candidate_resume.label(class="form-label") }}
+                {{ form.candidate_resume(class="form-control") }}
+                {% for error in form.candidate_resume.errors %}
                     <span style="color: red;">{{ error }}</span>
                 {% endfor %}
             </div>

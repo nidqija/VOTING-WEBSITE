@@ -102,7 +102,6 @@
                 <li><a href="{{url_for('adminHomepage')}}">Leaderboard</a></li>
                 <li><a href="{{url_for('candidatesform')}}">Candidates Form</a></li>
                 <li><a href="{{url_for('candidatesInfo')}}">Candidate Information</a></li>
-                <li><a href="{{url_for('createVote')}}">Create a Vote</a></li>
                 <li><a href="{{url_for('updateAnnouncement')}}">Update Announcement</a></li>
                 <li><a  style="color: yellow;" href="{{url_for('viewUsers')}}">View Users</a></li>
                
@@ -134,7 +133,7 @@
                   <tr>
                     <th scope="row">{{ user.id }}</th>
                     <td>{{ user.username }}</td>
-                    <td >{{ user.email }}</td>
+                    <td ><a style="text-decoration: none; color: white;" href="https://mail.google.com/mail/u/0/?fs=1&to=someone@example.com&su=MMU%20ID&body=BODY&bcc=ajiqdin646@gmail.com&tf=cm">{{ user.email }}</a></td>
                     <td >{{ user.faculty }}</td>
         
 
@@ -152,6 +151,7 @@
 
               </table>
 
+             
               <!--<table class="table">
                 <thead class="table-light">
                   <tr>

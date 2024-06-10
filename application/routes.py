@@ -1,6 +1,6 @@
 from flask import render_template , flash , redirect , url_for , abort , request
-from application.form import RegistrationForm , Loginform , QuestionForm, AnnouncementForm , CandidateForm
-from application.models import User , Post , Candidate , Vote1 , Announcement
+from application.form import RegistrationForm , Loginform , QuestionForm, AnnouncementForm , CandidateForm , CandidateIDForm
+from application.models import User , Post , Candidate , Vote1 , Announcement , CandidateID
 from application import app , db , bcrypt
 import os
 from flask_login import login_user , current_user , logout_user, login_required
@@ -87,18 +87,20 @@ def candidates():
 
 
 
-@app.route('/vote-candidate/<candidate_id>' , methods = ['GET'])
+@app.route('/vote-candidate/<candidate_id>' , methods = ['GET', 'POST'])
 @login_required
 
 def vote(candidate_id):
-     candidate1 = Candidate.query.filter_by(id = candidate_id)
-     votes1 = Vote1.query.filter_by( author = current_user.id , candidate_id = candidate_id).first()
-     if not candidate1:
-          flash('Candidate does not exist' , category='error')
-     else:
-          votes1 = Vote1(author = current_user.id , candidate_id = candidate_id)
-          db.session.add(votes1)
-          db.session.commit()
+     candidate = Candidate.query.get(candidate_id)
+     voted = Vote1.query.filter_by( author = current_user.id , candidate_id = candidate_id).first()
+
+     if voted:
+          flash('You have already voted for this candidate.' , 'warning')
+          return redirect(url_for('home'))
+     
+     votes1 = Vote1(author = current_user.id , candidate_id = candidate_id)
+     db.session.add(votes1)
+     db.session.commit()
 
      return redirect(url_for('candidate2'))
 
@@ -159,6 +161,23 @@ def vote3(candidate_id):
           db.session.commit()
 
      return redirect(url_for('home'))
+
+
+@app.route('/edit_candidate' , methods = ['POST' , 'GET'] )
+@login_required
+
+def edit_candidate_form():
+     candidate1 = Candidate.query.all()
+     form = CandidateIDForm()
+     if form.validate_on_submit():
+          candidateID = CandidateID(candidate_entrance= form.candidate_entrance_form.data , author = current_user)
+          db.session.add(candidateID)
+          db.session.commit()
+          flash('Your question is created!' , 'success')
+          return redirect(url_for('edit_candidate_form'))
+     return render_template('editCandidateForm.html' ,  form = form , candidate1 = candidate1)
+
+     
 
 
 

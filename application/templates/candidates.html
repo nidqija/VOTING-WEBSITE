@@ -77,9 +77,13 @@
   </nav>
   
   <div class="candidate_container" style="background-repeat: no-repeat; background-size: cover; background-position: center; min-height: 100vh; width: 100%; background-image: url('https://www.mmu.edu.my/wp-content/uploads/2022/12/1280_720_2.jpeg');">
-  
-    <!-- {% if current_user.is_authenticated %}
-     -->
+    
+    {% if author %}
+      <div>
+        <h1>You have successfully voted!</h1>
+      </div>
+
+      {% else %}
       {% if candidate1 %}
       <h1 style="text-align: center; padding-top: 25px; font-weight: bold;">Choices of Presidents(General)</h1>
       {% else %}
@@ -185,7 +189,6 @@
         {% endif %}
       {% endfor %}
 
-    <!-- {% endif %} -->
   
 
     {% if current_user.faculty.upper() == "FAC" %}
@@ -846,9 +849,17 @@
       {% endfor %}
 
     {% endif %}
+    {% endif %}
+
   
   {% endblock %}
+
+  <div class="container">
+   <a href="{{url_for('edit_candidate_form')}}" style="text-decoration: none; color: white;"><button>Edit Candidate</button></a>
   </div>
+
+  </div>
+
 
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
 </body>

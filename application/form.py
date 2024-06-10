@@ -118,4 +118,8 @@ class CandidateForm(FlaskForm):
     candidate_manifesto = URLField('Candidate Manifesto (Embed Video URL)', validators=[DataRequired()])
     submit = SubmitField('Submit')
 
-   
+
+class CandidateIDForm(FlaskForm):
+    candidate_entrance_form = StringField('MMU ID')
+    submit = SubmitField('submit')
+

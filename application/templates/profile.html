@@ -86,7 +86,41 @@
         </div>
     </nav>
 
+   {% if current_user.mmu_id %}
+    <div class="profile_content">
+      <div class="container">
+          <a style="text-decoration: none;" href="{{url_for('home')}}">
+              <h5 class="text-white p-4" style="font-size: 30px;">Back</h5>
+          </a>
+          <h1 class="text-white p-5">Profile Page</h1>
+          <div class="container" style="background-color: white; border-radius: 10px; height: 300px;">     
+            <div class="row">
+              <div class="col-sm-6">
+                {% if current_user.user_profile_photo == 'user_image.jpg' %}
+                <img class="user_profile_pics" src="{{ url_for('static', filename='user_profile_photo/' + current_user.user_profile_photo) }}" alt="user profile photo">
+                {% else %}
+                <img class="user_profile_pics" src="{{ url_for('static', filename='user_profile_photo/' + current_user.user_profile_photo) }}" alt="user profile photo">
+                {% endif %}
+              </div>
+              <div class="col-sm-6" style="margin-top: 90px;">
+                  <div class="col-sm-4">
+                    <h5>Username : <a href="" style="text-decoration: none;">{{ current_user.username }}</a></h5>
+                  </div>
+                  <div class="col-sm-4">
+                    <h5>Email : <a href="" style="text-decoration: none;">{{ current_user.email }}</a></h5>
+                  </div>
+                  <div class="col-sm-4">
+                    <h5>Role : <a href="" style="text-decoration: none; color: red;">Admin</a></h5>
+                    <a href="{{url_for('adminHomepage')}}"><button>Admin Homepage</button></a>
 
+                  </div>
+              </div>
+            </div>
+          </div>
+      </div>
+    </div>
+
+    {% else %}
     <div class="profile_content">
       <div class="container">
           <a style="text-decoration: none;" href="{{url_for('home')}}">
@@ -111,6 +145,8 @@
                   </div>
                   <div class="col-sm-4">
                     <h5>Role : <a href="" style="text-decoration: none; color: green;">Student</a></h5>
+                    
+
                   </div>
               </div>
             </div>
@@ -118,8 +154,10 @@
       </div>
     </div>
 
+
+
  
-  
+  {% endif %}
 
 
 

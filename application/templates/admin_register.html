@@ -30,7 +30,7 @@
                         {% else %}
                             {{ form.username(class="form-control form-control-lg") }}
                         {% endif %}
-                    </div>
+                    </div><br>
                     
                     <div class="form-group">
                         {{ form.email.label(class="form-control-label") }}
@@ -44,7 +44,7 @@
                         {% else %}
                             {{ form.email(class="form-control form-control-lg") }}
                         {% endif %}
-                    </div>
+                    </div><br>
 
                     <div class="form-group">
                         {{ form.mmu_id.label(class="form-control-label") }}
@@ -58,7 +58,7 @@
                         {% else %}
                             {{ form.mmu_id(class="form-control form-control-lg") }}
                         {% endif %}
-                    </div>
+                    </div><br>
 
                     <div class="form-group">
                         {{ form.faculty.label(class="form-control-label") }}
@@ -72,7 +72,7 @@
                         {% else %}
                             {{ form.faculty(class="form-control form-control-lg") }}
                         {% endif %}
-                    </div>
+                    </div><br>
 
                     <div class="form-group">
                         {{ form.password.label(class="form-control-label") }}
@@ -86,7 +86,7 @@
                         {% else %}
                             {{ form.password(class="form-control form-control-lg") }}
                         {% endif %}
-                    </div>
+                    </div><br>
 
                     <div class="form-group">
                         {{ form.confirmpassword.label(class="form-control-label") }}
@@ -100,15 +100,16 @@
                         {% else %}
                             {{ form.confirmpassword(class="form-control form-control-lg") }}
                         {% endif %}
-                    </div>
+                    </div><br>
 
                     <div class="form-group">
                         {{ form.submit(class="btn btn-outline-info text-center") }}
-                    </div>
+                    </div><br>
                 </fieldset>
             </form>
         </div>
     </div>
+    
     <div class="border-top pt-3">
         <small class="text-muted">
             Already have an account? <a class="ml-2" href="{{ url_for('adminlogin') }}">Login</a>

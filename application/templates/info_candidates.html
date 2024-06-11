@@ -114,29 +114,29 @@
 
         <div class="candidate1_information_container">
             <div class="rounded-circle col-8">
-              {% if candidate.candidate_photo_filename == 'candidate_image.jpg' %}
-              <img class="rounded-circle" src="{{ url_for('static', filename='candidate_profile_pics/candidate_image.jpg') }}" alt="candidate image" style="height: 200px; width: 200px; margin-top: 20px; margin-bottom: 10px; margin-left: 43%;">
-              {% else %}
-              <img class="rounded-circle" src="{{ url_for('static', filename='candidate_profile_pics/' + candidate.candidate_photo_filename) }}" alt="candidate image" style="height: 200px; width: 200px; margin-top: 20px; margin-bottom: 10px; margin-left: 43%;">
-              {% endif %}
+                {% if candidate.candidate_photo_filename is not none %}
+                <img class="rounded-circle" src="{{ url_for('static', filename='candidate_profile_pics/candidate_image.jpg') }}" alt="candidate image" style="height: 200px; width: 200px; margin-top: 20px; margin-bottom: 10px; margin-left: 43%;">
+                {% else %}
+                <img class="rounded-circle" src="{{ url_for('static', filename='candidate_profile_pics/' + candidate.candidate_photo_filename) }}" alt="candidate image" style="height: 200px; width: 200px; margin-top: 20px; margin-bottom: 10px; margin-left: 43%;">
+                {% endif %}
             </div>
             <br><br>
 
             <div class="candidate1_detail">
                 <div class="candidate_name">
-                  <p>Name: <a style="text-decoration: none; color: white;" href="{{url_for('candidate_biodata' , candidate_id = candidate.id )}}">{{ candidate.candidate_name }}</a></p><a href="{{url_for('edit_candidates' , candidate_id = candidate.id)}}"><button>Edit</button></a>
+                  <p>Name: <a style="text-decoration: none; color: white;" href="{{url_for('candidate_biodata' , candidate_id = candidate.id )}}">{{ candidate.candidate_name.upper() }}</a></p><a href="{{url_for('edit_candidates' , candidate_id = candidate.id)}}"><button>Edit</button></a>
                 </div>
                 <div class="candidate_ID">
                     <p>Student ID: {{ candidate.candidate_id }}</p>
                 </div>
                 <div class="candidate_faculty">
-                    <p>Faculty: {{ candidate.candidate_faculty }}</p>
+                    <p>Faculty: {{ candidate.candidate_faculty.upper() }}</p>
                 </div>
                 <div class="candidate_academic_level">
-                    <p>Academic Level: {{ candidate.candidate_level }}</p>
+                    <p>Academic Level: {{ candidate.candidate_level.upper() }}</p>
                 </div>
                 <div class="candidate_quote">
-                    <p>Quote: {{ candidate.candidate_quote }}</p>
+                    <p>Quote: {{ candidate.candidate_quote.capitalize() }}</p>
                 </div>
                 <a href="{{url_for('delete_candidates' , candidate_id = candidate.id)}}" class="float-end"><button>delete</button></a>
             </div>

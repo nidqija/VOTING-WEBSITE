@@ -124,7 +124,7 @@
         </div><br>
 
         <div class="leaderboard-container">
-            <h1>President(FOE)</h1>
+            <h1>FOE Candidate</h1>
             <table>
                 <thead>
                     <tr>
@@ -136,7 +136,7 @@
                 <tbody>
                     {% block content %}
                     {% for candidate in candidate1 %}
-                    {% if candidate.candidate_position.capitalize() == 'President' and candidate.candidate_faculty.upper() == 'FOE' %}
+                    {% if candidate.candidate_faculty.upper() == 'FOE' %}
 
                     <tr>
                       
@@ -152,83 +152,10 @@
 
                   
                 </tbody>
-            </table>
-        </div><br>
-
-        <div class="leaderboard-container">
-            <h1>Vice President(FOE)</h1>
-            <table>
-                <thead>
-                    <tr>
-                        <!--<th>Rank</th>-->
-                        <th>Candidate</th>
-                        <th>Vote</th>
-                    </tr>
-                </thead>
-                <tbody>
-                
-                    {% for candidate in candidate1 %}
-                    {% if candidate.candidate_position == 'Vice President' and candidate.candidate_faculty.upper() == 'FOE' %}
-
-                    <tr>
-                      
-                        <!--<td>{{ candidate_id }}</td>-->
-                        <td>{{ candidate.candidate_name }}</td>
-                        <td> {{ candidate.vote|length }}</td>
-
-                      
-                    </tr>
-                    {% endif %}
-                    {% endfor %}    
-                            </tbody>
-                        </table>
-                    </div><br>
-
-                    <div class="leaderboard-container">
-                        <h1>Secretary(FOE)</h1>
-                        <table>
-                            <thead>
-                                <tr>
-                                    <!--<th>Rank</th>-->
-                                    <th>Candidate</th>
-                                    <th>Vote</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                            
-                                {% for candidate in candidate1 %}
-                                {% if candidate.candidate_position.capitalize() == 'Secretary' and candidate.candidate_faculty.upper() == 'FOE' %}
-            
-                                <tr>
-                                  
-                                    <!--<td>{{ candidate_id }}</td>-->
-                                    <td>{{ candidate.candidate_name }}</td>
-                                    <td> {{ candidate.vote|length }}</td>
-            
-                                  
-                                </tr>
-                                {% endif %}
-                                {% endfor %}
-            
-                                
-            
-                              
-                            </tbody>
-                        </table>
-                    </div>
-
                     {% endblock %}
-
-                  
-                </tbody>
             </table>
         </div>
     </div>
-</div>
-    </div>
-
-
-</div>
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" crossorigin="anonymous"></script>
 

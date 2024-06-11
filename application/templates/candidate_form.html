@@ -121,13 +121,6 @@
                 {% endfor %}
             </div>
             <div class="mb-6" style="margin-top: 25px;">
-                {{ form.candidate_position.label(class="form-label") }}
-                {{ form.candidate_position(class="form-control", placeholder="Input your interested position here") }}
-                {% for error in form.candidate_position.errors %}
-                    <span style="color: red;">{{ error }}</span>
-                {% endfor %}
-            </div>
-            <div class="mb-6" style="margin-top: 25px;">
                 {{ form.candidate_quote.label(class="form-label") }}
                 {{ form.candidate_quote(class="form-control", placeholder="Input your quote here") }}
                 {% for error in form.candidate_quote.errors %}

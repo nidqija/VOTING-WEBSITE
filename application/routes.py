@@ -92,75 +92,81 @@ def candidates():
 
 def vote(candidate_id):
      candidate = Candidate.query.get(candidate_id)
-     voted = Vote1.query.filter_by( author = current_user.id , candidate_id = candidate_id).first()
+
+     if not candidate:
+        flash('Candidate not found.', 'danger')
+        return redirect(url_for('home'))
+     
+     voted = Vote1.query.filter_by( author = current_user.id).first()
 
      if voted:
           flash('You have already voted for this candidate.' , 'warning')
           return redirect(url_for('home'))
      
-     votes1 = Vote1(author = current_user.id , candidate_id = candidate_id)
-     db.session.add(votes1)
+     new_vote = Vote1(author=current_user.id, candidate_id=candidate_id)
+     db.session.add(new_vote)
      db.session.commit()
-
-     return redirect(url_for('candidate2'))
-
-
-@app.route('/candidates/second/' , methods = [ 'GET' , 'POST'])
-@login_required
-
-def candidate2():
-     candidate2 = Candidate.query.all()
-     return render_template('candidates.html' , candidate2 = candidate2)
-
-
-
-@app.route('/vote-candidate2/<candidate_id>')
-@login_required
-
-def vote2(candidate_id):
-     candidate2 = Candidate.query.filter_by(id = candidate_id)
-     votes2 = Vote1.query.filter_by( author = current_user.id , candidate_id = candidate_id).first()
-
-     if not candidate2:
-          flash('Candidate does not exist' , category='error')
-
-     else:
-          votes2 = Vote1(author = current_user.id , candidate_id = candidate_id)
-          db.session.add(votes2)
-          db.session.commit()
-
-     return redirect(url_for('candidate3'))
-
-
-
-
-@app.route('/candidates/third/' , methods = [ 'GET' , 'POST'])
-@login_required
-
-def candidate3():
-     candidate3 = Candidate.query.all()
-     return render_template('candidates.html' , candidate3 = candidate3)
-
-
-
-
-
-@app.route('/vote-candidate3/<candidate_id>')
-@login_required
-
-def vote3(candidate_id):
-     candidate2 = Candidate.query.filter_by(id = candidate_id)
-     votes3 = Vote1.query.filter_by( author = current_user.id , candidate_id = candidate_id).first()
-
-     if not candidate2:
-          flash('Candidate does not exist' , category='error')
-
-     else:
-          votes3 = Vote1(author = current_user.id , candidate_id = candidate_id)
-          db.session.add(votes3)
-          db.session.commit()
+     flash('Your vote has been recorded.', 'success')
 
      return redirect(url_for('home'))
+
+
+# @app.route('/candidates/second/' , methods = [ 'GET' , 'POST'])
+# @login_required
+
+# def candidate2():
+#      candidate2 = Candidate.query.all()
+#      return render_template('candidates.html' , candidate2 = candidate2)
+
+
+
+# @app.route('/vote-candidate2/<candidate_id>')
+# @login_required
+
+# def vote2(candidate_id):
+#      candidate2 = Candidate.query.filter_by(id = candidate_id)
+#      votes2 = Vote1.query.filter_by( author = current_user.id , candidate_id = candidate_id).first()
+
+#      if not candidate2:
+#           flash('Candidate does not exist' , category='error')
+
+#      else:
+#           votes2 = Vote1(author = current_user.id , candidate_id = candidate_id)
+#           db.session.add(votes2)
+#           db.session.commit()
+
+#      return redirect(url_for('candidate3'))
+
+
+
+
+# @app.route('/candidates/third/' , methods = [ 'GET' , 'POST'])
+# @login_required
+
+# def candidate3():
+#      candidate3 = Candidate.query.all()
+#      return render_template('candidates.html' , candidate3 = candidate3)
+
+
+
+
+
+# @app.route('/vote-candidate3/<candidate_id>')
+# @login_required
+
+# def vote3(candidate_id):
+#      candidate2 = Candidate.query.filter_by(id = candidate_id)
+#      votes3 = Vote1.query.filter_by( author = current_user.id , candidate_id = candidate_id).first()
+
+#      if not candidate2:
+#           flash('Candidate does not exist' , category='error')
+
+#      else:
+#           votes3 = Vote1(author = current_user.id , candidate_id = candidate_id)
+#           db.session.add(votes3)
+#           db.session.commit()
+
+#      return redirect(url_for('home'))
 
 
 @app.route('/edit_candidate' , methods = ['POST' , 'GET'] )
@@ -456,7 +462,7 @@ def candidatesform():
           else:
                resume_name = None
 
-          candidate = Candidate(candidate_name = form.candidate_name.data, candidate_age = form.candidate_age.data, candidate_id = form.candidate_id.data, candidate_faculty = form.candidate_faculty.data, candidate_level = form.candidate_level.data, candidate_quote = form.candidate_quote.data, candidate_position = form.candidate_position.data , candidate_resume = resume_name , candidate_photo_filename = photo_name, candidate_manifesto = form.candidate_manifesto.data)
+          candidate = Candidate(candidate_name = form.candidate_name.data, candidate_age = form.candidate_age.data, candidate_id = form.candidate_id.data, candidate_faculty = form.candidate_faculty.data, candidate_level = form.candidate_level.data, candidate_quote = form.candidate_quote.data, candidate_resume = resume_name , candidate_photo_filename = photo_name, candidate_manifesto = form.candidate_manifesto.data)
           db.session.add(candidate)
           db.session.commit()
           flash('Candidate information has been filled up successfully!', 'success')
@@ -496,37 +502,37 @@ def candidatesform():
 
 @app.route('/info_candidates/<int:candidate_id>/edit' , methods = ['POST' , 'GET'])
 def edit_candidates(candidate_id):
-   candidate = Candidate.query.get_or_404(candidate_id)
+     candidate = Candidate.query.get_or_404(candidate_id)
    
-   form = CandidateForm()
-   if form.validate_on_submit():
-        candidate.candidate_name = form.candidate_name.data
-        candidate.candidate_age = form.candidate_age.data
-        candidate.candidate_id = form.candidate_id.data
-        candidate.candidate_faculty = form.candidate_faculty.data
-        candidate.candidate_level = form.candidate_level.data
-        candidate.candidate_quote = form.candidate_quote.data
-        candidate.candidate_position = form.candidate_position.data
-        candidate.candidate_photo_filename = form.candidate_photo.data
-        if form.candidate_resume.data:
-            candidate_resume = form.candidate_resume.data
-            resume_filename = secure_filename(candidate_resume.filename)
-            resume_name = str(uuid.uuid1()) + '_' + resume_filename
-            candidate_resume.save(os.path.join(app.config['UPLOAD_FOLDER'], resume_name))
-            candidate.candidate_resume = resume_name
-        db.session.commit()
-        return redirect(url_for('candidatesInfo'))
-   form.candidate_name.data = candidate.candidate_name
-   form.candidate_age.data = candidate.candidate_age 
-   form.candidate_id.data = candidate.candidate_id
-   form.candidate_faculty.data = candidate.candidate_faculty 
-   form.candidate_level.data = candidate.candidate_level 
-   form.candidate_quote.data = candidate.candidate_quote 
-   form.candidate_position.data = candidate.candidate_position 
-   form.candidate_photo.data = candidate.candidate_photo_filename
+     form = CandidateForm()
+     if form.validate_on_submit():
+          candidate.candidate_name = form.candidate_name.data
+          candidate.candidate_age = form.candidate_age.data
+          candidate.candidate_id = form.candidate_id.data
+          candidate.candidate_faculty = form.candidate_faculty.data
+          candidate.candidate_level = form.candidate_level.data
+          candidate.candidate_quote = form.candidate_quote.data
+          #    candidate.candidate_position = form.candidate_position.data
+          candidate.candidate_photo_filename = form.candidate_photo.data
+          if form.candidate_resume.data:
+               candidate_resume = form.candidate_resume.data
+               resume_filename = secure_filename(candidate_resume.filename)
+               resume_name = str(uuid.uuid1()) + '_' + resume_filename
+               candidate_resume.save(os.path.join(app.config['UPLOAD_FOLDER'], resume_name))
+               candidate.candidate_resume = resume_name
+          db.session.commit()
+          return redirect(url_for('candidatesInfo'))
+     form.candidate_name.data = candidate.candidate_name
+     form.candidate_age.data = candidate.candidate_age 
+     form.candidate_id.data = candidate.candidate_id
+     form.candidate_faculty.data = candidate.candidate_faculty 
+     form.candidate_level.data = candidate.candidate_level 
+     form.candidate_quote.data = candidate.candidate_quote 
+     #    form.candidate_position.data = candidate.candidate_position 
+     form.candidate_photo.data = candidate.candidate_photo_filename
 
 
-   return render_template('update_candidates2.html' , form = form)
+     return render_template('update_candidates2.html' , form = form)
 
 
 

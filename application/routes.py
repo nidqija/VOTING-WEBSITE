@@ -174,18 +174,16 @@ def vote(candidate_id):
 
 def edit_candidate_form():
      candidate1 = Candidate.query.all()
-     form = CandidateIDForm()
-     if form.validate_on_submit():
-          candidateID = CandidateID(candidate_entrance= form.candidate_entrance_form.data , author = current_user)
-          db.session.add(candidateID)
-          db.session.commit()
-          flash('Your question is created!' , 'success')
-          return redirect(url_for('edit_candidate_form'))
-     return render_template('editCandidateForm.html' ,  form = form , candidate1 = candidate1)
+     return render_template('candidate_form_entrance.html' ,  candidate1 = candidate1 )
 
      
 
-
+@app.route('/candidate_viewer')
+@login_required
+def candidate_viewer():
+   
+       candidate1 = Candidate.query.all()
+       return render_template('candidate_form_entrance.html' , candidate1 = candidate1)
 
 
 
@@ -326,7 +324,7 @@ def leaderboard_FOM():
      #candidate2 = Candidate2.query.all()
      #candidate3 = Candidate3.query.all()
      return render_template('leaderboard_FOM.html' , candidate1 = candidate1)
-
+     
 
 @app.route('/update_announcement' , methods = ['POST' , 'GET'])
 def updateAnnouncement():
@@ -498,6 +496,42 @@ def candidatesform():
 #          return redirect(url_for('adminHomepage'))
 
 #      return render_template('general_candidate_form.html', form=form)
+
+@app.route('/candidates_editing_profile/<int:candidate_id>/edit' , methods = ['POST' , 'GET'])
+def candidates_editing_profile(candidate_id):
+   candidate = Candidate.query.get_or_404(candidate_id)
+   
+   form = CandidateForm()
+   if form.validate_on_submit():
+        candidate.candidate_name = form.candidate_name.data
+        candidate.candidate_age = form.candidate_age.data
+        candidate.candidate_id = form.candidate_id.data
+        candidate.candidate_faculty = form.candidate_faculty.data
+        candidate.candidate_level = form.candidate_level.data
+        candidate.candidate_quote = form.candidate_quote.data
+        candidate.candidate_position = form.candidate_position.data
+        candidate.candidate_photo_filename = form.candidate_photo.data
+        if form.candidate_resume.data:
+            candidate_resume = form.candidate_resume.data
+            resume_filename = secure_filename(candidate_resume.filename)
+            resume_name = str(uuid.uuid1()) + '_' + resume_filename
+            candidate_resume.save(os.path.join(app.config['UPLOAD_FOLDER'], resume_name))
+            candidate.candidate_resume = resume_name
+        db.session.commit()
+        return redirect(url_for('home'))
+   form.candidate_name.data = candidate.candidate_name
+   form.candidate_age.data = candidate.candidate_age 
+   form.candidate_id.data = candidate.candidate_id
+   form.candidate_faculty.data = candidate.candidate_faculty 
+   form.candidate_level.data = candidate.candidate_level 
+   form.candidate_quote.data = candidate.candidate_quote 
+   form.candidate_position.data = candidate.candidate_position 
+
+
+   return render_template('update_candidates2.html' , form = form)
+
+
+     
 
 
 @app.route('/info_candidates/<int:candidate_id>/edit' , methods = ['POST' , 'GET'])

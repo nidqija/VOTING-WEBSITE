@@ -509,7 +509,6 @@ def candidates_editing_profile(candidate_id):
         candidate.candidate_faculty = form.candidate_faculty.data
         candidate.candidate_level = form.candidate_level.data
         candidate.candidate_quote = form.candidate_quote.data
-        candidate.candidate_position = form.candidate_position.data
         candidate.candidate_photo_filename = form.candidate_photo.data
         if form.candidate_resume.data:
             candidate_resume = form.candidate_resume.data
@@ -525,7 +524,6 @@ def candidates_editing_profile(candidate_id):
    form.candidate_faculty.data = candidate.candidate_faculty 
    form.candidate_level.data = candidate.candidate_level 
    form.candidate_quote.data = candidate.candidate_quote 
-   form.candidate_position.data = candidate.candidate_position 
 
 
    return render_template('update_candidates2.html' , form = form)

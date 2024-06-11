@@ -93,13 +93,7 @@
         {% if candidate.candidate_faculty.capitalize() == 'General' %}
         <div class="candidate_content" style="padding-left: 50px; padding-right: 50px;">
           <div class="card" style="background-color: rgba(255, 255, 255, 0.5);">
-            <div class="card_image_box">
-              {% if candidate.candidate_photo_filename == 'candidate_image.jpg' %}
-              <img class="rounded-circle" src="{{ url_for('static', filename='candidate_profile_pics/candidate_image.jpg') }}" alt="candidate image" style="height: 200px; width: 200px; margin-top: 20px; margin-bottom: 10px; margin-left: 43%;">
-              {% else %}
-              <img class="rounded-circle" src="{{ url_for('static', filename='candidate_profile_pics/' + candidate.candidate_photo_filename) }}" alt="candidate image" style="height: 200px; width: 200px; margin-top: 20px; margin-bottom: 10px; margin-left: 43%;">
-              {% endif %}
-            </div>
+          
             <div class="card_content">
               <div class="card_detail" style="text-align: center;">
                 <h2><a style="text-decoration: none; color: blue;" href="{{url_for('candidate_biodata' , candidate_id = candidate.id)}}"><b>{{ candidate.candidate_name.upper() }}</b></a><br><span>{{ candidate.candidate_level.upper() }}</span></h2>
@@ -131,13 +125,7 @@
         {% if candidate.candidate_faculty.upper() == 'FAC' %}
         <div class="candidate_content" style="padding-left: 50px; padding-right: 50px;">
           <div class="card" style="background-color: rgba(255, 255, 255, 0.5);">
-            <div class="card_image_box">
-              {% if candidate.candidate_photo_filename == 'candidate_image.jpg' %}
-              <img class="rounded-circle" src="{{ url_for('static', filename='candidate_profile_pics/candidate_image.jpg') }}" alt="candidate image" style="height: 200px; width: 200px; margin-top: 20px; margin-bottom: 10px; margin-left: 43%;">
-              {% else %}
-              <img class="rounded-circle" src="{{ url_for('static', filename='candidate_profile_pics/' + candidate.candidate_photo_filename) }}" alt="candidate image" style="height: 200px; width: 200px; margin-top: 20px; margin-bottom: 10px; margin-left: 43%;">
-              {% endif %}
-            </div>
+          
             <div class="card_content">
               <div class="card_detail" style="text-align: center;">
                 <h2><a style="text-decoration: none; color: blue;" href="{{url_for('candidate_biodata' , candidate_id = candidate.id)}}"><b>{{ candidate.candidate_name.upper() }}</b></a><br><span>{{ candidate.candidate_level.upper() }}</span></h2>
@@ -170,13 +158,7 @@
         {% if candidate.candidate_faculty.upper() == 'FCA' %}
         <div class="candidate_content" style="padding-left: 50px; padding-right: 50px;">
           <div class="card" style="background-color: rgba(255, 255, 255, 0.5);">
-            <div class="card_image_box">
-              {% if candidate.candidate_photo_filename == 'candidate_image.jpg' %}
-              <img class="rounded-circle" src="{{ url_for('static', filename='candidate_profile_pics/candidate_image.jpg') }}" alt="candidate image" style="height: 200px; width: 200px; margin-top: 20px; margin-bottom: 10px; margin-left: 43%;">
-              {% else %}
-              <img class="rounded-circle" src="{{ url_for('static', filename='candidate_profile_pics/' + candidate.candidate_photo_filename) }}" alt="candidate image" style="height: 200px; width: 200px; margin-top: 20px; margin-bottom: 10px; margin-left: 43%;">
-              {% endif %}
-            </div>
+           
             <div class="card_content">
               <div class="card_detail" style="text-align: center;">
                 <h2><a style="text-decoration: none; color: blue;" href="{{url_for('candidate_biodata' , candidate_id = candidate.id)}}"><b>{{ candidate.candidate_name.upper() }}</b></a><br><span>{{ candidate.candidate_level.upper() }}</span></h2>
@@ -209,13 +191,7 @@
         {% if candidate.candidate_faculty.upper() == 'FCI' %}
         <div class="candidate_content" style="padding-left: 50px; padding-right: 50px;">
           <div class="card" style="background-color: rgba(255, 255, 255, 0.5);">
-            <div class="card_image_box">
-              {% if candidate.candidate_photo_filename == 'candidate_image.jpg' %}
-              <img class="rounded-circle" src="{{ url_for('static', filename='candidate_profile_pics/candidate_image.jpg') }}" alt="candidate image" style="height: 200px; width: 200px; margin-top: 20px; margin-bottom: 10px; margin-left: 43%;">
-              {% else %}
-              <img class="rounded-circle" src="{{ url_for('static', filename='candidate_profile_pics/' + candidate.candidate_photo_filename) }}" alt="candidate image" style="height: 200px; width: 200px; margin-top: 20px; margin-bottom: 10px; margin-left: 43%;">
-              {% endif %}
-            </div>
+          
             <div class="card_content">
               <div class="card_detail" style="text-align: center;">
                 <h2><a style="text-decoration: none; color: blue;" href="{{url_for('candidate_biodata' , candidate_id = candidate.id)}}"><b>{{ candidate.candidate_name.upper() }}</b></a><br><span>{{ candidate.candidate_level.upper() }}</span></h2>
@@ -248,13 +224,7 @@
         {% if candidate.candidate_faculty.upper() == 'FCM' %}
         <div class="candidate_content" style="padding-left: 50px; padding-right: 50px;">
           <div class="card" style="background-color: rgba(255, 255, 255, 0.5);">
-            <div class="card_image_box">
-              {% if candidate.candidate_photo_filename == 'candidate_image.jpg' %}
-              <img class="rounded-circle" src="{{ url_for('static', filename='candidate_profile_pics/candidate_image.jpg') }}" alt="candidate image" style="height: 200px; width: 200px; margin-top: 20px; margin-bottom: 10px; margin-left: 43%;">
-              {% else %}
-              <img class="rounded-circle" src="{{ url_for('static', filename='candidate_profile_pics/' + candidate.candidate_photo_filename) }}" alt="candidate image" style="height: 200px; width: 200px; margin-top: 20px; margin-bottom: 10px; margin-left: 43%;">
-              {% endif %}
-            </div>
+           
             <div class="card_content">
               <div class="card_detail" style="text-align: center;">
                 <h2><a style="text-decoration: none; color: blue;" href="{{url_for('candidate_biodata' , candidate_id = candidate.id)}}"><b>{{ candidate.candidate_name.upper() }}</b></a><br><span>{{ candidate.candidate_level.upper() }}</span></h2>
@@ -287,13 +257,7 @@
         {% if candidate.candidate_faculty.upper() == 'FOE' %}
         <div class="candidate_content" style="padding-left: 50px; padding-right: 50px;">
           <div class="card" style="background-color: rgba(255, 255, 255, 0.5);">
-            <div class="card_image_box">
-              {% if candidate.candidate_photo_filename == 'candidate_image.jpg' %}
-              <img class="rounded-circle" src="{{ url_for('static', filename='candidate_profile_pics/candidate_image.jpg') }}" alt="candidate image" style="height: 200px; width: 200px; margin-top: 20px; margin-bottom: 10px; margin-left: 43%;">
-              {% else %}
-              <img class="rounded-circle" src="{{ url_for('static', filename='candidate_profile_pics/' + candidate.candidate_photo_filename) }}" alt="candidate image" style="height: 200px; width: 200px; margin-top: 20px; margin-bottom: 10px; margin-left: 43%;">
-              {% endif %}
-            </div>
+           
             <div class="card_content">
               <div class="card_detail" style="text-align: center;">
                 <h2><a style="text-decoration: none; color: blue;" href="{{url_for('candidate_biodata' , candidate_id = candidate.id)}}"><b>{{ candidate.candidate_name.upper() }}</b></a><br><span>{{ candidate.candidate_level.upper() }}</span></h2>
@@ -326,13 +290,7 @@
         {% if candidate.candidate_faculty.upper() == 'FOM' %}
         <div class="candidate_content" style="padding-left: 50px; padding-right: 50px;">
           <div class="card" style="background-color: rgba(255, 255, 255, 0.5);">
-            <div class="card_image_box">
-              {% if candidate.candidate_photo_filename == 'candidate_image.jpg' %}
-              <img class="rounded-circle" src="{{ url_for('static', filename='candidate_profile_pics/candidate_image.jpg') }}" alt="candidate image" style="height: 200px; width: 200px; margin-top: 20px; margin-bottom: 10px; margin-left: 43%;">
-              {% else %}
-              <img class="rounded-circle" src="{{ url_for('static', filename='candidate_profile_pics/' + candidate.candidate_photo_filename) }}" alt="candidate image" style="height: 200px; width: 200px; margin-top: 20px; margin-bottom: 10px; margin-left: 43%;">
-              {% endif %}
-            </div>
+           
             <div class="card_content">
               <div class="card_detail" style="text-align: center;">
                 <h2><a style="text-decoration: none; color: blue;" href="{{url_for('candidate_biodata' , candidate_id = candidate.id)}}"><b>{{ candidate.candidate_name.upper() }}</b></a><br><span>{{ candidate.candidate_level.upper() }}</span></h2>

@@ -16,14 +16,8 @@
         <div class="admin_candidate_information_container2" style="background-color: purple;">
     
             <div class="candidate1_information_container">
-                <div class="rounded-circle col-8">
-                  {% if candidate.candidate_photo_filename == 'candidate_image.jpg' %}
-                  <img class="rounded-circle" src="{{ url_for('static', filename='candidate_profile_pics/candidate_image.jpg') }}" alt="candidate image" style="height: 200px; width: 200px; margin-top: 20px; margin-bottom: 10px; margin-left: 43%;">
-                  {% else %}
-                  <img class="rounded-circle" src="{{ url_for('static', filename='candidate_profile_pics/' + candidate.candidate_photo_filename) }}" alt="candidate image" style="height: 200px; width: 200px; margin-top: 20px; margin-bottom: 10px; margin-left: 43%;">
-                  {% endif %}
-                </div>
-                <br><br>
+               
+                
     
                 <div class="candidate1_detail">
                     <div class="candidate_name">

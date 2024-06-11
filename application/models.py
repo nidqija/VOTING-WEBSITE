@@ -60,14 +60,14 @@ class Candidate(db.Model):
       candidate_quote = db.Column(db.String(500) , nullable=False)
       candidate_photo_filename = db.Column(db.String(), default='candidate_image.jpg')
       candidate_id = db.Column(db.Integer , db.ForeignKey('candidate.id') , nullable = False)
-      candidate_position = db.Column(db.String(500) , nullable=False)
+      # candidate_position = db.Column(db.String(500) , nullable=False)
       vote = db.relationship('Vote1' , backref = 'candidate' , lazy = True)
       #image_file = db.Column((db.String(20)), nullable=False, default='candidate_image.jpg')
       candidate_resume = db.Column(db.String(), default = 'None')
       candidate_manifesto = db.Column(db.String(500) , nullable=False)
 
       def _repr_(self):
-           return f'Candidate("{self.candidate_name}" ," {self.candidate_id}" ," {self.candidate_age}" , {self.candidate_faculty} ,  {self.candidate_level} , {self.candidate_quote} , {self.candidate_photo_filename} , {self.candidate_position} , {self.candidate_resume} , {self.candidate_manifesto})'
+           return f'Candidate("{self.candidate_name}" ," {self.candidate_id}" ," {self.candidate_age}" , {self.candidate_faculty} ,  {self.candidate_level} , {self.candidate_quote} , {self.candidate_photo_filename} , {self.candidate_resume} , {self.candidate_manifesto})'
 
 
 

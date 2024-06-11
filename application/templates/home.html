@@ -40,7 +40,7 @@
                       </li>
 
                       {% if current_user.is_authenticated %}
-                      <li id="navSections" class="nav-item px-3">
+                      <li id="navSections" class="nav-item px-3"  style="position: relative; right: 100px;">
                       
                          <button id="CurrentUserProfile" type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
                           {{ current_user.username }}

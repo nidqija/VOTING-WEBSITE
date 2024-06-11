@@ -10,7 +10,7 @@
 </head>
 <body>
     {% block content %}
-    <div class="LoginButton">
+    <div class="container">
         <div class="content-section">
             <form method="POST">
                 {{ form.hidden_tag() }}
@@ -31,7 +31,7 @@
                         {% else %}
                             {{ form.username(class="form-control form-control-lg") }}
                         {% endif %}
-                    </div>
+                    </div><br>
 
                     <div class="form-group">
                         {{ form.mmu_id.label(class="form-control-label") }}
@@ -46,7 +46,7 @@
                         {% else %}
                             {{ form.mmu_id(class="form-control form-control-lg") }}
                         {% endif %}
-                    </div>
+                    </div><br>
 
                     <div class="form-group">
                         {{ form.password.label(class="form-control-label") }}
@@ -61,28 +61,34 @@
                         {% else %}
                             {{ form.password(class="form-control form-control-lg") }}
                         {% endif %}
-                    </div>
+                    </div><br>
 
                     <div class="form-check">
                         {{ form.remember(class='form-check-input') }}
                         {{ form.remember.label(class='form-check-label') }}
-                    </div>
+                    </div><br>
 
                     <div class="form-group" id="LoginSubmitButton">
                         {{ form.submit(class = "btn btn-outline-info") }}
-                    </div>
-
-                    <small class="text-muted ml-5">
-                        <a href="#">Forgot Password?</a>
-                        <p>New user? <a href="{{ url_for('register') }}">Sign in here!</a></p>
-                    </small>
-                    <small class="text-muted ml-5">
-                        <p>Login as <a href="{{ url_for('adminlogin') }}">Admin</a></p>
-                    </small>
+                    </div><br>
                 </fieldset>
             </form>
         </div>
+    </div><br><br>
+
+    <div class="border-top pt-3">
+        <small class="text-muted ml-5">
+            <a href="#">Forgot Password?</a>
+            <p>New user? <a href="{{ url_for('register') }}">Sign in here!</a></p>
+        </small>
     </div>
+
+    <div class="border-top border-bottom pt-3">
+        <small class="text-muted ml-5">
+            <p>Login as <a href="{{ url_for('adminlogin') }}">Admin</a></p>
+        </small>
+    </div>
+                
     {% endblock content %}
 
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js" integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3" crossorigin="anonymous"></script>

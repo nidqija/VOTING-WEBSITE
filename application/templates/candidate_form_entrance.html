@@ -38,7 +38,14 @@
                 </div>
             </div><br>
         </div>
-    </div>          
+    </div>       
+    
+    {% else %}
+     <div>
+        <div class="text-center p-5">
+        <h1>Sorry , you are not the candidate of this voting campaign</h1>
+        </div>
+     </div>
       {% endif %}
       {% endfor %}
 

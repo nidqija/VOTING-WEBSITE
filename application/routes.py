@@ -509,7 +509,12 @@ def candidates_editing_profile(candidate_id):
         candidate.candidate_faculty = form.candidate_faculty.data
         candidate.candidate_level = form.candidate_level.data
         candidate.candidate_quote = form.candidate_quote.data
-        candidate.candidate_photo_filename = form.candidate_photo.data
+        #candidate.candidate_photo_filename = form.candidate_photo.data
+        if form.candidate_photo.data:
+               photo = form.candidate_photo.data
+               photo_filename = secure_filename(photo.filename)
+               photo_name = str(uuid.uuid1()) + '_' + photo_filename
+               photo.save(os.path.join(app.config['UPLOADED_FOLDER'], photo_name))
         if form.candidate_resume.data:
             candidate_resume = form.candidate_resume.data
             resume_filename = secure_filename(candidate_resume.filename)
@@ -545,7 +550,12 @@ def edit_candidates(candidate_id):
           candidate.candidate_level = form.candidate_level.data
           candidate.candidate_quote = form.candidate_quote.data
           #    candidate.candidate_position = form.candidate_position.data
-          candidate.candidate_photo_filename = form.candidate_photo.data
+          #candidate.candidate_photo_filename = form.candidate_photo.data
+          if form.candidate_photo.data:
+               photo = form.candidate_photo.data
+               photo_filename = secure_filename(photo.filename)
+               photo_name = str(uuid.uuid1()) + '_' + photo_filename
+               photo.save(os.path.join(app.config['UPLOADED_FOLDER'], photo_name))
           if form.candidate_resume.data:
                candidate_resume = form.candidate_resume.data
                resume_filename = secure_filename(candidate_resume.filename)

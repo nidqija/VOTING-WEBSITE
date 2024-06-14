@@ -1,0 +1,367 @@
+/*styling for navbar*/
+#title{
+  font-weight: 700;
+  color: white;
+}
+  
+#navbarBackground{
+  background-color: blueviolet;
+}
+  
+#Navlink{
+  color: white;
+  transition: 0.7s;
+}
+  
+#Navlink:hover {
+  color: yellow;
+}
+  
+#CurrentUserProfile{
+  position: relative; 
+  left: 450px;
+   width: 200px;
+   font-size: large;
+   border-radius: 20px;
+}
+
+.role{
+  text-decoration: none;
+}
+
+
+/*styling for home.html*/
+.home-pageWallpaper{
+  background: linear-gradient(to top, rgba(0,0,0,0.5)50%,rgba(0,0,0,0.5)50%), url(https://www.mmu.edu.my/wp-content/uploads/2022/12/1280_720_2.jpeg);
+  background-size: cover;
+}
+   
+.announcement{
+  padding-top: 2%;
+  height: auto;
+  margin: auto;
+  text-align: center;
+}
+
+
+/*styling for candidates.html*/
+.candidate-pagewallpaper{
+  background: linear-gradient(to top, rgba(0,0,0,0.5)50%,rgba(0,0,0,0.5)50%), url(https://www.mmu.edu.my/wp-content/uploads/2022/12/1280_720_2.jpeg);
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
+  overflow: hidden;
+}
+
+.candidate_container{
+  overflow: scroll;
+  height: 607px;
+}
+
+.candidate_sit_title{
+  text-align: center;
+  padding-top: 25px; 
+  font-weight: bold;
+  color: white;
+}
+
+.candidate_content{
+  padding-left: 100px; 
+  padding-right: 100px;
+}
+
+.candidate_content img{
+  height: 200px; 
+  width: 200px; 
+  margin-top: 20px; 
+  margin-bottom: 10px; 
+  margin-left: 43%;
+}
+
+.edit_candidate_button{
+  border-radius: 10px;
+  padding-left: 10px;
+  padding-right: 10px;
+}
+
+.vote_button{
+  border-radius: 10px;
+  padding-left: 10px;
+  padding-right: 10px;
+}
+
+
+/*styling for about.html*/
+.about-pagewallpaper{
+  background: linear-gradient(to top, rgba(0,0,0,0.5)50%,rgba(0,0,0,0.5)50%), url(https://www.mmu.edu.my/wp-content/uploads/2022/12/1280_720_2.jpeg);
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
+  overflow: hidden;
+}
+
+.about_user_content{
+  overflow: scroll;
+  height: 607px;
+}
+
+.about_photo{
+  border-radius: 50%;
+  margin-top: 15px;
+}
+
+#About_subtitle{
+  font-size: 30px;
+  position: relative;
+  bottom: 30px;
+}
+
+
+/*styling for guidelines.html*/
+.guidelines-pagewallpaper{
+  background: linear-gradient(to top, rgba(0,0,0,0.5)50%,rgba(0,0,0,0.5)50%), url(https://www.mmu.edu.my/wp-content/uploads/2022/12/1280_720_2.jpeg);
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
+  overflow: hidden;
+}
+
+.guidelines_user_content{
+  overflow: scroll;
+  height: 607px;
+}
+
+
+/*styling for service.html*/
+.service-pagewallpaper{
+  background: linear-gradient(to top, rgba(0,0,0,0.5)50%,rgba(0,0,0,0.5)50%), url(https://www.mmu.edu.my/wp-content/uploads/2022/12/1280_720_2.jpeg);
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
+  overflow: hidden;
+}
+
+.service_user_content{
+  overflow: scroll;
+  height: 607px;
+}
+
+
+/*styling for contact.html*/
+.contact-pagewallpaper{
+  background-image: url('https://images.sbs.com.au/dims4/default/6fffa06/2147483647/strip/true/crop/6000x3375+0+194/resize/1280x720!/quality/90/?url=http%3A%2F%2Fsbs-au-brightspot.s3.amazonaws.com%2Fe2%2Fde%2Fc8348dd641c3b707a14ea1f7ddba%2Fperson-voting.jpg');
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
+  overflow: hidden;
+}
+
+.contact_user_content{
+  overflow: scroll;
+  height: 607px;
+}
+
+
+/*styling for profile.html*/
+.profile-pagewallpaper{
+  background: linear-gradient(to top, rgba(0,0,0,0.5)50%,rgba(0,0,0,0.5)50%), url(https://www.mmu.edu.my/wp-content/uploads/2022/12/1280_720_2.jpeg);
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
+  overflow: hidden;
+}
+
+.profile_content{
+  overflow: scroll;
+  height: 607px;
+}
+
+.user_profile_pics{
+  width: 250px;
+  height: 250px;
+  margin-left: 100px;
+  margin-top: 20px;
+  border-radius: 50%;
+}
+
+/*styling for candidate_biodata.html*/
+.candidate-biodata-pageWallpaper{
+  background: linear-gradient(to top, rgba(0,0,0,0.5)50%,rgba(0,0,0,0.5)50%), url(https://www.mmu.edu.my/wp-content/uploads/2022/12/1280_720_2.jpeg);
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
+  overflow: hidden;
+}
+
+.candidate_biodata_content{
+  overflow: scroll;
+  height: 607px;
+}
+
+.candidate_resume_image{
+  width: 400px;
+  height: 600px;
+  margin-top: 10px;
+}
+
+
+/*styling for question.html*/
+.question-pagewallpaper{
+  background: linear-gradient(to top, rgba(0,0,0,0.5)50%,rgba(0,0,0,0.5)50%), url(https://www.mmu.edu.my/wp-content/uploads/2022/12/1280_720_2.jpeg);
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
+  overflow: hidden;
+}
+
+
+/*styling for candidate_form_entrance.html*/
+.candidate_form_entrance-pagewallpaper{
+  background: linear-gradient(to top, rgba(0,0,0,0.5)50%,rgba(0,0,0,0.5)50%), url(https://www.mmu.edu.my/wp-content/uploads/2022/12/1280_720_2.jpeg);
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
+  overflow: hidden;
+}
+
+.sorry_message{
+  color: white;
+}
+
+.candidate_form_entrance_edit_button{
+  border-radius: 10px;
+  padding-left: 20px;
+  padding-right: 20px;
+}
+
+/*styling for login.html*/
+#login_remember_me{
+  margin-left: 45px;
+}
+
+
+/*styling for admin_homepage.html and all leaderboard*/
+.adminbody{
+  overflow: hidden;
+}
+
+.admin_homepage_container{
+  width: 80%;
+  background: linear-gradient(to top, rgba(0,0,0,0.5)50%,rgba(0,0,0,0.5)50%), url(https://www.mmu.edu.my/wp-content/uploads/2022/12/1280_720_2.jpeg);
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  float: right;
+  padding-top: 50px;
+  overflow: scroll;
+  height: 607px;
+}
+
+.admin_homepage_sidebar{
+  position: fixed;
+  top: 104px;
+  left: 0;
+  width: 20%;
+  height: 100%;
+  padding-top: 20px;
+  background-color: purple; 
+}
+
+.admin_homepage_sidebar header{
+  font-size: 25px;
+  font-weight: bold;
+  text-align: center;
+  color: #ffffff;
+}
+
+.admin_homepage_sidebar ul li{
+  padding-top: 20px;
+  padding-right: 10px;
+  list-style-type: none;
+}
+
+.admin_homepage_sidebar ul li:hover a{
+  color: yellow;
+}
+
+.admin_homepage_sidebar ul a{
+  color: #ffffff;
+  text-decoration: none;
+  transition: .4s;
+}
+
+.WelcomeAdmin{
+  text-align: center;
+  color: white;
+  margin-bottom: 25px;
+}
+
+.leaderboard-container {
+  max-width: 800px;
+  margin:0 auto;
+  padding: 40px;
+  border-radius: 8px;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+  background-color: rgba(255, 255, 255, 0.5);
+}
+
+.leaderboard-container h1{
+  text-align: center;
+  margin-bottom: 20px;
+  color: white
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 50px;
+  padding-bottom: 100px;
+}
+
+th, td {
+  padding: 10px;
+  text-align: left;
+  border-bottom: 1px solid #dddddd;
+  font-weight: bold;
+}
+
+th {
+  background-color: rgba(255, 255, 255, 0.6);
+}
+
+tbody tr:nth-child(even) {
+  background-color: rgba(255, 255, 255, 0.6);
+}
+
+
+/*styling for info_candidates.html*/
+.candidate1_information_container{
+  max-width: 800px;
+  margin:0 auto;
+  padding: 40px;
+  border-radius: 8px;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+  background-color: rgba(255, 255, 255, 0.5);
+  color: white;
+  text-align: center;
+}
+
+.info_candidate_edit_button{
+  padding-left: 20px;
+  padding-right: 20px;
+  border-radius: 10px;
+}
+
+.delete_button{
+  padding-right: 20px;
+  padding-left: 20px;
+  border-radius: 10px;
+}
+
+.add_new_button{
+  float: right;
+  margin-right: 10px;
+  padding-left: 20px;
+  padding-right: 20px;
+  border-radius: 10px;
+}

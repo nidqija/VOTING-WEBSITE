@@ -5,64 +5,133 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Voting Home</title>
-    <link rel="stylesheet" href="../static/styles.css" >
+    <link rel="stylesheet" href="../static/styles1.css" >
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
 </head>
 <!--<h1>Welcome user! You have login!</h1>-->
-<body class="home-pageWallpaper">
+<body class="candidate-biodata-pageWallpaper">
     <nav id="navbarBackground" class="navbar navbar-expand-lg">
-     
-    </nav>
-
-    <h1 class="text-center text-white p-5">Candidate Bio</h1>
+        <div class="container-fluid p-4">
+            <a id="title" class="navbar-brand px-3" href="#">VOTE-IT!</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+              <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse "  id="navbarSupportedContent">
+              <ul  class="navbar-nav me-auto mb-2 mb-lg-0 ">
+                <li id="navSections" class="nav-item px-3">
+                  <a style="color: yellow;" id="Navlink" class="nav-link active" href="{{url_for('home')}}">Home</a>
+                </li>
+                <li id="navSections" class="nav-item px-3">
+                  <a  id="Navlink" class="nav-link" href="{{url_for('candidates')}}">Candidate</a>
+                </li>
+                <li id="navSections" class="nav-item px-3">
+                  <a  id="Navlink" class="nav-link" href="{{url_for('about')}}">About</a>
+                </li>
+                <li id="navSections" class="nav-item px-3 ">
+                  <a  id="Navlink" class="nav-link" href="{{url_for('guidelines')}}" role="button" >
+                    Guideline
+                  </a>
+                </li>
+                 <li id="navSections" class="nav-item px-3">
+                  <a id="Navlink" class="nav-link" href="{{url_for('service')}}">Service</a>
+                </li>
+                <li id="navSections" class="nav-item px-3">
+                  <a id="Navlink" class="nav-link" href="{{url_for('contact')}}">Contact</a>
+                </li>
     
-    <div class="container">
-        <div class="candidate_photo">
-            {% if candidate.candidate_photo_filename == 'candidate_image.jpg' %}
-            <img class="rounded-circle" src="{{ url_for('static', filename='candidate_profile_pics/candidate_image.jpg') }}" alt="candidate image" style="height: 200px; width: 200px; margin-top: 20px; margin-bottom: 10px; margin-left: 43%;">
+                {% if current_user.is_authenticated %}
+                <li id="navSections" class="nav-item px-3">
+                
+                   <button id="CurrentUserProfile" type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                    {{ current_user.username }}
+                   </button>
+    
+    <!-- Modal -->
+            <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+             <div class="modal-dialog">
+               <div class="modal-content">
+                 <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="exampleModalLabel">User Profile</h1>
+                      <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                         </div>
+                            <div class="modal-body">
+                               <p>Username :   {{ current_user.username }}</p> 
+                               <p> Email : {{ current_user.email }}</p> 
+                               <p>Role : <a class="role text-success">Student</a> </p>
+                            </div>
+                            <div class="modal-footer">
+                              <a href="{{url_for('profile')}}"><button type="button" class="btn btn-secondary" data-bs-dismiss="modal">View Profile</button></a>
+                              <a href="{{url_for('logout')}}"> <button type="button" class="btn btn-primary">Logout</button></a>
+                            </div>
+                       </div>
+                    </div>
+                </div>
+                </li>
+                {% else %}
+                <li id="navSections" class="nav-item px-3">
+                    <a href="{{url_for('login')}}"><button class="btn btn-outline-light" style="position: relative; left: 300px; ">Log In</button></a>
+                </li>
+                <li id="navSections" class="nav-item px-3">
+                    <a href="{{url_for('register')}}"><button class="btn btn-outline-light" style="position: relative; left: 300px; ">Sign Up</button></a>
+                </li>
+                {% endif %}
+              </ul>
+              
+            </div>
+        </div>
+    </nav>
+    
+    <div class="candidate_biodata_content">
+        <h1 class="text-center text-white p-5">Candidate Bio</h1>
+        
+        <div class="container">
+            <div class="candidate_photo">
+                {% if candidate.candidate_photo_filename == 'candidate_image.jpg' %}
+                <img class="rounded-circle" src="{{ url_for('static', filename='candidate_profile_pics/candidate_image.jpg') }}" alt="candidate image" style="height: 200px; width: 200px; margin-top: 20px; margin-bottom: 10px; margin-left: 43%;">
+                {% else %}
+                <img class="rounded-circle" src="{{ url_for('static', filename='candidate_profile_pics/' + candidate.candidate_photo_filename) }}" alt="candidate image" style="height: 200px; width: 200px; margin-top: 20px; margin-bottom: 10px; margin-left: 43%;">
+                {% endif %}
+            </div><br>
+        <div class="candidate_name">
+            <p class="text-white display-6">Name: <a style="text-decoration: none; color: white;" href="{{url_for('candidate_biodata' , candidate_id = candidate.id )}}">{{ candidate.candidate_name }}</a></p>
+        </div>
+        <div class="candidate_ID">
+            <p class="text-white display-6">Student ID: {{ candidate.candidate_id }}</p>
+        </div>
+        <div class="candidate_faculty">
+            <p class="text-white display-6">Faculty: {{ candidate.candidate_faculty }}</p>
+        </div>
+        <div class="candidate_academic_level">
+            <p class="text-white display-6">Academic Level: {{ candidate.candidate_level }}</p>
+        </div>
+        <div class="candidate_quote">
+            <p class="text-white display-6">Quote: {{ candidate.candidate_quote }}</p>
+        </div>
+        </div>
+
+        <div class="candidate_position mb-3">
+            <p class="text-white display-6">Qualifications: <br>{{ candidate.candidate_qualifications }}</p>
+        </div>
+
+        <div class="candidate_position mb-3">
+            <p class="text-white display-6">Achievements: <br>{{ candidate.candidate_achievements }}</p>
+        </div>
+
+        <div class="candidate_resume">
+            <p class="text-white display-6">Resume: </p>
+            {% if candidate.candidate_resume == 'None' %}
+                <p class="text-white display-7">No resume available</p>
             {% else %}
-            <img class="rounded-circle" src="{{ url_for('static', filename='candidate_profile_pics/' + candidate.candidate_photo_filename) }}" alt="candidate image" style="height: 200px; width: 200px; margin-top: 20px; margin-bottom: 10px; margin-left: 43%;">
+            <a href="{{ url_for('static', filename='candidate_resume/' + candidate.candidate_resume) }}" target="_blank">
+                <img class="candidate_resume_image" src="{{ url_for('static', filename='candidate_resume/' + candidate.candidate_resume) }}" alt="candidate resume">
+            </a>
             {% endif %}
         </div>
-    <div class="candidate_name">
-        <p class="text-white display-6">Name: <a style="text-decoration: none; color: white;" href="{{url_for('candidate_biodata' , candidate_id = candidate.id )}}">{{ candidate.candidate_name }}</a></p>
-      </div>
-      <div class="candidate_ID">
-          <p class="text-white display-6">Student ID: {{ candidate.candidate_id }}</p>
-      </div>
-      <div class="candidate_faculty">
-          <p class="text-white display-6">Faculty: {{ candidate.candidate_faculty }}</p>
-      </div>
-      <div class="candidate_academic_level">
-          <p class="text-white display-6">Academic Level: {{ candidate.candidate_level }}</p>
-      </div>
-      <div class="candidate_quote">
-          <p class="text-white display-6">Quote: {{ candidate.candidate_quote }}</p>
-      </div>
-    </div>
-
-    <div class="candidate_position mb-3">
-        <p class="text-white display-6">Qualifications: <br>{{ candidate.candidate_qualifications }}</p>
-    </div>
-
-    <div class="candidate_position mb-3">
-        <p class="text-white display-6">Achievements: <br>{{ candidate.candidate_achievements }}</p>
-    </div>
-
-      <div class="candidate_resume">
-        <p class="text-white display-6">Resume: </p>
-        {% if candidate.candidate_resume == 'None' %}
-            <p class="text-white display-7">No resume available</p>
-        {% else %}
-        <a href="{{ url_for('static', filename='candidate_resume/' + candidate.candidate_resume) }}" target="_blank">
-            <img class="candidate_resume_image" src="{{ url_for('static', filename='candidate_resume/' + candidate.candidate_resume) }}" alt="candidate resume">
-        </a>
-        {% endif %}
-      </div>
-      <div class="embed-responsive embed-responsive-16by9">
-        <iframe class="embed-responsive-item" src="{{ candidate.candidate_manifesto }}" allowfullscreen></iframe>
-      </div>
-     
+        <div class="embed-responsive embed-responsive-16by9">
+            <iframe class="embed-responsive-item" src="{{ candidate.candidate_manifesto }}" allowfullscreen></iframe>
+        </div>
+        
+        </div>
     </div>
 
 

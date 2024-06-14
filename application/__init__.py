@@ -3,7 +3,6 @@ from flask_sqlalchemy import SQLAlchemy
 from flask_bcrypt import Bcrypt
 from flask_login import LoginManager
 from flask_migrate import Migrate
-# from flask_uploads import UploadSet, IMAGES, configure_uploads
 
 
 
@@ -18,8 +17,6 @@ db = SQLAlchemy(app)
 bcrypt = Bcrypt(app)
 migrate = Migrate(app , db)
 login_manager = LoginManager(app)
-# photos = UploadSet('photos', IMAGES)
-# configure_uploads(app, photos)
 
 
 from application import routes

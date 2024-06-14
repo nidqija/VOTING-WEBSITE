@@ -4,22 +4,22 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Voting Home</title>
-    <link rel="stylesheet" href="../static/styles1.css" >
+    <title>Candidate Biodata Page</title>
+    <link rel="stylesheet" href="/../static/styles1.css" >
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
 </head>
-<!--<h1>Welcome user! You have login!</h1>-->
+
 <body class="candidate-biodata-pageWallpaper">
     <nav id="navbarBackground" class="navbar navbar-expand-lg">
         <div class="container-fluid p-4">
-            <a id="title" class="navbar-brand px-3" href="#">VOTE-IT!</a>
+            <a id="title" class="navbar-brand px-3" href="{{url_for('home')}}">VOTE-IT!</a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
               <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse "  id="navbarSupportedContent">
               <ul  class="navbar-nav me-auto mb-2 mb-lg-0 ">
                 <li id="navSections" class="nav-item px-3">
-                  <a style="color: yellow;" id="Navlink" class="nav-link active" href="{{url_for('home')}}">Home</a>
+                  <a id="Navlink" class="nav-link active" href="{{url_for('home')}}">Home</a>
                 </li>
                 <li id="navSections" class="nav-item px-3">
                   <a  id="Navlink" class="nav-link" href="{{url_for('candidates')}}">Candidate</a>
@@ -42,11 +42,10 @@
                 {% if current_user.is_authenticated %}
                 <li id="navSections" class="nav-item px-3">
                 
-                   <button id="CurrentUserProfile" type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                   <button id="CurrentUserProfile" type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal" style="position: relative; left: 300px; width: 200px;">
                     {{ current_user.username }}
                    </button>
     
-    <!-- Modal -->
             <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
              <div class="modal-dialog">
                <div class="modal-content">
@@ -82,7 +81,7 @@
     </nav>
     
     <div class="candidate_biodata_content">
-        <h1 class="text-center text-white p-5">Candidate Bio</h1>
+        <h1 class="text-center text-white p-5">Candidate Biodata</h1>
         
         <div class="container">
             <div class="candidate_photo">
@@ -107,16 +106,6 @@
         <div class="candidate_quote">
             <p class="text-white display-6">Quote: {{ candidate.candidate_quote }}</p>
         </div>
-        </div>
-
-        <div class="candidate_position mb-3">
-            <p class="text-white display-6">Qualifications: <br>{{ candidate.candidate_qualifications }}</p>
-        </div>
-
-        <div class="candidate_position mb-3">
-            <p class="text-white display-6">Achievements: <br>{{ candidate.candidate_achievements }}</p>
-        </div>
-
         <div class="candidate_resume">
             <p class="text-white display-6">Resume: </p>
             {% if candidate.candidate_resume == 'None' %}
@@ -133,21 +122,8 @@
         
         </div>
     </div>
-
-
     
-
-   
-
- 
-    <!-- <div class="icon">
-        <a href="www.com"><ion-icon name="logo-facebook"></ion-icon></a>
-        <a href="www.com"><ion-icon name="logo-instagram"></ion-icon></a>
-        <a href="www.com"><ion-icon name="logo-discord"></ion-icon></a>
-    </div> -->
-
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" crossorigin="anonymous"></script>
-    <!-- <script src="https://unpkg.com/ionicons@5.4.0/dist/ionicons.js"></script> -->
 
 </body>
 </html>

@@ -261,7 +261,7 @@ def about():
      return render_template('about.html')
 
 
-@app.route('/admin_homepage')
+@app.route('/IJkzOPqZ9IPluAc7atzFOg==')
 def adminHomepage():
      candidate1 = Candidate.query.all()
      #candidate2 = Candidate2.query.all()
@@ -269,7 +269,7 @@ def adminHomepage():
      return render_template('admin_homepage.html' , candidate1 = candidate1)
 
 
-@app.route('/leaderboard_general')
+@app.route('/IvA9l92ysdqhFrpID7Ek35LbLZYdCsY3EVC9J/25qh8=')
 def leaderboard_general():
      candidate1 = Candidate.query.all()
      #candidate2 = Candidate2.query.all()
@@ -277,7 +277,7 @@ def leaderboard_general():
      return render_template('leaderboard_general.html' , candidate1 = candidate1)
 
 
-@app.route('/leaderboard_FAC')
+@app.route('/AlsHoKo5rYcIMAm3iu+INg==')
 def leaderboard_FAC():
      candidate1 = Candidate.query.all()
      #candidate2 = Candidate2.query.all()
@@ -285,7 +285,7 @@ def leaderboard_FAC():
      return render_template('leaderboard_FAC.html' , candidate1 = candidate1)
 
 
-@app.route('/leaderboard_FCA')
+@app.route('/5+6KPGQlequ4MJS67eIHvQ==')
 def leaderboard_FCA():
      candidate1 = Candidate.query.all()
      #candidate2 = Candidate2.query.all()
@@ -293,7 +293,7 @@ def leaderboard_FCA():
      return render_template('leaderboard_FCA.html' , candidate1 = candidate1)
 
 
-@app.route('/leaderboard_FCI')
+@app.route('/FOztxCTqKPk2zxpE7bZz+w==')
 def leaderboard_FCI():
      candidate1 = Candidate.query.all()
      #candidate2 = Candidate2.query.all()
@@ -301,7 +301,7 @@ def leaderboard_FCI():
      return render_template('leaderboard_FCI.html' , candidate1 = candidate1)
 
 
-@app.route('/leaderboard_FCM')
+@app.route('/6U5CsparIBMRXFEkiHpsw==')
 def leaderboard_FCM():
      candidate1 = Candidate.query.all()
      #candidate2 = Candidate2.query.all()
@@ -309,7 +309,7 @@ def leaderboard_FCM():
      return render_template('leaderboard_FCM.html' , candidate1 = candidate1)
 
 
-@app.route('/leaderboard_FOE')
+@app.route('/tX91VOctKYuEPRHK1r58zQ==')
 def leaderboard_FOE():
      candidate1 = Candidate.query.all()
      #candidate2 = Candidate2.query.all()
@@ -317,7 +317,7 @@ def leaderboard_FOE():
      return render_template('leaderboard_FOE.html' , candidate1 = candidate1)
 
 
-@app.route('/leaderboard_FOM')
+@app.route('/hXzDc+oQsLeA0LL6G9SgQ==')
 def leaderboard_FOM():
      candidate1 = Candidate.query.all()
      #candidate2 = Candidate2.query.all()
@@ -325,7 +325,7 @@ def leaderboard_FOM():
      return render_template('leaderboard_FOM.html' , candidate1 = candidate1)
      
 
-@app.route('/update_announcement' , methods = ['POST' , 'GET'])
+@app.route('/2dQY+I7uLtUOUMYXWjpoJLcGZwTVGdtSA14nfBXvGs4=' , methods = ['POST' , 'GET'])
 def updateAnnouncement():
          
     announcements = Announcement.query.all()     
@@ -346,7 +346,7 @@ def update_announcement(announcement_id):
    return render_template('update_announcement.html' , titles = announcement.titles , announcement=announcement)
 
 
-@app.route('/update_announcement/<int:announcement_id>/edit' , methods = ['POST' , 'GET'])
+@app.route('/2dQY+I7uLtUOUMYXWjpoJLcGZwTVGdtSA14nfBXvGs4=/<int:announcement_id>/edit' , methods = ['POST' , 'GET'])
 def edit_announcement(announcement_id):
    announcement = Announcement.query.get_or_404(announcement_id)
    
@@ -361,7 +361,7 @@ def edit_announcement(announcement_id):
    return render_template('update_announcement2.html' , form = form)
 
 
-@app.route('/update_announcement/<int:announcement_id>/delete' , methods = ['POST' , 'GET'])
+@app.route('/2dQY+I7uLtUOUMYXWjpoJLcGZwTVGdtSA14nfBXvGs4=/<int:announcement_id>/delete' , methods = ['POST' , 'GET'])
 
 def delete_announcement(announcement_id):
      announcement = Announcement.query.get_or_404(announcement_id)
@@ -371,7 +371,7 @@ def delete_announcement(announcement_id):
      flash('Your post has been deleted!' , 'success')
      return redirect(url_for('updateAnnouncement'))
 
-@app.route('/info_candidates' , methods = ['POST' , 'GET']) 
+@app.route('/EIuVpGq8DTYnxab9t0Grg==' , methods = ['POST' , 'GET']) 
 def candidatesInfo():
      candidate1 = Candidate.query.all()
      #candidate2 = Candidate2.query.all()
@@ -426,7 +426,7 @@ def submitvote():
      return render_template('submitvote.html')
 
 
-@app.route('/viewusers')
+@app.route('/obmnxASNRZ+j0lIWbq+Kg==')
 
 
 def viewUsers():
@@ -435,7 +435,7 @@ def viewUsers():
      return render_template('view_users.html' , users = users)
 
 
-@app.route('/candidate_form' , methods = ['POST' , 'GET']) 
+@app.route('/hAlSVOZGpmQgnFVfsIyXrA==' , methods = ['POST' , 'GET']) 
 def candidatesform():
 
      form = CandidateForm()
@@ -536,7 +536,7 @@ def candidates_editing_profile(candidate_id):
      
 
 
-@app.route('/info_candidates/<int:candidate_id>/edit' , methods = ['POST' , 'GET'])
+@app.route('/EIuVpGq8DTYnxab9t0Grg==/<int:candidate_id>/edit' , methods = ['POST' , 'GET'])
 def edit_candidates(candidate_id):
      candidate = Candidate.query.get_or_404(candidate_id)
    
@@ -578,7 +578,7 @@ def edit_candidates(candidate_id):
 
 
 
-@app.route('/update_candidates/<int:candidate_id>/delete' , methods = ['POST' , 'GET'])
+@app.route('/EIuVpGq8DTYnxab9t0Grg==/<int:candidate_id>/delete' , methods = ['POST' , 'GET'])
 
 def delete_candidates(candidate_id):
      candidate = Candidate.query.get_or_404(candidate_id)

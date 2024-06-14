@@ -1,6 +1,6 @@
-from flask import render_template , flash , redirect , url_for , abort , request
-from application.form import RegistrationForm , Loginform , QuestionForm, AnnouncementForm , CandidateForm , CandidateIDForm
-from application.models import User , Post , Candidate , Vote1 , Announcement , CandidateID
+from flask import render_template , flash , redirect , url_for , abort
+from application.form import RegistrationForm , Loginform , QuestionForm, AnnouncementForm , CandidateForm
+from application.models import User , Post , Candidate , Vote1 , Announcement
 from application import app , db , bcrypt
 import os
 from flask_login import login_user , current_user , logout_user, login_required
@@ -63,7 +63,6 @@ def register():
     return render_template('register.html' , form = form)
 
 
-
 @app.route('/logout')
 def logout():
      logout_user()
@@ -75,16 +74,12 @@ def contact():
      return render_template('contact.html')
 
 
-
 @app.route('/candidates/first/' , methods = [ 'GET' , 'POST'])
 @login_required
 
 def candidates():
      candidate1 = Candidate.query.all()
      return render_template('candidates.html' , candidate1 = candidate1)
-     
-    
-
 
 
 @app.route('/vote-candidate/<candidate_id>' , methods = ['GET', 'POST'])
@@ -94,79 +89,26 @@ def vote(candidate_id):
      candidate = Candidate.query.get(candidate_id)
 
      if not candidate:
-        flash('Candidate not found.', 'danger')
-        return redirect(url_for('home'))
-     
-     voted = Vote1.query.filter_by( author = current_user.id).first()
-
-     if voted:
-          flash('You have already voted for this candidate.' , 'warning')
+          flash('Candidate not found.', 'danger')
           return redirect(url_for('home'))
-     
+
+     voted = Vote1.query.filter_by(author=current_user.id).all()
+
+     if candidate.candidate_faculty.capitalize() == 'General':
+          if any(voted.candidate.candidate_faculty.capitalize() == 'General' for voted in voted):
+               flash('You have already voted for a general candidate.', 'warning')
+               return redirect(url_for('home'))
+     else:
+          if any(voted.candidate.candidate_faculty.upper() == candidate.candidate_faculty.upper() for voted in voted):
+               flash('You have already voted for a candidate from this faculty.', 'warning')
+               return redirect(url_for('home'))
+
      new_vote = Vote1(author=current_user.id, candidate_id=candidate_id)
      db.session.add(new_vote)
      db.session.commit()
      flash('Your vote has been recorded.', 'success')
 
      return redirect(url_for('home'))
-
-
-# @app.route('/candidates/second/' , methods = [ 'GET' , 'POST'])
-# @login_required
-
-# def candidate2():
-#      candidate2 = Candidate.query.all()
-#      return render_template('candidates.html' , candidate2 = candidate2)
-
-
-
-# @app.route('/vote-candidate2/<candidate_id>')
-# @login_required
-
-# def vote2(candidate_id):
-#      candidate2 = Candidate.query.filter_by(id = candidate_id)
-#      votes2 = Vote1.query.filter_by( author = current_user.id , candidate_id = candidate_id).first()
-
-#      if not candidate2:
-#           flash('Candidate does not exist' , category='error')
-
-#      else:
-#           votes2 = Vote1(author = current_user.id , candidate_id = candidate_id)
-#           db.session.add(votes2)
-#           db.session.commit()
-
-#      return redirect(url_for('candidate3'))
-
-
-
-
-# @app.route('/candidates/third/' , methods = [ 'GET' , 'POST'])
-# @login_required
-
-# def candidate3():
-#      candidate3 = Candidate.query.all()
-#      return render_template('candidates.html' , candidate3 = candidate3)
-
-
-
-
-
-# @app.route('/vote-candidate3/<candidate_id>')
-# @login_required
-
-# def vote3(candidate_id):
-#      candidate2 = Candidate.query.filter_by(id = candidate_id)
-#      votes3 = Vote1.query.filter_by( author = current_user.id , candidate_id = candidate_id).first()
-
-#      if not candidate2:
-#           flash('Candidate does not exist' , category='error')
-
-#      else:
-#           votes3 = Vote1(author = current_user.id , candidate_id = candidate_id)
-#           db.session.add(votes3)
-#           db.session.commit()
-
-#      return redirect(url_for('home'))
 
 
 @app.route('/edit_candidate' , methods = ['POST' , 'GET'] )
@@ -176,16 +118,12 @@ def edit_candidate_form():
      candidate1 = Candidate.query.all()
      return render_template('candidate_form_entrance.html' ,  candidate1 = candidate1 )
 
-     
 
 @app.route('/candidate_viewer/<int:candidate_aidi>')
 @login_required
 def candidate_viewer(candidate_aidi):
        candidate1 = Candidate.query.get_or_404(candidate_aidi)
        return render_template('candidate_form_entrance.html' , candidate1 = candidate1)
-
-
-
 
 
 @app.route('/guidelines')
@@ -246,11 +184,6 @@ def delete_question(post_id):
      return redirect(url_for('service'))
 
 
-
-
-
-
-
 @app.route('/profile')
 def profile():
     return render_template('profile.html')
@@ -264,64 +197,48 @@ def about():
 @app.route('/IJkzOPqZ9IPluAc7atzFOg==')
 def adminHomepage():
      candidate1 = Candidate.query.all()
-     #candidate2 = Candidate2.query.all()
-     #candidate3 = Candidate3.query.all()
      return render_template('admin_homepage.html' , candidate1 = candidate1)
 
 
 @app.route('/IvA9l92ysdqhFrpID7Ek35LbLZYdCsY3EVC9J/25qh8=')
 def leaderboard_general():
      candidate1 = Candidate.query.all()
-     #candidate2 = Candidate2.query.all()
-     #candidate3 = Candidate3.query.all()
      return render_template('leaderboard_general.html' , candidate1 = candidate1)
 
 
 @app.route('/AlsHoKo5rYcIMAm3iu+INg==')
 def leaderboard_FAC():
      candidate1 = Candidate.query.all()
-     #candidate2 = Candidate2.query.all()
-     #candidate3 = Candidate3.query.all()
      return render_template('leaderboard_FAC.html' , candidate1 = candidate1)
 
 
 @app.route('/5+6KPGQlequ4MJS67eIHvQ==')
 def leaderboard_FCA():
      candidate1 = Candidate.query.all()
-     #candidate2 = Candidate2.query.all()
-     #candidate3 = Candidate3.query.all()
      return render_template('leaderboard_FCA.html' , candidate1 = candidate1)
 
 
 @app.route('/FOztxCTqKPk2zxpE7bZz+w==')
 def leaderboard_FCI():
      candidate1 = Candidate.query.all()
-     #candidate2 = Candidate2.query.all()
-     #candidate3 = Candidate3.query.all()
      return render_template('leaderboard_FCI.html' , candidate1 = candidate1)
 
 
 @app.route('/6U5CsparIBMRXFEkiHpsw==')
 def leaderboard_FCM():
      candidate1 = Candidate.query.all()
-     #candidate2 = Candidate2.query.all()
-     #candidate3 = Candidate3.query.all()
      return render_template('leaderboard_FCM.html' , candidate1 = candidate1)
 
 
 @app.route('/tX91VOctKYuEPRHK1r58zQ==')
 def leaderboard_FOE():
      candidate1 = Candidate.query.all()
-     #candidate2 = Candidate2.query.all()
-     #candidate3 = Candidate3.query.all()
      return render_template('leaderboard_FOE.html' , candidate1 = candidate1)
 
 
 @app.route('/hXzDc+oQsLeA0LL6G9SgQ==')
 def leaderboard_FOM():
      candidate1 = Candidate.query.all()
-     #candidate2 = Candidate2.query.all()
-     #candidate3 = Candidate3.query.all()
      return render_template('leaderboard_FOM.html' , candidate1 = candidate1)
      
 
@@ -374,9 +291,6 @@ def delete_announcement(announcement_id):
 @app.route('/EIuVpGq8DTYnxab9t0Grg==' , methods = ['POST' , 'GET']) 
 def candidatesInfo():
      candidate1 = Candidate.query.all()
-     #candidate2 = Candidate2.query.all()
-     #candidate3 = Candidate3.query.all()
-     #image_file = url_for('static', filename='profile_pics/' + current_user.image_file)
      return render_template('info_candidates.html', candidate1=candidate1)
 
 
@@ -420,7 +334,6 @@ def adminlogin():
     return render_template('admin_login.html', form = form)
 
 
-
 @app.route('/submitvote')
 def submitvote():
      return render_template('submitvote.html')
@@ -431,7 +344,6 @@ def submitvote():
 
 def viewUsers():
      users = User.query.all()
-     #admins = Admin.query.all()
      return render_template('view_users.html' , users = users)
 
 
@@ -468,34 +380,6 @@ def candidatesform():
      return render_template('candidate_form.html', form=form)
 
 
-# @app.route('/general_candidate_form' , methods = ['POST' , 'GET']) 
-# def generalcandidatesform():
-
-#      form = CandidateForm()
-
-#      if form.validate_on_submit():
-#           photo_filename = None
-#           if form.candidate_photo.data:
-#                photo = form.candidate_photo.data
-#                photo_filename = secure_filename(photo.filename)
-#                photo.save(os.path.join(app.config['UPLOADED_FOLDER'], photo_filename))
-
-#          if form.candidate_resume.data:
-#               candidate_resume = form.candidate_resume.data
-#               resume_filename = secure_filename(candidate_resume.filename)
-#               resume_name = str(uuid.uuid1()) + '_' + resume_filename
-#               candidate_resume.save(os.path.join(app.config['UPLOAD_FOLDER'], resume_name))
-#          else:
-#               resume_name = None
-#
-#          candidate = Candidate(candidate_name = form.candidate_name.data, candidate_age = form.candidate_age.data, candidate_id = form.candidate_id.data, candidate_faculty = form.candidate_faculty.data, candidate_level = form.candidate_level.data, candidate_quote = form.candidate_quote.data, candidate_position = form.candidate_position.data , candidate_resume = resume_name)
-#          db.session.add(candidate)
-#          db.session.commit()
-#          flash('Candidate information has been filled up successfully!', 'success')
-#          return redirect(url_for('adminHomepage'))
-
-#      return render_template('general_candidate_form.html', form=form)
-
 @app.route('/candidates_editing_profile/<int:candidate_id>/edit' , methods = ['POST' , 'GET'])
 def candidates_editing_profile(candidate_id):
    candidate = Candidate.query.get_or_404(candidate_id)
@@ -508,7 +392,6 @@ def candidates_editing_profile(candidate_id):
         candidate.candidate_faculty = form.candidate_faculty.data
         candidate.candidate_level = form.candidate_level.data
         candidate.candidate_quote = form.candidate_quote.data
-        #candidate.candidate_photo_filename = form.candidate_photo.data
         if form.candidate_photo.data:
                photo = form.candidate_photo.data
                photo_filename = secure_filename(photo.filename)
@@ -533,9 +416,6 @@ def candidates_editing_profile(candidate_id):
    return render_template('update_candidates2.html' , form = form)
 
 
-     
-
-
 @app.route('/EIuVpGq8DTYnxab9t0Grg==/<int:candidate_id>/edit' , methods = ['POST' , 'GET'])
 def edit_candidates(candidate_id):
      candidate = Candidate.query.get_or_404(candidate_id)
@@ -548,8 +428,6 @@ def edit_candidates(candidate_id):
           candidate.candidate_faculty = form.candidate_faculty.data
           candidate.candidate_level = form.candidate_level.data
           candidate.candidate_quote = form.candidate_quote.data
-          #    candidate.candidate_position = form.candidate_position.data
-          #candidate.candidate_photo_filename = form.candidate_photo.data
           if form.candidate_photo.data:
                photo = form.candidate_photo.data
                photo_filename = secure_filename(photo.filename)
@@ -569,13 +447,10 @@ def edit_candidates(candidate_id):
      form.candidate_faculty.data = candidate.candidate_faculty 
      form.candidate_level.data = candidate.candidate_level 
      form.candidate_quote.data = candidate.candidate_quote 
-     #    form.candidate_position.data = candidate.candidate_position 
      form.candidate_photo.data = candidate.candidate_photo_filename
 
 
      return render_template('update_candidates2.html' , form = form)
-
-
 
 
 @app.route('/EIuVpGq8DTYnxab9t0Grg==/<int:candidate_id>/delete' , methods = ['POST' , 'GET'])
@@ -587,7 +462,6 @@ def delete_candidates(candidate_id):
      db.session.commit()
      flash('Your post has been deleted!' , 'success')
      return redirect(url_for('candidatesInfo'))
-
 
 
 @app.route('/candidate_biodata/<int:candidate_id>')

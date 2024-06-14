@@ -1,11 +1,8 @@
 from flask_wtf import FlaskForm
-from flask_wtf.file import FileField, FileAllowed , FileRequired
-from flask_login import current_user
-from application import db , app
+from flask_wtf.file import FileField, FileAllowed
 from wtforms import StringField , PasswordField , SubmitField , BooleanField , TextAreaField , URLField , SelectField
-from wtforms_sqlalchemy.fields import QuerySelectField
 from wtforms.validators import DataRequired , Length , Email , EqualTo , ValidationError
-from application.models import  User , Candidate
+from application.models import  User
 
 
 
@@ -15,7 +12,7 @@ class RegistrationForm(FlaskForm):
     username = StringField('Username' , validators=[DataRequired() , Length(min=2 , max= 20)])
     email = StringField('Email' , validators=[DataRequired() , Email()])
     mmu_id = StringField('Admin ID')
-    faculty = SelectField('Faculty', choices=[('FAC', 'FAC'), ('FCA', 'FCA'), ('FCI', 'FCI'), ('FCM', 'FCM'), ('FOE', 'FOE'), ('FOM', 'FOM')], validators=[DataRequired()])
+    faculty = SelectField('Faculty', choices=[('FAC', 'FAC'), ('FCA', 'FCA'), ('FCI', 'FCI'), ('FCM', 'FCM'), ('FOE', 'FOE'), ('FOM', 'FOM')])
     password = PasswordField('Password' , validators=[DataRequired()])
     confirmpassword = PasswordField('Confirm Password' , validators=[DataRequired() , EqualTo('password')])
     user_profile_photo =FileField('Profile Photo' , validators=[FileAllowed(['jpg', 'png', 'jpeg'], 'Only images are allowed!')])
@@ -64,38 +61,9 @@ class QuestionForm(FlaskForm):
     submit = SubmitField('Post')
 
 
-#class AdminRegistrationForm(FlaskForm):
-#    username2 = StringField('Admin name' , validators=[DataRequired() , Length(min=2 , max= 20)])
-#    email2 = StringField('Admin email' , validators=[DataRequired() , Email()])
-#    mmu_id = StringField('Admin ID' , validators=[DataRequired() , Length(min=2 , max=20)])
-#    password2 = PasswordField('Password' , validators=[DataRequired()])
-#    confirmpassword2 = PasswordField('Confirm Password' , validators=[DataRequired() , EqualTo('password2')])
-#    submit2 = SubmitField('register')
-#
-#    def validate_username2(self, username2):
-#        admin = Admin.query.filter_by(username2=username2.data).first()
-#        if admin:
-#            raise ValidationError('That username is taken , please choose another username!')
-#
-#    def validate_email2(self, email2):
-#        admin = Admin.query.filter_by(email2=email2.data).first()
-#        if admin:
-#            raise ValidationError('That email is taken , please choose another email!')
-
-
 class DescriptionForm(FlaskForm):
     self_description = TextAreaField('Description')
     submit = SubmitField('Submit')
-
-
-
-#class AdminLoginform(FlaskForm):
-#    username2 = StringField('username' , validators=[DataRequired() , Length(min=2 , max= 20)])
-#    password2 = PasswordField('password' , validators=[DataRequired()])
-#    mmu_id = StringField('Admin ID' , validators=[DataRequired() , Length(min=2 , max=20)])
-#    remember2 = BooleanField('Remember me')
-#    submit2 = SubmitField('Login')
-
 
 
 class AnnouncementForm(FlaskForm):
@@ -108,25 +76,13 @@ class CandidateForm(FlaskForm):
     candidate_name = StringField('Candidate Name', validators=[DataRequired(), Length(min=2, max=100)])
     candidate_age = StringField('Candidate Age', validators=[DataRequired(), Length(min=1, max=2)])
     candidate_id = StringField('Candidate ID', validators=[DataRequired(), Length(min=10, max=10)])
-    candidate_faculty = SelectField('Candidate Faculty', choices=[('General', 'General'), ('FAC', 'FAC'), ('FCA', 'FCA'), ('FCI', 'FCI'), ('FCM', 'FCM'), ('FOE', 'FOE'), ('FOM', 'FOM')], validators=[DataRequired()])
-    # candidate_type = StringField('Candidate Type', validators=[DataRequired()])
-    candidate_level = SelectField('Candidate Academic Level', choices=[('Foundation', 'Foundation'), ('Diploma', 'Diploma'), ('Degree', 'Degree')], validators=[DataRequired()])
+    candidate_faculty = SelectField('Candidate Faculty', choices=[('General', 'General'), ('FAC', 'FAC'), ('FCA', 'FCA'), ('FCI', 'FCI'), ('FCM', 'FCM'), ('FOE', 'FOE'), ('FOM', 'FOM')])
+    candidate_level = SelectField('Candidate Academic Level', choices=[('Foundation', 'Foundation'), ('Diploma', 'Diploma'), ('Degree', 'Degree')])
     candidate_quote = TextAreaField('Candidate Quote', validators=[DataRequired(), Length(max=500)])
     candidate_photo = FileField('Candidate Photo', validators=[FileAllowed(['jpg', 'png', 'jpeg'], 'Only images are allowed!')])
-    # candidate_position = StringField('Position (President / Vice President / Secretary)' , validators=[DataRequired() , Length(min=9 , max= 14)])
     candidate_resume = FileField('Candidate Resume' , validators=[FileAllowed(['jpg', 'png', 'jpeg'], 'Only images are allowed!')])
     candidate_manifesto = URLField('Candidate Manifesto (Embed Video URL)')
     submit = SubmitField('Submit')
-
-    # def validate_candidate_name(self,candidate_name):
-    #     candidate = Candidate.query.filter_by(candidate_name=candidate_name.data).first()
-    #     if candidate:
-    #         raise ValidationError('That candidate name is taken , please choose another candidate name!')
-    
-    # def validate_candidate_id(self,candidate_id):
-    #     candidate = Candidate.query.filter_by(candidate_id=candidate_id.data).first()
-    #     if candidate:
-    #         raise ValidationError('That candidate ID is taken , please choose another candidate ID!')
 
 
 class CandidateIDForm(FlaskForm):

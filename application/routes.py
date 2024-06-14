@@ -178,11 +178,10 @@ def edit_candidate_form():
 
      
 
-@app.route('/candidate_viewer')
+@app.route('/candidate_viewer/<int:candidate_aidi>')
 @login_required
-def candidate_viewer():
-   
-       candidate1 = Candidate.query.all()
+def candidate_viewer(candidate_aidi):
+       candidate1 = Candidate.query.get_or_404(candidate_aidi)
        return render_template('candidate_form_entrance.html' , candidate1 = candidate1)
 
 

@@ -9,7 +9,7 @@
     <title>Candidate Page</title>
 </head>
 
-<body class="candidate-pagewallpaper ">
+<body class="candidate-pagewallpaper">
   {% block content %}
   <nav id="navbarBackground" class="navbar navbar-expand-lg">
     <div class="container-fluid p-4">
@@ -98,7 +98,7 @@
       {% endif %}
       {% for candidate in candidate1 %}
         {% if candidate.candidate_faculty.capitalize() == 'General' %}
-        <div class="candidate_content mb-5" >
+        <div class="candidate_content" >
           <div class="card" style="background-color: rgba(255, 255, 255, 0.5);">
             <div class="card_image_box">
               {% if candidate.candidate_photo_filename == 'candidate_image.jpg' %}
@@ -115,18 +115,19 @@
                 </div>
               </div>
             </div>
-            <div class="embed-responsive embed-responsive-16by9">
+            <div class="embed-responsive embed-responsive-16by9" style="text-align: center;">
               <iframe class="embed-responsive-item" src="{{ candidate.candidate_manifesto }}" allowfullscreen></iframe>
             </div>
-            <div class="container">
-              <a href="{{url_for('edit_candidate_form' , candidate_id = candidate.id )}}" style="text-decoration: none; color: white;"><button class="edit_candidate_button mt-5">Edit Candidate</button></a>
-             </div>
-            <div class="card_button" style="text-align: center;">
-              <a href="/vote-candidate/{{candidate.id}}"><button class="vote_button">VOTE</button></a>
-            </div>
           </div><br>
-          </div><br>
-        
+          {% if candidate.candidate_name.lower() == current_user.username %}
+          <div class="container">
+            <a href="{{url_for('edit_candidate_form' , candidate_id = candidate.id )}}" style="text-decoration: none; color: white;"><button class="edit_candidate_button">Edit Candidate</button></a>
+           </div>
+          {% endif %}
+          <div class="card_button" style="text-align: center;">
+            <a href="/vote-candidate/{{candidate.id}}"><button class="vote_button">VOTE</button></a>
+          </div>
+        </div><br>
         
         {% endif %}
       {% endfor %}
@@ -141,7 +142,7 @@
       {% endif %}
       {% for candidate in candidate1 %}
         {% if candidate.candidate_faculty.upper() == 'FAC' %}
-        <div class="candidate_content mb-5">
+        <div class="candidate_content">
           <div class="card" style="background-color: rgba(255, 255, 255, 0.5);">
             <div class="card_image_box">
               {% if candidate.candidate_photo_filename == 'candidate_image.jpg' %}
@@ -158,18 +159,18 @@
                 </div>
               </div>
             </div>
-            <div class="embed-responsive embed-responsive-16by9">
+            <div class="embed-responsive embed-responsive-16by9" style="text-align: center;">
               <iframe class="embed-responsive-item" src="{{ candidate.candidate_manifesto }}" allowfullscreen></iframe>
             </div>
-            <div class="container">
-              <a href="{{url_for('edit_candidate_form' , candidate_id = candidate.id )}}" style="text-decoration: none; color: white;"><button class="edit_candidate_button mt-5">Edit Candidate</button></a>
-             </div>
-            <div class="card_button" style="text-align: center;">
-              <a href="/vote-candidate/{{candidate.id}}"><button class="vote_button">VOTE</button></a>
-            </div>
           </div><br>
-          </div><br>
-         
+          {% if candidate.candidate_name.lower() == current_user.username %}
+          <div class="container">
+            <a href="{{url_for('edit_candidate_form' , candidate_id = candidate.id )}}" style="text-decoration: none; color: white;"><button class="edit_candidate_button">Edit Candidate</button></a>
+           </div>
+          {% endif %}
+          <div class="card_button" style="text-align: center;">
+            <a href="/vote-candidate/{{candidate.id}}"><button class="vote_button">VOTE</button></a>
+          </div>
         </div><br>
         {% endif %}
       {% endfor %}
@@ -185,7 +186,7 @@
       {% endif %}
       {% for candidate in candidate1 %}
         {% if candidate.candidate_faculty.upper() == 'FCA' %}
-        <div class="candidate_content mb-5">
+        <div class="candidate_content">
           <div class="card" style="background-color: rgba(255, 255, 255, 0.5);">
             <div class="card_image_box">
               {% if candidate.candidate_photo_filename == 'candidate_image.jpg' %}
@@ -202,18 +203,18 @@
                 </div>
               </div>
             </div>
-            <div class="embed-responsive embed-responsive-16by9">
+            <div class="embed-responsive embed-responsive-16by9" style="text-align: center;">
               <iframe class="embed-responsive-item" src="{{ candidate.candidate_manifesto }}" allowfullscreen></iframe>
             </div>
-            <div class="container">
-              <a href="{{url_for('edit_candidate_form' , candidate_id = candidate.id )}}" style="text-decoration: none; color: white;"><button class="edit_candidate_button mt-5">Edit Candidate</button></a>
-             </div>
-            <div class="card_button" style="text-align: center;">
-              <a href="/vote-candidate/{{candidate.id}}"><button class="vote_button">VOTE</button></a>
-            </div>
           </div><br>
-          </div><br>
-      
+          {% if candidate.candidate_name.lower() == current_user.username %}
+          <div class="container">
+            <a href="{{url_for('edit_candidate_form' , candidate_id = candidate.id )}}" style="text-decoration: none; color: white;"><button class="edit_candidate_button">Edit Candidate</button></a>
+           </div>
+          {% endif %}
+          <div class="card_button" style="text-align: center;">
+            <a href="/vote-candidate/{{candidate.id}}"><button class="vote_button">VOTE</button></a>
+          </div>
         </div><br>
         {% endif %}
       {% endfor %}
@@ -229,7 +230,7 @@
       {% endif %}
       {% for candidate in candidate1 %}
         {% if candidate.candidate_faculty.upper() == 'FCI' %}
-        <div class="candidate_content mb-5">
+        <div class="candidate_content">
           <div class="card" style="background-color: rgba(255, 255, 255, 0.5);">
             <div class="card_image_box">
               {% if candidate.candidate_photo_filename == 'candidate_image.jpg' %}
@@ -246,18 +247,18 @@
                 </div>
               </div>
             </div>
-            <div class="embed-responsive embed-responsive-16by9">
+            <div class="embed-responsive embed-responsive-16by9" style="text-align: center;">
               <iframe class="embed-responsive-item" src="{{ candidate.candidate_manifesto }}" allowfullscreen></iframe>
             </div>
-            <div class="container">
-              <a href="{{url_for('edit_candidate_form' , candidate_id = candidate.id )}}" style="text-decoration: none; color: white;"><button class="edit_candidate_button mt-5">Edit Candidate</button></a>
-             </div>
-            <div class="card_button" style="text-align: center;">
-              <a href="/vote-candidate/{{candidate.id}}"><button class="vote_button">VOTE</button></a>
-            </div>
           </div><br>
-          </div><br>
-      
+          {% if candidate.candidate_name.lower() == current_user.username %}
+          <div class="container">
+            <a href="{{url_for('edit_candidate_form' , candidate_id = candidate.id )}}" style="text-decoration: none; color: white;"><button class="edit_candidate_button">Edit Candidate</button></a>
+           </div>
+          {% endif %}
+          <div class="card_button" style="text-align: center;">
+            <a href="/vote-candidate/{{candidate.id}}"><button class="vote_button">VOTE</button></a>
+          </div>
         </div><br>
         {% endif %}
       {% endfor %}
@@ -290,18 +291,18 @@
                 </div>
               </div>
             </div>
-            <div class="embed-responsive embed-responsive-16by9">
+            <div class="embed-responsive embed-responsive-16by9" style="text-align: center;">
               <iframe class="embed-responsive-item" src="{{ candidate.candidate_manifesto }}" allowfullscreen></iframe>
             </div>
-            <div class="container">
-              <a href="{{url_for('edit_candidate_form' , candidate_id = candidate.id )}}" style="text-decoration: none; color: white;"><button class="edit_candidate_button mt-5">Edit Candidate</button></a>
-             </div>
-            <div class="card_button" style="text-align: center;">
-              <a href="/vote-candidate/{{candidate.id}}"><button class="vote_button">VOTE</button></a>
-            </div>
           </div><br>
-          </div><br>
-       
+          {% if candidate.candidate_name.lower() == current_user.username %}
+          <div class="container">
+            <a href="{{url_for('edit_candidate_form' , candidate_id = candidate.id )}}" style="text-decoration: none; color: white;"><button class="edit_candidate_button">Edit Candidate</button></a>
+           </div>
+          {% endif %}
+          <div class="card_button" style="text-align: center;">
+            <a href="/vote-candidate/{{candidate.id}}"><button class="vote_button">VOTE</button></a>
+          </div>
         </div><br>
         {% endif %}
       {% endfor %}
@@ -334,18 +335,18 @@
                 </div>
               </div>
             </div>
-            <div class="embed-responsive embed-responsive-16by9">
+            <div class="embed-responsive embed-responsive-16by9" style="text-align: center;">
               <iframe class="embed-responsive-item" src="{{ candidate.candidate_manifesto }}" allowfullscreen></iframe>
             </div>
-            <div class="container">
-              <a href="{{url_for('edit_candidate_form' , candidate_id = candidate.id )}}" style="text-decoration: none; color: white;"><button class="edit_candidate_button mt-5">Edit Candidate</button></a>
-             </div>
-            <div class="card_button" style="text-align: center;">
-              <a href="/vote-candidate/{{candidate.id}}"><button class="vote_button">VOTE</button></a>
-            </div>
           </div><br>
-          </div><br>
-       
+          {% if candidate.candidate_name.lower() == current_user.username %}
+          <div class="container">
+            <a href="{{url_for('edit_candidate_form' , candidate_id = candidate.id )}}" style="text-decoration: none; color: white;"><button class="edit_candidate_button">Edit Candidate</button></a>
+           </div>
+          {% endif %}
+          <div class="card_button" style="text-align: center;">
+            <a href="/vote-candidate/{{candidate.id}}"><button class="vote_button">VOTE</button></a>
+          </div>
         </div><br>
         {% endif %}
       {% endfor %}
@@ -378,21 +379,19 @@
                 </div>
               </div>
             </div>
-            <div class="embed-responsive embed-responsive-16by9">
+            <div class="embed-responsive embed-responsive-16by9" style="text-align: center;">
               <iframe class="embed-responsive-item" src="{{ candidate.candidate_manifesto }}" allowfullscreen></iframe>
             </div>
-            <div class="container">
-              <a href="{{url_for('edit_candidate_form' , candidate_id = candidate.id )}}" style="text-decoration: none; color: white;"><button class="edit_candidate_button mt-5">Edit Candidate</button></a>
-             </div>
-            <div class="card_button" style="text-align: center;">
-              <a href="/vote-candidate/{{candidate.id}}"><button class="vote_button">VOTE</button></a>
-            </div>
           </div><br>
-          </div><br>
-       
+          {% if candidate.candidate_name.lower() == current_user.username %}
+          <div class="container">
+            <a href="{{url_for('edit_candidate_form' , candidate_id = candidate.id )}}" style="text-decoration: none; color: white;"><button class="edit_candidate_button">Edit Candidate</button></a>
+           </div>
+          {% endif %}
+          <div class="card_button" style="text-align: center;">
+            <a href="/vote-candidate/{{candidate.id}}"><button class="vote_button">VOTE</button></a>
+          </div>
         </div><br>
-      
-      
 
         
         {% endif %}

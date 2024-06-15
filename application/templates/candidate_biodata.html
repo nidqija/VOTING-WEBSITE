@@ -115,10 +115,11 @@
                 <img class="candidate_resume_image" src="{{ url_for('static', filename='candidate_resume/' + candidate.candidate_resume) }}" alt="candidate resume">
             </a>
             {% endif %}
-        </div>
+        </div><br>
         <div class="embed-responsive embed-responsive-16by9">
-            <iframe class="embed-responsive-item" src="{{ candidate.candidate_manifesto }}" allowfullscreen></iframe>
-        </div>
+          <p class="text-white display-6">Manifesto: </p>
+          <iframe class="embed-responsive-item" src="{{ candidate.candidate_manifesto }}" allowfullscreen></iframe>
+        </div><br>
         
         </div>
     </div>

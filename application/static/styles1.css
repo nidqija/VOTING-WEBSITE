@@ -20,9 +20,9 @@
 #CurrentUserProfile{
   position: relative; 
   left: 450px;
-   width: 200px;
-   font-size: large;
-   border-radius: 20px;
+  width: 200px;
+  font-size: large;
+  border-radius: 20px;
 }
 
 .role{

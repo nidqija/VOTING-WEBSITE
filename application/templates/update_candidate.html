@@ -11,11 +11,16 @@
 
 <body>
     
+    <!-- Title -->
     <h1 class="text-center" style="margin-top: 50px;">Candidate Form</h1>
+    <!-- Title -->
 
     <div class="container">
         <form method="POST" enctype="multipart/form-data">
+
             {{ form.hidden_tag() }}
+
+            <!-- Candidate Name Label -->
             <div class="mb-6" style="margin-top: 25px;">
                 {{ form.candidate_name.label(class="form-label") }}
                 {{ form.candidate_name(class="form-control", placeholder="Input your name here") }}
@@ -23,6 +28,9 @@
                     <span style="color: red;">{{ error }}</span>
                 {% endfor %}
             </div>
+            <!-- Candidate Name Label -->
+
+            <!-- Candidate Age Label -->
             <div class="mb-6" style="margin-top: 25px;">
                 {{ form.candidate_age.label(class="form-label") }}
                 {{ form.candidate_age(class="form-control", placeholder="Input your age here") }}
@@ -30,6 +38,9 @@
                     <span style="color: red;">{{ error }}</span>
                 {% endfor %}
             </div>
+            <!-- Candidate Age Label -->
+
+            <!-- Candidate ID Label -->
             <div class="mb-6" style="margin-top: 25px;">
                 {{ form.candidate_id.label(class="form-label") }}
                 {{ form.candidate_id(class="form-control", placeholder="Input your Candidate ID here") }}
@@ -37,6 +48,9 @@
                     <span style="color: red;">{{ error }}</span>
                 {% endfor %}
             </div>
+            <!-- Candidate ID Label -->
+
+            <!-- Candidate Faculty Label -->
             <div class="mb-6" style="margin-top: 25px;">
                 {{ form.candidate_faculty.label(class="form-label") }}
                 {{ form.candidate_faculty(class="form-control", placeholder="Input your faculty here") }}
@@ -44,6 +58,9 @@
                     <span style="color: red;">{{ error }}</span>
                 {% endfor %}
             </div>
+            <!-- Candidate Faculty Label -->
+
+            <!-- Candidate Academic Level Label -->
             <div class="mb-6" style="margin-top: 25px;">
                 {{ form.candidate_level.label(class="form-label") }}
                 {{ form.candidate_level(class="form-control", placeholder="Input your academic level here") }}
@@ -51,6 +68,9 @@
                     <span style="color: red;">{{ error }}</span>
                 {% endfor %}
             </div>
+            <!-- Candidate Academic Level Label -->
+
+            <!-- Candidate Quote Label -->
             <div class="mb-6" style="margin-top: 25px;">
                 {{ form.candidate_quote.label(class="form-label") }}
                 {{ form.candidate_quote(class="form-control", placeholder="Input your quote here") }}
@@ -58,6 +78,9 @@
                     <span style="color: red;">{{ error }}</span>
                 {% endfor %}
             </div>
+            <!-- Candidate Quote Label -->
+
+            <!-- Candidate Resume Label -->
             <div class="mb-6" style="margin-top: 25px;">
                 {{ form.candidate_resume.label(class="form-label") }}
                 {{ form.candidate_resume(class="form-control") }}
@@ -65,8 +88,12 @@
                     <span style="color: red;">{{ error }}</span>
                 {% endfor %}
             </div>
+            <!-- Candidate Resume Label -->
 
+            <!-- Submit Button -->
             <button type="submit" class="btn btn-primary">Submit</button>
+            <!-- Submit Button -->
+
         </form>
     </div>
 

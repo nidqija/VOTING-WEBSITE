@@ -10,76 +10,92 @@
 </head>
 
 <body class="profile-pagewallpaper">
-     <nav id="navbarBackground" class="navbar navbar-expand-lg ">
-        <div class="container-fluid p-4">
-          <a id="title" class="navbar-brand px-3" href="{{url_for('home')}}">VOTE-IT!</a>
-          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-          </button>
-            <div class="collapse navbar-collapse "  id="navbarSupportedContent">
-                <ul  class="navbar-nav me-auto mb-2 mb-lg-0 ">
-                    <li id="navSections" class="nav-item px-3">
-                        <a  id="Navlink" class="nav-link active" href="{{url_for('home')}}">Home</a>
-                      </li>
-                      <li id="navSections" class="nav-item px-3">
-                        <a  id="Navlink" class="nav-link" href="{{url_for('candidates')}}">Candidate</a>
-                      </li>
-                      <li id="navSections" class="nav-item px-3">
-                        <a id="Navlink" class="nav-link" href="{{url_for('about')}}">About</a>
-                      </li>
-                      <li id="navSections" class="nav-item px-3 ">
-                        <a  id="Navlink" class="nav-link" href="{{url_for('guidelines')}}" role="button" >
-                          Guideline
-                        </a>
-                      </li>
-                       <li id="navSections" class="nav-item px-3">
-                        <a id="Navlink" class="nav-link" href="{{url_for('service')}}">Service</a>
-                      </li>
-                      <li id="navSections" class="nav-item px-3">
-                        <a  id="Navlink" class="nav-link" href="{{url_for('contact')}}">Contact</a>
-                      </li>
 
-                      {% if current_user.is_authenticated %}
-                      <li id="navSections" class="nav-item px-3">
-                      
-                         <button id="CurrentUserProfile" type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal" style="position: relative; left: 300px; width: 200px;">
-                          {{ current_user.username }}
-                         </button>
-        
-                  <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                   <div class="modal-dialog">
-                     <div class="modal-content">
-                       <div class="modal-header">
-                          <h1 class="modal-title fs-5" id="exampleModalLabel">User Profile</h1>
-                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                               </div>
-                                  <div class="modal-body">
-                                     <p>Username :   {{ current_user.username }}</p> 
-                                     <p>Role : </p>
-                                     <p> Email : {{ current_user.email }}</p> 
-                                     <p>Description : </p>
-                                  </div>
-                                  <div class="modal-footer">
-                                       <a href="{{url_for('profile')}}"><button type="button" class="btn btn-secondary" data-bs-dismiss="modal">View Profile</button></a>
-                                      <a href="{{url_for('logout')}}"> <button type="button" class="btn btn-primary">Logout</button></a>
-                                  </div>
-                             </div>
-                          </div>
-                      </div>
-                      </li>
-                      {% else %}
-                      <li id="navSections" class="nav-item px-3">
-                          <a href="{{url_for('login')}}"><button class="btn btn-outline-light" style="position: relative; left: 300px; ">Log In</button></a>
-                      </li>
-                      <li id="navSections" class="nav-item px-3">
-                          <a href="{{url_for('register')}}"><button class="btn btn-outline-light" style="position: relative; left: 300px; ">Sign Up</button></a>
-                      </li>
-                    </ul>
-                </ul>
-                {% endif %}
+  <!-- Navigation Bar -->
+  <nav id="navbarBackground" class="navbar navbar-expand-lg ">
+
+    <!-- Main Contents of Navigation Bar -->
+    <div class="container-fluid p-4">
+      <a id="title" class="navbar-brand px-3" href="{{url_for('home')}}">VOTE-IT!</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse " id="navbarSupportedContent">
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0 ">
+          <li id="navSections" class="nav-item px-3">
+            <a id="Navlink" class="nav-link active" href="{{url_for('home')}}">Home</a>
+          </li>
+          <li id="navSections" class="nav-item px-3">
+            <a id="Navlink" class="nav-link" href="{{url_for('candidates')}}">Candidate</a>
+          </li>
+          <li id="navSections" class="nav-item px-3">
+            <a id="Navlink" class="nav-link" href="{{url_for('about')}}">About</a>
+          </li>
+          <li id="navSections" class="nav-item px-3 ">
+            <a id="Navlink" class="nav-link" href="{{url_for('guidelines')}}" role="button">Guideline</a>
+          </li>
+          <li id="navSections" class="nav-item px-3">
+            <a id="Navlink" class="nav-link" href="{{url_for('service')}}">Service</a>
+          </li>
+          <li id="navSections" class="nav-item px-3">
+            <a id="Navlink" class="nav-link" href="{{url_for('contact')}}">Contact</a>
+          </li>
+    <!-- Main Contents of Navigation Bar -->
+
+        <!-- If user has logged in -->
+          {% if current_user.is_authenticated %}
+          <li id="navSections" class="nav-item px-3">
+            <button id="CurrentUserProfile" type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal" style="position: relative; left: 300px; width: 200px;">
+          {{ current_user.username }}
+            </button>
+        <!-- If user has logged in -->
+
+            <!-- Modal -->
+            <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+              <div class="modal-dialog">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="exampleModalLabel">User Profile</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                  </div>
+                  <div class="modal-body">
+                    <p>Username : {{ current_user.username }}</p>
+                    <p> Email : {{ current_user.email }}</p>
+
+                    {% if current_user.mmu_id %}
+                    <p>Role : <a class="text-danger" style="text-decoration: none;">Admin</a> </p>
+                    {% else %}
+                    <p>Role : <a class="text-success" style="text-decoration: none;">Student</a> </p>
+                    {% endif %}
+
+                  </div>
+                  <div class="modal-footer">
+                    <a href="{{url_for('profile')}}"><button type="button" class="btn btn-secondary" data-bs-dismiss="modal">View Profile</button></a>
+                    <a href="{{url_for('logout')}}"> <button type="button" class="btn btn-primary">Logout</button></a>
+                  </div>
+                </div>
+              </div>
             </div>
-        </div>
-    </nav>
+            <!-- Modal -->
+
+          </li>
+
+        <!-- If user is not logged in -->
+          {% else %}
+          <li id="navSections" class="nav-item px-3">
+            <a href="{{url_for('login')}}"><button class="btn btn-outline-light" style="position: relative; left: 300px;">Log In</button></a>
+          </li>
+          <li id="navSections" class="nav-item px-3">
+            <a href="{{url_for('register')}}"><button class="btn btn-outline-light" style="position: relative; left: 300px;">Sign Up</button></a>
+          </li>
+          {% endif %}
+        <!-- If user is not logged in -->
+
+        </ul>
+      </div>
+    </div>
+  </nav>
+  <!-- Navigation Bar -->
 
    {% if current_user.mmu_id %}
     <div class="profile_content">

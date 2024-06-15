@@ -46,25 +46,31 @@
                 {{ current_user.username }}
                </button>
 
-        <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-         <div class="modal-dialog">
-           <div class="modal-content">
-             <div class="modal-header">
-                <h1 class="modal-title fs-5" id="exampleModalLabel">User Profile</h1>
-                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                     </div>
-                        <div class="modal-body">
-                           <p>Username :   {{ current_user.username }}</p> 
-                           <p> Email : {{ current_user.email }}</p> 
-                           <p>Role : <a class="role text-success">Student</a> </p>
-                        </div>
-                        <div class="modal-footer">
-                          <a href="{{url_for('profile')}}"><button type="button" class="btn btn-secondary" data-bs-dismiss="modal">View Profile</button></a>
-                          <a href="{{url_for('logout')}}"> <button type="button" class="btn btn-primary">Logout</button></a>
-                        </div>
+               <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog">
+                  <div class="modal-content">
+                    <div class="modal-header">
+                       <h1 class="modal-title fs-5" id="exampleModalLabel">User Profile</h1>
+                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                            </div>
+                               <div class="modal-body">
+                                  <p>Username :   {{ current_user.username }}</p> 
+                                  <p> Email : {{ current_user.email }}</p>
+  
+                                  {% if current_user.mmu_id %} 
+                                  <p>Role : <a class="text-danger" style="text-decoration: none;">Admin</a> </p>
+                                  {% else %}
+                                  <p>Role : <a class="text-success" style="text-decoration: none;">Student</a> </p>
+                                  {% endif %}
+  
+                               </div>
+                               <div class="modal-footer">
+                                    <a href="{{url_for('profile')}}"><button type="button" class="btn btn-secondary" data-bs-dismiss="modal">View Profile</button></a>
+                                   <a href="{{url_for('logout')}}"> <button type="button" class="btn btn-primary">Logout</button></a>
+                               </div>
+                          </div>
+                       </div>
                    </div>
-                </div>
-            </div>
             </li>
             {% else %}
             <li id="navSections" class="nav-item px-3">

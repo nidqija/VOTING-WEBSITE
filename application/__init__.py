@@ -18,5 +18,4 @@ bcrypt = Bcrypt(app)
 migrate = Migrate(app , db)
 login_manager = LoginManager(app)
 
-
 from application import routes

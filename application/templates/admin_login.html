@@ -11,15 +11,22 @@
 </head>
 
 <body>
+
     {% block content %}
+
     <div class="container"><br>
         <div class="content-section">
             <form method="POST">
+
                 {{ form.hidden_tag() }}
 
                 <fieldset class="form-group">
-                    <legend class="text-center">Login Now!</legend>
 
+                    <!-- Title -->
+                    <legend class="text-center">Login Now!</legend>
+                    <!-- Title -->                    
+
+                    <!-- Username Label -->
                     <div class="form-group">
                         {{ form.username.label(class="form-control-label") }}
 
@@ -34,7 +41,9 @@
                             {{ form.username(class="form-control form-control-lg") }}
                         {% endif %}
                     </div><br>
+                    <!-- Username Label -->                    
 
+                    <!-- MMU ID Label -->
                     <div class="form-group">
                         {{ form.mmu_id.label(class="form-control-label") }}
 
@@ -49,7 +58,9 @@
                             {{ form.mmu_id(class="form-control form-control-lg") }}
                         {% endif %}
                     </div><br>
+                    <!-- MMU ID Label -->
 
+                    <!-- Password Label -->
                     <div class="form-group">
                         {{ form.password.label(class="form-control-label") }}
 
@@ -64,29 +75,38 @@
                             {{ form.password(class="form-control form-control-lg") }}
                         {% endif %}
                     </div><br>
+                    <!-- Password Label -->
 
+                    <!-- Remember Me Button -->
                     <div class="form-check">
                         {{ form.remember(class='form-check-input') }}
                         {{ form.remember.label(class='form-check-label') }}
                     </div><br>
+                    <!-- Remember Me Button -->
 
+                    <!-- Login Button -->
                     <div class="form-group" id="LoginSubmitButton">
                         {{ form.submit(class = "btn btn-outline-info") }}
                     </div><br>
+                    <!-- Login Button -->
+
                 </fieldset>
             </form>
         </div>
     </div><br><br>
 
+    <!-- Admin Registration -->
     <div class="border-top pt-3">
         <small class="text-muted ml-5">
             <p>New admin? <a href="{{ url_for('adminregister') }}">Sign in here!</a></p>
         </small>
     </div>
-                
+    <!-- Admin Registration -->
+
     {% endblock content %}
 
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js" integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.min.js" integrity="sha384-cuYeSxntonz0PPNlHhBs68uyIAVpIIOZZ5JqeqvYYIcEL727kskC66kF92t6Xl2V" crossorigin="anonymous"></script>
+
 </body>
 </html>

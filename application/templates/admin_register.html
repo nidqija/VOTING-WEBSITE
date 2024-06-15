@@ -9,17 +9,24 @@
     <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
     <title>Admin Register Page</title>
 </head>
+
 <body>
     
     {% block content %}
+
     <div class="container"><br>
         <div class="content-section">
             <form method="POST" action="">
+
                 {{ form.hidden_tag() }}
 
                 <fieldset class="form-group">
+
+                    <!-- Title -->
                     <legend class="text-center">Register Now!</legend>
-                    
+                    <!-- Title -->
+
+                    <!-- Username Label -->
                     <div class="form-group">
                         {{ form.username.label(class="form-control-label") }}
                         {% if form.username.errors %}
@@ -33,7 +40,9 @@
                             {{ form.username(class="form-control form-control-lg") }}
                         {% endif %}
                     </div><br>
-                    
+                    <!-- Username Label -->
+
+                    <!-- Email Label -->
                     <div class="form-group">
                         {{ form.email.label(class="form-control-label") }}
                         {% if form.email.errors %}
@@ -47,7 +56,9 @@
                             {{ form.email(class="form-control form-control-lg") }}
                         {% endif %}
                     </div><br>
+                    <!-- Email Label -->
 
+                    <!-- MMU ID Label -->
                     <div class="form-group">
                         {{ form.mmu_id.label(class="form-control-label") }}
                         {% if form.mmu_id.errors %}
@@ -61,7 +72,9 @@
                             {{ form.mmu_id(class="form-control form-control-lg") }}
                         {% endif %}
                     </div><br>
+                    <!-- MMU ID Label -->
 
+                    <!-- Faculty Label -->
                     <div class="form-group">
                         {{ form.faculty.label(class="form-control-label") }}
                         {% if form.faculty.errors %}
@@ -75,7 +88,9 @@
                             {{ form.faculty(class="form-control form-control-lg") }}
                         {% endif %}
                     </div><br>
+                    <!-- Faculty Label -->
 
+                    <!-- Password Label -->
                     <div class="form-group">
                         {{ form.password.label(class="form-control-label") }}
                         {% if form.password.errors %}
@@ -89,7 +104,9 @@
                             {{ form.password(class="form-control form-control-lg") }}
                         {% endif %}
                     </div><br>
+                    <!-- Password Label -->
 
+                    <!-- Confirm Password Label -->
                     <div class="form-group">
                         {{ form.confirmpassword.label(class="form-control-label") }}
                         {% if form.confirmpassword.errors %}
@@ -103,24 +120,31 @@
                             {{ form.confirmpassword(class="form-control form-control-lg") }}
                         {% endif %}
                     </div><br>
+                    <!-- Confirm Password Label -->
 
+                    <!-- Register Button -->
                     <div class="form-group">
                         {{ form.submit(class="btn btn-outline-info text-center") }}
                     </div><br>
+                    <!-- Register Button -->
+
                 </fieldset>
             </form>
         </div>
     </div>
-    
+
+    <!-- Admin Login -->
     <div class="border-top pt-3">
         <small class="text-muted">
             Already have an admin account? <a class="ml-2" href="{{ url_for('adminlogin') }}">Login</a>
         </small>
     </div>
+    <!-- Admin Login -->
 
     {% endblock content %}
 
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js" integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.min.js" integrity="sha384-cuYeSxntonz0PPNlHhBs68uyIAVpIIOZZ5JqeqvYYIcEL727kskC66kF92t6Xl2V" crossorigin="anonymous"></script>
+
 </body>
 </html>

@@ -34,13 +34,28 @@
 .home-pageWallpaper{
   background: linear-gradient(to top, rgba(0,0,0,0.5)50%,rgba(0,0,0,0.5)50%), url(https://www.mmu.edu.my/wp-content/uploads/2022/12/1280_720_2.jpeg);
   background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
+  overflow: hidden;
 }
    
+.homepage_content{
+  overflow: scroll;
+  height: 590px;
+  overflow-x: hidden;
+}
+
 .announcement{
   padding-top: 2%;
   height: auto;
   margin: auto;
   text-align: center;
+}
+
+.vote_now_button{
+  border-radius: 10px;
+  padding-left: 20px;
+  padding-right: 20px;
 }
 
 
@@ -55,7 +70,8 @@
 
 .candidate_container{
   overflow: scroll;
-  height: 607px;
+  height: 590px;
+  overflow-x: hidden;
 }
 
 .candidate_sit_title{
@@ -102,7 +118,8 @@
 
 .about_user_content{
   overflow: scroll;
-  height: 607px;
+  height: 590px;
+  overflow-x: hidden;
 }
 
 .about_photo{
@@ -128,7 +145,8 @@
 
 .guidelines_user_content{
   overflow: scroll;
-  height: 607px;
+  height: 590px;
+  overflow-x: hidden;
 }
 
 
@@ -143,7 +161,8 @@
 
 .service_user_content{
   overflow: scroll;
-  height: 607px;
+  height: 590px;
+  overflow-x: hidden;
 }
 
 
@@ -158,7 +177,8 @@
 
 .contact_user_content{
   overflow: scroll;
-  height: 607px;
+  height: 590px;
+  overflow-x: hidden;
 }
 
 
@@ -173,7 +193,8 @@
 
 .profile_content{
   overflow: scroll;
-  height: 607px;
+  height: 590px;
+  overflow-x: hidden;
 }
 
 .user_profile_pics{
@@ -195,7 +216,8 @@
 
 .candidate_biodata_content{
   overflow: scroll;
-  height: 607px;
+  height: 590px;
+  overflow-x: hidden;
 }
 
 .candidate_resume_image{
@@ -254,7 +276,8 @@
   float: right;
   padding-top: 50px;
   overflow: scroll;
-  height: 607px;
+  height: 591px;
+  overflow-x: hidden;
 }
 
 .admin_homepage_sidebar{

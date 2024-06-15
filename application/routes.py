@@ -275,7 +275,7 @@ def edit_announcement(announcement_id):
         return redirect(url_for('updateAnnouncement'))
    form.titles.data = announcement.titles
    form.description.data = announcement.description
-   return render_template('update_announcement2.html' , form = form)
+   return render_template('update_announcement.html' , form = form)
 
 
 @app.route('/2dQY+I7uLtUOUMYXWjpoJLcGZwTVGdtSA14nfBXvGs4=/<int:announcement_id>/delete' , methods = ['POST' , 'GET'])

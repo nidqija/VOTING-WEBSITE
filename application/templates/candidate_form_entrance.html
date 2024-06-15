@@ -10,6 +10,8 @@
 </head>
 
 <body class="candidate_form_entrance-pagewallpaper"><br><br><br><br><br><br>
+
+    <!-- Candidate Owner -->
     {% set user_found = {'value': False} %}
     {% for candidate in candidate1 %}
         {% if candidate.candidate_name.lower() == current_user.username %}
@@ -17,34 +19,54 @@
             {% endif %}
             <div class="candidate1_information_container">
                 <div class="candidate1_detail">
+
+                    <!-- Candidate Name -->
                     <div class="candidate_name">
                         <p>Name: <a style="text-decoration: none; color: white;" href="{{ url_for('candidate_biodata', candidate_id=candidate.id) }}">{{ candidate.candidate_name }}</a></p>
                         <a href="{{ url_for('candidates_editing_profile', candidate_id=candidate.id) }}"><button class="candidate_form_entrance_edit_button">Edit</button></a>
                     </div>
+                    <!-- Candidate Name -->
+
+                    <!-- Candidate ID -->
                     <div class="candidate_ID">
                         <p>Student ID: {{ candidate.candidate_id }}</p>
                     </div>
+                    <!-- Candidate ID -->
+
+                    <!-- Candidate Faculty -->
                     <div class="candidate_faculty">
                         <p>Faculty: {{ candidate.candidate_faculty }}</p>
                     </div>
+                    <!-- Candidate Faculty -->
+
+                    <!-- Candidate Academic Level -->
                     <div class="candidate_academic_level">
                         <p>Academic Level: {{ candidate.candidate_level }}</p>
                     </div>
+                    <!-- Candidate Academic Level -->
+
+                    <!-- Candidate Quote -->
                     <div class="candidate_quote">
                         <p>Quote: {{ candidate.candidate_quote }}</p>
                     </div>
+                    <!-- Candidate Quote -->
+                     
                 </div>
                 </div><br>
         {% endif %}
     {% endfor %}
-        
+    <!-- Candidate Owner -->
+
+    <!-- Not Candidate -->
     {% if not user_found['value'] %}
         <div class="text-center p-5">
             <h1 class="sorry_message">Sorry, you are not the candidate of this voting campaign</h1>
         </div>
     {% endif %}
+    <!-- Not Candidate -->
 
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js" integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.min.js" integrity="sha384-cuYeSxntonz0PPNlHhBs68uyIAVpIIOZZ5JqeqvYYIcEL727kskC66kF92t6Xl2V" crossorigin="anonymous"></script>
+
 </body>
 </html>

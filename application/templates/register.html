@@ -19,7 +19,7 @@
 
                 <fieldset class="form-group">
                     <legend class="text-center">Register Now!</legend>
-                    <dir class="form-group">
+                    <div class="form-group">
                         {{form.username.label(class="form-control-label")}}
 
                         {% if form.username.errors %}       
@@ -35,8 +35,8 @@
                         {% endif %}
 
 
-                    </dir>
-                    <dir class="form-group">
+                    </div>
+                    <div class="form-group">
                         {{form.email.label(class="form-control-label")}}
                         
 
@@ -54,8 +54,8 @@
                         {% endif %}
 
         
-                    </dir>
-                    <dir class="form-group">
+                    </div>
+                    <div class="form-group">
                         {{form.faculty.label(class="form-control-label")}}
                         
 
@@ -73,8 +73,8 @@
                         {% endif %}
 
         
-                    </dir>
-                    <dir class="form-group">
+                    </div>
+                    <div class="form-group">
                         {{form.password.label(class="form-control-label")}}
                             {% if form.password.errors %}
                                 {{form.password(class="form-control form-control-lg is-invalid")}}
@@ -95,8 +95,8 @@
 
 
 
-                    </dir>
-                    <dir class="form-group">
+                    </div>
+                    <div class="form-group">
 
                         {{form.confirmpassword.label(class="form-control-label")}}
 
@@ -114,8 +114,8 @@
                         {% endif %}
 
 
-                    </dir>
-                    <dir class="form-group">
+                    </div>
+                    <div class="form-group">
 
                         {{ form.user_profile_photo.label(class="form-label") }}
 
@@ -131,10 +131,10 @@
                         {% else %}
                             {{form.user_profile_photo(class="form-control form-control-lg")}}
                         {% endif %}
-                    </dir>
-                    <dir class="form-group">
+                    </div>
+                    <div class="form-group">
                         {{form.submit(class = "btn btn-outline-info text-center")}}
-                    </dir>
+                    </div>
                 </fieldset>
             </form>
         </div>

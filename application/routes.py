@@ -291,7 +291,8 @@ def delete_announcement(announcement_id):
 @app.route('/EIuVpGq8DTYnxab9t0Grg==' , methods = ['POST' , 'GET']) 
 def candidatesInfo():
      candidate1 = Candidate.query.all()
-     return render_template('info_candidates.html', candidate1=candidate1)
+     vote = Vote1.query.all()
+     return render_template('info_candidates.html', candidate1=candidate1 , vote = vote)
 
 
 @app.route('/createpoll')
@@ -458,7 +459,6 @@ def edit_candidates(candidate_id):
 
 def delete_candidates(candidate_id):
      candidate = Candidate.query.get_or_404(candidate_id)
-
      db.session.delete(candidate)
      db.session.commit()
      flash('Your post has been deleted!' , 'success')

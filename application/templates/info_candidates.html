@@ -146,7 +146,14 @@
                 <div class="candidate_quote">
                     <p>Quote: {{ candidate.candidate_quote.capitalize() }}</p>
                 </div>
+              
+                {% for i in vote %}
+                {% if i.id %}
+                <h1 style="color: transparent;">hello</h1>
+                {% else %}
                 <a href="{{url_for('delete_candidates' , candidate_id = candidate.id)}}" class="float-end"><button class="delete_button">delete</button></a>
+                {% endif %}
+                {% endfor %}
             </div>
         </div><br>
 
